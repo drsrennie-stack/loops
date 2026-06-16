@@ -1,0 +1,25 @@
+<!-- ===================================================================
+     ANATOMY LOOPS - Kajabi embed
+     Paste this whole block into a Kajabi "Custom Code" block on the page.
+     It loads the hub from GitHub Pages and auto-resizes to fit (no scrollbar).
+     =================================================================== -->
+<div style="width:100%;max-width:1100px;margin:0 auto;">
+  <iframe
+    id="anatomy-loops-frame"
+    src="https://drsrennie-stack.github.io/loops/"
+    title="Anatomy Loops practice"
+    style="width:100%;border:0;display:block;min-height:820px;"
+    loading="lazy"
+    allowfullscreen></iframe>
+</div>
+<script>
+(function(){
+  var f = document.getElementById('anatomy-loops-frame');
+  window.addEventListener('message', function(e){
+    var d = e.data;
+    if (d && d.id === 'anatomy-loops' && d.frameHeight) {
+      f.style.height = d.frameHeight + 'px';
+    }
+  });
+})();
+</script>
