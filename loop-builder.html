@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomy Loops — Loop Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1530; --navy2:#1E3D4C; --terra:#8B3A2E; --terra2:#C2734D; --gold:#C9A14A;
+    --off:#FAFAF9; --line:#E3E7EB; --ink:#1E3D4C;
+    --display:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    --eyebrow:'DM Sans',-apple-system,sans-serif; --serif:'Lora',Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--display);color:var(--ink);background:var(--off);line-height:1.5;}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 22px 70px;}
+  .eyebrow{font-family:var(--eyebrow);font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin:0 0 .4rem;}
+  h1{font-family:var(--display);font-weight:800;font-size:1.9rem;color:var(--navy);margin:0 0 .25rem;letter-spacing:-.02em;}
+  .lede{font-family:var(--serif);font-style:italic;color:var(--navy2);margin:.1rem 0 0;}
+  .step{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:18px 0;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  .step h2{font-family:var(--display);font-weight:700;font-size:1.12rem;color:var(--navy);margin:0 0 .7rem;display:flex;align-items:center;gap:10px;}
+  .step h2 .num{display:inline-flex;align-items:center;justify-content:center;width:1.55rem;height:1.55rem;border-radius:50%;background:var(--terra);color:#fff;font-size:.85rem;font-weight:800;}
+  label.fld{display:block;font-family:var(--eyebrow);font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--terra);margin:12px 0 4px;}
+  input[type=text], select, textarea{font:inherit;font-family:var(--display);font-weight:500;color:var(--navy);background:var(--off);border:1px solid #cfd5da;border-radius:8px;padding:9px 11px;width:100%;}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .hint{font-size:.85rem;color:#5F6B73;margin:6px 0 0;}
+  .tabs{display:flex;gap:8px;margin-bottom:12px;}
+  .tab{font-family:var(--display);font-weight:700;font-size:.9rem;border:1px solid var(--line);background:#fff;color:var(--navy);padding:8px 16px;border-radius:8px;cursor:pointer;}
+  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .drop{border:2px dashed #c2734d;border-radius:10px;padding:26px;text-align:center;color:var(--terra);background:#fff7f3;cursor:pointer;font-weight:600;}
+  .drop.drag{background:#ffe9dd;}
+  .btn{font-family:var(--display);font-weight:700;font-size:.95rem;border:none;border-radius:9px;padding:11px 20px;cursor:pointer;background:var(--terra);color:#fff;transition:background .15s;}
+  .btn:hover{background:var(--terra2);}
+  .btn:disabled{background:#bbb;cursor:not-allowed;}
+  .btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line);}
+  .btn.gold{background:var(--gold);color:var(--navy);}
+  .pagegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:12px;}
+  .pg{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;}
+  .pg img{width:100%;display:block;aspect-ratio:16/9;object-fit:contain;background:#fff;border-bottom:1px solid var(--line);}
+  .pg .tagbar{display:flex;}
+  .pg .tagbar button{flex:1;border:none;background:#fff;font-family:var(--display);font-weight:700;font-size:.72rem;padding:6px 0;cursor:pointer;color:var(--navy);border-top:2px solid transparent;}
+  .pg .tagbar button.on.q{background:#fdeee8;border-top-color:var(--terra);color:var(--terra);}
+  .pg .tagbar button.on.a{background:#eef3f5;border-top-color:var(--navy2);color:var(--navy2);}
+  .pg .tagbar button.on.s{background:#f2f2f2;border-top-color:#999;color:#666;}
+  .pg .lab{font-size:.66rem;color:#5F6B73;padding:3px 6px;text-align:center;}
+  .pair{display:grid;grid-template-columns:120px 120px 1fr;gap:12px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0;}
+  .pair img{width:120px;aspect-ratio:16/9;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:6px;}
+  .pair .qa{font-family:var(--eyebrow);font-weight:700;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;}
+  .status{margin-top:12px;font-weight:600;color:var(--navy2);}
+  .status.err{color:#a3271f;}
+  .status.ok{color:#2e6e3a;}
+  .callout{border-left:4px solid var(--gold);background:#fffdf6;border-radius:0 8px 8px 0;padding:11px 15px;margin:10px 0;font-size:.9rem;}
+  .callout b{color:var(--terra);}
+  .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .hidden{display:none;}
+  code{background:#f1efe8;padding:1px 6px;border-radius:5px;font-family:ui-monospace,Menlo,monospace;font-size:.85em;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">MedMasters Collaborative &middot; Anatomy Loops</p>
+  <h1>Loop Builder</h1>
+  <p class="lede">Build a new loop from images or a PDF. It outputs a ready folder and an updated custom-loops.js you push to GitHub.</p>
+
+  <div class="callout">This tool runs entirely in your browser. Nothing is uploaded anywhere. When you are done it downloads a ZIP to your computer.</div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <h2><span class="num">1</span>Name your loop</h2>
+    <div class="row">
+      <div><label class="fld" for="loopName">Loop name (shown on the card)</label><input type="text" id="loopName" placeholder="e.g. Muscles of the Forearm"></div>
+      <div><label class="fld" for="loopId">Folder id (auto, lowercase)</label><input type="text" id="loopId" placeholder="muscles-forearm"></div>
+    </div>
+    <div class="row">
+      <div><label class="fld" for="loopSub">Short description</label><input type="text" id="loopSub" placeholder="e.g. Flexors, extensors & landmarks"></div>
+      <div><label class="fld" for="loopIcon">Card icon</label>
+        <select id="loopIcon">
+          <option value="bone">Bone (dog-bone)</option>
+          <option value="appendicular">Long bone (limb)</option>
+          <option value="skull">Skull</option>
+          <option value="spine">Spine / vertebrae</option>
+          <option value="micro">Microscope (histology)</option>
+          <option value="skin">Skin layers</option>
+          <option value="book">Book (fundamentals)</option>
+        </select>
+      </div>
+    </div>
+    <p class="hint">The id becomes the image folder name. Avoid the names already used: intro, tissues, skin, bone, skull, appendicular, boneaxial2.</p>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <h2><span class="num">2</span>Add your slides</h2>
+    <div class="tabs">
+      <button class="tab active" id="tabImg" type="button">Upload images</button>
+      <button class="tab" id="tabPdf" type="button">Import a PDF</button>
+    </div>
+
+    <div id="paneImg">
+      <div class="drop" id="dropImg">Drop your slide images here, or click to choose.<br><span class="hint">Put them in order: question, answer, question, answer&hellip;</span></div>
+      <input type="file" id="fileImg" accept="image/*" multiple class="hidden">
+      <p class="hint">Each station is two images: the question slide (arrows, no answers), then its answer slide.</p>
+    </div>
+
+    <div id="panePdf" class="hidden">
+      <div class="drop" id="dropPdf">Drop a PDF here, or click to choose.<br><span class="hint">A PowerPoint or Keynote exported to PDF works.</span></div>
+      <input type="file" id="filePdf" accept="application/pdf" class="hidden">
+      <p class="hint">After it loads, tag each page below as <b>Q</b> (question), <b>A</b> (answer), or <b>Skip</b> (title slides or blank animation frames). The tool pairs each Q with the next A.</p>
+      <div id="pdfPages" class="pagegrid"></div>
+    </div>
+    <div class="status" id="loadStatus"></div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <h2><span class="num">3</span>Review pairs &amp; type the answer keys</h2>
+    <p class="hint">Each row is one station. Type the answer (what the student should say). Both structures can go in one line, e.g. "Iliac Crest; Acetabulum".</p>
+    <button class="btn ghost" id="buildPairsBtn" type="button">Build the pairs from my slides</button>
+    <div id="pairsWrap"></div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <h2><span class="num">4</span>Add to your existing loops (optional)</h2>
+    <p class="hint">If you have made loops before, drop your current <code>custom-loops.js</code> here so this new loop is added to them instead of replacing them. First time? Skip this.</p>
+    <div class="drop" id="dropJs" style="padding:16px;">Drop custom-loops.js here (optional), or click.</div>
+    <input type="file" id="fileJs" accept=".js,text/javascript" class="hidden">
+    <div class="status" id="jsStatus"></div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step">
+    <h2><span class="num">5</span>Download your loop</h2>
+    <button class="btn gold" id="buildBtn" type="button" disabled>Build &amp; download loop ZIP</button>
+    <div class="status" id="buildStatus"></div>
+    <div class="callout" style="margin-top:14px;">
+      <b>To publish:</b> unzip it, then in your <code>loops</code> repo put the <code>images/&lt;id&gt;</code> folder inside <code>images/</code>, and replace <code>custom-loops.js</code> with the new one. Commit and push in GitHub Desktop. Your new loop card appears automatically.
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var BUILTIN=['intro','tissues','skin','bone','skull','appendicular','boneaxial2'];
+  var slides=[];      // {dataUrl, tag:'q'|'a'|'s'} for pdf; or plain images
+  var mode='img';
+  var pairs=[];       // {q:dataUrl, a:dataUrl, label:''}
+  var existing=[];    // existing custom loops
+
+  function $(id){return document.getElementById(id);}
+  function slug(s){return (s||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
+
+  // ---- pdf.js worker ----
+  if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
+
+  // ---- name -> id ----
+  $('loopName').addEventListener('input',function(){ if(!$('loopId').dataset.touched){ $('loopId').value=slug($('loopName').value); } });
+  $('loopId').addEventListener('input',function(){ $('loopId').dataset.touched='1'; $('loopId').value=slug($('loopId').value); });
+
+  // ---- tabs ----
+  $('tabImg').addEventListener('click',function(){ mode='img'; $('tabImg').classList.add('active'); $('tabPdf').classList.remove('active'); $('paneImg').classList.remove('hidden'); $('panePdf').classList.add('hidden'); });
+  $('tabPdf').addEventListener('click',function(){ mode='pdf'; $('tabPdf').classList.add('active'); $('tabImg').classList.remove('active'); $('panePdf').classList.remove('hidden'); $('paneImg').classList.add('hidden'); });
+
+  // ---- drag/drop helpers ----
+  function wireDrop(dropId,inputId,handler){
+    var d=$(dropId), inp=$(inputId);
+    d.addEventListener('click',function(){inp.click();});
+    inp.addEventListener('change',function(){ handler(inp.files); });
+    d.addEventListener('dragover',function(e){e.preventDefault();d.classList.add('drag');});
+    d.addEventListener('dragleave',function(){d.classList.remove('drag');});
+    d.addEventListener('drop',function(e){e.preventDefault();d.classList.remove('drag'); handler(e.dataTransfer.files);});
+  }
+
+  function readImage(file){
+    return new Promise(function(res){ var fr=new FileReader(); fr.onload=function(){res(fr.result);}; fr.readAsDataURL(file); });
+  }
+
+  // ---- IMAGES mode ----
+  wireDrop('dropImg','fileImg',function(files){
+    var arr=Array.prototype.slice.call(files).filter(function(f){return f.type.indexOf('image')===0;});
+    arr.sort(function(a,b){return a.name.localeCompare(b.name,undefined,{numeric:true});});
+    Promise.all(arr.map(readImage)).then(function(urls){
+      slides=urls.map(function(u){return {dataUrl:u, tag:null};});
+      $('loadStatus').textContent=slides.length+' images loaded, in this order. They will be paired question, answer, question, answer.';
+      $('loadStatus').className='status ok';
+    });
+  });
+
+  // ---- PDF mode ----
+  wireDrop('dropPdf','filePdf',function(files){
+    var f=files[0]; if(!f) return;
+    $('loadStatus').textContent='Reading PDF, this can take a moment for big decks...'; $('loadStatus').className='status';
+    var fr=new FileReader();
+    fr.onload=function(){
+      pdfjsLib.getDocument({data:fr.result}).promise.then(function(pdf){
+        var grid=$('pdfPages'); grid.innerHTML=''; slides=[];
+        var chain=Promise.resolve();
+        for(var i=1;i<=pdf.numPages;i++){ (function(n){ chain=chain.then(function(){ return renderPdfPage(pdf,n,grid); }); })(i); }
+        chain.then(function(){ $('loadStatus').textContent=pdf.numPages+' pages loaded. Tag each as Q, A, or Skip.'; $('loadStatus').className='status ok'; });
+      }).catch(function(err){ $('loadStatus').textContent='Could not read that PDF: '+err.message; $('loadStatus').className='status err'; });
+    };
+    fr.readAsArrayBuffer(f);
+  });
+
+  function renderPdfPage(pdf,n,grid){
+    return pdf.getPage(n).then(function(page){
+      var vp=page.getViewport({scale:1});
+      var scale=1280/vp.width;
+      var v=page.getViewport({scale:scale});
+      var canvas=document.createElement('canvas'); canvas.width=v.width; canvas.height=v.height;
+      var ctx=canvas.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+      return page.render({canvasContext:ctx,viewport:v}).promise.then(function(){
+        var url=canvas.toDataURL('image/jpeg',0.82);
+        var idx=slides.length; slides.push({dataUrl:url, tag:guessTag(n)});
+        var cell=document.createElement('div'); cell.className='pg';
+        cell.innerHTML='<img src="'+url+'"><div class="tagbar">'
+          +'<button data-i="'+idx+'" data-t="q">Q</button>'
+          +'<button data-i="'+idx+'" data-t="a">A</button>'
+          +'<button data-i="'+idx+'" data-t="s">Skip</button></div><div class="lab">page '+n+'</div>';
+        grid.appendChild(cell);
+        refreshTag(idx);
+      });
+    });
+  }
+  function guessTag(n){ return null; }
+  function refreshTag(i){
+    var btns=document.querySelectorAll('.pg .tagbar button[data-i="'+i+'"]');
+    btns.forEach(function(b){ b.className=''; if(slides[i].tag===b.dataset.t){ b.classList.add('on',b.dataset.t); } });
+  }
+  $('pdfPages').addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    var i=+b.dataset.i; slides[i].tag=b.dataset.t; refreshTag(i);
+  });
+
+  // ---- build pairs ----
+  $('buildPairsBtn').addEventListener('click',function(){
+    pairs=[];
+    if(mode==='img'){
+      if(slides.length<2){ setStatus('loadStatus','Add an even number of images first (question then answer).','err'); return; }
+      for(var i=0;i+1<slides.length;i+=2){ pairs.push({q:slides[i].dataUrl,a:slides[i+1].dataUrl,label:''}); }
+    } else {
+      var i2=0;
+      while(i2<slides.length){
+        if(slides[i2].tag==='q'){
+          var j=i2+1; while(j<slides.length && slides[j].tag==='s') j++;
+          if(j<slides.length && slides[j].tag==='a'){ pairs.push({q:slides[i2].dataUrl,a:slides[j].dataUrl,label:''}); i2=j+1; continue; }
+        }
+        i2++;
+      }
+      if(!pairs.length){ setStatus('loadStatus','No Q-then-A pairs found. Tag question pages Q and their answer pages A.','err'); return; }
+    }
+    renderPairs();
+  });
+
+  function renderPairs(){
+    var w=$('pairsWrap'); w.innerHTML='';
+    pairs.forEach(function(p,k){
+      var row=document.createElement('div'); row.className='pair';
+      row.innerHTML='<div><div class="qa" style="color:#8B3A2E">Q '+(k+1)+'</div><img src="'+p.q+'"></div>'
+        +'<div><div class="qa" style="color:#1E3D4C">Answer</div><img src="'+p.a+'"></div>'
+        +'<div><input type="text" placeholder="Answer key for station '+(k+1)+'" data-k="'+k+'"></div>';
+      w.appendChild(row);
+    });
+    w.querySelectorAll('input').forEach(function(inp){ inp.addEventListener('input',function(){ pairs[+inp.dataset.k].label=inp.value; }); });
+    $('buildBtn').disabled=false;
+    setStatus('buildStatus',pairs.length+' stations ready. Type the answer keys, then build.','ok');
+  }
+
+  // ---- existing custom-loops.js ----
+  wireDrop('dropJs','fileJs',function(files){
+    var f=files[0]; if(!f) return;
+    var fr=new FileReader();
+    fr.onload=function(){
+      try{
+        var m=fr.result.match(/window\.CUSTOM_LOOPS\s*=\s*(\[[\s\S]*\])\s*;?/);
+        existing= m ? JSON.parse(m[1]) : [];
+        setStatus('jsStatus',existing.length+' existing loop(s) found. Your new loop will be added to them.','ok');
+      }catch(err){ existing=[]; setStatus('jsStatus','Could not read that file, will start fresh: '+err.message,'err'); }
+    };
+    fr.readAsText(f);
+  });
+
+  // ---- resize a dataURL to 1280x720 jpeg blob ----
+  function toBlob(dataUrl){
+    return new Promise(function(res){
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas'); c.width=1280; c.height=720; var ctx=c.getContext('2d');
+        ctx.fillStyle='#fff'; ctx.fillRect(0,0,1280,720);
+        var r=Math.min(1280/img.width,720/img.height); var w=img.width*r, h=img.height*r;
+        ctx.drawImage(img,(1280-w)/2,(720-h)/2,w,h);
+        c.toBlob(function(b){res(b);},'image/jpeg',0.8);
+      };
+      img.src=dataUrl;
+    });
+  }
+
+  // ---- build & download ----
+  $('buildBtn').addEventListener('click',function(){
+    var id=slug($('loopId').value||$('loopName').value);
+    var name=$('loopName').value.trim();
+    if(!id){ setStatus('buildStatus','Give your loop a name first.','err'); return; }
+    if(BUILTIN.indexOf(id)>=0){ setStatus('buildStatus','That id is already used by a built-in loop. Pick a different name/id.','err'); return; }
+    if(!pairs.length){ setStatus('buildStatus','Build the pairs first (step 3).','err'); return; }
+    if(pairs.some(function(p){return !p.label.trim();})){ if(!confirm('Some answer keys are blank. Build anyway?')) return; }
+    setStatus('buildStatus','Building images...','');
+    var zip=new JSZip();
+    var folder=zip.folder('images').folder(id);
+    var jobs=[];
+    pairs.forEach(function(p,k){
+      jobs.push(toBlob(p.q).then(function(b){ folder.file('s'+pad(2+2*k)+'.jpg',b); }));
+      jobs.push(toBlob(p.a).then(function(b){ folder.file('s'+pad(3+2*k)+'.jpg',b); }));
+    });
+    Promise.all(jobs).then(function(){
+      var loopObj={ id:id, title:name||id, module:'', icon:$('loopIcon').value, unit:name||id, subtitle:$('loopSub').value.trim(), dir:id, labels:pairs.map(function(p){return p.label.trim();}) };
+      var list=existing.filter(function(l){return l.id!==id;}); list.push(loopObj);
+      var js='/* Loops built with the Loop Builder. The builder maintains this file. */\nwindow.CUSTOM_LOOPS = '+JSON.stringify(list,null,2)+';\n';
+      zip.file('custom-loops.js',js);
+      zip.generateAsync({type:'blob'}).then(function(blob){
+        var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='loop-'+id+'.zip'; a.click();
+        setStatus('buildStatus','Done. Downloaded loop-'+id+'.zip with '+pairs.length+' stations. See the publish note above.','ok');
+      });
+    }).catch(function(err){ setStatus('buildStatus','Something went wrong: '+err.message,'err'); });
+  });
+
+  function pad(n){return String(n).padStart(2,'0');}
+  function setStatus(id,msg,cls){ var e=$(id); e.textContent=msg; e.className='status'+(cls?' '+cls:''); }
+})();
+</script>
+</body>
+</html>

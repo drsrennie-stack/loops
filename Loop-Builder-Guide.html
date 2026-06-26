@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loop Builder — Desk Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0B1530;--navy2:#1E3D4C;--terra:#8B3A2E;--terra2:#C2734D;--gold:#C9A14A;--off:#FAFAF9;--line:#E3E7EB;--ink:#1E3D4C;
+    --display:'Plus Jakarta Sans',-apple-system,sans-serif;--eyebrow:'DM Sans',sans-serif;--serif:'Lora',Georgia,serif;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--display);color:var(--ink);background:var(--off);line-height:1.5;font-size:15px;}
+  .wrap{max-width:880px;margin:0 auto;padding:34px 30px 56px;}
+  .eyebrow{font-family:var(--eyebrow);font-weight:700;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);margin:0 0 .5rem;}
+  h1{font-family:var(--display);font-weight:800;font-size:2rem;line-height:1.08;letter-spacing:-.02em;color:var(--navy);margin:0 0 .35rem;}
+  .lede{font-family:var(--serif);font-style:italic;color:var(--navy2);font-size:1.04rem;margin:.2rem 0 0;max-width:60ch;}
+  h2{font-family:var(--display);font-weight:700;font-size:1.18rem;color:var(--navy);margin:1.8rem 0 .7rem;padding-bottom:.35rem;border-bottom:2px solid var(--line);}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--terra);color:#fff;font-size:.85rem;font-weight:700;margin-right:.5rem;vertical-align:2px;}
+  p{margin:.5rem 0;} strong{color:var(--navy);font-weight:700;} code{background:#f1efe8;padding:1px 6px;border-radius:5px;font-family:ui-monospace,Menlo,monospace;font-size:.85em;}
+  ol.steps{list-style:none;counter-reset:s;margin:.4rem 0 0;padding:0;}
+  ol.steps>li{counter-increment:s;position:relative;padding:10px 0 10px 3rem;border-bottom:1px solid var(--line);}
+  ol.steps>li:last-child{border-bottom:none;}
+  ol.steps>li::before{content:counter(s);position:absolute;left:0;top:9px;width:2rem;height:2rem;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
+  ol.steps b{color:var(--navy);}
+  .callout{border-left:4px solid var(--gold);background:#fff;border-radius:0 8px 8px 0;padding:11px 15px;margin:.7rem 0;}
+  .callout b{color:var(--terra);}
+  .tree{font-family:ui-monospace,Menlo,monospace;font-size:.86rem;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:14px 16px;line-height:1.7;color:var(--navy2);white-space:pre;}
+  .tree .c{color:var(--terra);}
+  table.t{width:100%;border-collapse:collapse;margin-top:.4rem;font-size:.9rem;}
+  table.t td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top;}
+  table.t td:first-child{font-weight:700;color:var(--navy);width:11rem;}
+  footer{margin-top:2.2rem;padding-top:1rem;border-top:2px solid var(--line);font-size:.82rem;color:#5F6B73;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+  footer .by{font-weight:700;color:var(--navy);}
+  @media print{ body{background:#fff;font-size:11.5px;} .wrap{max-width:none;padding:0 0 10px;} h1{font-size:1.7rem;} section{break-inside:avoid;} @page{margin:14mm;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">MedMasters Collaborative &middot; Anatomy Loops</p>
+    <h1>Building a New Loop Yourself</h1>
+    <p class="lede">How to make a loop with the Loop Builder and publish it, without writing any code.</p>
+  </header>
+
+  <section>
+    <h2><span class="n">1</span>What the builder does</h2>
+    <p>The Loop Builder is the file <code>loop-builder.html</code>. Double-click it to open it in your browser. It runs entirely on your computer; nothing is uploaded anywhere. You give it slides and answer keys, and it hands you a finished loop as a ZIP. Your job after that is one push to GitHub.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>What your slides need to look like</h2>
+    <p>Each station is <strong>two slides</strong>: the question (arrows pointing at the structures, no answers), then the answer (same picture with the labels shown). That is exactly how your loop decks already work.</p>
+    <p>You can feed the builder slides two ways:</p>
+    <table class="t">
+      <tr><td>Upload images</td><td>Drag in your slide images in order: question, answer, question, answer. Name them so they sort right (01, 02, 03&hellip;).</td></tr>
+      <tr><td>Import a PDF</td><td>Drag in a PowerPoint or Keynote saved as PDF. Then tag each page <b>Q</b>, <b>A</b>, or <b>Skip</b> (skip title slides and blank animation frames). The tool pairs each Q with the next A.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>The five steps in the tool</h2>
+    <ol class="steps">
+      <li>Type a <b>loop name</b> (the id and folder name fill in automatically). Pick an <b>icon</b> and write a short description.</li>
+      <li>Choose <b>Upload images</b> or <b>Import a PDF</b> and load your slides. For a PDF, tag every page Q, A, or Skip.</li>
+      <li>Click <b>Build the pairs</b>. Each station appears with its question and answer picture. Type the <b>answer key</b> in the box (both structures on one line is fine, like "Iliac Crest; Acetabulum").</li>
+      <li>Only if you have built loops before: drop your current <b>custom-loops.js</b> in step 4 so the new loop is added to them, not replacing them. First time, skip this.</li>
+      <li>Click <b>Build &amp; download loop ZIP</b>. A file named <code>loop-&lt;id&gt;.zip</code> lands in your Downloads.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>Publishing it (one push)</h2>
+    <p>Unzip <code>loop-&lt;id&gt;.zip</code>. Inside you get an <code>images</code> folder (with your loop inside it) and a <code>custom-loops.js</code> file. In your <b>loops</b> repo on your computer:</p>
+    <div class="tree">loops/
+&#9500;&#9472; index.html
+&#9500;&#9472; custom-loops.js     <span class="c">&larr; replace with the new one from the ZIP</span>
+&#9492;&#9472; images/
+   &#9492;&#9472; &lt;your-loop-id&gt;/  <span class="c">&larr; drop this new folder in here</span></div>
+    <p>Then open GitHub Desktop, write a short summary, <b>Commit to main</b>, and <b>Push origin</b>. (Same routine as your GitHub desk sheet.) Your new loop card shows up on the home page automatically, and on your course page.</p>
+    <div class="callout"><b>Why it just appears:</b> your app reads <code>custom-loops.js</code> every time it loads and adds whatever loops are listed there. You never edit <code>index.html</code>.</div>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span>If something looks off</h2>
+    <table class="t">
+      <tr><td>Pairs look mismatched</td><td>Your slides were out of order, or a PDF page was tagged wrong. Re-tag and click Build the pairs again.</td></tr>
+      <tr><td>A card is blank</td><td>The <code>images/&lt;id&gt;</code> folder did not land inside <code>images/</code>, or its id does not match custom-loops.js. Check the folder name.</td></tr>
+      <tr><td>The loop did not appear</td><td>custom-loops.js was not pushed, or you reused an id already in use. Give it a new name and rebuild.</td></tr>
+      <tr><td>PDF will not load</td><td>Re-save it as a standard PDF. Very large decks take a minute, give it time.</td></tr>
+    </table>
+  </section>
+
+  <footer><span class="by">Dr. Sharilyn Rennie</span><span>Anatomy Loops &middot; Loop Builder reference</span></footer>
+</div>
+</body>
+</html>
