@@ -577,6 +577,7 @@
   </footer>
 </div>
 
+<script src="custom-loops.js" onerror="window.CUSTOM_LOOPS=window.CUSTOM_LOOPS||[]"></script>
 <script>
 /* ---------------- DATA ----------------
    Each loop: id, title, subtitle, dir (image folder), cover, and pairs.
@@ -665,6 +666,22 @@ const LOOPS = [
   { id:"appendicular", title:"Appendicular Loop", module:"Appendicular Skeleton", icon:"appendicular", unit:"Appendicular Skeleton", subtitle:"Upper & lower limb bones, girdles & landmarks", dir:"appendicular", type:"slide", pairs:buildPairs(APPENDICULAR_LABELS) },
   { id:"boneaxial2", title:"Bone & Axial Loop II", module:"Bone & Axial", icon:"spine", unit:"Bone & Axial II", subtitle:"Bone tissue, skull, vertebrae, sacrum & spinal curves", dir:"boneaxial2", type:"slide", pairs:buildPairs(BONEAXIAL2_LABELS) }
 ];
+/* Loops made with the Loop Builder load from custom-loops.js and merge in here. */
+if(window.CUSTOM_LOOPS && window.CUSTOM_LOOPS.length){
+  /* pass 1: brand-new loops */
+  window.CUSTOM_LOOPS.forEach(function(c){
+    if(!c || c.extend || !c.id || !(c.labels||c.pairs)) return;
+    LOOPS.push({ id:c.id, title:c.title||c.id, module:c.module||'', icon:c.icon||'bone', unit:c.unit||c.title||c.id, subtitle:c.subtitle||'', dir:c.dir||c.id, type:'slide', pairs:(c.pairs||buildPairs(c.labels)) });
+  });
+  /* pass 2: extensions append extra cards onto an existing loop (built-in or custom) */
+  window.CUSTOM_LOOPS.forEach(function(c){
+    if(!c || !c.extend || !c.labels) return;
+    var tgt=LOOPS.find(function(l){return l.id===c.extend;});
+    if(!tgt || !tgt.pairs) return;
+    var start=tgt.pairs.length;
+    c.labels.forEach(function(lab,k){ var n=start+k; tgt.pairs.push([2+2*n, 3+2*n, lab]); });
+  });
+}
 
 /* ---- Anatomy Loops badge (original SVG, scalable/high-def) ---- */
 const BADGE_ICONS={
