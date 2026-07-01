@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomy Practice Loops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1530; --navy-deep:#0B1530; --navy-darkest:#060A18; --navy-tint:#ECEFF4;
+    --terra:#C2734D; --terra-dark:#8B3A2E; --terra-deep:#A0452F;
+    --white:#FFFFFF; --offwhite:#FAFAF9; --gray:#6B7280; --gray-light:#D1D5DB;
+    --radius:8px;
+    --shadow-rest:0 1px 3px rgba(0,0,0,0.08);
+    --shadow-hover:0 10px 22px rgba(0,0,0,0.12);
+    --t:transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background 200ms ease;
+    --font-display:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-body:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-eyebrow:'DM Sans',-apple-system,sans-serif;
+    --font-serif:'Lora',Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--font-body);color:var(--navy);background:var(--offwhite);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1040px;margin:0 auto;padding:30px 20px 56px;}
+  .skip{position:absolute;left:-9999px;top:auto;background:var(--terra-dark);color:#fff;padding:10px 16px;border-radius:8px;font-weight:700;z-index:50;}
+  .skip:focus{left:16px;top:16px;}
+  :focus-visible{outline:3px solid var(--terra-dark);outline-offset:3px;border-radius:6px;}
+
+  /* ---------- COURSE LOGO HEADER ---------- */
+  .site-header{background:#fff;border-bottom:.5px solid rgba(11,21,48,.10);padding:22px max(20px,4vw);}
+  .site-header-inner{max-width:1040px;margin:0 auto;}
+  .site-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none;}
+  .site-logo svg{height:54px;width:auto;display:block;}
+  .logo-text{display:flex;flex-direction:column;gap:3px;}
+  .logo-title{font-family:var(--font-display);font-size:1.68rem;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1;}
+  .logo-title .logo-accent{color:var(--terra-dark);}
+  .logo-sub{font-family:var(--font-eyebrow);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy);opacity:.72;}
+
+  .eyebrow{font-family:var(--font-eyebrow);font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 .8rem;}
+  h1{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,5vw,3rem);line-height:1.05;letter-spacing:-.025em;color:var(--navy-deep);margin:0 0 .9rem;}
+  .rule{width:3.2rem;height:3px;background:var(--terra-dark);border-radius:2px;margin:0 0 1.1rem;}
+  .subhead{font-family:var(--font-display);font-weight:600;color:var(--terra-dark);font-size:clamp(1.05rem,2.4vw,1.3rem);margin:0;}
+  .usage{font-family:var(--font-serif);font-style:italic;color:var(--navy);opacity:.85;margin:.9rem 0 0;font-size:1.02rem;max-width:46rem;}
+
+  /* ---------- COVER HERO (front page) ---------- */
+  .cover{background:var(--navy-darkest);border-radius:var(--radius);padding:clamp(24px,4.5vw,46px);color:#fff;border-top:3px solid var(--terra);}
+  .cover-grid{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;}
+  .cover-eyebrow{font-family:var(--font-eyebrow);font-size:.78rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#DCB45C;margin:0 0 16px;}
+  .cover-logo-mark{height:58px;width:auto;display:block;margin:2px 0 16px;}
+  .cover-title{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,5vw,44px);line-height:1.04;letter-spacing:-.02em;color:#fff;margin:0;}
+  .cover-title span{color:var(--terra);}
+  .cover-tag{font-size:clamp(15px,1.5vw,18px);opacity:.9;margin:18px 0 0;max-width:46ch;line-height:1.5;}
+  .cover-cta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#C9A14A;color:#0B1530;font-family:var(--font-display);font-weight:800;font-size:.95rem;text-decoration:none;padding:11px 20px;border-radius:9px;transition:var(--t);}
+  .cover-cta:hover,.cover-cta:focus-visible{background:#d6b056;transform:translateY(-2px);box-shadow:var(--shadow-hover);outline:none;}
+  .cover-qr{background:#fff;border-radius:12px;padding:16px 16px 14px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center;}
+  .cover-qr img{width:150px;height:150px;display:block;}
+  .cover-qr-cap{font-family:var(--font-eyebrow);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
+  @media(max-width:760px){.cover-grid{grid-template-columns:1fr;justify-items:start;}}
+
+  .section-label{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-dark);margin:30px 0 0;}
+
+  /* ---------- HUB CARDS ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:18px;margin-top:30px;}
+  .card{
+    display:flex;flex-direction:column;text-align:left;
+    background:var(--white);border:1px solid var(--navy-tint);border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow-rest);cursor:pointer;padding:0;color:inherit;font:inherit;
+    transition:var(--t);
+  }
+  .card:hover,.card:focus-visible{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:var(--terra-dark);}
+  .card .card-top{padding:20px 18px 16px;text-align:center;border-bottom:1px solid var(--navy-tint);}
+  .badge-svg{width:100%;max-width:230px;height:auto;display:block;margin:0 auto;}
+  .badge-svg .arcT{stroke:var(--terra-dark);stroke-width:2.6;fill:none;}
+  .badge-svg .arcB{stroke:var(--navy);stroke-width:2.6;fill:none;}
+  .badge-svg .ic{stroke:var(--terra-dark);stroke-width:2.3;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+  .badge-svg .wa{fill:var(--navy);font-family:var(--font-display);font-weight:800;font-size:23px;letter-spacing:.3px;}
+  .badge-svg .wl{fill:var(--terra-dark);font-family:var(--font-display);font-weight:800;font-size:23px;letter-spacing:.3px;}
+  .badge-svg .bone{fill:var(--navy);}
+  .badge-svg .unit{fill:var(--navy);font-family:var(--font-eyebrow);font-weight:700;font-size:11px;letter-spacing:2.2px;}
+  .card .card-body{padding:18px 22px 18px;display:flex;flex-direction:column;gap:5px;flex:1;}
+  .card .ctitle{font-family:var(--font-display);font-weight:800;font-size:1.42rem;line-height:1.12;letter-spacing:-.01em;color:var(--navy);margin:0 0 1px;}
+  .card .ctitle .tred{color:var(--terra-dark);}
+  .card .cwordmark{font-family:var(--font-display);font-weight:800;font-size:1.95rem;letter-spacing:-.02em;line-height:1;white-space:nowrap;}
+  .card .cwordmark .wa{color:var(--navy);}
+  .card .cwordmark .wl{color:var(--terra-dark);}
+  .card .cmeta{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--terra-dark);}
+  .card .cdesc{font-size:.95rem;color:var(--navy);opacity:.82;}
+  .card .go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;color:var(--terra-dark);font-size:.95rem;padding-top:10px;}
+  .card:hover .go .arr,.card:focus-visible .go .arr{transform:translateX(3px);}
+  .go .arr{transition:transform 200ms ease;}
+  .card.soon{cursor:not-allowed;opacity:.6;}
+  .card.soon:hover{transform:none;box-shadow:var(--shadow-rest);border-color:var(--navy-tint);}
+  .card.link-card{text-decoration:none;}
+  .card.link-card .go{color:#B8924A;}
+  .card.link-card:hover,.card.link-card:focus-visible{border-color:#C9A14A;}
+  .badge{display:inline-block;align-self:flex-start;font-family:var(--font-eyebrow);font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);border:1px solid var(--terra-dark);padding:.28rem .7rem;border-radius:999px;}
+
+  /* ---------- PLAYER ---------- */
+  .player[hidden]{display:none;}
+  .pbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px;}
+  .back{background:transparent;border:2px solid var(--navy);color:var(--navy);font-family:var(--font-display);font-weight:700;font-size:.95rem;padding:.6rem 1rem;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:var(--t);}
+  .back:hover,.back:focus-visible{background:var(--navy);color:#fff;}
+  .ploop-title{font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--navy);}
+
+  .controls{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end;background:var(--white);border:1px solid var(--navy-tint);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-rest);margin-bottom:16px;}
+  .field{display:flex;flex-direction:column;gap:5px;}
+  .field label{font-family:var(--font-eyebrow);font-weight:700;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--terra-dark);}
+  .field select{font:inherit;font-family:var(--font-display);font-weight:600;color:var(--navy);background:var(--offwhite);border:1px solid var(--gray-light);border-radius:8px;padding:8px 10px;min-width:124px;cursor:pointer;}
+  .toggle{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:.95rem;color:var(--navy);cursor:pointer;user-select:none;}
+  .toggle input{width:18px;height:18px;accent-color:var(--terra-dark);cursor:pointer;}
+
+  /* stage: clean white, minimal */
+  .stage{position:relative;background:#fff;border:1px solid var(--navy-tint);border-radius:var(--radius);box-shadow:var(--shadow-rest);overflow:hidden;}
+  .phasebar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--navy-tint);background:#fff;}
+  .phase{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:800;font-size:.95rem;letter-spacing:.01em;color:var(--navy);}
+  .phase.question{color:var(--terra-dark);}
+  .phase.answer{color:var(--navy);}
+  .dot{width:11px;height:11px;border-radius:50%;background:var(--terra);}
+  .phase.answer .dot{background:var(--navy);}
+  .progress{font-family:var(--font-display);font-weight:700;font-size:.9rem;color:var(--navy);opacity:.65;font-variant-numeric:tabular-nums;}
+
+  .imgwrap{position:relative;aspect-ratio:16/9;background:#fff;display:flex;align-items:center;justify-content:center;}
+  .imgwrap img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;display:block;}
+
+  /* first-question walkthrough */
+  .coach{display:flex;align-items:center;justify-content:center;gap:8px;background:#FBF4E4;color:var(--navy);font-size:.9rem;font-weight:600;line-height:1.4;padding:11px 16px;text-align:center;border-bottom:1px solid var(--navy-tint);border-left:4px solid #C9A14A;}
+  .coach[hidden]{display:none;}
+  .coach b{color:var(--terra-dark);}
+  .coach .hand{font-size:1.25em;line-height:1;display:inline-block;animation:coachbob 1.1s ease-in-out infinite;}
+  @keyframes coachbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+  /* title slide (first frame of each loop) */
+  .title-card{position:absolute;inset:0;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6% 8%;}
+  .stage:not(.is-title) .title-card{display:none;}
+  .title-card .tc-logo{height:52px;width:auto;display:block;margin:0 0 20px;}
+  .title-card .tc-eyebrow{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 12px;}
+  .title-card .tc-title{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,4.6vw,48px);line-height:1.04;letter-spacing:-.02em;color:var(--navy);margin:0;}
+  .title-card .tc-title span{color:var(--terra-dark);}
+  .title-card .tc-sub{color:var(--navy);opacity:.78;font-size:clamp(14px,1.8vw,19px);line-height:1.45;margin:12px 0 0;max-width:44ch;}
+  .title-card .tc-meta{font-family:var(--font-eyebrow);font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-dark);margin:20px 0 0;}
+  .title-card .tc-hint{color:var(--navy);opacity:.55;font-size:.85rem;margin:7px 0 0;}
+
+  /* caption band: navy brand chip (like the intro label) */
+  .caption{background:#fff;padding:15px 18px 16px;border-top:1px solid var(--navy-tint);text-align:center;}
+  .stage:not(.has-caption) .caption{display:none;}
+  .stage.is-results .caption{display:none;}
+  .caption .cap-q{font-size:.92rem;color:var(--navy);opacity:.55;margin:0 0 8px;font-weight:600;line-height:1.4;}
+  .caption .cap-q[hidden]{display:none;}
+  .caption .cap-main{display:inline-block;background:var(--navy);color:#fff;font-family:var(--font-display);font-weight:700;font-size:clamp(15px,1.9vw,20px);line-height:1.4;padding:10px 18px;border-radius:14px;margin:0;max-width:52ch;}
+  .stage.is-answer .caption .cap-main{background:var(--terra-dark);}
+
+  /* self-check (score) bar, only on answer */
+  /* type-your-answer box, only during the question */
+  .answerbar{display:flex;justify-content:center;padding:12px 16px;border-top:1px solid var(--navy-tint);background:#fff;}
+  .stage:not(.is-question) .answerbar{display:none;}
+  .answerbar input{width:100%;max-width:430px;font-family:var(--font-display);font-size:1rem;font-weight:600;padding:11px 15px;border:2px solid var(--navy-tint);border-radius:9px;color:var(--navy);background:var(--offwhite);}
+  .answerbar input::placeholder{color:var(--navy);opacity:.45;font-weight:500;}
+  .answerbar input:focus{outline:none;border-color:var(--terra-dark);background:#fff;}
+
+  .selfcheck{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px;background:#fff;border-top:1px solid var(--navy-tint);}
+  .stage:not(.is-answer) .selfcheck{display:none;}
+  .stage.is-results .selfcheck{display:none;}
+  .selfcheck .sc-typed{width:100%;text-align:center;color:var(--navy);font-weight:600;font-size:.92rem;margin-bottom:2px;}
+  .selfcheck .sc-typed b{color:var(--terra-dark);}
+  .selfcheck .sc-typed i{opacity:.55;font-weight:500;}
+  .selfcheck .sc-label{color:var(--navy);opacity:.7;font-weight:600;font-size:.9rem;}
+  .sc-btn{font-family:var(--font-display);font-weight:700;font-size:.92rem;border-radius:8px;padding:.5rem 1rem;cursor:pointer;border:2px solid transparent;transition:var(--t);}
+  .sc-yes{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .sc-yes:hover{background:var(--navy-deep);}
+  .sc-spell{background:#C9A14A;color:#0B1530;border-color:#C9A14A;}
+  .sc-spell:hover{background:#b8923f;}
+  .sc-no{background:var(--terra-dark);color:#fff;border-color:var(--terra-dark);}
+  .sc-no:hover{background:var(--terra-deep);}
+  .sc-again{background:var(--terra-dark);color:#fff;border-color:var(--terra-dark);}
+  .sc-again:hover{background:var(--terra-deep);}
+  .sc-hard{background:#C2734D;color:#0B1530;border-color:#C2734D;}
+  .sc-hard:hover{background:#b5663f;}
+  .sc-good{background:#C9A14A;color:#0B1530;border-color:#C9A14A;}
+  .sc-good:hover{background:#b8923f;}
+  .sc-easy{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .sc-easy:hover{background:var(--navy-deep);}
+
+  /* score chip in phasebar */
+  .pb-right{display:flex;align-items:center;gap:12px;}
+  .score{font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--navy);background:var(--navy-tint);padding:3px 11px;border-radius:999px;}
+  .score[hidden]{display:none;}
+
+  /* results summary */
+  .results-card{position:absolute;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6% 8%;}
+  .stage:not(.is-results) .results-card{display:none;}
+  .stage.is-results .timer{display:none;}
+  .stage.is-results .transport{display:none;}
+  .results-card .rc-eyebrow{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 10px;}
+  .results-card .rc-score{font-family:var(--font-display);font-weight:800;font-size:clamp(42px,9vw,72px);line-height:1;color:var(--navy);margin:0;}
+  .results-card .rc-pct{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--terra-dark);margin:10px 0 0;}
+  .results-card .rc-time{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--terra-dark);margin:8px 0 0;}
+  .results-card .rc-time[hidden]{display:none;}
+  .results-card .rc-trend{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--navy);margin:10px 0 0;}
+  .results-card .rc-msg{color:var(--navy);opacity:.78;margin:6px 0 0;font-size:.95rem;max-width:40ch;}
+  .results-card .rc-history{margin:16px 0 0;width:100%;max-width:340px;text-align:left;}
+  .results-card .rc-history .rh-title{font-family:var(--font-eyebrow);font-weight:700;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 6px;}
+  .results-card .rc-history .rh-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--navy);padding:5px 0;border-bottom:1px solid var(--navy-tint);}
+  .results-card .rc-history .rh-row b{color:var(--terra-dark);font-weight:800;}
+  .results-card .rc-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:22px;}
+  .rbtn{font-family:var(--font-display);font-weight:700;font-size:.95rem;border-radius:8px;padding:.65rem 1.2rem;cursor:pointer;border:2px solid var(--navy);transition:var(--t);}
+  .rbtn.primary{background:var(--navy);color:#fff;}
+  .rbtn.primary:hover{background:var(--navy-deep);}
+  .rbtn.ghost{background:transparent;color:var(--navy);}
+  .rbtn.ghost:hover{background:var(--navy-tint);}
+
+  /* countdown */
+  .timer{position:absolute;top:14px;right:14px;width:60px;height:60px;}
+  .timer svg{transform:rotate(-90deg);display:block;}
+  .timer .track{stroke:rgba(11,21,48,.14);}
+  .timer .arc{stroke:var(--terra);transition:stroke-dashoffset 240ms linear;}
+  .stage.is-answer .timer .arc{stroke:var(--navy);}
+  .timer .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:20px;color:var(--navy);font-variant-numeric:tabular-nums;}
+
+  .transport{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border-top:1px solid var(--navy-tint);background:#fff;flex-wrap:wrap;}
+  .tbtn{font-family:var(--font-display);font-weight:700;font-size:.92rem;border-radius:8px;border:2px solid rgba(11,21,48,.26);background:#fff;color:var(--navy);padding:.6rem 1rem;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:var(--t);}
+  .tbtn:hover,.tbtn:focus-visible{background:var(--navy-tint);border-color:var(--navy);}
+  .tbtn:active{transform:translateY(1px);}
+  .tbtn.play{background:var(--terra-dark);color:#fff;border-color:var(--terra-dark);min-width:130px;justify-content:center;}
+  .tbtn.play:hover,.tbtn.play:focus-visible{background:var(--terra-deep);border-color:var(--terra-deep);}
+  .hint{text-align:center;font-size:.85rem;color:var(--navy);opacity:.65;margin-top:12px;}
+
+  footer{background:var(--navy-darkest);color:var(--navy-tint);text-align:center;padding:1.9rem 1.5rem 1.7rem;border-top:2px solid var(--terra);border-radius:var(--radius);margin-top:42px;}
+  footer .by{font-family:var(--font-display);font-weight:700;color:#fff;font-size:1rem;margin-bottom:.15rem;}
+  footer .role{font-size:.82rem;color:var(--navy-tint);}
+  footer .brand{font-family:var(--font-eyebrow);font-weight:700;color:var(--terra);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin-top:.9rem;}
+  .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition-duration:.01ms !important;animation:none !important;scroll-behavior:auto !important;}
+  }
+
+  /* ---------- DARK LOOP THEME (opt in per loop: set theme:"dark") ---------- */
+  .player.theme-dark .ploop-title{color:#fff;}
+  .player.theme-dark .back{color:#fff;border-color:#fff;}
+  .player.theme-dark .back:hover,.player.theme-dark .back:focus-visible{background:#fff;color:#000;}
+  .player.theme-dark .controls{background:#0d0d0d;border-color:#333;}
+  .player.theme-dark .field label{color:#FFD23F;}
+  .player.theme-dark .field select{background:#111;color:#fff;border-color:#555;}
+  .player.theme-dark .toggle{color:#fff;}
+  .player.theme-dark .toggle input{accent-color:#FFD23F;}
+  .player.theme-dark .stage{background:#000;border-color:#000;}
+  .player.theme-dark .phasebar{background:#000;border-bottom-color:#222;}
+  .player.theme-dark .phase{color:#fff;}
+  .player.theme-dark .phase.question{color:#FFD23F;}
+  .player.theme-dark .phase.question .dot{background:#FFD23F;}
+  .player.theme-dark .phase.answer .dot{background:#fff;}
+  .player.theme-dark .progress{color:#fff;opacity:.7;}
+  .player.theme-dark .score{background:#1a1a1a;color:#fff;}
+  .player.theme-dark .imgwrap{background:#000;}
+  .player.theme-dark .coach{background:#1a1500;color:#fff;border-left-color:#FFD23F;border-bottom-color:#222;}
+  .player.theme-dark .coach b{color:#FFD23F;}
+  .player.theme-dark .caption{background:#000;border-top-color:#000;}
+  .player.theme-dark .caption .cap-q{color:#fff;opacity:.6;}
+  /* answer box floats in the black field at the bottom of the slide */
+  .player.theme-dark .answerbar{background:#000;border-top-color:#000;padding:4px 16px 18px;}
+  .player.theme-dark .answerbar input{background:rgba(255,210,63,.07);border-color:#FFD23F;color:#FFD23F;caret-color:#FFD23F;}
+  .player.theme-dark .answerbar input::placeholder{color:#FFD23F;opacity:.5;}
+  .player.theme-dark .answerbar input:focus{border-color:#FFD23F;background:rgba(255,210,63,.12);}
+  .player.theme-dark .selfcheck{background:#000;border-top-color:#000;}
+  .player.theme-dark .selfcheck .sc-typed{color:#fff;}
+  .player.theme-dark .selfcheck .sc-typed b{color:#FFD23F;}
+  .player.theme-dark .selfcheck .sc-label{color:#fff;opacity:.75;}
+  .player.theme-dark .transport{background:#000;border-top-color:#222;}
+  .player.theme-dark .tbtn{background:#141414;color:#fff;border-color:#3a3a3a;}
+  .player.theme-dark .tbtn:hover,.player.theme-dark .tbtn:focus-visible{background:#222;border-color:#666;}
+  .player.theme-dark .tbtn.play{background:#FFD23F;color:#000;border-color:#FFD23F;}
+  .player.theme-dark .tbtn.play:hover,.player.theme-dark .tbtn.play:focus-visible{background:#ffdd66;border-color:#ffdd66;}
+  .player.theme-dark .timer .num{color:#fff;}
+  .player.theme-dark .timer .track{stroke:rgba(255,255,255,.18);}
+  .player.theme-dark .timer .arc{stroke:#FFD23F;}
+  .player.theme-dark .stage.is-answer .timer .arc{stroke:#fff;}
+  .player.theme-dark .title-card{background:#000;}
+  .player.theme-dark .title-card .tc-logo path,.player.theme-dark .title-card .tc-logo circle{fill:#fff;}
+  .player.theme-dark .title-card .tc-eyebrow{color:#FFD23F;}
+  .player.theme-dark .title-card .tc-title{color:#fff;}
+  .player.theme-dark .title-card .tc-title span{color:#FFD23F;}
+  .player.theme-dark .title-card .tc-sub{color:#fff;opacity:.8;}
+  .player.theme-dark .title-card .tc-meta{color:#FFD23F;}
+  .player.theme-dark .title-card .tc-hint{color:#fff;opacity:.55;}
+  .player.theme-dark .results-card{background:#000;}
+  .player.theme-dark .results-card .rc-eyebrow{color:#FFD23F;}
+  .player.theme-dark .results-card .rc-score{color:#fff;}
+  .player.theme-dark .results-card .rc-pct{color:#FFD23F;}
+  .player.theme-dark .results-card .rc-time{color:#FFD23F;}
+  .player.theme-dark .results-card .rc-trend{color:#fff;}
+  .player.theme-dark .results-card .rc-msg{color:#fff;opacity:.8;}
+  .player.theme-dark .results-card .rc-history .rh-title{color:#FFD23F;}
+  .player.theme-dark .results-card .rc-history .rh-row{color:#fff;border-bottom-color:#222;}
+  .player.theme-dark .results-card .rc-history .rh-row b{color:#FFD23F;}
+  .player.theme-dark .rbtn.primary{background:#FFD23F;color:#000;border-color:#FFD23F;}
+  .player.theme-dark .rbtn.primary:hover{background:#ffdd66;}
+  .player.theme-dark .rbtn.ghost{color:#fff;border-color:#fff;}
+  .player.theme-dark .rbtn.ghost:hover{background:#222;}
+  .player.theme-dark .hint{color:#fff;opacity:.6;}
+
+  /* ---------- REVIEW BUILDER ---------- */
+  .builder[hidden]{display:none;}
+  .builder-card{background:var(--white);border:1px solid var(--navy-tint);border-radius:var(--radius);padding:20px 18px;box-shadow:var(--shadow-rest);margin-top:8px;}
+  .builder-instr{margin:0 0 14px;color:var(--navy);font-weight:600;}
+  .builder-topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:14px;}
+  .topic-opt{display:flex;align-items:center;gap:10px;border:1px solid var(--navy-tint);border-radius:8px;padding:11px 13px;cursor:pointer;font-weight:600;color:var(--navy);transition:var(--t);}
+  .topic-opt:hover{border-color:var(--terra-dark);}
+  .topic-opt input{width:18px;height:18px;accent-color:var(--terra-dark);cursor:pointer;}
+  .topic-opt .t-count{margin-left:auto;font-family:var(--font-eyebrow);font-weight:700;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--terra-dark);opacity:.85;}
+  .weak-toggle{margin:2px 0 4px;}
+  .builder-note{font-size:.9rem;color:var(--navy);opacity:.72;margin:8px 0 0;min-height:1.2em;}
+  .builder-actions{margin-top:16px;}
+  .builder-actions .tbtn.play{min-width:170px;}
+
+  /* ---------- MY PROGRESS DASHBOARD ---------- */
+  .dash[hidden]{display:none;}
+  .dash-body{margin-top:8px;}
+  .dash-card{background:var(--white);border:1px solid var(--navy-tint);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-rest);margin-bottom:14px;}
+  .dash-overall{display:flex;gap:30px;flex-wrap:wrap;align-items:baseline;}
+  .dash-stat{display:flex;flex-direction:column;gap:2px;}
+  .dash-stat .num{font-family:var(--font-display);font-weight:800;font-size:1.8rem;color:var(--navy);line-height:1;}
+  .dash-stat .lab{font-family:var(--font-eyebrow);font-weight:700;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--terra-dark);}
+  .dash-h{font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:1.05rem;margin:0 0 12px;}
+  .topic-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--navy-tint);}
+  .topic-row:last-child{border-bottom:none;}
+  .topic-row .tn{font-weight:600;color:var(--navy);min-width:140px;}
+  .topic-row .bar{flex:1;height:8px;background:var(--navy-tint);border-radius:999px;overflow:hidden;min-width:60px;}
+  .topic-row .bar > i{display:block;height:100%;background:var(--terra);border-radius:999px;}
+  .topic-row .tv{font-family:var(--font-display);font-weight:700;font-size:.85rem;color:var(--navy);min-width:104px;text-align:right;}
+  .topic-row .tw{color:var(--terra-dark);}
+  .weak-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--navy-tint);}
+  .weak-item:last-child{border-bottom:none;}
+  .weak-item .wlab{font-weight:600;color:var(--navy);}
+  .weak-item .wtop{font-family:var(--font-eyebrow);font-weight:700;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--terra-dark);margin-left:auto;}
+  .weak-dots{display:inline-flex;gap:3px;}
+  .weak-dots i{width:9px;height:9px;border-radius:50%;background:var(--navy-tint);display:inline-block;}
+  .weak-dots i.c{background:var(--navy);}
+  .weak-dots i.m{background:#C9A14A;}
+  .weak-dots i.x{background:var(--terra-dark);}
+  .dash-empty{color:var(--navy);opacity:.72;margin:0;}
+  .dash-actions{margin-top:16px;}
+
+  /* ---------- ACTION TILES (Build a review, My progress) ---------- */
+  .card.review-card,.card.progress-card{background:var(--terra-dark);border-color:var(--terra-dark);}
+  .card.review-card:hover,.card.progress-card:hover,.card.review-card:focus-visible,.card.progress-card:focus-visible{border-color:#C9A14A;}
+  .review-card .card-top,.progress-card .card-top{border-bottom-color:rgba(255,255,255,.14);}
+  .review-card .cmeta,.progress-card .cmeta{color:#DCB45C;}
+  .review-card .cdesc,.progress-card .cdesc{color:#fff;opacity:.85;}
+  .review-card .go,.progress-card .go{color:#DCB45C;}
+  .review-card .badge-svg .arcT,.progress-card .badge-svg .arcT{stroke:#C9A14A;}
+  .review-card .badge-svg .arcB,.progress-card .badge-svg .arcB{stroke:#FFFFFF;}
+  .review-card .badge-svg .ic,.progress-card .badge-svg .ic{stroke:#C9A14A;}
+  .review-card .badge-svg .wa,.progress-card .badge-svg .wa{fill:#FFFFFF;}
+  .review-card .badge-svg .wl,.progress-card .badge-svg .wl{fill:#C9A14A;}
+  .review-card .badge-svg .bone,.progress-card .badge-svg .bone{fill:#FFFFFF;}
+  .review-card .badge-svg .unit,.progress-card .badge-svg .unit{fill:#FFFFFF;}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="site-header-inner">
+    <a href="https://drsrennie-stack.github.io/new-build-bio4-solano/index.html" class="site-logo" target="_top" aria-label="BIO 004 Human Anatomy, course home">
+      <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+        <g transform="translate(0, 18)">
+          <g transform="translate(60, 0) rotate(8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+          </g>
+          <g transform="translate(100, 0)">
+            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+          </g>
+          <g transform="translate(140, 0) rotate(-8 0 130)">
+            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+          </g>
+        </g>
+      </svg>
+      <span class="logo-text">
+        <span class="logo-title">Human <span class="logo-accent">Anatomy</span></span>
+        <span class="logo-sub">BIO 004 &middot; Solano Community College</span>
+      </span>
+    </a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <main id="main">
+
+    <!-- ============ HUB ============ -->
+    <section id="hub" aria-label="Anatomy Loops practice">
+
+      <div class="cover">
+        <div class="cover-grid">
+          <div class="cover-main">
+            <p class="cover-eyebrow">BIO 004 &middot; Lab Practical Practice</p>
+            <svg class="cover-logo-mark" viewBox="40 10 125 148" role="img" aria-label="Human Anatomy" focusable="false">
+              <g transform="translate(0,18)">
+                <g transform="translate(60,0) rotate(8 0 130)">
+                  <circle cx="0" cy="20" r="10" fill="#FFFFFF"/>
+                  <path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#FFFFFF"/>
+                </g>
+                <g transform="translate(100,0)">
+                  <circle cx="0" cy="10" r="11" fill="#C2734D"/>
+                  <path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#C2734D"/>
+                </g>
+                <g transform="translate(140,0) rotate(-8 0 130)">
+                  <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+                  <path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/>
+                </g>
+              </g>
+            </svg>
+            <h2 class="cover-title">Anatomy <span>Loops</span></h2>
+            <p class="cover-tag">Practice the lab practical the way you are tested: a prompt, a countdown, then the key. Pick a loop and press play.</p>
+            <a class="cover-cta" href="https://www.loom.com/share/0da97e88267a46aa9dac209a59d832b2" target="_blank" rel="noopener">&#9658; Watch the how-to video</a>
+          </div>
+          <div class="cover-qr">
+            <img src="images/qr.png" alt="QR code to open Anatomy Loops on your phone">
+            <span class="cover-qr-cap">Scan to practice at home</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="section-label">Choose a loop</p>
+      <div class="grid" id="loopGrid"></div>
+    </section>
+
+    <!-- ============ PLAYER ============ -->
+    <section class="player" id="player" hidden aria-label="Loop player">
+      <div class="pbar">
+        <button class="back" id="backBtn" type="button">&larr; All loops</button>
+        <span class="ploop-title" id="playerTitle"></span>
+      </div>
+
+      <div class="controls" role="group" aria-label="Playback settings">
+        <div class="field">
+          <label for="lenSel">How many</label>
+          <select id="lenSel" aria-label="How many cards this session">
+            <option value="all" selected>All</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="qSel">Guess time</label>
+          <select id="qSel" aria-label="Seconds to show the question">
+            <option value="10">10 seconds</option>
+            <option value="15">15 seconds</option>
+            <option value="20">20 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="45">45 seconds</option>
+            <option value="60">60 seconds</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="aSel">Answer key</label>
+          <select id="aSel" aria-label="Seconds to show the answer key">
+            <option value="3">3 seconds</option>
+            <option value="5">5 seconds</option>
+            <option value="8">8 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="15" selected>15 seconds</option>
+            <option value="20">20 seconds</option>
+          </select>
+        </div>
+        <label class="toggle"><input type="checkbox" id="practiceChk" checked> Practice (type &amp; score)</label>
+        <label class="toggle"><input type="checkbox" id="timedChk"> Timed</label>
+        <label class="toggle"><input type="checkbox" id="shuffleChk"> Shuffle</label>
+      </div>
+
+      <div class="stage" id="stage">
+        <div class="phasebar">
+          <span class="phase question" id="phaseLabel"><span class="dot"></span><span id="phaseText">Question</span></span>
+          <span class="pb-right">
+            <span class="score" id="score" hidden>&#10003; <span id="scoreNum">0</span> / <span id="scoreSeen">0</span></span>
+            <span class="progress" id="progress">1 / 1</span>
+          </span>
+        </div>
+        <div class="coach" id="coach" hidden></div>
+        <div class="imgwrap">
+          <img id="slideImg" alt="" src="">
+          <div class="title-card" id="titleCard">
+            <svg class="tc-logo" viewBox="40 10 125 148" role="img" aria-label="Human Anatomy" focusable="false">
+              <g transform="translate(0,18)">
+                <g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#0B1530"/></g>
+                <g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
+                <g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+              </g>
+            </svg>
+            <p class="tc-eyebrow">BIO 004 &middot; Lab Practical Practice</p>
+            <h3 class="tc-title" id="tcTitle"></h3>
+            <p class="tc-sub" id="tcSub"></p>
+            <p class="tc-meta" id="tcMeta"></p>
+            <p class="tc-hint">Press play to begin</p>
+          </div>
+          <div class="timer" id="timer" aria-hidden="true">
+            <svg width="60" height="60" viewBox="0 0 60 60">
+              <circle class="track" cx="30" cy="30" r="26" fill="none" stroke-width="6"></circle>
+              <circle class="arc" id="arc" cx="30" cy="30" r="26" fill="none" stroke-width="6" stroke-linecap="round"></circle>
+            </svg>
+            <span class="num" id="timerNum">30</span>
+          </div>
+          <div class="results-card" id="resultsCard">
+            <p class="rc-eyebrow">Your score</p>
+            <p class="rc-score" id="rcScore">0 / 0</p>
+            <p class="rc-pct" id="rcPct"></p>
+            <p class="rc-time" id="rcTime" hidden></p>
+            <p class="rc-trend" id="rcTrend"></p>
+            <p class="rc-msg" id="rcMsg"></p>
+            <div class="rc-history" id="rcHistory"></div>
+            <div class="rc-actions">
+              <button class="rbtn primary" id="rcRestart" type="button">Practice again</button>
+              <button class="rbtn ghost" id="rcBack" type="button">All loops</button>
+            </div>
+          </div>
+        </div>
+        <div class="caption" id="caption">
+          <p class="cap-q" id="capQ" hidden></p>
+          <p class="cap-main" id="capMain"></p>
+        </div>
+        <div class="answerbar" id="answerbar">
+          <input id="answerInput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer, then reveal to check it" aria-label="Type your answer">
+        </div>
+        <div class="selfcheck" id="selfcheck">
+          <span class="sc-typed" id="scTyped"></span>
+          <span class="sc-label">How did you do?</span>
+          <button class="sc-btn sc-again" id="scAgain" type="button">Again</button>
+          <button class="sc-btn sc-hard" id="scHard" type="button">Hard</button>
+          <button class="sc-btn sc-good" id="scGood" type="button">Good</button>
+          <button class="sc-btn sc-easy" id="scEasy" type="button">Easy</button>
+        </div>
+        <div class="transport">
+          <button class="tbtn" id="prevBtn" type="button">&#9664; Prev</button>
+          <button class="tbtn play" id="playBtn" type="button">&#9658; Play</button>
+          <button class="tbtn" id="nextBtn" type="button">Next &#9654;</button>
+          <button class="tbtn" id="revealBtn" type="button">Reveal answer</button>
+          <button class="tbtn" id="scoreBtn" type="button">See score</button>
+          <button class="tbtn" id="restartBtn" type="button">&#8635; Restart</button>
+        </div>
+      </div>
+      <p class="hint">Keyboard: Space = play / pause &middot; &larr; &rarr; = previous / next &middot; Enter = reveal answer</p>
+      <p class="visually-hidden" role="status" aria-live="polite" id="live"></p>
+    </section>
+
+    <!-- ============ REVIEW BUILDER ============ -->
+    <section class="builder" id="builder" hidden aria-label="Build a review">
+      <div class="pbar">
+        <button class="back" id="builderBack" type="button">&larr; All loops</button>
+        <span class="ploop-title">Build a review</span>
+      </div>
+      <div class="builder-card">
+        <p class="builder-instr">Pick the topics you want to review, then start. You choose how many cards once you are in.</p>
+        <div class="builder-topics" id="builderTopics" role="group" aria-label="Topics to include"></div>
+        <label class="toggle weak-toggle"><input type="checkbox" id="weakChk"> Focus on my weak cards</label>
+        <p class="builder-note" id="builderNote"></p>
+        <div class="builder-actions">
+          <button class="tbtn play" id="builderStart" type="button">Start review &#9654;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MY PROGRESS DASHBOARD ============ -->
+    <section class="dash" id="dash" hidden aria-label="My progress">
+      <div class="pbar">
+        <button class="back" id="dashBack" type="button">&larr; All loops</button>
+        <span class="ploop-title">My progress</span>
+      </div>
+      <div id="dashBody" class="dash-body"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="by">Dr. Sharilyn Rennie</div>
+    <div class="role">Professor of Anatomy &amp; Physiology</div>
+    <div class="brand">MedMasters Collaborative</div>
+  </footer>
+</div>
+
+<script src="custom-loops.js" onerror="window.CUSTOM_LOOPS=window.CUSTOM_LOOPS||[]"></script>
+<script>
+/* ---------------- DATA ----------------
+   Each loop: id, title, subtitle, dir (image folder), cover, and pairs.
+   A pair is [questionSlideNumber, answerSlideNumber, label] -> images sNN.jpg
+   To add a loop later: render its slides to images/<dir>/ and add an entry. */
+const BONEAXIAL2_LABELS = ["Sharpey s Fibers Fibrous Periosteium", "Epiphysis Endosteum", "Left Parietal External Auditory meatus", "Superior Orbital Perpendicular Fissure Plate Ethmoid", "Concentric Lamellae Osteon", "Hypophyseal Fossa Sella Turcica Jugular Foramen", "Elastic Cartilage Ear, Epiglottis", "Crista Galli Olfactory foramina", "Median palatine suture Choana", "Sagittal Suture Lambdoidal Suture", "Frontal Coronal Suture", "Hyaline Cartilage Ends long , epiphyseal plate, ribs, trachea", "Compact Spongy", "Lacuna w/osteocyte Central Canal", "Lesser Wing Sphenoid Foramen Ovale", "Fibrocartilage Pubic Symphysis, intervertebral disc", "Coranoid Process; Mandible Mental foramen", "Supraprbital notch Maxilla", "Osteon Interstitial Lamellae", "Internal Acoustic Meatus Foramen Magnum", "Articular Cartilage Epiphyseal Line", "Incisive Fossa Vomer", "Jugular Notch Xiphoid Process", "Greater Cornu Hyoid", "Clavicle", "Circumferential Lamellae Volkmann s Canal", "Occipital Condyle Occipital", "Squamous suture Styloid process", "Glabella Zygomatic", "Optic Foramen Optic N. CN II Middle Nasal concha", "Supoerior Nuchal Line Occipital Protuberance", "Anterior Fontanel Anterolateral Fontanel", "Superior articular facet Transverse foramen", "Superior articular Facet & Process Body thoracic vertebrae", "Pedicle Vertebral Foramen", "Inferior articular facet/process Lumbar", "Transverse Foramen Anterior tubercle C", "Dens C", "Sacral Promontory Anterior Sacral Foramina", "Median Sacral crest Sacral Hiatus", "Thoracic", "Cervical"];
+const HEART_LABELS = ["Ascending Aorta", "Pulmonary Trunk", "R. Auricle", "Apex", "Base", "Fibrous Pericardium", "Diaphragm", "Right Ventricle", "L. Ventricle", "Thoracic Cavity", "Mediastinum", "Superior Vena Cava", "R. Brachiocephalic V", "L. Brachiocephalic V.", "Aorta", "Coronary Sinus", "Inferior Vena Cava (opening)", "R. Auricle", "Aorta", "Pulmonary Trunk", "R. Coronary A.", "Left Anterior Descending A. (LAD) or anterior Interventricular A.", "Great Cardiac Vein", "L. Auricle", "L. Circumflex A.", "Left Coronary A.", "Left Anterior Descending (LAD) or Anterior Interventricular A.", "Right Coronary A.", "Endocardium", "Myocardium", "Epicardium (Visceral Pericardium)", "Anterior Papillary Muscle", "Chordae Tendineae", "Mitral/Bicuspid Valve", "Aorta", "Pulmonary Trunk", "Pulmonary Veins", "Superior Vena Cava", "Pectinate Muscles", "R. Atrium", "Coronary Sinus", "Posterior Descending A.", "Tricuspid Valve", "Chordae Tendineae", "Anterior Papillary Muscle", "Fossa Ovalis", "Opening for Coronary Sinus", "Interatrial Septum", "Interventricular Septum", "Trabeculae Carnae", "Superior Vena Cava", "R. Brachiocephalic V.", "L. Brachiocephalic V.", "Brachiocephalic Trunk", "L. Common Carotid", "L. Subclavian A.", "Ligamentum Arteriosum", "Ascending Aorta", "Aortic Arch", "Interventricular Septum", "Tricuspid Valve", "Pulmonic (Pulmonary Semilunar) Valve", "Aortic Semilunar Valve", "Bicuspid (Mitral) Valve", "Pulmonary Arteries", "Pulmonary Veins", "Visceral Pericardium (epicardium)", "Myocardium", "Endocardium", "Sinoatrial (SA) Node", "Atrioventricular (AV) Node", "Bundle of His", "Right Bundle Branch", "Left Bundle Branch", "Purkinje Fibers", "Cardiac Muscle Tissue", "Intercalated Disc", "Desmosome Gap Junction"];
+const RESPIRATORY_LABELS = ["Mediastinum", "Thoracic Cavity", "Phrenic Nerve (branch of C3- C5)", "Trachea", "Esophagus", "Diaphragm", "Apex of the Lung", "Base of the Lung", "Right Lung", "Left Lung", "Superior Lobe of Right Lung", "Inferior Lobe of Right Lung", "Middle Lobe of R. Lung", "Superior Lobe of Left Lung", "Inferior Lobe of L. Lung", "Oblique Fissure of the L. Lung", "Oblique Fissure of the R. Lung", "Horizontal Fissure of the R. Lung", "Hilum of the lung", "Diaphragmatic Surface of the Lung", "Pulmonary Arteries", "Pulmonary Veins (O₂ RICH)", "Bronchi", "Pulmonary Veins (O₂-RICH)", "Bronchi", "Pulmonary Artery", "Laryngeal prominence", "Thyroid Cartilage", "Cricoid Cartilage", "Cricothyroid ligament", "Trachea", "Diaphragm", "Phrenic Nerve", "At T8: Inferior Vena Cava (IVC)", "At T10: Esophagus", "At T12: Aorta (Thoracic)", "Region: Nasopharynx", "Region: Oropharynx", "Region: Laryngopharynx", "Epiglottis", "Thyroid Cartilage", "Cricothyroid Ligament", "Cricoid Cartilage", "Vestibular Folds (False Vocal Folds)", "True Vocal Cords", "Larynx", "Superior Nasal Concha", "Superior Nasal Meatus", "Middle Nasal Concha", "Middle Nasal Meatus", "Inferior Nasal Concha", "Inferior Nasal Meatus", "Epiglottis", "Thyroid Cartilage", "Arytenoid Cartilage", "Corniculate Cartilage", "Trachealis Muscle", "Cricoid Cartilage", "Tracheal “C” Rings", "Alveolar Sac", "Alveolus", "Alveolar Duct", "Visceral Pleura", "Carina", "Left Main (Primary) Bronchus", "Right Main (Primary) Bronchus", "Secondary (Lobar) bronchus", "Tertiary (Segmental) Bronchus", "Trachea", "Esophagus", "Tracheal C Ring", "Trachealis Muscle"];
+const MUSCLES_UPPER_LABELS = ["Pectoralis Minor; Serratus Anterior", "Trapezius; Latissimus Dorsi", "Levator Scapulae; Rhomboid Major", "Infraspinatus M; Teres Major M", "Deltoid; Biceps Brachii (Long head=Lateral)", "Teres Minor; Anconeus", "Palmaris Longus; Flexor Digitorum Superficialis", "Diaphragm; Abdominal Aorta (T12)", "External Intercostal Muscles; Phrenic Nerve"];
+const MUSCLES_LOWER_LABELS = ["Diaphragm; Abdominal Aorta (T12)", "External Intercostal Muscles; Phrenic Nerve", "Sartorius; Vastus Medialis", "Gastrocnemius; Soleus", "Tensor Fasciae latae; Adductor Longus", "Gluteus Maximus; Vastus Lateralis", "Linea Alba; Internal Abdominal Oblique", "Gluteus Medius; Semitendinosus", "Rectus Femoris; Tensor Fascia Lata", "Iliopsoas; Vastus Intermedius", "Iliotibial Tract/Band; Vastus medialis", "Tibialis Anterior; Extensor Digitorum Longus", "Extensor Digitorum Longus; Extensor Hallucis Longus", "Fibularis Longus; Fibularis brevis", "Soleus (Gastrocnemius is removed)", "Gluteus Maximus; Biceps Femoris", "Semimembranosus; Semitendinosus", "Gluteus medius; Piriformis"];
+const MUSCLES_HEAD_LABELS = ["Zygomatic Minor; Risorius", "Superior Oblique/Trochlear Nerve CN IV; Lateral Rectus/Abducens N. CN VI", "Medial Rectus/Oculomotor CN III; Inferior Oblique/Oculomotor III", "Sternocleidomastoid; Depressor anguli oris", "Orbicularis Oculi; Masseter", "Depressor Anguli oris; Sternocleidomastoid"];
+const APPENDICULAR_LABELS = ["Iliac Crest, Acetabulum", "Scapula, Infraspinous Fossa", "Ischial Spine, Obturator Foramen", "Clavicle Sternal End", "Femur, Intercondylar Notch", "Humerus Surgical Neck", "Patella, Apex", "Scapular Notch, Subscapular Fossa", "Ilium, Pubis", "Acromion, Glenoid Fossa", "Humerus, Olecranon Fossa", "Femur Intertrochanteric Crest", "Middle Phalanx #3, Metacarpal #1", "Intercondylar Eminence, Tibia", "Articular Fovea of Radius Trochlear Notch of Ulna", "Ischium, Ischial Tuberosity", "Fibula, Lateral Malleolus", "Coronoid process, Ulna, Radial Tuberosity, Radius", "3rd Metatarsal, 4th Distal Phalanx", "Olecranon Process Radial Notch", "Talus, Navicular", "Medial Cuneiform, Cuboid", "Ulna, Ulnar Tuberosity, Radius, Styloid Process", "Proximal Phalanx #1, Carpal", "Anterior Superior Iliac Spine, Greater Sciatic Notch", "Spine of the Scapula, Medial Border", "Sacroiliac Joint, Pubic Symphysis", "Conoid Tubercle, Clavicle, Acromial End", "Linea Aspera, Femur, Medial Condyle", "Deltoid tuberosity, Humerus, Ulnar groove", "Superior Angle, Scapula, Coracoid Process", "Coccyx, Ischium", "Scapula, Acromion, Coracoid Process", "Humerus, Anatomical Neck, Olecranon Fossa", "bone Femur, Medial Supracondylar Line Lesser Trochanter", "Capitate, Scaphoid", "Tibia, Tibial Tuberosity, Medial Malleolus", "Calcaneus, Lateral Cuneiform", "Humerus, Greater Tubercle, Capitulum", "Hamate, Lunate", "Pisiform, Trapezium"];
+/* Axial Skull loop: full-slide deck on black. Labels are the answer text (used for alt / screen-reader announcements). */
+const SKULL_LABELS = ["Occipital Bone","Sphenoid Bone","Sagittal Suture","Nasal Bone","Maxilla","Supraorbital Foramen","Perpendicular Plate of Ethmoid Bone","Zygomatic Bone","Temporal Bone","Lambdoid Suture","Frontal Bone","Coronal (Frontal) Suture","Middle Cranial Fossa","Cribriform Plate","Mandible","Foramen Ovale","Jugular Foramen","Vomer","Palatine Bone","Choana","Infraorbital Foramen","Inferior Nuchal Line","Anterior Nasal Spine","Mental Protuberance","Optic Foramen","Mental Foramen","External Acoustic (Auditory) Meatus","Lacrimal Canal","Superior Orbital Fissure","Coronoid Process","Greater Cornu of the Hyoid Bone"];
+/* Bone Tissue loop: full-slide deck. Labels are the answer text (used for alt / screen-reader announcements). */
+const BONE_LABELS = ["Chondrocyte","Articular Cartilage (surface)","Lacuna","Diaphysis","Articular surface (epiphysis), nose, growth plate, ends of ribs, fetal skeleton","Lacuna","Elastic Cartilage","Periosteum","Canaliculi","Osteon","Chondrocytes","Perichondrium","Elastic Cartilage","Interstitial Lamella","Haversian Canal","Metaphysis","Hyaline Cartilage","Volkmann's Canal","Circumferential Lamellae","Perichondrium","Concentric Lamellae","Haversian (Central) Canal","Epiphysis","Canaliculi","Fibrocartilage","Lacuna","Medullary Cavity","Sharpey's Fibers","Intervertebral disc, menisci, or pubic symphysis","Compact Bone Tissue","Lacuna with osteocyte","Concentric Lamellae"];
+const LABELS = ["Patellar","Lumbar","Midsagittal plane","Calcaneal","Mammary / Pectoral","Scapular","Brachial","Sternal","Axillary","Popliteal","Antebrachial","Auricular (Otic)","Pubic","Transverse plane","Crural","Olecranal","Acromial","Cervical","Dorsal cavity","Abdominal cavity","Parietal pleura","Parasagittal plane","RUQ (gallbladder)","Antecubital","Oblique plane","Vertebral","Occipital","LUQ (spleen)","Umbilical","Sural","Pollex","Plantar","RLQ (appendix)","Buccal","Clavicular","Femoral","Optic (orbital)","Sacral","Gluteal","Hallux","Plantar","Mediastinum","Mediastinum contents","Mediastinum borders"];
+
+/* caption loops: each station is ONE clean image (cNN.jpg) + question + answer */
+const TISSUE_ITEMS = [
+  {q:"ID the tissue. Name its location.", a:"Keratinized Stratified Squamous Epithelium. Location: skin"},
+  {q:"ID the tissue (arrow). ID the structure at the free surface.", a:"Stratified Cuboidal Epithelium. Free surface: lumen / apical surface"},
+  {q:"ID the tissue. Name a function.", a:"Transitional Epithelium. Accommodates stretch"},
+  {q:"ID the tissue. Name a function (where is it?).", a:"Simple Squamous Epithelium. Filtration"},
+  {q:"ID the structure. Describe its function.", a:"Microvilli. Increase surface area for absorption"},
+  {q:"ID the tissue. Name one location.", a:"Simple Cuboidal Epithelium. Renal tubules or glands"},
+  {q:"ID the tissue. Name its location.", a:"Pseudostratified Ciliated Columnar Epithelium. Upper respiratory tract"},
+  {q:"ID the tissue. Name its location.", a:"Simple Squamous Epithelium. Alveoli of the lungs"},
+  {q:"ID the structure. Describe its function.", a:"Goblet Cell. Produces and secretes mucus"},
+  {q:"ID the tissue. Name a function.", a:"Non-Keratinized Stratified Squamous Epithelium. Protection from abrasion"},
+  {q:"ID the tissue. Name one location.", a:"Simple Columnar Epithelium. Stomach or intestines"},
+  {q:"ID the structure. Describe its function.", a:"Cilia. Move substances along the surface"},
+  {q:"ID cell A. ID cell B.", a:"A: Fibroblast. B: Mast cell"},
+  {q:"ID the tissue. Name a location.", a:"Reticular Connective Tissue. Spleen, lymph nodes, tonsils"},
+  {q:"ID the tissue. Name a function.", a:"Compact Bone Tissue. Structural support; serum calcium regulation"},
+  {q:"ID the tissue. Name one location.", a:"Dense Irregular Connective Tissue. Dermis of the skin"},
+  {q:"ID the cell. When is it increased?", a:"Eosinophil. Allergy or parasitic worm infection"},
+  {q:"ID the tissue. Name a location.", a:"Elastic Connective Tissue. Muscular arteries; aorta"},
+  {q:"ID the connective tissue. Name a location.", a:"Dense Regular Connective Tissue. Tendon"},
+  {q:"ID the tissue. Name one location.", a:"Adipose Tissue. Around organs; behind the eyeball"},
+  {q:"ID the tissue. Name the fiber at the arrow.", a:"Loose Areolar Connective Tissue. Arrow: elastic fiber"},
+  {q:"ID the cell and the structure at the arrows.", a:"Basophil and Thrombocyte (platelet)"},
+  {q:"ID this cell. In tissue it becomes a ___.", a:"Monocyte. In tissue: macrophage"},
+  {q:"ID the structure and tissue. ID the specific region.", a:"Nervous Tissue; spinal cord. Region: dorsal horn"},
+  {q:"ID this cell. When is it increased? (Be specific.)", a:"Neutrophil. Bacterial infection"},
+  {q:"ID this cell. When is it increased? (Be specific.)", a:"Lymphocyte. Viral infection; possibly cancer"},
+  {q:"ID the structure at the arrow.", a:"Motor End Plate (neuromuscular junction)"},
+  {q:"ID the tissue. What are the alternating light and dark bands?", a:"Skeletal Muscle Tissue. Striations: actin (light) and myosin (dark)"},
+  {q:"ID the tissue. Describe its neurological control.", a:"Smooth Muscle Tissue. Involuntary"},
+  {q:"ID the tissue. ID the structure.", a:"Cardiac Muscle Tissue. Structure: intercalated disc"},
+  {q:"ID the tissue and location. ID the tissue at A.", a:"Nervous Tissue; spinal cord. A: gray matter"}
+];
+const SKIN_ITEMS = [
+  {q:"ID the layer. ID the structure.", a:"Layer: epidermis. Structure: Lamellated (Pacinian) corpuscle"},
+  {q:"ID the structure. ID the structure.", a:"Sebaceous gland and Hair bulb"},
+  {q:"ID the layer. ID the structure.", a:"Layer: stratum granulosum. Structure: Meissner's corpuscle"},
+  {q:"ID the protein. Thick or thin skin?", a:"Protein: keratin. Thin skin"},
+  {q:"ID the structure. ID the structure.", a:"Apocrine gland and Hair bulb"},
+  {q:"ID the structure. ID the structure.", a:"Hair root and Arrector pili muscle"},
+  {q:"ID the epidermal layer. ID the structure (region).", a:"Layer: stratum corneum. Structure: dermal papilla"},
+  {q:"ID the tissue type. ID the region (be specific).", a:"Dense Irregular Connective Tissue. Papillary dermis"},
+  {q:"Name the tissue. ID the layer inside the circle.", a:"Tissue: Keratinized Stratified Squamous Epithelium. Layer: stratum lucidum"},
+  {q:"ID the structure. ID the structure.", a:"Hair shaft and Eccrine sweat gland"},
+  {q:"This layer has which two sub-components? ID the layer.", a:"Layer: dermis. Papillary dermis and reticular dermis"},
+  {q:"Name three structures in the dermal papilla. ID the structure that dips down.", a:"Dips down: epidermal ridges. In the papilla: Meissner's corpuscles, free nerve endings, capillary loops"}
+];
+
+/* full-slide loops use the original deck images: [questionSlide, answerSlide, label] */
+function buildPairs(labels){
+  const pairs=[];
+  for(let k=0;k<labels.length;k++){ pairs.push([2+2*k, 3+2*k, labels[k]]); }
+  return pairs;
+}
+/* original decks: swapSet reverses pairs that are answer-first in the source file */
+function buildSlidePairs(items, swapSet){
+  const pairs=[];
+  for(let k=0;k<items.length;k++){
+    let q=2+2*k, a=3+2*k;
+    if(swapSet.indexOf(k)>=0){ const t=q; q=a; a=t; }
+    pairs.push([q, a, items[k].a]);
+  }
+  return pairs;
+}
+
+const LOOPS = [
+  { id:"intro", title:"Introduction Loop", module:"Fundamentals", icon:"book", unit:"Intro to Anatomy", subtitle:"Regions, planes, cavities & quadrants", dir:"intro", type:"slide", pairs:buildPairs(LABELS) },
+  { id:"tissues", title:"Tissues Loop", module:"Cells & Tissues", icon:"micro", unit:"Tissues & Histology", subtitle:"Epithelial & connective tissues, cells, muscle & nervous", dir:"tissues", type:"slide", pairs:buildSlidePairs(TISSUE_ITEMS,[23]) },
+  { id:"skin", title:"Integumentary Loop", module:"Integumentary", icon:"skin", unit:"Skin", subtitle:"Skin layers, glands & structures", dir:"skin", type:"slide", pairs:buildSlidePairs(SKIN_ITEMS,[2]) },
+  { id:"bone", title:"Bone Tissue Loop", module:"Cartilage & Bone", icon:"bone", unit:"Bone Tissue", subtitle:"Cartilage, bone tissue, osteon & bony landmarks", dir:"bone", type:"slide", pairs:buildPairs(BONE_LABELS) },
+  { id:"skull", title:"Axial Skull Loop", module:"Axial Skeleton", icon:"skull", unit:"Axial Skull", subtitle:"Cranial & facial bones, sutures, foramina & landmarks", dir:"skull", type:"slide", pairs:buildPairs(SKULL_LABELS) },
+  { id:"appendicular", title:"Appendicular Loop", module:"Appendicular Skeleton", icon:"appendicular", unit:"Appendicular Skeleton", subtitle:"Upper & lower limb bones, girdles & landmarks", dir:"appendicular", type:"slide", pairs:buildPairs(APPENDICULAR_LABELS) },
+  { id:"boneaxial2", title:"Bone & Axial Loop II", module:"Bone & Axial", icon:"spine", unit:"Bone & Axial II", subtitle:"Bone tissue, skull, vertebrae, sacrum & spinal curves", dir:"boneaxial2", type:"slide", pairs:buildPairs(BONEAXIAL2_LABELS) },
+  { id:"muscles-upper", title:"Muscles \u2014 Upper", module:"Muscular System", icon:"muscle", unit:"Muscles: Arm, Chest & Back", subtitle:"Upper limb, chest & back muscles (with trunk)", dir:"muscles-upper", type:"slide", pairs:buildPairs(MUSCLES_UPPER_LABELS) },
+  { id:"muscles-lower", title:"Muscles \u2014 Trunk & Lower", module:"Muscular System", icon:"muscle", unit:"Muscles: Abdomen, Pelvis & Leg", subtitle:"Abdomen, pelvis & lower limb muscles", dir:"muscles-lower", type:"slide", pairs:buildPairs(MUSCLES_LOWER_LABELS) },
+  { id:"muscles-head", title:"Muscles \u2014 Head & Neck", module:"Muscular System", icon:"muscle", unit:"Muscles: Head, Neck & Eye", subtitle:"Facial, neck & extraocular muscles + cranial nerves", dir:"muscles-head", type:"slide", pairs:buildPairs(MUSCLES_HEAD_LABELS) },
+  { id:"respiratory", title:"Respiratory Loop", module:"Respiratory System", icon:"lungs", unit:"Respiratory System", subtitle:"Airways, lungs, larynx, pleura & bronchial tree", dir:"respiratory", type:"slide", pairs:buildPairs(RESPIRATORY_LABELS) },
+  { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) }
+];
+/* Loops made with the Loop Builder load from custom-loops.js and merge in here. */
+if(window.CUSTOM_LOOPS && window.CUSTOM_LOOPS.length){
+  /* pass 1: brand-new loops */
+  window.CUSTOM_LOOPS.forEach(function(c){
+    if(!c || c.extend || !c.id || !(c.labels||c.pairs)) return;
+    LOOPS.push({ id:c.id, title:c.title||c.id, module:c.module||'', icon:c.icon||'bone', unit:c.unit||c.title||c.id, subtitle:c.subtitle||'', dir:c.dir||c.id, type:'slide', pairs:(c.pairs||buildPairs(c.labels)) });
+  });
+  /* pass 2: extensions append extra cards onto an existing loop (built-in or custom) */
+  window.CUSTOM_LOOPS.forEach(function(c){
+    if(!c || !c.extend || !c.labels) return;
+    var tgt=LOOPS.find(function(l){return l.id===c.extend;});
+    if(!tgt || !tgt.pairs) return;
+    var start=tgt.pairs.length;
+    c.labels.forEach(function(lab,k){ var n=start+k; tgt.pairs.push([2+2*n, 3+2*n, lab]); });
+  });
+}
+
+/* ---- Anatomy Loops badge (original SVG, scalable/high-def) ---- */
+const BADGE_ICONS={
+  book:'<path d="M0,-12 C-8,-18 -20,-18 -27,-14 L-27,13 C-20,9 -8,9 0,15 C8,9 20,9 27,13 L27,-14 C20,-18 8,-18 0,-12 Z"/><line x1="0" y1="-12" x2="0" y2="15"/>',
+  micro:'<circle cx="6" cy="-20" r="3.6"/><line x1="6" y1="-16" x2="6" y2="-2"/><line x1="6" y1="-2" x2="2" y2="6"/><path d="M6,-7 C-7,-3 -13,6 -13,17"/><line x1="-17" y1="17" x2="17" y2="17"/><line x1="-4" y1="9" x2="12" y2="9"/>',
+  skin:'<path d="M-25,-8 q8,-6 16,0 t16,0 t16,0"/><path d="M-25,0 q8,-5 16,0 t16,0 t16,0"/><path d="M-25,8 q8,-5 16,0 t16,0 t16,0"/><line x1="2" y1="-20" x2="2" y2="-6"/><circle cx="-13" cy="13" r="2.4"/>',
+  bone:'<g transform="rotate(-32)"><line x1="-13" y1="0" x2="13" y2="0"/><circle cx="-15" cy="-4.5" r="4.4"/><circle cx="-15" cy="4.5" r="4.4"/><circle cx="15" cy="-4.5" r="4.4"/><circle cx="15" cy="4.5" r="4.4"/></g>',
+  skull:'<path d="M-15,-3 a15,15 0 0 1 30,0 v5 a5,5 0 0 1 -3,4.6 l0,4.4 a3.5,3.5 0 0 1 -3.5,3.5 h-1.5 v-3 h-5 v3 h-5 v-3 h-5 v3 h-1.5 a3.5,3.5 0 0 1 -3.5,-3.5 l0,-4.4 a5,5 0 0 1 -3,-4.6 z"/><circle cx="-6.5" cy="-2" r="3.6"/><circle cx="6.5" cy="-2" r="3.6"/><path d="M0,1 l-2.4,5 h4.8 z"/>',
+  appendicular:'<g transform="rotate(22)"><rect x="-3.2" y="-13" width="6.4" height="26" rx="3"/><circle cx="-4.5" cy="-13" r="4"/><circle cx="4.5" cy="-13" r="4"/><circle cx="-4.5" cy="13" r="4"/><circle cx="4.5" cy="13" r="4"/></g>',
+  spine:'<rect x="-5.5" y="-16" width="11" height="6.4" rx="2"/><rect x="-5.5" y="-7.7" width="11" height="6.4" rx="2"/><rect x="-5.5" y="0.6" width="11" height="6.4" rx="2"/><rect x="-5.5" y="8.9" width="11" height="6.4" rx="2"/><line x1="9" y1="-13" x2="9" y2="12"/>',
+  muscle:'<path d="M-16,0 C-9,-8 9,-8 16,0 C9,8 -9,8 -16,0 Z"/><line x1="-16" y1="0" x2="-23" y2="0"/><line x1="16" y1="0" x2="23" y2="0"/><path d="M-8,-4 C-4,0 -4,0 -8,4"/><path d="M0,-5 C4,0 4,0 0,5"/><path d="M8,-4 C4,0 4,0 8,4"/>',
+  lungs:'<line x1="0" y1="-18" x2="0" y2="-5"/><line x1="-4" y1="-18" x2="4" y2="-18"/><path d="M0,-9 C-2,-9 -4,-8 -5,-4 M0,-9 C2,-9 4,-8 5,-4"/><path d="M-5,-4 C-11,-2 -15,4 -15,11 C-15,16 -12,18 -8,17 C-4,16 -4,10 -4,4 C-4,-1 -3,-4 -5,-4 Z"/><path d="M5,-4 C11,-2 15,4 15,11 C15,16 12,18 8,17 C4,16 4,10 4,4 C4,-1 3,-4 5,-4 Z"/>',
+  heart:'<path d="M0,15 C-13,4 -18,-6 -10,-13 C-5,-17 0,-12 0,-8 C0,-12 5,-17 10,-13 C18,-6 13,4 0,15 Z"/><path d="M-4,-13 C-4,-18 -7,-20 -4,-22 M4,-13 C4,-18 7,-20 4,-22"/>',
+  review:'<rect x="-18" y="-13" width="22" height="16" rx="2"/><rect x="-9" y="-5" width="22" height="16" rx="2"/><path d="M-3,3 l3,3 l8,-9"/>',
+  progress:'<line x1="-17" y1="13" x2="17" y2="13"/><rect x="-14" y="2" width="8" height="11"/><rect x="-3" y="-7" width="8" height="20"/><rect x="8" y="-2" width="8" height="15"/>'
+};
+function badgeSVG(loop){
+  const ic=BADGE_ICONS[loop.icon]||'';
+  const label=(loop.unit||loop.module||'').toUpperCase();
+  return `<svg class="badge-svg" viewBox="0 0 340 224" role="img" aria-label="Anatomy Loops, ${loop.unit||loop.module}">
+    <path class="arcT" d="M40,120 A152,152 0 0 1 300,120"/>
+    <path class="arcB" d="M62,188 A210,210 0 0 0 278,188"/>
+    <g class="ic" transform="translate(170,76)">${ic}</g>
+    <text class="wa" x="156" y="140" text-anchor="end">ANATOMY</text>
+    <g class="bone" transform="translate(168,132)"><circle cx="-3" cy="-7" r="3"/><circle cx="3" cy="-7" r="3"/><circle cx="-3" cy="7" r="3"/><circle cx="3" cy="7" r="3"/><rect x="-2" y="-7" width="4" height="14"/></g>
+    <text class="wl" x="180" y="140" text-anchor="start">LOOPS</text>
+    <text class="unit" x="170" y="174" text-anchor="middle">${label}</text>
+  </svg>`;
+}
+
+/* placeholder cards for loops not yet built */
+const COMING = [];
+
+/* ---------------- HUB RENDER ---------------- */
+const grid=document.getElementById('loopGrid');
+function pad2(n){ return String(n).padStart(2,'0'); }
+/* ---- item-level memory (this browser only): powers the weakness picker ---- */
+function loadItemStats(){ try{ return JSON.parse(localStorage.getItem('loopItemStats_v1')||'{}'); }catch(e){ return {}; } }
+function saveItemStats(o){ try{ localStorage.setItem('loopItemStats_v1',JSON.stringify(o)); }catch(e){} }
+function recordItem(loopId,idx,kind){
+  const k=loopId+'#'+idx; const s=loadItemStats();
+  const it=s[k]||{seen:0,again:0,hard:0,good:0,easy:0,recent:[]};
+  it.seen++; it[kind]=(it[kind]||0)+1;
+  it.recent.push(kind.charAt(0)); if(it.recent.length>10) it.recent.shift(); /* a h g e */
+  it.last=Date.now(); s[k]=it; saveItemStats(s);
+}
+function itemCorrect(it){ return (it.good||0)+(it.easy||0)+(it.correct||0); }
+function outcomeMiss(o){ if(o==='e'||o==='g'||o==='c'||o===1) return 0; if(o==='h'||o==='m') return 0.5; return 1; }
+function itemRecord(loopId,idx){ return loadItemStats()[loopId+'#'+idx]; }
+function weaknessScore(loopId,idx){
+  const it=itemRecord(loopId,idx); if(!it||!it.seen) return null;
+  const r=it.recent;
+  if(r&&r.length){ let wsum=0,msum=0; for(let i=0;i<r.length;i++){ const w=i+1; wsum+=w; msum+=w*outcomeMiss(r[i]); } return msum/wsum; }
+  return (it.incorrect + 0.5*it.misspelled)/it.seen;
+}
+function isWeak(loopId,idx){ const s=weaknessScore(loopId,idx); return s!=null && s>=0.4; }
+function weakCount(loops){ let c=0; loops.forEach(L=>{ const n=stationN(L); for(let k=0;k<n;k++) if(isWeak(L.id,k)) c++; }); return c; }
+/* ---- station resolver: a real loop yields {loop,idx}; a review carries its own ---- */
+function stationAt(p){ const i=order[p]; if(cur && cur.type==='review') return cur.stations[i]; return {loop:cur, idx:i}; }
+function buildReviewStations(loops, weakOnly){ const stations=[]; loops.forEach(L=>{ const n=stationN(L); for(let k=0;k<n;k++){ if(weakOnly && !isWeak(L.id,k)) continue; stations.push({loop:L, idx:k}); } }); return stations; }
+function makeReviewLoop(loops, weakOnly){ const stations=buildReviewStations(loops, weakOnly); return { id: weakOnly?'review-weak':'review-mixed', title: weakOnly?'Weak Cards Review':'Custom Review', type:'review', stations:stations, subtitle:(weakOnly?'Your weak cards, ':'Mixed review, ')+loops.length+' topic'+(loops.length>1?'s':'') }; }
+function stationN(loop){ return loop.type==='caption' ? loop.items.length : (loop.type==='review' ? loop.stations.length : loop.pairs.length); }
+function imgPath(loop,n){ return `images/${loop.dir}/s${pad2(n)}.jpg`; }   /* intro full-slide image */
+function capImg(loop,k){ return `images/${loop.dir}/c${pad2(k)}.jpg`; }    /* caption station image (k = 1-based) */
+
+LOOPS.forEach(loop=>{
+  const btn=document.createElement('button');
+  btn.className='card'; btn.type='button';
+  btn.innerHTML=`
+    <span class="card-top"><span class="cwordmark"><span class="wa">Anatomy</span><span class="wl">Loops</span></span></span>
+    <span class="card-body">
+      <span class="ctitle">${loop.unit||loop.title}</span>
+      <span class="cmeta">${stationN(loop)} stations</span>
+      <span class="cdesc">${loop.subtitle}</span>
+      <span class="go">Start loop <span class="arr" aria-hidden="true">&rarr;</span></span>
+    </span>`;
+  btn.addEventListener('click',()=>openLoop(loop));
+  grid.appendChild(btn);
+});
+/* Build a review: separate entry point for multi-topic and weak-card sessions */
+(function(){
+  const c=document.createElement('button');
+  c.className='card review-card'; c.type='button';
+  c.innerHTML=`<span class="card-top">${badgeSVG({icon:'review',unit:'Build a Review'})}</span>`
+    +`<span class="card-body"><span class="cmeta">Build a review</span>`
+    +`<span class="cdesc">Mix topics or drill your weak cards for exam prep.</span>`
+    +`<span class="go">Choose topics <span class="arr" aria-hidden="true">&rarr;</span></span></span>`;
+  c.addEventListener('click',showBuilder);
+  grid.appendChild(c);
+})();
+(function(){
+  const c=document.createElement('button');
+  c.className='card progress-card'; c.type='button';
+  c.innerHTML=`<span class="card-top">${badgeSVG({icon:'progress',unit:'My Progress'})}</span>`
+    +`<span class="card-body"><span class="cmeta">My progress</span>`
+    +`<span class="cdesc">See your accuracy by topic and the cards you keep missing.</span>`
+    +`<span class="go">View progress <span class="arr" aria-hidden="true">&rarr;</span></span></span>`;
+  c.addEventListener('click',showDash);
+  grid.appendChild(c);
+})();
+/* External companion tools (open in a new tab) */
+[{ title:"Muscle Charts", meta:"Interactive practice", desc:"Origins, insertions, actions & innervation \u2014 drill them interactively.", url:"https://www.medmasterscollaborative.com/muscle-charts-i-o-a-inn", icon:"muscle" }].forEach(function(lk){
+  var a=document.createElement('a');
+  a.className='card link-card'; a.href=lk.url; a.target='_blank'; a.rel='noopener';
+  a.innerHTML='<span class="card-top">'+badgeSVG({icon:lk.icon,unit:lk.title})+'</span>'
+    +'<span class="card-body"><span class="cmeta">'+lk.meta+'</span><span class="cdesc">'+lk.desc+'</span>'
+    +'<span class="go">Open <span class="arr" aria-hidden="true">\u2197</span></span></span>';
+  grid.appendChild(a);
+});
+COMING.forEach(name=>{
+  const c=document.createElement('div');
+  c.className='card soon';
+  c.innerHTML=`<span class="thumb"></span><span class="body"><span class="badge">Coming soon</span><span class="ctitle">${name}</span><span class="cdesc">In production</span></span>`;
+  grid.appendChild(c);
+});
+
+/* ---------------- PLAYER ---------------- */
+const hub=document.getElementById('hub');
+const player=document.getElementById('player');
+const stage=document.getElementById('stage');
+const slideImg=document.getElementById('slideImg');
+const phaseLabel=document.getElementById('phaseLabel');
+const phaseText=document.getElementById('phaseText');
+const progress=document.getElementById('progress');
+const playerTitle=document.getElementById('playerTitle');
+const live=document.getElementById('live');
+const qSel=document.getElementById('qSel');
+const aSel=document.getElementById('aSel');
+const lenSel=document.getElementById('lenSel');
+const shuffleChk=document.getElementById('shuffleChk');
+const practiceChk=document.getElementById('practiceChk');
+const timedChk=document.getElementById('timedChk');
+const answerInput=document.getElementById('answerInput');
+const scTyped=document.getElementById('scTyped');
+const coach=document.getElementById('coach');
+const rcTime=document.getElementById('rcTime');
+const playBtn=document.getElementById('playBtn');
+let runStart=null;   // timestamp when the current run's stations began
+function practiceOn(){ return practiceChk.checked; }
+function timedOn(){ return timedChk.checked; }
+function fmtTime(ms){ var s=Math.round(ms/1000); var m=Math.floor(s/60); return m+':'+String(s%60).padStart(2,'0'); }
+function baseStageClass(){ return 'stage'+(cur&&cur.type==='caption'?' has-caption':'')+(practiceOn()?' is-practice':''); }
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+const timerNum=document.getElementById('timerNum');
+const tcTitle=document.getElementById('tcTitle');
+const tcSub=document.getElementById('tcSub');
+const tcMeta=document.getElementById('tcMeta');
+const captionEl=document.getElementById('caption');
+const capQ=document.getElementById('capQ');
+const capMain=document.getElementById('capMain');
+const selfcheck=document.getElementById('selfcheck');
+const scoreChip=document.getElementById('score');
+const scoreNum=document.getElementById('scoreNum');
+const scoreSeen=document.getElementById('scoreSeen');
+const rcScore=document.getElementById('rcScore');
+const rcPct=document.getElementById('rcPct');
+const rcMsg=document.getElementById('rcMsg');
+const rcTrend=document.getElementById('rcTrend');
+const rcHistory=document.getElementById('rcHistory');
+const arc=document.getElementById('arc');
+const ARC_LEN=2*Math.PI*26;
+arc.style.strokeDasharray=ARC_LEN;
+
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+let cur=null;          // current loop
+let order=[];          // array of pair indexes
+let pos=0;             // position in order
+let phase='question';  // 'question' | 'answer'
+let playing=false;
+let ticker=null;       // setInterval
+let remaining=0;       // whole seconds remaining
+let total=0;
+let results=[];        // per-station: undefined | true | false
+
+/* preference persistence */
+try{
+  const sv=JSON.parse(localStorage.getItem('loopPrefs')||'{}');
+  if(sv.q) qSel.value=sv.q; if(sv.a) aSel.value=sv.a; if(sv.shuffle) shuffleChk.checked=true;
+  if(sv.len) lenSel.value=sv.len;
+  if(sv.practice===false) practiceChk.checked=false;
+  if(sv.timed===true) timedChk.checked=true;
+}catch(e){}
+function savePrefs(){ try{ localStorage.setItem('loopPrefs',JSON.stringify({q:qSel.value,a:aSel.value,len:lenSel.value,shuffle:shuffleChk.checked,practice:practiceChk.checked,timed:timedChk.checked})); }catch(e){} }
+
+function shuffleArr(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+/* watch mode + "All" plays continuously like a video; any numeric length is a finite, scored session */
+function loopForever(){ return lenSel.value==='all' && !practiceOn(); }
+function buildOrder(){
+  const total=stationN(cur);
+  let base=Array.from({length:total},(_,i)=>i);
+  if(shuffleChk.checked || (cur && cur.type==='review')) shuffleArr(base);
+  if(lenSel.value==='all'){ order=base; return; }
+  const N=parseInt(lenSel.value,10)||total;
+  order=[]; let pool=[];
+  while(order.length<N){
+    if(pool.length===0){
+      pool=Array.from({length:total},(_,i)=>i); shuffleArr(pool);
+      /* avoid an immediate repeat across the seam between passes */
+      if(order.length && pool.length>1 && pool[0]===order[order.length-1]){ const t=pool[0]; pool[0]=pool[1]; pool[1]=t; }
+    }
+    order.push(pool.shift());
+  }
+}
+
+function openLoop(loop){
+  cur=loop;
+  playerTitle.textContent=loop.title;
+  buildOrder();
+  results=new Array(order.length).fill(undefined);
+  pos=0;
+  hub.hidden=true; player.hidden=false;
+  player.classList.toggle('theme-dark', loop.theme==='dark');
+  playing=false; setPlayBtn();
+  showTitle();
+  updateScore();
+  if(player.scrollIntoView) player.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});
+  notifyHeight();
+}
+function backToHub(){
+  stopTimer(); playing=false; setPlayBtn();
+  player.hidden=true; hub.hidden=false;
+  notifyHeight();
+}
+
+/* image for the current station, per loop type */
+function stationImg(idx){ return cur.type==='caption' ? capImg(cur, idx+1) : null; }
+function preloadCaption(idx){ const im=new Image(); im.src=capImg(cur, idx+1); }
+function curIdx(){ return order[pos]; }
+
+function showTitle(){
+  phase='title';
+  stopTimer();
+  stage.className=baseStageClass()+' is-title';
+  tcTitle.innerHTML = cur.title.replace(/\s*Loop$/, ' <span>Loop</span>');
+  tcSub.textContent = cur.subtitle;
+  tcMeta.textContent = order.length + ' stations';
+  phaseLabel.className='phase question';
+  phaseText.textContent='Title';
+  progress.textContent='Ready';
+  slideImg.removeAttribute('src'); slideImg.alt='';
+  coach.hidden=true;
+  live.textContent = cur.title + ', ' + order.length + ' stations. Press play to begin.';
+}
+function beginStations(){ runStart = timedOn() ? Date.now() : null; pos=0; showQuestion(); }
+
+function setStageMode(){
+  // base classes for stations
+  stage.className='stage'+(cur.type==='caption'?' has-caption':'');
+}
+
+function showQuestion(){
+  phase='question';
+  stage.className=baseStageClass()+' is-question';
+  const st=stationAt(pos), L=st.loop, idx=st.idx;
+  if(L.type==='caption'){
+    slideImg.src=capImg(L, idx+1);
+    slideImg.alt=`Question ${pos+1}: identify the marked structure`;
+    capQ.hidden=true; capQ.textContent='';
+    capMain.textContent=L.items[idx].q;
+    const nst=stationAt((pos+1)%order.length); if(nst.loop.type==='caption'){ const im=new Image(); im.src=capImg(nst.loop, nst.idx+1); }
+  } else {
+    const p=L.pairs[idx];
+    slideImg.src=imgPath(L,p[0]);
+    slideImg.alt=`Question ${pos+1}: identify the marked structure`;
+    const nst=stationAt((pos+1)%order.length); if(nst.loop.pairs){ const np=nst.loop.pairs[nst.idx]; const im=new Image(); im.src=imgPath(nst.loop,np[0]); }
+  }
+  phaseLabel.className='phase question';
+  phaseText.textContent='Question';
+  progress.textContent=`${pos+1} / ${order.length}`;
+  live.textContent=`Station ${pos+1} of ${order.length}. Question showing.`;
+  if(pos===0){
+    coach.hidden=false;
+    coach.innerHTML = practiceOn()
+      ? '<span class="hand" aria-hidden="true">👇</span><span>New here? <b>Type your answer</b> below, hit <b>Reveal</b> (or Enter), then rate yourself <b>Again</b>, <b>Hard</b>, <b>Good</b>, or <b>Easy</b>.</span>'
+      : '<span class="hand" aria-hidden="true">👉</span><span><b>Watch mode:</b> sit back, it plays itself. Turn on <b>Practice</b> to type and score.</span>';
+  } else { coach.hidden=true; }
+  if(practiceOn()){ answerInput.value=''; try{answerInput.focus({preventScroll:true});}catch(e){} }
+  if(playing) startCountdown(parseInt(qSel.value), goAnswer);
+  else { stopTimer(); setTimerDisplay(parseInt(qSel.value), parseInt(qSel.value)); }
+}
+function showAnswer(){
+  phase='answer';
+  stage.className=baseStageClass()+' is-answer';
+  coach.hidden=true;
+  const st=stationAt(pos), L=st.loop, idx=st.idx;
+  if(L.type==='caption'){
+    const it=L.items[idx];
+    capQ.hidden=false; capQ.textContent=it.q;
+    capMain.textContent=it.a;
+    live.textContent=`Answer: ${it.a}.`;
+  } else {
+    const p=L.pairs[idx];
+    slideImg.src=imgPath(L,p[1]);
+    slideImg.alt=`Answer ${pos+1}: ${p[2]}`;
+    live.textContent=`Answer: ${p[2]}.`;
+  }
+  phaseLabel.className='phase answer';
+  phaseText.textContent='Answer';
+  if(practiceOn()){
+    stopTimer();
+    const t=answerInput.value.trim();
+    scTyped.innerHTML = t ? 'You typed: <b>'+escHtml(t)+'</b>' : '<i>No answer typed</i>';
+  } else if(playing){ startCountdown(parseInt(aSel.value), goNext); }
+  else { stopTimer(); setTimerDisplay(parseInt(aSel.value), parseInt(aSel.value)); }
+}
+function goAnswer(){ showAnswer(); }
+function goNext(){
+  if(phase==='title'||phase==='results'){ beginStations(); return; }
+  if(pos>=order.length-1){
+    if(loopForever()){ pos=0; showQuestion(); }
+    else { showResults(true); }
+    return;
+  }
+  pos++; showQuestion();
+}
+function goPrev(){ if(phase==='title'||phase==='results'){ return; } pos=(pos-1+order.length)%order.length; showQuestion(); }
+
+/* ----- self-check score: 'correct' | 'misspelled' | 'incorrect' ----- */
+function mark(kind){
+  if(phase!=='answer' || !practiceOn()) return;
+  stopTimer();
+  results[pos]=kind;
+  const mst=stationAt(pos); recordItem(mst.loop.id, mst.idx, kind);
+  updateScore();
+  if(results.every(r=>r!==undefined)){ showResults(true); }
+  else { goNext(); }
+}
+function updateScore(){
+  const seen=results.filter(r=>r!==undefined).length;
+  const right=results.filter(r=>r==='good'||r==='easy').length;
+  scoreNum.textContent=right; scoreSeen.textContent=seen;
+  scoreChip.hidden = !practiceOn() || seen===0;
+}
+
+/* ----- score history (this browser only) ----- */
+function loadScores(){ try{ return JSON.parse(localStorage.getItem('loopScores_v1')||'{}'); }catch(e){ return {}; } }
+function saveScores(o){ try{ localStorage.setItem('loopScores_v1',JSON.stringify(o)); }catch(e){} }
+function loadHistory(id){ return loadScores()[id]||[]; }
+function recordAttempt(id,right,denom,pct,ms){
+  const s=loadScores(); const arr=s[id]||[];
+  arr.push({t:Date.now(),right:right,denom:denom,pct:pct,ms:(ms!=null?ms:null)});
+  if(arr.length>40) arr.splice(0,arr.length-40);
+  s[id]=arr; saveScores(s); return arr;
+}
+function fmtDate(t){ try{ return new Date(t).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}); }catch(e){ return ''; } }
+
+function showResults(commit){
+  phase='results';
+  stopTimer(); playing=false; setPlayBtn();
+  stage.className=baseStageClass()+' is-results';
+  coach.hidden=true;
+  const seen=results.filter(r=>r!==undefined).length;
+  if(!practiceOn() && seen===0){
+    rcScore.textContent='Done';
+    rcPct.textContent=`You watched ${order.length} card${order.length===1?'':'s'}.`;
+    rcTime.hidden=true; rcTrend.textContent='';
+    rcMsg.textContent='Turn on Practice to type and score next time.';
+    rcHistory.innerHTML='';
+    phaseText.textContent='Done';
+    progress.textContent=`${order.length} / ${order.length}`;
+    live.textContent=`Session complete. ${order.length} cards watched.`;
+    return;
+  }
+  const right=results.filter(r=>r==='good'||r==='easy').length;
+  const hardN=results.filter(r=>r==='hard').length;
+  const wrong=results.filter(r=>r==='again').length;
+  const denom=seen||order.length;
+  const pct=Math.round((right/denom)*100);
+  const complete=seen===order.length;
+  const ms = (timedOn() && runStart) ? (Date.now()-runStart) : null;
+
+  const histBefore=loadHistory(cur.id);
+  const prevPct = histBefore.length ? histBefore[histBefore.length-1].pct : null;
+  const prevMs = (function(){ for(var i=histBefore.length-1;i>=0;i--){ if(histBefore[i].ms!=null) return histBefore[i].ms; } return null; })();
+  let hist = histBefore;
+  if(commit && complete){ hist=recordAttempt(cur.id,right,denom,pct,ms); }
+
+  rcScore.textContent=`${right} / ${denom}`;
+  rcPct.textContent = hardN||wrong ? `${pct}% solid  ·  ${hardN} shaky  ·  ${wrong} to redo` : `${pct}% solid`;
+
+  // time + pace improvement
+  if(ms!=null){
+    var tt='Time: '+fmtTime(ms);
+    if(prevMs!=null){ var ds=Math.round((prevMs-ms)/1000);
+      tt += ds>2 ? `  ·  ${ds}s faster than last time` : ds<-2 ? `  ·  ${-ds}s slower than last time` : '  ·  about the same pace';
+    }
+    rcTime.textContent=tt; rcTime.hidden=false;
+  } else { rcTime.hidden=true; }
+  rcMsg.textContent = pct>=90?"Outstanding. You know these cold.":pct>=75?"Strong work. Review the misses and run it again.":pct>=50?"Good progress. Another pass will lock these in.":"Keep going. Run the loop again and watch it climb.";
+
+  // improvement assessment vs previous attempt
+  let trend;
+  if(prevPct===null){ trend = complete ? "First attempt saved." : "Finish all stations to start tracking."; }
+  else { const d=pct-prevPct;
+    trend = d>=5 ? `Up ${d} points from last time. Improving!` : d<=-5 ? `Down ${-d} points from last time. Run it again.` : "About the same as last time.";
+  }
+  rcTrend.textContent=trend;
+
+  if(cur.type==='review'){
+    const tally={};
+    for(let p=0;p<order.length;p++){ const st=cur.stations[order[p]]; const nm=st.loop.unit||st.loop.title; const r=results[p]; if(!tally[nm]) tally[nm]={seen:0,right:0}; if(r!==undefined){ tally[nm].seen++; if(r==='good'||r==='easy') tally[nm].right++; } }
+    const rows=Object.keys(tally).map(nm=>{ const t=tally[nm]; const tp=t.seen?Math.round(t.right/t.seen*100):0; return `<div class="rh-row"><span>${nm}</span><b>${t.right}/${t.seen} &middot; ${tp}%</b></div>`; }).join('');
+    rcHistory.innerHTML=`<p class="rh-title">By topic</p>${rows}`;
+    phaseText.textContent='Results';
+    progress.textContent=`${seen} / ${order.length}`;
+    live.textContent=`Your score: ${right} out of ${denom}, ${pct} percent.`;
+    return;
+  }
+
+  // history list (most recent first)
+  if(hist.length){
+    const best=Math.max.apply(null,hist.map(h=>h.pct));
+    const times=hist.map(h=>h.ms).filter(m=>m!=null);
+    const bestTime=times.length?Math.min.apply(null,times):null;
+    const rows=hist.slice().reverse().slice(0,6).map(h=>{
+      const tm = (h.ms!=null) ? '  ·  '+fmtTime(h.ms) : '';
+      return `<div class="rh-row"><span>${fmtDate(h.t)}</span><b>${h.pct}%${tm}</b></div>`;
+    }).join('');
+    const head = bestTime!=null ? `Your history &middot; best ${best}% &middot; fastest ${fmtTime(bestTime)}` : `Your history &middot; best ${best}%`;
+    rcHistory.innerHTML=`<p class="rh-title">${head}</p>${rows}`;
+  } else { rcHistory.innerHTML=''; }
+
+  phaseText.textContent='Results';
+  progress.textContent=`${seen} / ${order.length}`;
+  live.textContent=`Your score: ${right} out of ${denom}, ${pct} percent. ${trend}`;
+}
+
+/* ----- countdown engine ----- */
+function setTimerDisplay(rem,tot){
+  timerNum.textContent=rem;
+  const frac= tot>0 ? rem/tot : 0;
+  arc.style.strokeDashoffset = ARC_LEN*(1-frac);
+}
+function stopTimer(){ if(ticker){clearInterval(ticker);ticker=null;} }
+function startCountdown(seconds,onDone){
+  stopTimer();
+  total=seconds; remaining=seconds;
+  setTimerDisplay(remaining,total);
+  ticker=setInterval(()=>{
+    remaining--;
+    if(remaining<=0){ stopTimer(); setTimerDisplay(0,total); onDone(); return; }
+    setTimerDisplay(remaining,total);
+  },1000);
+}
+
+/* ----- transport ----- */
+function play(){
+  if(phase==='results'){ return; }
+  playing=true; setPlayBtn();
+  if(phase==='title'){ beginStations(); return; }
+  if(phase==='question') startCountdown(parseInt(qSel.value), goAnswer);
+  else startCountdown(parseInt(aSel.value), goNext);
+}
+function pause(){ playing=false; setPlayBtn(); stopTimer(); }
+function togglePlay(){ if(phase==='results') return; playing?pause():play(); }
+function practiceAgain(){ pause(); buildOrder(); results=new Array(order.length).fill(undefined); updateScore(); pos=0; showTitle(); }
+function setPlayBtn(){ playBtn.innerHTML = playing ? '&#10073;&#10073; Pause' : '&#9658; Play'; playBtn.setAttribute('aria-pressed',playing); }
+
+document.getElementById('backBtn').addEventListener('click',backToHub);
+document.getElementById('prevBtn').addEventListener('click',()=>{goPrev();});
+document.getElementById('nextBtn').addEventListener('click',()=>{goNext();});
+document.getElementById('revealBtn').addEventListener('click',()=>{ if(phase==='question'){ stopTimer(); showAnswer(); }});
+document.getElementById('restartBtn').addEventListener('click',practiceAgain);
+document.getElementById('scoreBtn').addEventListener('click',()=>{ if(phase!=='title') showResults(false); });
+document.getElementById('scAgain').addEventListener('click',()=>mark('again'));
+document.getElementById('scHard').addEventListener('click',()=>mark('hard'));
+document.getElementById('scGood').addEventListener('click',()=>mark('good'));
+document.getElementById('scEasy').addEventListener('click',()=>mark('easy'));
+document.getElementById('rcRestart').addEventListener('click',practiceAgain);
+document.getElementById('rcBack').addEventListener('click',backToHub);
+playBtn.addEventListener('click',togglePlay);
+qSel.addEventListener('change',()=>{ savePrefs(); if(playing&&phase==='question') startCountdown(parseInt(qSel.value),goAnswer); else if(!playing&&phase==='question') setTimerDisplay(parseInt(qSel.value),parseInt(qSel.value)); });
+aSel.addEventListener('change',()=>{ savePrefs(); if(playing&&phase==='answer'&&!practiceOn()) startCountdown(parseInt(aSel.value),goNext); else if(!playing&&phase==='answer'&&!practiceOn()) setTimerDisplay(parseInt(aSel.value),parseInt(aSel.value)); });
+shuffleChk.addEventListener('change',()=>{ savePrefs(); buildOrder(); results=new Array(order.length).fill(undefined); pos=0; if(phase==='title') showTitle(); else showQuestion(); });
+lenSel.addEventListener('change',()=>{ savePrefs(); buildOrder(); results=new Array(order.length).fill(undefined); updateScore(); pos=0; showTitle(); });
+practiceChk.addEventListener('change',()=>{ savePrefs(); updateScore(); if(phase==='question') showQuestion(); else if(phase==='answer') showAnswer(); else if(phase==='title') showTitle(); });
+timedChk.addEventListener('change',()=>{ savePrefs(); });
+
+document.addEventListener('keydown',(e)=>{
+  if(player.hidden) return;
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(tag==='input'||tag==='textarea'){
+    if(e.code==='Enter' && phase==='question'){ e.preventDefault(); stopTimer(); showAnswer(); }
+    return;
+  }
+  if(tag==='select') return;
+  if(e.code==='Space'){ e.preventDefault(); togglePlay(); }
+  else if(e.code==='ArrowRight'){ e.preventDefault(); goNext(); }
+  else if(e.code==='ArrowLeft'){ e.preventDefault(); goPrev(); }
+  else if(e.code==='Enter'){ if(phase==='question'){ e.preventDefault(); stopTimer(); showAnswer(); } }
+});
+
+/* ---------------- REVIEW BUILDER ---------------- */
+const builder=document.getElementById('builder');
+const builderTopics=document.getElementById('builderTopics');
+const weakChk=document.getElementById('weakChk');
+const builderNote=document.getElementById('builderNote');
+function renderBuilderTopics(){
+  builderTopics.innerHTML='';
+  LOOPS.forEach(L=>{
+    const lab=document.createElement('label'); lab.className='topic-opt';
+    lab.innerHTML=`<input type="checkbox" value="${L.id}"><span>${L.unit||L.title}</span><span class="t-count">${stationN(L)}</span>`;
+    builderTopics.appendChild(lab);
+  });
+  builderTopics.querySelectorAll('input').forEach(cb=>cb.addEventListener('change',updateBuilderNote));
+}
+function selectedReviewLoops(){ const ids=Array.from(builderTopics.querySelectorAll('input:checked')).map(cb=>cb.value); return LOOPS.filter(L=>ids.indexOf(L.id)>=0); }
+function updateBuilderNote(){
+  const loops=selectedReviewLoops();
+  if(loops.length===0){ builderNote.textContent='Select one or more topics to begin.'; return; }
+  if(weakChk.checked){ const w=weakCount(loops); builderNote.textContent = w>0 ? `${w} weak card${w===1?'':'s'} found in the selected topic${loops.length===1?'':'s'}.` : 'No weak cards here yet. Practice these topics first, or turn this off to review all.'; }
+  else { const total=loops.reduce((a,L)=>a+stationN(L),0); builderNote.textContent=`${total} cards across ${loops.length} topic${loops.length===1?'':'s'}. They will be shuffled together.`; }
+}
+function showBuilder(){ renderBuilderTopics(); weakChk.checked=false; updateBuilderNote(); hub.hidden=true; player.hidden=true; builder.hidden=false; if(builder.scrollIntoView) builder.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'}); notifyHeight(); }
+function hideBuilder(){ builder.hidden=true; hub.hidden=false; notifyHeight(); }
+function startReview(){
+  const loops=selectedReviewLoops();
+  if(loops.length===0){ updateBuilderNote(); return; }
+  const weakOnly=weakChk.checked;
+  if(weakOnly && weakCount(loops)===0){ updateBuilderNote(); return; }
+  const rl=makeReviewLoop(loops, weakOnly);
+  if(rl.stations.length===0){ updateBuilderNote(); return; }
+  builder.hidden=true;
+  openLoop(rl);
+}
+document.getElementById('builderBack').addEventListener('click',hideBuilder);
+document.getElementById('builderStart').addEventListener('click',startReview);
+weakChk.addEventListener('change',updateBuilderNote);
+
+/* ---------------- MY PROGRESS DASHBOARD ---------------- */
+const dash=document.getElementById('dash');
+const dashBody=document.getElementById('dashBody');
+function overallStats(){ const s=loadItemStats(); let att=0,cor=0,items=0; for(const k in s){ const it=s[k]; att+=it.seen||0; cor+=itemCorrect(it); if(it.seen) items++; } return {attempts:att,correct:cor,items:items,pct:att?Math.round(cor/att*100):0}; }
+function topicStatsList(){ return LOOPS.map(L=>{ const total=stationN(L); let practiced=0,weak=0,att=0,cor=0; for(let k=0;k<total;k++){ const it=itemRecord(L.id,k); if(it&&it.seen){ practiced++; att+=it.seen; cor+=itemCorrect(it); if(isWeak(L.id,k)) weak++; } } return {loop:L,total,practiced,weak,pct:att?Math.round(cor/att*100):null}; }); }
+function weakItemsAll(){ const arr=[]; LOOPS.forEach(L=>{ const n=stationN(L); for(let k=0;k<n;k++){ const sc=weaknessScore(L.id,k); if(sc!=null&&sc>=0.4){ const it=itemRecord(L.id,k); arr.push({loop:L,idx:k,score:sc,label:(L.pairs?L.pairs[k][2]:''),recent:(it&&it.recent)||[]}); } } }); arr.sort((a,b)=>b.score-a.score); return arr; }
+function recentDots(recent){ const last=recent.slice(-6); return '<span class="weak-dots">'+last.map(o=>{ const c=(o==='e'||o==='g'||o==='c'||o===1)?'c':(o==='h'||o==='m')?'m':'x'; return '<i class="'+c+'"></i>'; }).join('')+'</span>'; }
+function renderDash(){
+  const ov=overallStats();
+  if(!ov.attempts){ dashBody.innerHTML='<div class="dash-card"><p class="dash-empty">No practice yet. Run a loop in Practice mode and mark your answers, then your strengths and weak spots show up here.</p></div>'; return; }
+  const topics=topicStatsList().filter(t=>t.practiced>0).sort((a,b)=>b.weak-a.weak);
+  const weak=weakItemsAll();
+  let html='<div class="dash-card"><div class="dash-overall">'
+    +'<div class="dash-stat"><span class="num">'+ov.pct+'%</span><span class="lab">Overall accuracy</span></div>'
+    +'<div class="dash-stat"><span class="num">'+ov.items+'</span><span class="lab">Cards practiced</span></div>'
+    +'<div class="dash-stat"><span class="num">'+weak.length+'</span><span class="lab">Weak cards</span></div>'
+    +'</div></div>';
+  html+='<div class="dash-card"><p class="dash-h">By topic</p>';
+  topics.forEach(t=>{ const pct=t.pct==null?0:t.pct; html+='<div class="topic-row"><span class="tn">'+escHtml(t.loop.unit||t.loop.title)+'</span><span class="bar"><i style="width:'+pct+'%"></i></span><span class="tv">'+pct+'% <span class="tw">'+t.weak+' weak</span></span></div>'; });
+  html+='</div>';
+  if(weak.length){
+    html+='<div class="dash-card"><p class="dash-h">Cards to work on</p>';
+    weak.slice(0,12).forEach(w=>{ html+='<div class="weak-item"><span class="wlab">'+escHtml(w.label||('Card '+(w.idx+1)))+'</span>'+recentDots(w.recent)+'<span class="wtop">'+escHtml(w.loop.unit||w.loop.title)+'</span></div>'; });
+    html+='<div class="dash-actions"><button class="tbtn play" id="dashDrill" type="button">Drill my weak cards &#9654;</button></div></div>';
+  }
+  dashBody.innerHTML=html;
+  const dd=document.getElementById('dashDrill'); if(dd) dd.addEventListener('click',drillWeak);
+}
+function drillWeak(){ const rl=makeReviewLoop(LOOPS, true); if(!rl.stations.length) return; dash.hidden=true; openLoop(rl); }
+function showDash(){ renderDash(); hub.hidden=true; player.hidden=true; builder.hidden=true; dash.hidden=false; if(dash.scrollIntoView) dash.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'}); notifyHeight(); }
+function hideDash(){ dash.hidden=true; hub.hidden=false; notifyHeight(); }
+document.getElementById('dashBack').addEventListener('click',hideDash);
+
+/* ---------------- iframe height-sender (Kajabi / GitHub Pages embed) ---------------- */
+function notifyHeight(){
+  try{
+    var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight);
+    parent.postMessage({id:'anatomy-loops',frameHeight:h},'*');
+  }catch(e){}
+}
+window.addEventListener('load',notifyHeight);
+window.addEventListener('resize',notifyHeight);
+if(typeof ResizeObserver!=='undefined'){ new ResizeObserver(notifyHeight).observe(document.body); }
+</script>
+</body>
+</html>
