@@ -83,10 +83,9 @@
   .card .card-body{padding:18px 22px 18px;display:flex;flex-direction:column;gap:5px;flex:1;}
   .card .ctitle{font-family:var(--font-display);font-weight:800;font-size:1.42rem;line-height:1.12;letter-spacing:-.01em;color:var(--navy);margin:0 0 1px;}
   .card .ctitle .tred{color:var(--terra-dark);}
-  .card .wordmark-top{background:var(--terra-dark);border-bottom:none;padding:24px 16px 22px;}
   .card .cwordmark{font-family:var(--font-display);font-weight:800;font-size:1.95rem;letter-spacing:-.02em;line-height:1;white-space:nowrap;}
-  .card .cwordmark .wa{color:#C9A14A;}
-  .card .cwordmark .wl{color:#FFFFFF;}
+  .card .cwordmark .wa{color:var(--navy);}
+  .card .cwordmark .wl{color:var(--terra-dark);}
   .card .cmeta{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--terra-dark);}
   .card .cdesc{font-size:.95rem;color:var(--navy);opacity:.82;}
   .card .go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;color:var(--terra-dark);font-size:.95rem;padding-top:10px;}
@@ -95,6 +94,8 @@
   .card.soon{cursor:not-allowed;opacity:.6;}
   .card.soon:hover{transform:none;box-shadow:var(--shadow-rest);border-color:var(--navy-tint);}
   .card.link-card{text-decoration:none;}
+  .card.link-card .go{color:#B8924A;}
+  .card.link-card:hover,.card.link-card:focus-visible{border-color:#C9A14A;}
   .badge{display:inline-block;align-self:flex-start;font-family:var(--font-eyebrow);font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);border:1px solid var(--terra-dark);padding:.28rem .7rem;border-radius:999px;}
 
   /* ---------- PLAYER ---------- */
@@ -342,22 +343,20 @@
   .dash-empty{color:var(--navy);opacity:.72;margin:0;}
   .dash-actions{margin-top:16px;}
 
-  /* ---------- TOOL CARDS (Build a review, My progress = terra; Muscle Charts = navy) ---------- */
+  /* ---------- ACTION TILES (Build a review, My progress) ---------- */
   .card.review-card,.card.progress-card{background:var(--terra-dark);border-color:var(--terra-dark);}
-  .card.link-card{background:var(--navy);border-color:var(--navy);}
-  .card.review-card:hover,.card.progress-card:hover,.card.link-card:hover,.card.review-card:focus-visible,.card.progress-card:focus-visible,.card.link-card:focus-visible{border-color:#C9A14A;}
-  .review-card .card-top,.progress-card .card-top,.link-card .card-top{border-bottom-color:rgba(255,255,255,.14);}
-  .review-card .ctitle,.progress-card .ctitle{color:#FFFFFF;}
-  .link-card .ctitle{color:#DCB45C;}
-  .review-card .cdesc,.progress-card .cdesc,.link-card .cdesc{color:#fff;opacity:.85;}
-  .review-card .go,.progress-card .go,.link-card .go{color:#DCB45C;}
-  .review-card .badge-svg .arcT,.progress-card .badge-svg .arcT,.link-card .badge-svg .arcT{stroke:#C9A14A;}
-  .review-card .badge-svg .arcB,.progress-card .badge-svg .arcB,.link-card .badge-svg .arcB{stroke:#FFFFFF;}
-  .review-card .badge-svg .ic,.progress-card .badge-svg .ic,.link-card .badge-svg .ic{stroke:#C9A14A;}
-  .review-card .badge-svg .wa,.progress-card .badge-svg .wa,.link-card .badge-svg .wa{fill:#FFFFFF;}
-  .review-card .badge-svg .wl,.progress-card .badge-svg .wl,.link-card .badge-svg .wl{fill:#C9A14A;}
-  .review-card .badge-svg .bone,.progress-card .badge-svg .bone,.link-card .badge-svg .bone{fill:#FFFFFF;}
-  .review-card .badge-svg .unit,.progress-card .badge-svg .unit,.link-card .badge-svg .unit{fill:#FFFFFF;}
+  .card.review-card:hover,.card.progress-card:hover,.card.review-card:focus-visible,.card.progress-card:focus-visible{border-color:#C9A14A;}
+  .review-card .card-top,.progress-card .card-top{border-bottom-color:rgba(255,255,255,.14);}
+  .review-card .cmeta,.progress-card .cmeta{color:#DCB45C;}
+  .review-card .cdesc,.progress-card .cdesc{color:#fff;opacity:.85;}
+  .review-card .go,.progress-card .go{color:#DCB45C;}
+  .review-card .badge-svg .arcT,.progress-card .badge-svg .arcT{stroke:#C9A14A;}
+  .review-card .badge-svg .arcB,.progress-card .badge-svg .arcB{stroke:#FFFFFF;}
+  .review-card .badge-svg .ic,.progress-card .badge-svg .ic{stroke:#C9A14A;}
+  .review-card .badge-svg .wa,.progress-card .badge-svg .wa{fill:#FFFFFF;}
+  .review-card .badge-svg .wl,.progress-card .badge-svg .wl{fill:#C9A14A;}
+  .review-card .badge-svg .bone,.progress-card .badge-svg .bone{fill:#FFFFFF;}
+  .review-card .badge-svg .unit,.progress-card .badge-svg .unit{fill:#FFFFFF;}
 </style>
 </head>
 <body>
@@ -770,7 +769,7 @@ LOOPS.forEach(loop=>{
   const btn=document.createElement('button');
   btn.className='card'; btn.type='button';
   btn.innerHTML=`
-    <span class="card-top wordmark-top"><span class="cwordmark"><span class="wa">Anatomy</span><span class="wl">Loops</span></span></span>
+    <span class="card-top"><span class="cwordmark"><span class="wa">Anatomy</span><span class="wl">Loops</span></span></span>
     <span class="card-body">
       <span class="ctitle">${loop.unit||loop.title}</span>
       <span class="cmeta">${stationN(loop)} stations</span>
@@ -785,7 +784,7 @@ LOOPS.forEach(loop=>{
   const c=document.createElement('button');
   c.className='card review-card'; c.type='button';
   c.innerHTML=`<span class="card-top">${badgeSVG({icon:'review',unit:'Build a Review'})}</span>`
-    +`<span class="card-body"><span class="ctitle">Build a review</span>`
+    +`<span class="card-body"><span class="cmeta">Build a review</span>`
     +`<span class="cdesc">Mix topics or drill your weak cards for exam prep.</span>`
     +`<span class="go">Choose topics <span class="arr" aria-hidden="true">&rarr;</span></span></span>`;
   c.addEventListener('click',showBuilder);
@@ -795,18 +794,18 @@ LOOPS.forEach(loop=>{
   const c=document.createElement('button');
   c.className='card progress-card'; c.type='button';
   c.innerHTML=`<span class="card-top">${badgeSVG({icon:'progress',unit:'My Progress'})}</span>`
-    +`<span class="card-body"><span class="ctitle">My progress</span>`
+    +`<span class="card-body"><span class="cmeta">My progress</span>`
     +`<span class="cdesc">See your accuracy by topic and the cards you keep missing.</span>`
     +`<span class="go">View progress <span class="arr" aria-hidden="true">&rarr;</span></span></span>`;
   c.addEventListener('click',showDash);
   grid.appendChild(c);
 })();
 /* External companion tools (open in a new tab) */
-[{ title:"Interactive Muscle Charts I, O, A", desc:"Origins, insertions, actions & innervation \u2014 drill them interactively.", url:"https://www.medmasterscollaborative.com/muscle-charts-i-o-a-inn", icon:"muscle" }].forEach(function(lk){
+[{ title:"Muscle Charts", meta:"Interactive practice", desc:"Origins, insertions, actions & innervation \u2014 drill them interactively.", url:"https://www.medmasterscollaborative.com/muscle-charts-i-o-a-inn", icon:"muscle" }].forEach(function(lk){
   var a=document.createElement('a');
   a.className='card link-card'; a.href=lk.url; a.target='_blank'; a.rel='noopener';
   a.innerHTML='<span class="card-top">'+badgeSVG({icon:lk.icon,unit:lk.title})+'</span>'
-    +'<span class="card-body"><span class="ctitle">'+lk.title+'</span><span class="cdesc">'+lk.desc+'</span>'
+    +'<span class="card-body"><span class="cmeta">'+lk.meta+'</span><span class="cdesc">'+lk.desc+'</span>'
     +'<span class="go">Open <span class="arr" aria-hidden="true">\u2197</span></span></span>';
   grid.appendChild(a);
 });
