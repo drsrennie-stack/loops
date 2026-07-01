@@ -83,6 +83,9 @@
   .card .card-body{padding:18px 22px 18px;display:flex;flex-direction:column;gap:5px;flex:1;}
   .card .ctitle{font-family:var(--font-display);font-weight:800;font-size:1.42rem;line-height:1.12;letter-spacing:-.01em;color:var(--navy);margin:0 0 1px;}
   .card .ctitle .tred{color:var(--terra-dark);}
+  .card .cwordmark{font-family:var(--font-display);font-weight:800;font-size:1.95rem;letter-spacing:-.02em;line-height:1;white-space:nowrap;}
+  .card .cwordmark .wa{color:var(--navy);}
+  .card .cwordmark .wl{color:var(--terra-dark);}
   .card .cmeta{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--terra-dark);}
   .card .cdesc{font-size:.95rem;color:var(--navy);opacity:.82;}
   .card .go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;color:var(--terra-dark);font-size:.95rem;padding-top:10px;}
@@ -766,7 +769,7 @@ LOOPS.forEach(loop=>{
   const btn=document.createElement('button');
   btn.className='card'; btn.type='button';
   btn.innerHTML=`
-    <span class="card-top">${badgeSVG(loop)}</span>
+    <span class="card-top"><span class="cwordmark"><span class="wa">Anatomy</span><span class="wl">Loops</span></span></span>
     <span class="card-body">
       <span class="ctitle">${loop.unit||loop.title}</span>
       <span class="cmeta">${stationN(loop)} stations</span>
