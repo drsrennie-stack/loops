@@ -80,8 +80,10 @@
   .badge-svg .wl{fill:var(--terra-dark);font-family:var(--font-display);font-weight:800;font-size:23px;letter-spacing:.3px;}
   .badge-svg .bone{fill:var(--navy);}
   .badge-svg .unit{fill:var(--navy);font-family:var(--font-eyebrow);font-weight:700;font-size:11px;letter-spacing:2.2px;}
-  .card .card-body{padding:16px 22px 18px;display:flex;flex-direction:column;gap:6px;flex:1;}
-  .card .cmeta{font-family:var(--font-eyebrow);font-weight:700;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--terra-dark);}
+  .card .card-body{padding:18px 22px 18px;display:flex;flex-direction:column;gap:5px;flex:1;}
+  .card .ctitle{font-family:var(--font-display);font-weight:800;font-size:1.42rem;line-height:1.12;letter-spacing:-.01em;color:var(--navy);margin:0 0 1px;}
+  .card .ctitle .tred{color:var(--terra-dark);}
+  .card .cmeta{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--terra-dark);}
   .card .cdesc{font-size:.95rem;color:var(--navy);opacity:.82;}
   .card .go{margin-top:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;color:var(--terra-dark);font-size:.95rem;padding-top:10px;}
   .card:hover .go .arr,.card:focus-visible .go .arr{transform:translateX(3px);}
@@ -766,6 +768,7 @@ LOOPS.forEach(loop=>{
   btn.innerHTML=`
     <span class="card-top">${badgeSVG(loop)}</span>
     <span class="card-body">
+      <span class="ctitle">${loop.unit||loop.title}</span>
       <span class="cmeta">${stationN(loop)} stations</span>
       <span class="cdesc">${loop.subtitle}</span>
       <span class="go">Start loop <span class="arr" aria-hidden="true">&rarr;</span></span>
