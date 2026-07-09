@@ -141,6 +141,8 @@
   .title-card .tc-sub{color:var(--navy);opacity:.78;font-size:clamp(14px,1.8vw,19px);line-height:1.45;margin:12px 0 0;max-width:44ch;}
   .title-card .tc-meta{font-family:var(--font-eyebrow);font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-dark);margin:20px 0 0;}
   .title-card .tc-hint{color:var(--navy);opacity:.55;font-size:.85rem;margin:7px 0 0;}
+  .title-card .tc-credit{color:var(--navy);opacity:.62;font-size:.72rem;line-height:1.45;margin:16px auto 0;max-width:46ch;}
+  .title-card .tc-credit a{color:var(--terra-dark);text-decoration:underline;font-weight:600;}
 
   /* caption band: navy brand chip (like the intro label) */
   .caption{background:#fff;padding:15px 18px 16px;border-top:1px solid var(--navy-tint);text-align:center;}
@@ -501,6 +503,7 @@
             <p class="tc-sub" id="tcSub"></p>
             <p class="tc-meta" id="tcMeta"></p>
             <p class="tc-hint">Press play to begin</p>
+            <p class="tc-credit" id="tcCredit"></p>
           </div>
           <div class="timer" id="timer" aria-hidden="true">
             <svg width="60" height="60" viewBox="0 0 60 60">
@@ -599,6 +602,8 @@ const MUSCLES_UPPER_LABELS = ["Serratus Anterior", "Deltoid", "Pectoralis Minor"
 const SARCOMERE_LABELS = ["One Sarcomere", "I Band", "A Band", "Z Line (Disc)", "H Zone", "M Line"];
 const MICROANATOMY_LABELS = ["Sarcoplasmic Reticulum", "Transverse (T) Tubule", "Terminal Cisterns", "Myofibril", "Sarcolemma", "Muscle Cell (Fiber)", "Endomysium", "Mitochondrion", "Z Disc (Line)", "M Line (H Zone)", "Motor End Plate", "A Band", "Sarcomere"];
 const MUSCLETISSUE_LABELS = ["Skeletal Muscle Tissue", "Attached to Bones (Skeleton)", "Cardiac Muscle Tissue", "Heart Wall", "Intercalated Disc", "Gap Junctions; Desmosomes", "Smooth Muscle Tissue"];
+/* NEW: Cadaver Upper Extremity loop (BlueLink / U-M) answers */
+const CADAVER_UE_LABELS = ["Pectoralis Major", "Deltoid", "Pectoralis Minor", "Serratus Anterior", "Pectoralis Major", "Pectoralis Minor", "Trapezius", "Latissimus Dorsi", "Teres Major", "Levator Scapulae", "Rhomboid Minor", "Rhomboid Minor", "Cephalic Vein", "Biceps Brachii (Short Head)", "Biceps Brachii (Long Head)", "Pectoralis Minor", "Coracobrachialis", "Subclavian Vein", "Axillary Vein", "Basilic Vein", "Teres Minor", "Teres Major", "Cephalic Vein", "Median Cubital Vein", "Basilic Vein", "Radial Artery", "Ulnar Artery", "Median Nerve", "Ulnar Nerve", "Triceps Brachii (Long Head)", "Triceps Brachii (Lateral Head)", "Triceps Brachii (Medial Head)", "Anconeus", "Anconeus", "Trapezius", "Infraspinatus", "Teres Minor", "Teres Major"];
 const MUSCLES_LOWER_LABELS = ["Diaphragm; Abdominal Aorta (T12)", "External Intercostal Muscles; Phrenic Nerve", "Sartorius; Vastus Medialis", "Gastrocnemius; Soleus", "Tensor Fasciae latae; Adductor Longus", "Gluteus Maximus; Vastus Lateralis", "Linea Alba; Internal Abdominal Oblique", "Gluteus Medius; Semitendinosus", "Rectus Femoris; Tensor Fascia Lata", "Iliopsoas; Vastus Intermedius", "Iliotibial Tract/Band; Vastus medialis", "Tibialis Anterior; Extensor Digitorum Longus", "Extensor Digitorum Longus; Extensor Hallucis Longus", "Fibularis Longus; Fibularis brevis", "Soleus (Gastrocnemius is removed)", "Gluteus Maximus; Biceps Femoris", "Semimembranosus; Semitendinosus", "Gluteus medius; Piriformis"];
 const MUSCLES_HEAD_LABELS = ["Zygomatic Minor; Risorius", "Superior Oblique/Trochlear Nerve CN IV; Lateral Rectus/Abducens N. CN VI", "Medial Rectus/Oculomotor CN III; Inferior Oblique/Oculomotor III", "Sternocleidomastoid; Depressor anguli oris", "Orbicularis Oculi; Masseter", "Depressor Anguli oris; Sternocleidomastoid"];
 const APPENDICULAR_LABELS = ["Iliac Crest, Acetabulum", "Scapula, Infraspinous Fossa", "Ischial Spine, Obturator Foramen", "Clavicle Sternal End", "Femur, Intercondylar Notch", "Humerus Surgical Neck", "Patella, Apex", "Scapular Notch, Subscapular Fossa", "Ilium, Pubis", "Acromion, Glenoid Fossa", "Humerus, Olecranon Fossa", "Femur Intertrochanteric Crest", "Middle Phalanx #3, Metacarpal #1", "Intercondylar Eminence, Tibia", "Articular Fovea of Radius Trochlear Notch of Ulna", "Ischium, Ischial Tuberosity", "Fibula, Lateral Malleolus", "Coronoid process, Ulna, Radial Tuberosity, Radius", "3rd Metatarsal, 4th Distal Phalanx", "Olecranon Process Radial Notch", "Talus, Navicular", "Medial Cuneiform, Cuboid", "Ulna, Ulnar Tuberosity, Radius, Styloid Process", "Proximal Phalanx #1, Carpal", "Anterior Superior Iliac Spine, Greater Sciatic Notch", "Spine of the Scapula, Medial Border", "Sacroiliac Joint, Pubic Symphysis", "Conoid Tubercle, Clavicle, Acromial End", "Linea Aspera, Femur, Medial Condyle", "Deltoid tuberosity, Humerus, Ulnar groove", "Superior Angle, Scapula, Coracoid Process", "Coccyx, Ischium", "Scapula, Acromion, Coracoid Process", "Humerus, Anatomical Neck, Olecranon Fossa", "bone Femur, Medial Supracondylar Line Lesser Trochanter", "Capitate, Scaphoid", "Tibia, Tibial Tuberosity, Medial Malleolus", "Calcaneus, Lateral Cuneiform", "Humerus, Greater Tubercle, Capitulum", "Hamate, Lunate", "Pisiform, Trapezium"];
@@ -688,6 +693,7 @@ const LOOPS = [
   { id:"sarcomere", title:"Sarcomere Loop", module:"Muscular System", icon:"micro", unit:"Sarcomere", subtitle:"Striations & banding: I band, A band, Z, H, M", dir:"sarcomere", type:"slide", pairs:buildPairs(SARCOMERE_LABELS) },
   { id:"microanatomy", title:"Muscle Microanatomy Loop", module:"Muscular System", icon:"micro", unit:"Muscle Microanatomy", subtitle:"Fiber ultrastructure: SR, T-tubules, motor end plate", dir:"microanatomy", type:"slide", pairs:buildPairs(MICROANATOMY_LABELS) },
   { id:"muscletissue", title:"Muscle Tissue Loop", module:"Cells & Tissues", icon:"micro", unit:"Muscle Tissue", subtitle:"Skeletal, cardiac & smooth muscle histology", dir:"muscletissue", type:"slide", pairs:buildPairs(MUSCLETISSUE_LABELS) },
+  { id:"cadaver-ue", title:"Cadaver UE Loop", module:"Muscular System", icon:"muscle", unit:"Cadaver: Back, Thorax & Upper Arm", subtitle:"Cadaver muscles, nerves & vessels \u2014 chest, back, shoulder & arm", dir:"cadaver-ue", type:"slide", pairs:buildPairs(CADAVER_UE_LABELS), credit:'Cadaver images courtesy of <a href=\"https://sites.google.com/a/umich.edu/bluelink/\" target=\"_blank\" rel=\"noopener\">University of Michigan Medical School \u2014 BlueLink</a> &amp; Pearson (PAL). \u00A9 B. Kathleen Alsup &amp; Glenn M. Fox.' },
   { id:"respiratory", title:"Respiratory Loop", module:"Respiratory System", icon:"lungs", unit:"Respiratory System", subtitle:"Airways, lungs, larynx, pleura & bronchial tree", dir:"respiratory", type:"slide", pairs:buildPairs(RESPIRATORY_LABELS) },
   { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) }
 ];
@@ -854,6 +860,7 @@ const timerNum=document.getElementById('timerNum');
 const tcTitle=document.getElementById('tcTitle');
 const tcSub=document.getElementById('tcSub');
 const tcMeta=document.getElementById('tcMeta');
+const tcCredit=document.getElementById('tcCredit');
 const captionEl=document.getElementById('caption');
 const capQ=document.getElementById('capQ');
 const capMain=document.getElementById('capMain');
@@ -949,6 +956,7 @@ function showTitle(){
   tcTitle.innerHTML = cur.title.replace(/\s*Loop$/, ' <span>Loop</span>');
   tcSub.textContent = cur.subtitle;
   tcMeta.textContent = order.length + ' stations';
+  tcCredit.innerHTML = cur.credit || '';
   phaseLabel.className='phase question';
   phaseText.textContent='Title';
   progress.textContent='Ready';
