@@ -123,6 +123,17 @@
 
   .imgwrap{position:relative;aspect-ratio:16/9;background:#fff;display:flex;align-items:center;justify-content:center;}
   .imgwrap img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;display:block;}
+  /* pronunciation (hear-it) button */
+  .speak-btn{position:absolute;bottom:14px;right:14px;width:52px;height:52px;border-radius:50%;border:none;background:var(--navy);color:#fff;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(11,21,48,.28);transition:var(--t);z-index:5;padding:0;}
+  .speak-btn:hover{background:var(--terra-dark);transform:scale(1.07);}
+  .speak-btn:active{transform:scale(.95);}
+  .speak-btn svg{width:26px;height:26px;fill:currentColor;pointer-events:none;}
+  .speak-btn.speaking{background:var(--terra-dark);animation:speakPulse 1.1s ease-in-out infinite;}
+  @keyframes speakPulse{0%,100%{box-shadow:0 0 0 0 rgba(194,115,77,.55);}50%{box-shadow:0 0 0 9px rgba(194,115,77,0);}}
+  .stage.is-answer .speak-btn{display:flex;}
+  .stage.is-results .speak-btn{display:none;}
+  .player.theme-dark .speak-btn{background:#FFD23F;color:#0B1530;}
+  .player.theme-dark .speak-btn:hover{background:#fff;}
 
   /* first-question walkthrough */
   .coach{display:flex;align-items:center;justify-content:center;gap:8px;background:#FBF4E4;color:var(--navy);font-size:.9rem;font-weight:600;line-height:1.4;padding:11px 16px;text-align:center;border-bottom:1px solid var(--navy-tint);border-left:4px solid #C9A14A;}
@@ -490,6 +501,9 @@
         <div class="coach" id="coach" hidden></div>
         <div class="imgwrap">
           <img id="slideImg" alt="" src="">
+          <button class="speak-btn" id="speakBtn" type="button" aria-label="Hear how this term is pronounced" title="Hear pronunciation">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+          </button>
           <div class="title-card" id="titleCard">
             <svg class="tc-logo" viewBox="40 10 125 148" role="img" aria-label="Human Anatomy" focusable="false">
               <g transform="translate(0,18)">
@@ -867,6 +881,119 @@ const tcCredit=document.getElementById('tcCredit');
 const captionEl=document.getElementById('caption');
 const capQ=document.getElementById('capQ');
 const capMain=document.getElementById('capMain');
+const speakBtn=document.getElementById('speakBtn');
+let curTerm='';
+/* ---- Pronunciation (modern English medical). Word-level respellings the
+   browser voice reads correctly. To tweak one, edit its value below. ---- */
+const PRON={
+  // upper limb
+  brachii:"bray-kee-eye", brachialis:"bray-kee-AL-iss", brachioradialis:"bray-kee-oh-ray-dee-AL-iss",
+  brachial:"BRAY-kee-al", brachiocephalic:"bray-kee-oh-seh-FAL-ik",
+  teres:"TARE-eez", carpi:"CAR-pie", longus:"LONG-gus", brevis:"BREV-iss",
+  radialis:"ray-dee-AL-iss", ulnaris:"ul-NAIR-iss", ulnar:"ULL-nar",
+  digitorum:"dij-ih-TOR-um", digiti:"DIJ-ih-tie", minimi:"MIN-ih-my", minimus:"MIN-ih-mus",
+  pollicis:"POL-ih-sis", indicis:"IN-dih-sis", superficialis:"soo-per-fish-ee-AL-iss", profundus:"pro-FUN-dus",
+  pectoralis:"pek-tor-AL-iss", serratus:"seh-RAY-tus", latissimus:"la-TISS-ih-mus", dorsi:"DOR-sigh",
+  trapezius:"tra-PEE-zee-us", rhomboid:"ROM-boyd", deltoid:"DELL-toyd", sternocleidomastoid:"STER-no-kly-do-MAS-toyd",
+  supraspinatus:"soo-pra-spy-NAY-tus", infraspinatus:"in-fra-spy-NAY-tus",
+  subscapularis:"sub-skap-yoo-LAIR-iss", coracobrachialis:"kor-a-ko-bray-kee-AL-iss",
+  anconeus:"ang-KOH-nee-us", pronator:"pro-NAY-tor", supinator:"SOO-pih-nay-tor",
+  palmaris:"pal-MAIR-iss", abductor:"ab-DUK-tor", adductor:"ad-DUK-tor",
+  levator:"leh-VAY-tor", scapulae:"SKAP-yoo-lee", scapula:"SKAP-yoo-la",
+  cephalic:"seh-FAL-ik", basilic:"ba-SIL-ik", axillary:"AK-sih-lair-ee", subclavian:"sub-KLAY-vee-an",
+  musculocutaneous:"mus-kyoo-lo-kyoo-TAY-nee-us", retinaculum:"reh-tih-NAK-yoo-lum",
+  // lower limb
+  vastus:"VAS-tus", medialis:"mee-dee-AL-iss", lateralis:"lat-er-AL-iss", intermedius:"in-ter-MEE-dee-us",
+  gluteus:"GLOO-tee-us", maximus:"MAX-ih-mus", medius:"MEE-dee-us",
+  femoris:"FEM-or-iss", sartorius:"sar-TOR-ee-us", gracilis:"GRASS-ih-liss",
+  soleus:"SO-lee-us", gastrocnemius:"gas-trok-NEE-mee-us", tibialis:"tib-ee-AL-iss",
+  fibularis:"fib-yoo-LAIR-iss", peroneus:"pair-oh-NEE-us",
+  semimembranosus:"sem-ee-mem-bra-NO-sus", semitendinosus:"sem-ee-ten-dih-NO-sus",
+  iliopsoas:"ill-ee-oh-SO-az", psoas:"SO-az", piriformis:"pih-rih-FOR-miss",
+  fasciae:"FASH-ee-ee", latae:"LAY-tee", lata:"LAY-ta", alba:"AL-ba", linea:"LIN-ee-a",
+  iliotibial:"ill-ee-oh-TIB-ee-al", tensor:"TEN-sor",
+  // head & neck / cranial nerves
+  masseter:"ma-SEE-ter", temporalis:"tem-por-AL-iss", buccinator:"BUK-sih-nay-tor",
+  risorius:"rih-SOR-ee-us", orbicularis:"or-bik-yoo-LAIR-iss", oculi:"OCK-yoo-lie", oris:"OR-iss",
+  depressor:"deh-PRESS-or", anguli:"ang-GYOO-lie", zygomatic:"zy-go-MAT-ik", zygomaticus:"zy-go-MAT-ih-kus",
+  abducens:"ab-DOO-senz", trochlear:"TROK-lee-ar", oculomotor:"ock-yoo-lo-MO-tor",
+  // heart & vessels
+  pulmonary:"PULL-mo-nair-ee", aorta:"ay-OR-ta", aortic:"ay-OR-tik", vena:"VEE-na", cava:"KAY-va",
+  atrium:"AY-tree-um", atrioventricular:"ay-tree-o-ven-TRIK-yoo-lar", interventricular:"in-ter-ven-TRIK-yoo-lar",
+  ventricle:"VEN-trih-kul", myocardium:"my-o-KAR-dee-um", endocardium:"en-do-KAR-dee-um",
+  epicardium:"eh-pih-KAR-dee-um", pericardium:"pair-ih-KAR-dee-um",
+  chordae:"KOR-dee", tendineae:"ten-DIN-ee-ee", trabeculae:"tra-BEK-yoo-lee", carneae:"KAR-nee-ee",
+  mitral:"MY-tral", semilunar:"sem-ee-LOO-nar", sinoatrial:"sy-no-AY-tree-al",
+  purkinje:"pur-KIN-jee", arteriosum:"ar-teer-ee-O-sum", carotid:"ka-ROT-id", circumflex:"SUR-kum-fleks",
+  // respiratory
+  trachea:"TRAY-kee-a", tracheal:"TRAY-kee-al", trachealis:"tray-kee-AL-iss",
+  bronchus:"BRONK-us", bronchi:"BRONK-eye", bronchioles:"BRONK-ee-oles",
+  epiglottis:"eh-pih-GLOT-iss", larynx:"LAIR-inks", laryngeal:"la-RIN-jee-al", pharynx:"FAIR-inks",
+  nasopharynx:"nay-zo-FAIR-inks", oropharynx:"or-o-FAIR-inks", laryngopharynx:"la-ring-go-FAIR-inks",
+  alveoli:"al-VEE-o-lie", alveolus:"al-VEE-o-lus", alveolar:"al-VEE-o-lar",
+  cricoid:"KRY-koyd", cricothyroid:"kry-ko-THY-royd", thyroid:"THY-royd", arytenoid:"air-ih-TEE-noyd",
+  corniculate:"kor-NIK-yoo-late", carina:"ka-RY-na", pleura:"PLOOR-a", hilum:"HY-lum",
+  esophagus:"eh-SOF-a-gus", phrenic:"FREN-ik", diaphragm:"DY-a-fram",
+  // bones & landmarks
+  foramen:"for-AY-men", foramina:"for-AM-ih-na", fossa:"FOSS-a", meatus:"mee-AY-tus",
+  lamellae:"la-MEL-ee", lamella:"la-MEL-a", lacuna:"la-KOO-na", canaliculi:"kan-a-LIK-yoo-lie",
+  haversian:"ha-VER-zhun", osteon:"OSS-tee-on", osteocyte:"OSS-tee-o-site",
+  diaphysis:"dy-AF-ih-sis", epiphysis:"eh-PIF-ih-sis", epiphyseal:"eh-pih-FIZZ-ee-al", metaphysis:"meh-TAF-ih-sis",
+  periosteum:"pair-ee-OSS-tee-um", endosteum:"en-DOSS-tee-um",
+  humerus:"HYOO-mer-us", tuberosity:"too-beh-ROSS-ih-tee", olecranon:"o-LEK-ra-non",
+  phalanx:"FAY-lanks", radius:"RAY-dee-us", ulna:"ULL-na", clavicle:"KLAV-ih-kul",
+  acromion:"a-KRO-mee-on", acromial:"a-KRO-mee-al", coracoid:"KOR-a-koyd", glenoid:"GLEE-noyd",
+  sphenoid:"SFEE-noyd", ethmoid:"ETH-moyd", vomer:"VO-mer", hyoid:"HY-oyd",
+  mandible:"MAN-dih-bul", maxilla:"mak-SIL-a", occipital:"ok-SIP-ih-tal", palatine:"PAL-a-tine",
+  styloid:"STY-loyd", condyle:"KON-dile", calcaneus:"kal-KAY-nee-us", talus:"TAY-lus",
+  navicular:"na-VIK-yoo-lar", cuboid:"KYOO-boyd", cuneiform:"kyoo-NEE-ih-form",
+  scaphoid:"SKAF-oyd", lunate:"LOO-nate", pisiform:"PY-sih-form", hamate:"HAY-mate",
+  capitate:"KAP-ih-tate", trapezium:"tra-PEE-zee-um", trochanter:"tro-KAN-ter",
+  ischium:"ISS-kee-um", ischial:"ISS-kee-al", ilium:"ILL-ee-um", iliac:"ILL-ee-ak", pubis:"PYOO-biss",
+  acetabulum:"ass-eh-TAB-yoo-lum", malleolus:"ma-LEE-o-lus", xiphoid:"ZIF-oyd",
+  glabella:"gla-BEL-a", sella:"SEL-a", turcica:"TUR-sih-ka", crista:"KRISS-ta", galli:"GAL-eye",
+  cribriform:"KRIB-rih-form", lambdoid:"LAM-doyd", lambdoidal:"lam-DOY-dal",
+  // tissues & micro
+  epithelium:"eh-pih-THEE-lee-um", squamous:"SKWAY-mus", cuboidal:"kyoo-BOY-dal", columnar:"ko-LUM-nar",
+  pseudostratified:"soo-do-STRAT-ih-fide", stratified:"STRAT-ih-fide", keratinized:"KER-a-tin-ized", keratin:"KER-a-tin",
+  fibroblast:"FY-bro-blast", chondrocyte:"KON-dro-site", chondrocytes:"KON-dro-sites",
+  perichondrium:"pair-ih-KON-dree-um", hyaline:"HY-a-line", fibrocartilage:"fy-bro-KAR-tih-lij",
+  adipose:"ADD-ih-pose", areolar:"a-REE-o-lar", reticular:"reh-TIK-yoo-lar",
+  eosinophil:"ee-o-SIN-o-fill", basophil:"BAY-so-fill", neutrophil:"NOO-tro-fill",
+  lymphocyte:"LIM-fo-site", monocyte:"MON-o-site", macrophage:"MAK-ro-fahj", thrombocyte:"THROM-bo-site",
+  desmosome:"DEZ-mo-some", microvilli:"my-kro-VILL-eye",
+  sarcomere:"SAR-ko-meer", sarcolemma:"sar-ko-LEM-a", sarcoplasmic:"sar-ko-PLAZ-mik",
+  myofibril:"my-o-FY-bril", endomysium:"en-do-MIZ-ee-um", myosin:"MY-o-sin", actin:"AK-tin",
+  pacinian:"pa-SIN-ee-an", meissner:"MICE-ner", corpuscle:"KOR-pus-ul",
+  sebaceous:"seh-BAY-shus", apocrine:"APP-o-krin", eccrine:"EK-rin", arrector:"a-REK-tor", pili:"PY-lie",
+  corneum:"KOR-nee-um", lucidum:"LOO-sih-dum", granulosum:"gran-yoo-LO-sum", lamellated:"LAM-eh-lay-ted"
+};
+function respellTerm(term){
+  return String(term).replace(/[()\/,;:_]/g,' ')
+    .split(/\s+/).filter(Boolean).map(function(tok){
+      var key=tok.toLowerCase().replace(/[^a-z'-]/g,'');
+      return Object.prototype.hasOwnProperty.call(PRON,key) ? PRON[key] : tok;
+    }).join(' ');
+}
+let _speakVoice=null;
+function pickVoice(){
+  var vs=(window.speechSynthesis&&speechSynthesis.getVoices)?speechSynthesis.getVoices():[];
+  if(!vs.length) return null;
+  _speakVoice = vs.filter(function(v){return /en[-_]US/i.test(v.lang);})[0]
+             || vs.filter(function(v){return /^en/i.test(v.lang);})[0] || vs[0];
+  return _speakVoice;
+}
+if(window.speechSynthesis){ try{ speechSynthesis.onvoiceschanged=function(){ pickVoice(); }; pickVoice(); }catch(e){} }
+function speakTerm(term){
+  if(!term || !('speechSynthesis' in window)) return;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  var u=new SpeechSynthesisUtterance(respellTerm(term));
+  u.lang='en-US'; u.rate=0.82; u.pitch=1;
+  var v=_speakVoice||pickVoice(); if(v) u.voice=v;
+  if(speakBtn){ u.onstart=function(){speakBtn.classList.add('speaking');}; u.onend=u.onerror=function(){speakBtn.classList.remove('speaking');}; }
+  try{ speechSynthesis.speak(u); }catch(e){}
+}
+if(speakBtn){ speakBtn.addEventListener('click', function(){ speakTerm(curTerm); }); }
 const selfcheck=document.getElementById('selfcheck');
 const scoreChip=document.getElementById('score');
 const scoreNum=document.getElementById('scoreNum');
@@ -976,6 +1103,7 @@ function setStageMode(){
 
 function showQuestion(){
   phase='question';
+  if(window.speechSynthesis){ try{ speechSynthesis.cancel(); }catch(e){} if(speakBtn) speakBtn.classList.remove('speaking'); }
   stage.className=baseStageClass()+' is-question';
   const st=stationAt(pos), L=st.loop, idx=st.idx;
   if(L.type==='caption'){
@@ -1013,11 +1141,13 @@ function showAnswer(){
     const it=L.items[idx];
     capQ.hidden=false; capQ.textContent=it.q;
     capMain.textContent=it.a;
+    curTerm=it.a;
     live.textContent=`Answer: ${it.a}.`;
   } else {
     const p=L.pairs[idx];
     slideImg.src=imgPath(L,p[1]);
     slideImg.alt=`Answer ${pos+1}: ${p[2]}`;
+    curTerm=p[2];
     live.textContent=`Answer: ${p[2]}.`;
   }
   phaseLabel.className='phase answer';
