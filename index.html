@@ -64,6 +64,9 @@
 
   /* ---------- HUB CARDS ---------- */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:18px;margin-top:30px;}
+  .loop-group-head{grid-column:1/-1;margin:24px 0 -4px;font-family:var(--font-eyebrow);font-weight:700;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra-dark);display:flex;align-items:center;gap:12px;}
+  .loop-group-head::after{content:"";flex:1;height:1px;background:var(--navy-tint,rgba(11,21,48,.12));}
+  .loop-group-head:first-child{margin-top:2px;}
   .card{
     display:flex;flex-direction:column;text-align:left;
     background:var(--white);border:1px solid var(--navy-tint);border-radius:var(--radius);overflow:hidden;
@@ -435,7 +438,7 @@
             <a class="cover-cta" href="https://www.loom.com/share/0da97e88267a46aa9dac209a59d832b2" target="_blank" rel="noopener">&#9658; Watch the how-to video</a>
           </div>
           <div class="cover-qr">
-            <img src="images/qr.png" alt="QR code to open Anatomy Loops on your phone">
+            <img src="data:image/png;base64,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" alt="QR code to open Anatomy Loops on your phone">
             <span class="cover-qr-cap">Scan to practice at home</span>
           </div>
         </div>
@@ -795,7 +798,27 @@ function stationN(loop){ return loop.type==='caption' ? loop.items.length : (loo
 function imgPath(loop,n){ return `images/${loop.dir}/s${pad2(n)}.jpg`; }   /* intro full-slide image */
 function capImg(loop,k){ return `images/${loop.dir}/c${pad2(k)}.jpg`; }    /* caption station image (k = 1-based) */
 
-LOOPS.forEach(loop=>{
+/* ---- Topic buckets. A loop id can appear in more than one bucket so students
+   find it however they think about it (e.g. Sarcomere is under Muscles AND
+   Histology). Edit these lists to re-file a loop; unlisted loops fall under
+   "More loops" automatically. ---- */
+const TOPICS=[
+  {name:"Introductory",        ids:["intro","tissues"]},
+  {name:"Histology & Tissues", ids:["tissues","bone","sarcomere","microanatomy","muscletissue"]},
+  {name:"Skeletal",            ids:["bone","skull","appendicular","boneaxial2"]},
+  {name:"Integumentary",       ids:["skin"]},
+  {name:"Muscles",             ids:["muscles-upper","muscles-lower","muscles-head","sarcomere","microanatomy","muscletissue","cadaver-ue","forearm-cadaver"]},
+  {name:"Heart",               ids:["heart"], modules:["Cardiovascular System","Heart"]},
+  {name:"Blood Vessels",       ids:["blood-vessels","bloodvessels","vessels","bv"], modules:["Blood Vessels","Vessels"]},
+  {name:"Blood",               ids:["blood"], modules:["Blood","Lymphatic & Blood","Blood & Lymphatic"]},
+  {name:"Respiratory",         ids:["respiratory"], modules:["Respiratory System","Respiratory"]},
+  {name:"Digestive (GI)",      ids:["gi","digestive","alimentary","digestion"], modules:["Digestive System","Digestive","GI"]},
+  {name:"Renal / Urinary",     ids:["renal","urinary","kidney"], modules:["Urinary System","Renal","Urinary"]},
+  {name:"Reproductive",        ids:["reproductive","repro"], modules:["Reproductive System","Reproductive"]},
+  {name:"Nervous (Neuro)",     ids:["neuro","nervous","brain","spinal-cord","spinal"], modules:["Nervous System","Neuro","Nervous"]}
+  /* Future topics above show automatically once a loop with a matching id or module is added. */
+];
+function loopCard(loop){
   const btn=document.createElement('button');
   btn.className='card'; btn.type='button';
   btn.innerHTML=`
@@ -807,9 +830,28 @@ LOOPS.forEach(loop=>{
       <span class="go">Start loop <span class="arr" aria-hidden="true">&rarr;</span></span>
     </span>`;
   btn.addEventListener('click',()=>openLoop(loop));
-  grid.appendChild(btn);
-});
+  return btn;
+}
+function groupHead(text){ const h=document.createElement('h3'); h.className='loop-group-head'; h.textContent=text; return h; }
+(function(){
+  const byId={}; LOOPS.forEach(L=>{ byId[L.id]=L; });
+  const shown=new Set();
+  TOPICS.forEach(t=>{
+    const idset=new Set(t.ids||[]);
+    const modset=new Set(t.modules||[]);
+    const loops=LOOPS.filter(L=> idset.has(L.id) || (L.module && modset.has(L.module)));
+    if(!loops.length) return;
+    grid.appendChild(groupHead(t.name));
+    loops.forEach(L=>{ shown.add(L.id); grid.appendChild(loopCard(L)); });
+  });
+  const leftover=LOOPS.filter(L=>!shown.has(L.id));
+  if(leftover.length){
+    grid.appendChild(groupHead("More loops"));
+    leftover.forEach(L=>grid.appendChild(loopCard(L)));
+  }
+})();
 /* Build a review: separate entry point for multi-topic and weak-card sessions */
+grid.appendChild(groupHead("Review & progress"));
 (function(){
   const c=document.createElement('button');
   c.className='card review-card'; c.type='button';
