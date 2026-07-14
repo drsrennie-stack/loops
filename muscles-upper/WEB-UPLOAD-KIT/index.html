@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#0B1530; --navy-deep:#0B1530; --navy-darkest:#060A18; --navy-tint:#ECEFF4;
-    --terra:#C2734D; --terra-dark:#8B3A2E; --terra-deep:#A0452F;
+    --navy:#08101F; --navy-deep:#08101F; --navy-darkest:#060A18; --navy-tint:#ECEFF4;
+    --terra:#7A2A22; --terra-dark:#7A2A22; --terra-deep:#93382D;
     --white:#FFFFFF; --offwhite:#FAFAF9; --gray:#6B7280; --gray-light:#D1D5DB;
     --radius:8px;
     --shadow-rest:0 1px 3px rgba(0,0,0,0.08);
@@ -53,8 +53,8 @@
   .cover-title{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,5vw,44px);line-height:1.04;letter-spacing:-.02em;color:#fff;margin:0;}
   .cover-title span{color:var(--terra);}
   .cover-tag{font-size:clamp(15px,1.5vw,18px);opacity:.9;margin:18px 0 0;max-width:46ch;line-height:1.5;}
-  .cover-cta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#C9A14A;color:#0B1530;font-family:var(--font-display);font-weight:800;font-size:.95rem;text-decoration:none;padding:11px 20px;border-radius:9px;transition:var(--t);}
-  .cover-cta:hover,.cover-cta:focus-visible{background:#d6b056;transform:translateY(-2px);box-shadow:var(--shadow-hover);outline:none;}
+  .cover-cta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#DCB45C;color:#08101F;font-family:var(--font-display);font-weight:800;font-size:.95rem;text-decoration:none;padding:11px 20px;border-radius:9px;transition:var(--t);}
+  .cover-cta:hover,.cover-cta:focus-visible{background:#DCB45C;transform:translateY(-2px);box-shadow:var(--shadow-hover);outline:none;}
   .cover-qr{background:#fff;border-radius:12px;padding:16px 16px 14px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center;}
   .cover-qr img{width:150px;height:150px;display:block;}
   .cover-qr-cap{font-family:var(--font-eyebrow);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);}
@@ -85,7 +85,7 @@
   .card .ctitle .tred{color:var(--terra-dark);}
   .card .wordmark-top{background:var(--terra-dark);border-bottom:none;padding:24px 16px 22px;}
   .card .cwordmark{font-family:var(--font-display);font-weight:800;font-size:1.95rem;letter-spacing:-.02em;line-height:1;white-space:nowrap;}
-  .card .cwordmark .wa{color:#C9A14A;}
+  .card .cwordmark .wa{color:#DCB45C;}
   .card .cwordmark .wl{color:#FFFFFF;}
   .card .cmeta{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--terra-dark);}
   .card .cdesc{font-size:.95rem;color:var(--navy);opacity:.82;}
@@ -125,7 +125,7 @@
   .imgwrap img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;display:block;}
 
   /* first-question walkthrough */
-  .coach{display:flex;align-items:center;justify-content:center;gap:8px;background:#FBF4E4;color:var(--navy);font-size:.9rem;font-weight:600;line-height:1.4;padding:11px 16px;text-align:center;border-bottom:1px solid var(--navy-tint);border-left:4px solid #C9A14A;}
+  .coach{display:flex;align-items:center;justify-content:center;gap:8px;background:#FBF4E4;color:var(--navy);font-size:.9rem;font-weight:600;line-height:1.4;padding:11px 16px;text-align:center;border-bottom:1px solid var(--navy-tint);border-left:4px solid #DCB45C;}
   .coach[hidden]{display:none;}
   .coach b{color:var(--terra-dark);}
   .coach .hand{font-size:1.25em;line-height:1;display:inline-block;animation:coachbob 1.1s ease-in-out infinite;}
@@ -169,16 +169,16 @@
   .sc-btn{font-family:var(--font-display);font-weight:700;font-size:.92rem;border-radius:8px;padding:.5rem 1rem;cursor:pointer;border:2px solid transparent;transition:var(--t);}
   .sc-yes{background:var(--navy);color:#fff;border-color:var(--navy);}
   .sc-yes:hover{background:var(--navy-deep);}
-  .sc-spell{background:#C9A14A;color:#0B1530;border-color:#C9A14A;}
-  .sc-spell:hover{background:#b8923f;}
+  .sc-spell{background:#DCB45C;color:#08101F;border-color:#DCB45C;}
+  .sc-spell:hover{background:#DCB45C;}
   .sc-no{background:var(--terra-dark);color:#fff;border-color:var(--terra-dark);}
   .sc-no:hover{background:var(--terra-deep);}
   .sc-again{background:var(--terra-dark);color:#fff;border-color:var(--terra-dark);}
   .sc-again:hover{background:var(--terra-deep);}
-  .sc-hard{background:#C2734D;color:#0B1530;border-color:#C2734D;}
-  .sc-hard:hover{background:#b5663f;}
-  .sc-good{background:#C9A14A;color:#0B1530;border-color:#C9A14A;}
-  .sc-good:hover{background:#b8923f;}
+  .sc-hard{background:#7A2A22;color:#08101F;border-color:#7A2A22;}
+  .sc-hard:hover{background:#93382D;}
+  .sc-good{background:#DCB45C;color:#08101F;border-color:#DCB45C;}
+  .sc-good:hover{background:#DCB45C;}
   .sc-easy{background:var(--navy);color:#fff;border-color:var(--navy);}
   .sc-easy:hover{background:var(--navy-deep);}
 
@@ -241,61 +241,61 @@
   .player.theme-dark .back{color:#fff;border-color:#fff;}
   .player.theme-dark .back:hover,.player.theme-dark .back:focus-visible{background:#fff;color:#000;}
   .player.theme-dark .controls{background:#0d0d0d;border-color:#333;}
-  .player.theme-dark .field label{color:#FFD23F;}
+  .player.theme-dark .field label{color:#DCB45C;}
   .player.theme-dark .field select{background:#111;color:#fff;border-color:#555;}
   .player.theme-dark .toggle{color:#fff;}
-  .player.theme-dark .toggle input{accent-color:#FFD23F;}
+  .player.theme-dark .toggle input{accent-color:#DCB45C;}
   .player.theme-dark .stage{background:#000;border-color:#000;}
   .player.theme-dark .phasebar{background:#000;border-bottom-color:#222;}
   .player.theme-dark .phase{color:#fff;}
-  .player.theme-dark .phase.question{color:#FFD23F;}
-  .player.theme-dark .phase.question .dot{background:#FFD23F;}
+  .player.theme-dark .phase.question{color:#DCB45C;}
+  .player.theme-dark .phase.question .dot{background:#DCB45C;}
   .player.theme-dark .phase.answer .dot{background:#fff;}
   .player.theme-dark .progress{color:#fff;opacity:.7;}
   .player.theme-dark .score{background:#1a1a1a;color:#fff;}
   .player.theme-dark .imgwrap{background:#000;}
-  .player.theme-dark .coach{background:#1a1500;color:#fff;border-left-color:#FFD23F;border-bottom-color:#222;}
-  .player.theme-dark .coach b{color:#FFD23F;}
+  .player.theme-dark .coach{background:#1a1500;color:#fff;border-left-color:#DCB45C;border-bottom-color:#222;}
+  .player.theme-dark .coach b{color:#DCB45C;}
   .player.theme-dark .caption{background:#000;border-top-color:#000;}
   .player.theme-dark .caption .cap-q{color:#fff;opacity:.6;}
   /* answer box floats in the black field at the bottom of the slide */
   .player.theme-dark .answerbar{background:#000;border-top-color:#000;padding:4px 16px 18px;}
-  .player.theme-dark .answerbar input{background:rgba(255,210,63,.07);border-color:#FFD23F;color:#FFD23F;caret-color:#FFD23F;}
-  .player.theme-dark .answerbar input::placeholder{color:#FFD23F;opacity:.5;}
-  .player.theme-dark .answerbar input:focus{border-color:#FFD23F;background:rgba(255,210,63,.12);}
+  .player.theme-dark .answerbar input{background:rgba(255,210,63,.07);border-color:#DCB45C;color:#DCB45C;caret-color:#DCB45C;}
+  .player.theme-dark .answerbar input::placeholder{color:#DCB45C;opacity:.5;}
+  .player.theme-dark .answerbar input:focus{border-color:#DCB45C;background:rgba(255,210,63,.12);}
   .player.theme-dark .selfcheck{background:#000;border-top-color:#000;}
   .player.theme-dark .selfcheck .sc-typed{color:#fff;}
-  .player.theme-dark .selfcheck .sc-typed b{color:#FFD23F;}
+  .player.theme-dark .selfcheck .sc-typed b{color:#DCB45C;}
   .player.theme-dark .selfcheck .sc-label{color:#fff;opacity:.75;}
   .player.theme-dark .transport{background:#000;border-top-color:#222;}
   .player.theme-dark .tbtn{background:#141414;color:#fff;border-color:#3a3a3a;}
   .player.theme-dark .tbtn:hover,.player.theme-dark .tbtn:focus-visible{background:#222;border-color:#666;}
-  .player.theme-dark .tbtn.play{background:#FFD23F;color:#000;border-color:#FFD23F;}
-  .player.theme-dark .tbtn.play:hover,.player.theme-dark .tbtn.play:focus-visible{background:#ffdd66;border-color:#ffdd66;}
+  .player.theme-dark .tbtn.play{background:#DCB45C;color:#000;border-color:#DCB45C;}
+  .player.theme-dark .tbtn.play:hover,.player.theme-dark .tbtn.play:focus-visible{background:#E8CE85;border-color:#E8CE85;}
   .player.theme-dark .timer .num{color:#fff;}
   .player.theme-dark .timer .track{stroke:rgba(255,255,255,.18);}
-  .player.theme-dark .timer .arc{stroke:#FFD23F;}
+  .player.theme-dark .timer .arc{stroke:#DCB45C;}
   .player.theme-dark .stage.is-answer .timer .arc{stroke:#fff;}
   .player.theme-dark .title-card{background:#000;}
   .player.theme-dark .title-card .tc-logo path,.player.theme-dark .title-card .tc-logo circle{fill:#fff;}
-  .player.theme-dark .title-card .tc-eyebrow{color:#FFD23F;}
+  .player.theme-dark .title-card .tc-eyebrow{color:#DCB45C;}
   .player.theme-dark .title-card .tc-title{color:#fff;}
-  .player.theme-dark .title-card .tc-title span{color:#FFD23F;}
+  .player.theme-dark .title-card .tc-title span{color:#DCB45C;}
   .player.theme-dark .title-card .tc-sub{color:#fff;opacity:.8;}
-  .player.theme-dark .title-card .tc-meta{color:#FFD23F;}
+  .player.theme-dark .title-card .tc-meta{color:#DCB45C;}
   .player.theme-dark .title-card .tc-hint{color:#fff;opacity:.55;}
   .player.theme-dark .results-card{background:#000;}
-  .player.theme-dark .results-card .rc-eyebrow{color:#FFD23F;}
+  .player.theme-dark .results-card .rc-eyebrow{color:#DCB45C;}
   .player.theme-dark .results-card .rc-score{color:#fff;}
-  .player.theme-dark .results-card .rc-pct{color:#FFD23F;}
-  .player.theme-dark .results-card .rc-time{color:#FFD23F;}
+  .player.theme-dark .results-card .rc-pct{color:#DCB45C;}
+  .player.theme-dark .results-card .rc-time{color:#DCB45C;}
   .player.theme-dark .results-card .rc-trend{color:#fff;}
   .player.theme-dark .results-card .rc-msg{color:#fff;opacity:.8;}
-  .player.theme-dark .results-card .rc-history .rh-title{color:#FFD23F;}
+  .player.theme-dark .results-card .rc-history .rh-title{color:#DCB45C;}
   .player.theme-dark .results-card .rc-history .rh-row{color:#fff;border-bottom-color:#222;}
-  .player.theme-dark .results-card .rc-history .rh-row b{color:#FFD23F;}
-  .player.theme-dark .rbtn.primary{background:#FFD23F;color:#000;border-color:#FFD23F;}
-  .player.theme-dark .rbtn.primary:hover{background:#ffdd66;}
+  .player.theme-dark .results-card .rc-history .rh-row b{color:#DCB45C;}
+  .player.theme-dark .rbtn.primary{background:#DCB45C;color:#000;border-color:#DCB45C;}
+  .player.theme-dark .rbtn.primary:hover{background:#E8CE85;}
   .player.theme-dark .rbtn.ghost{color:#fff;border-color:#fff;}
   .player.theme-dark .rbtn.ghost:hover{background:#222;}
   .player.theme-dark .hint{color:#fff;opacity:.6;}
@@ -337,7 +337,7 @@
   .weak-dots{display:inline-flex;gap:3px;}
   .weak-dots i{width:9px;height:9px;border-radius:50%;background:var(--navy-tint);display:inline-block;}
   .weak-dots i.c{background:var(--navy);}
-  .weak-dots i.m{background:#C9A14A;}
+  .weak-dots i.m{background:#DCB45C;}
   .weak-dots i.x{background:var(--terra-dark);}
   .dash-empty{color:var(--navy);opacity:.72;margin:0;}
   .dash-actions{margin-top:16px;}
@@ -345,17 +345,17 @@
   /* ---------- TOOL CARDS (Build a review, My progress = terra; Muscle Charts = navy) ---------- */
   .card.review-card,.card.progress-card{background:var(--terra-dark);border-color:var(--terra-dark);}
   .card.link-card{background:var(--navy);border-color:var(--navy);}
-  .card.review-card:hover,.card.progress-card:hover,.card.link-card:hover,.card.review-card:focus-visible,.card.progress-card:focus-visible,.card.link-card:focus-visible{border-color:#C9A14A;}
+  .card.review-card:hover,.card.progress-card:hover,.card.link-card:hover,.card.review-card:focus-visible,.card.progress-card:focus-visible,.card.link-card:focus-visible{border-color:#DCB45C;}
   .review-card .card-top,.progress-card .card-top,.link-card .card-top{border-bottom-color:rgba(255,255,255,.14);}
   .review-card .ctitle,.progress-card .ctitle{color:#FFFFFF;}
   .link-card .ctitle{color:#DCB45C;}
   .review-card .cdesc,.progress-card .cdesc,.link-card .cdesc{color:#fff;opacity:.85;}
   .review-card .go,.progress-card .go,.link-card .go{color:#DCB45C;}
-  .review-card .badge-svg .arcT,.progress-card .badge-svg .arcT,.link-card .badge-svg .arcT{stroke:#C9A14A;}
+  .review-card .badge-svg .arcT,.progress-card .badge-svg .arcT,.link-card .badge-svg .arcT{stroke:#DCB45C;}
   .review-card .badge-svg .arcB,.progress-card .badge-svg .arcB,.link-card .badge-svg .arcB{stroke:#FFFFFF;}
-  .review-card .badge-svg .ic,.progress-card .badge-svg .ic,.link-card .badge-svg .ic{stroke:#C9A14A;}
+  .review-card .badge-svg .ic,.progress-card .badge-svg .ic,.link-card .badge-svg .ic{stroke:#DCB45C;}
   .review-card .badge-svg .wa,.progress-card .badge-svg .wa,.link-card .badge-svg .wa{fill:#FFFFFF;}
-  .review-card .badge-svg .wl,.progress-card .badge-svg .wl,.link-card .badge-svg .wl{fill:#C9A14A;}
+  .review-card .badge-svg .wl,.progress-card .badge-svg .wl,.link-card .badge-svg .wl{fill:#DCB45C;}
   .review-card .badge-svg .bone,.progress-card .badge-svg .bone,.link-card .badge-svg .bone{fill:#FFFFFF;}
   .review-card .badge-svg .unit,.progress-card .badge-svg .unit,.link-card .badge-svg .unit{fill:#FFFFFF;}
 </style>
@@ -369,16 +369,16 @@
       <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
         <g transform="translate(0, 18)">
           <g transform="translate(60, 0) rotate(8 0 130)">
-            <circle cx="0" cy="20" r="10" fill="#0B1530"/>
-            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+            <circle cx="0" cy="20" r="10" fill="#08101F"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#08101F"/>
           </g>
           <g transform="translate(100, 0)">
-            <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
-            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+            <circle cx="0" cy="10" r="11" fill="#7A2A22"/>
+            <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#7A2A22"/>
           </g>
           <g transform="translate(140, 0) rotate(-8 0 130)">
-            <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
-            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+            <circle cx="0" cy="20" r="10" fill="#DCB45C"/>
+            <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#DCB45C"/>
           </g>
         </g>
       </svg>
@@ -408,12 +408,12 @@
                   <path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#FFFFFF"/>
                 </g>
                 <g transform="translate(100,0)">
-                  <circle cx="0" cy="10" r="11" fill="#C2734D"/>
-                  <path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#C2734D"/>
+                  <circle cx="0" cy="10" r="11" fill="#7A2A22"/>
+                  <path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#7A2A22"/>
                 </g>
                 <g transform="translate(140,0) rotate(-8 0 130)">
-                  <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
-                  <path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/>
+                  <circle cx="0" cy="20" r="10" fill="#DCB45C"/>
+                  <path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#DCB45C"/>
                 </g>
               </g>
             </svg>
@@ -491,9 +491,9 @@
           <div class="title-card" id="titleCard">
             <svg class="tc-logo" viewBox="40 10 125 148" role="img" aria-label="Human Anatomy" focusable="false">
               <g transform="translate(0,18)">
-                <g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#0B1530"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#0B1530"/></g>
-                <g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#8B3A2E"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#8B3A2E"/></g>
-                <g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#C9A14A"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#C9A14A"/></g>
+                <g transform="translate(60,0) rotate(8 0 130)"><circle cx="0" cy="20" r="10" fill="#08101F"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#08101F"/></g>
+                <g transform="translate(100,0)"><circle cx="0" cy="10" r="11" fill="#7A2A22"/><path d="M0,22 C-11,22 -17,26 -17,34 C-17,52 -14,70 -12,86 C-11,108 -13,122 -15,132 L15,132 C13,122 11,108 12,86 C14,70 17,52 17,34 C17,26 11,22 0,22 Z" fill="#7A2A22"/></g>
+                <g transform="translate(140,0) rotate(-8 0 130)"><circle cx="0" cy="20" r="10" fill="#DCB45C"/><path d="M0,32 C-10,32 -16,36 -16,42 C-16,55 -13,68 -11,82 C-10,100 -12,118 -14,130 L14,130 C12,118 10,100 11,82 C13,68 16,55 16,42 C16,36 10,32 0,32 Z" fill="#DCB45C"/></g>
               </g>
             </svg>
             <p class="tc-eyebrow">BIO 004 &middot; Lab Practical Practice</p>
