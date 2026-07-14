@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root{--navy:#0B1530;--navy2:#1E3D4C;--terra:#8B3A2E;--terra2:#C2734D;--gold:#C9A14A;--off:#FAFAF9;--line:#E3E7EB;--ink:#1E3D4C;
+  :root{--navy:#08101F;--navy2:#08101F;--terra:#7A2A22;--terra2:#7A2A22;--gold:#DCB45C;--off:#FAFAF9;--line:#E3E7EB;--ink:#08101F;
     --display:'Plus Jakarta Sans',-apple-system,sans-serif;--eyebrow:'DM Sans',sans-serif;--serif:'Lora',Georgia,serif;}
   *{box-sizing:border-box;}
   body{margin:0;font-family:var(--display);color:var(--ink);background:var(--off);line-height:1.5;}
@@ -31,7 +31,7 @@
   .modebtn.active{border-color:var(--terra);background:#fff7f3;}
   .modebtn b{display:block;color:var(--navy);font-size:1rem;}
   .modebtn span{font-size:.85rem;color:#5F6B73;}
-  .drop{border:2px dashed #c2734d;border-radius:10px;padding:24px;text-align:center;color:var(--terra);background:#fff7f3;cursor:pointer;font-weight:600;}
+  .drop{border:2px dashed #7A2A22;border-radius:10px;padding:24px;text-align:center;color:var(--terra);background:#fff7f3;cursor:pointer;font-weight:600;}
   .drop.drag{background:#ffe9dd;}
   .btn{font-family:var(--display);font-weight:700;font-size:.95rem;border:none;border-radius:9px;padding:11px 20px;cursor:pointer;background:var(--terra);color:#fff;}
   .btn:hover{background:var(--terra2);} .btn:disabled{background:#bbb;cursor:not-allowed;}
@@ -233,7 +233,7 @@
   function renderPairs(){
     var w=$('pairsWrap');w.innerHTML='';
     pairs.forEach(function(p,k){var row=document.createElement('div');row.className='pair';
-      row.innerHTML='<div><div class="qa" style="color:#8B3A2E">Q '+(k+1)+'</div><img src="'+p.q+'"></div><div><div class="qa" style="color:#1E3D4C">Answer</div><img src="'+p.a+'"></div><div><input type="text" placeholder="Answer key for station '+(k+1)+'" data-k="'+k+'"></div>';
+      row.innerHTML='<div><div class="qa" style="color:#7A2A22">Q '+(k+1)+'</div><img src="'+p.q+'"></div><div><div class="qa" style="color:#08101F">Answer</div><img src="'+p.a+'"></div><div><input type="text" placeholder="Answer key for station '+(k+1)+'" data-k="'+k+'"></div>';
       w.appendChild(row);});
     w.querySelectorAll('input').forEach(function(inp){inp.addEventListener('input',function(){pairs[+inp.dataset.k].label=inp.value;});});
     $('buildBtn').disabled=false; setStatus('buildStatus',pairs.length+' new stations ready. Type the keys, then build.','ok');
