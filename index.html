@@ -61,10 +61,8 @@
   @media(max-width:760px){.cover-grid{grid-template-columns:1fr;justify-items:start;}}
 
   .section-label{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-dark);margin:30px 0 0;}
-  .grid-heading{grid-column:1 / -1;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:30px 0 2px;padding-bottom:9px;border-bottom:1px solid var(--navy-tint);}
-  .grid-heading:first-child{margin-top:6px;}
-  .grid-heading .gh-name{font-family:var(--font-display);font-weight:800;font-size:1.1rem;letter-spacing:-.01em;color:var(--navy);}
-  .grid-heading .gh-count{font-family:var(--font-eyebrow);font-weight:700;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-dark);}
+  .grid-head{grid-column:1/-1;font-family:var(--font-eyebrow);font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terra-dark);margin:26px 0 -2px;padding-bottom:8px;border-bottom:1px solid var(--gray-light);}
+  .grid-head.first{margin-top:2px;}
 
   /* ---------- HUB CARDS ---------- */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(262px,1fr));gap:18px;margin-top:30px;}
@@ -609,7 +607,8 @@ const ESOPHAGUS_LABELS = ["Esophagus", "T10 (Esophagus Passes Through Diaphragm)
 const PAROTID_LABELS = ["Parotid Gland", "Parotid Duct", "Parotid Gland", "Parotid Duct"];
 const STOMACH_LABELS = ["Stomach", "Parotid Gland", "Submandibular Gland", "Stomach; Lesser Curvature", "Stomach; Greater Curvature", "Stomach; Gastric Rugae", "Stomach; Cardiac (Lower Esophageal Sphincter)", "Stomach; Esophagus", "Stomach; Cardia", "Stomach; Fundus", "Stomach; Body", "Stomach; Pyloric Antrum", "Stomach; Pyloric Sphincter"];
 const PHARYNX_LABELS = ["Nasopharynx", "Oropharynx", "Laryngopharynx", "Epiglottis", "Esophagus", "Uvula", "Lingual Tonsil", "Nasopharyngeal Tonsil", "Palatine Tonsil", "Lingual Tonsil", "Uvula", "Soft Palate", "Hard Palate"];
-const LIVER_LABELS = ["Right Lobe; Liver", "Falciform Ligament; Liver", "Left Lobe; Liver", "Gall Bladder", "Right Lobe; Liver", "Inferior Vena Cava", "Right Hepatic Artery", "Left Hepatic Artery", "Hepatic Artery Proper", "Hepatic Portal Vein", "Left Hepatic Vein", "Right Hepatic Vein", "Gall Bladder", "Cystic Duct", "Common Bile Duct", "Left Hepatic Duct", "Right Hepatic Duct", "Portal Triad", "Hepatocyte", "Hepatic Sinusoids", "Bile Duct", "Hepatic Portal Vein", "Hepatic Artery", "Lesser Omentum", "Greater Omentum", "Falciform Ligament", "Right Lobe of the Liver", "Left Lobe of the Liver", "Falciform Ligament", "Round Ligament (Ligamentum Teres)", "Umbilical Vein", "Left Lobe; Liver", "Caudate Lobe; Liver", "Left Lobe; Liver", "Quadrate Lobe; Liver", "Gall Bladder"];
+const UPPER_LEG_CADAVER_LABELS = ["Rectus Femoris", "Vastus Lateralis", "Iliotibial Band", "Vastus Medialis", "Tensor Fascia Latae", "Sartorius", "Adductor Longus", "Gracilis", "Pectineus", "Psoas Major", "Iliopsoas", "Iliacus", "Vastus Intermedius", "Psoas Minor", "Psoas Major", "Quadratus Lumborum", "Iliacus", "Femoral Nerve", "Femoral Artery", "Femoral Vein", "Adductor Brevis", "Common Iliac Artery", "Internal Iliac Artery", "External Iliac Artery", "Adductor Brevis (Longus Removed)", "Adductor Magnus", "Gluteus Maximus", "Gluteus Medius", "Iliotibial Band", "Biceps Femoris (Long Head)", "Semitendinosus", "Semimembranosus", "Adductor Magnus", "Sciatic Nerve"];
+const LOWER_LEG_CADAVER_LABELS = ["Tibialis Anterior", "Extensor Hallucis Longus", "Extensor Digitorum Longus", "Gastrocnemius", "Soleus", "Fibularis Longus", "Fibularis Brevis", "Extensor Digitorum Longus", "Tibialis Anterior", "Popliteus", "Common Fibular Nerve", "Tibial Nerve", "Popliteal Vein", "Popliteal Artery", "Gastrocnemius", "Tibial Nerve", "Posterior Tibial Vein", "Posterior Tibial Artery", "Calcaneal Tendon"];
 const MUSCLES_LOWER_LABELS = ["Diaphragm; Abdominal Aorta (T12)", "External Intercostal Muscles; Phrenic Nerve", "Sartorius; Vastus Medialis", "Gastrocnemius; Soleus", "Tensor Fasciae latae; Adductor Longus", "Gluteus Maximus; Vastus Lateralis", "Linea Alba; Internal Abdominal Oblique", "Gluteus Medius; Semitendinosus", "Rectus Femoris; Tensor Fascia Lata", "Iliopsoas; Vastus Intermedius", "Iliotibial Tract/Band; Vastus medialis", "Tibialis Anterior; Extensor Digitorum Longus", "Extensor Digitorum Longus; Extensor Hallucis Longus", "Fibularis Longus; Fibularis brevis", "Soleus (Gastrocnemius is removed)", "Gluteus Maximus; Biceps Femoris", "Semimembranosus; Semitendinosus", "Gluteus medius; Piriformis"];
 const MUSCLES_HEAD_LABELS = ["Zygomatic Minor; Risorius", "Superior Oblique/Trochlear Nerve CN IV; Lateral Rectus/Abducens N. CN VI", "Medial Rectus/Oculomotor CN III; Inferior Oblique/Oculomotor III", "Sternocleidomastoid; Depressor anguli oris", "Orbicularis Oculi; Masseter", "Depressor Anguli oris; Sternocleidomastoid"];
 const APPENDICULAR_LABELS = ["Iliac Crest, Acetabulum", "Scapula, Infraspinous Fossa", "Ischial Spine, Obturator Foramen", "Clavicle Sternal End", "Femur, Intercondylar Notch", "Humerus Surgical Neck", "Patella, Apex", "Scapular Notch, Subscapular Fossa", "Ilium, Pubis", "Acromion, Glenoid Fossa", "Humerus, Olecranon Fossa", "Femur Intertrochanteric Crest", "Middle Phalanx #3, Metacarpal #1", "Intercondylar Eminence, Tibia", "Articular Fovea of Radius Trochlear Notch of Ulna", "Ischium, Ischial Tuberosity", "Fibula, Lateral Malleolus", "Coronoid process, Ulna, Radial Tuberosity, Radius", "3rd Metatarsal, 4th Distal Phalanx", "Olecranon Process Radial Notch", "Talus, Navicular", "Medial Cuneiform, Cuboid", "Ulna, Ulnar Tuberosity, Radius, Styloid Process", "Proximal Phalanx #1, Carpal", "Anterior Superior Iliac Spine, Greater Sciatic Notch", "Spine of the Scapula, Medial Border", "Sacroiliac Joint, Pubic Symphysis", "Conoid Tubercle, Clavicle, Acromial End", "Linea Aspera, Femur, Medial Condyle", "Deltoid tuberosity, Humerus, Ulnar groove", "Superior Angle, Scapula, Coracoid Process", "Coccyx, Ischium", "Scapula, Acromion, Coracoid Process", "Humerus, Anatomical Neck, Olecranon Fossa", "bone Femur, Medial Supracondylar Line Lesser Trochanter", "Capitate, Scaphoid", "Tibia, Tibial Tuberosity, Medial Malleolus", "Calcaneus, Lateral Cuneiform", "Humerus, Greater Tubercle, Capitulum", "Hamate, Lunate", "Pisiform, Trapezium"];
@@ -705,7 +704,8 @@ const LOOPS = [
   { id:"parotid", title:"Parotid Gland Loop", module:"Digestive System", icon:"skull", unit:"Parotid Gland & Duct", subtitle:"Parotid salivary gland & duct (head)", dir:"parotid", type:"slide", pairs:buildPairs(PAROTID_LABELS) },
   { id:"stomach", title:"Stomach Loop", module:"Digestive System", icon:"gi", unit:"Stomach", subtitle:"Curvatures, regions, rugae, sphincters & salivary glands", dir:"stomach", type:"slide", pairs:buildPairs(STOMACH_LABELS) },
   { id:"pharynx", title:"Pharynx Loop", module:"Digestive System", icon:"lungs", unit:"Pharynx & Oral Cavity", subtitle:"Naso/oro/laryngopharynx, tonsils, uvula & palate", dir:"pharynx", type:"slide", pairs:buildPairs(PHARYNX_LABELS) },
-  { id:"liver", title:"Liver Loop", module:"Digestive System", icon:"gi", unit:"Liver: Models & Cadaver", subtitle:"Lobes, ligaments, porta hepatis, biliary tree, histology & cadaver", dir:"liver", type:"slide", pairs:buildPairs(LIVER_LABELS) },
+  { id:"upper-leg-cadaver", title:"Upper Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Upper Leg (Cadaver)", subtitle:"Thigh, hip & gluteal muscles + femoral/iliac vessels & nerves", dir:"upper-leg-cadaver", type:"slide", pairs:buildPairs(UPPER_LEG_CADAVER_LABELS) },
+  { id:"lower-leg-cadaver", title:"Lower Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Lower Leg (Cadaver)", subtitle:"Leg & foot muscles, popliteal & distal vessels & nerves", dir:"lower-leg-cadaver", type:"slide", pairs:buildPairs(LOWER_LEG_CADAVER_LABELS) },
   { id:"respiratory", title:"Respiratory Loop", module:"Respiratory System", icon:"lungs", unit:"Respiratory System", subtitle:"Airways, lungs, larynx, pleura & bronchial tree", dir:"respiratory", type:"slide", pairs:buildPairs(RESPIRATORY_LABELS) },
   { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) }
 ];
@@ -791,22 +791,16 @@ function stationN(loop){ return loop.type==='caption' ? loop.items.length : (loo
 function imgPath(loop,n){ return `images/${loop.dir}/s${pad2(n)}.jpg`; }   /* intro full-slide image */
 function capImg(loop,k){ return `images/${loop.dir}/c${pad2(k)}.jpg`; }    /* caption station image (k = 1-based) */
 
-/* Group loops into sections by module (body system), in first-appearance order. */
+/* Group loop cards by module (in first-appearance order) with a header per module */
 (function(){
-  const order=[], groups={};
-  LOOPS.forEach(loop=>{
-    const m=loop.module||'Other';
-    if(!groups[m]){ groups[m]=[]; order.push(m); }
-    groups[m].push(loop);
-  });
-  order.forEach(m=>{
-    const h=document.createElement('div');
-    h.className='grid-heading';
-    h.setAttribute('role','heading'); h.setAttribute('aria-level','2');
-    const n=groups[m].length;
-    h.innerHTML=`<span class="gh-name">${m}</span><span class="gh-count">${n} loop${n>1?'s':''}</span>`;
+  const order=[], byMod={};
+  LOOPS.forEach(L=>{ const m=L.module||'Other'; if(!byMod[m]){ byMod[m]=[]; order.push(m); } byMod[m].push(L); });
+  order.forEach((m,mi)=>{
+    const h=document.createElement('h2');
+    h.className='grid-head'+(mi===0?' first':'');
+    h.textContent=m;
     grid.appendChild(h);
-    groups[m].forEach(loop=>{
+    byMod[m].forEach(loop=>{
       const btn=document.createElement('button');
       btn.className='card'; btn.type='button';
       btn.innerHTML=`
@@ -821,14 +815,7 @@ function capImg(loop,k){ return `images/${loop.dir}/c${pad2(k)}.jpg`; }    /* ca
       grid.appendChild(btn);
     });
   });
-})();
-/* Section heading for the exam-prep and companion cards below */
-(function(){
-  const h=document.createElement('div');
-  h.className='grid-heading';
-  h.setAttribute('role','heading'); h.setAttribute('aria-level','2');
-  h.innerHTML=`<span class="gh-name">Exam prep &amp; tools</span>`;
-  grid.appendChild(h);
+  const th=document.createElement('h2'); th.className='grid-head'; th.textContent='Study Tools'; grid.appendChild(th);
 })();
 /* Build a review: separate entry point for multi-topic and weak-card sessions */
 (function(){
