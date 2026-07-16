@@ -125,6 +125,7 @@
 
   .imgwrap{position:relative;aspect-ratio:16/9;background:#fff;display:flex;align-items:center;justify-content:center;}
   .imgwrap img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;display:block;}
+  .imgwrap.portrait{aspect-ratio:9/16;max-width:440px;max-height:80vh;margin-left:auto;margin-right:auto;}
 
   /* first-question walkthrough */
   .coach{display:flex;align-items:center;justify-content:center;gap:8px;background:#FBF4E4;color:var(--navy);font-size:.9rem;font-weight:600;line-height:1.4;padding:11px 16px;text-align:center;border-bottom:1px solid var(--navy-tint);border-left:4px solid #C9A14A;}
@@ -704,8 +705,8 @@ const LOOPS = [
   { id:"parotid", title:"Parotid Gland Loop", module:"Digestive System", icon:"skull", unit:"Parotid Gland & Duct", subtitle:"Parotid salivary gland & duct (head)", dir:"parotid", type:"slide", pairs:buildPairs(PAROTID_LABELS) },
   { id:"stomach", title:"Stomach Loop", module:"Digestive System", icon:"gi", unit:"Stomach", subtitle:"Curvatures, regions, rugae, sphincters & salivary glands", dir:"stomach", type:"slide", pairs:buildPairs(STOMACH_LABELS) },
   { id:"pharynx", title:"Pharynx Loop", module:"Digestive System", icon:"lungs", unit:"Pharynx & Oral Cavity", subtitle:"Naso/oro/laryngopharynx, tonsils, uvula & palate", dir:"pharynx", type:"slide", pairs:buildPairs(PHARYNX_LABELS) },
-  { id:"upper-leg-cadaver", title:"Upper Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Upper Leg (Cadaver)", subtitle:"Thigh, hip & gluteal muscles + femoral/iliac vessels & nerves", dir:"upper-leg-cadaver", type:"slide", pairs:buildPairs(UPPER_LEG_CADAVER_LABELS) },
-  { id:"lower-leg-cadaver", title:"Lower Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Lower Leg (Cadaver)", subtitle:"Leg & foot muscles, popliteal & distal vessels & nerves", dir:"lower-leg-cadaver", type:"slide", pairs:buildPairs(LOWER_LEG_CADAVER_LABELS) },
+  { id:"upper-leg-cadaver", title:"Upper Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Upper Leg (Cadaver)", subtitle:"Thigh, hip & gluteal muscles + femoral/iliac vessels & nerves", dir:"upper-leg-cadaver", type:"slide", portrait:true, pairs:buildPairs(UPPER_LEG_CADAVER_LABELS) },
+  { id:"lower-leg-cadaver", title:"Lower Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Lower Leg (Cadaver)", subtitle:"Leg & foot muscles, popliteal & distal vessels & nerves", dir:"lower-leg-cadaver", type:"slide", portrait:true, pairs:buildPairs(LOWER_LEG_CADAVER_LABELS) },
   { id:"respiratory", title:"Respiratory Loop", module:"Respiratory System", icon:"lungs", unit:"Respiratory System", subtitle:"Airways, lungs, larynx, pleura & bronchial tree", dir:"respiratory", type:"slide", pairs:buildPairs(RESPIRATORY_LABELS) },
   { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) }
 ];
@@ -956,6 +957,7 @@ function openLoop(loop){
   pos=0;
   hub.hidden=true; player.hidden=false;
   player.classList.toggle('theme-dark', loop.theme==='dark');
+  var _iw=document.querySelector('.imgwrap'); if(_iw) _iw.classList.toggle('portrait', !!loop.portrait);
   playing=false; setPlayBtn();
   showTitle();
   updateScore();
