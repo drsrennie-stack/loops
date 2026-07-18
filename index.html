@@ -152,6 +152,9 @@
   .title-card .tc-title{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,4.6vw,48px);line-height:1.04;letter-spacing:-.02em;color:var(--navy);margin:0;}
   .title-card .tc-title span{color:var(--terra-dark);}
   .title-card .tc-sub{color:var(--navy);opacity:.78;font-size:clamp(14px,1.8vw,19px);line-height:1.45;margin:12px 0 0;max-width:44ch;}
+  .title-card .tc-credit{color:var(--navy);opacity:.62;font-size:.72rem;line-height:1.45;margin:16px auto 0;max-width:46ch;}
+  .title-card .tc-credit a{color:var(--terra-dark);text-decoration:underline;font-weight:600;}
+  .player.theme-dark .title-card .tc-credit{color:#fff;opacity:.7;}
   .title-card .tc-meta{font-family:var(--font-eyebrow);font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--terra-dark);margin:20px 0 0;}
   .title-card .tc-hint{color:var(--navy);opacity:.55;font-size:.85rem;margin:7px 0 0;}
 
@@ -515,6 +518,7 @@
             <p class="tc-eyebrow">BIO 004 &middot; Lab Practical Practice</p>
             <h3 class="tc-title" id="tcTitle"></h3>
             <p class="tc-sub" id="tcSub"></p>
+            <p class="tc-credit" id="tcCredit"></p>
             <p class="tc-meta" id="tcMeta"></p>
             <p class="tc-hint">Press play to begin</p>
           </div>
@@ -626,6 +630,13 @@ const LOWER_LEG_CADAVER_LABELS = ["Tibialis Anterior", "Extensor Hallucis Longus
 const COLON_LABELS = ["Tenia Coli", "Haustra", "Vermiform Appendix", "Cecum", "Ileocecal Valve", "Ileum", "Jejunum", "Anus/Rectum", "Ascending Colon", "Transverse Colon", "Descending Colon", "Sigmoid Colon", "Right Colic Flexure (Hepatic Flexure)", "Left Colic Flexure (Splenic Flexure)"];
 const PANCREAS_LABELS = ["Common Bile Duct", "Accessory Pancreatic Duct", "Hepatopancreatic Ampulla", "Main Pancreatic Duct", "Major Duodenal Papilla", "Duodenum", "Plica Circulares", "Duodenum", "Gall Bladder", "Common Bile Duct", "Hepatic Artery Proper", "Celiac Trunk", "Aorta", "Superior Mesenteric Artery", "Superior Mesenteric Vein", "Jejunal Arteries", "Splenic Artery", "Splenic Veins", "Spleen", "Gastroduodenal Artery", "Inferior Vena Cava"];
 const LIVER_LABELS = ["Right Lobe; Liver", "Falciform Ligament; Liver", "Left Lobe; Liver", "Gall Bladder", "Right Lobe; Liver", "Inferior Vena Cava", "Right Hepatic Artery", "Left Hepatic Artery", "Hepatic Artery Proper", "Hepatic Portal Vein", "Left Hepatic Vein", "Right Hepatic Vein", "Gall Bladder", "Cystic Duct", "Common Bile Duct", "Left Hepatic Duct", "Right Hepatic Duct", "Portal Triad", "Hepatocyte", "Hepatic Sinusoids", "Bile Duct", "Hepatic Portal Vein", "Hepatic Artery", "Lesser Omentum", "Greater Omentum", "Falciform Ligament", "Right Lobe of the Liver", "Left Lobe of the Liver", "Falciform Ligament", "Round Ligament (Ligamentum Teres)", "Umbilical Vein", "Left Lobe; Liver", "Caudate Lobe; Liver", "Left Lobe; Liver", "Quadrate Lobe; Liver", "Gall Bladder"];
+const CADAVER_CREDIT='Cadaver images courtesy of <a href="https://sites.google.com/a/umich.edu/bluelink/" target="_blank" rel="noopener">University of Michigan Medical School — BlueLink</a> &amp; Pearson (PAL). © B. Kathleen Alsup &amp; Glenn M. Fox.';
+const CADAVER_UE_LABELS = ["Pectoralis Major", "Deltoid", "Pectoralis Minor", "Serratus Anterior", "Pectoralis Major", "Pectoralis Minor", "Trapezius", "Latissimus Dorsi", "Teres Major", "Levator Scapulae", "Rhomboid Minor", "Rhomboid Minor", "Cephalic Vein", "Biceps Brachii (Short Head)", "Biceps Brachii (Long Head)", "Pectoralis Minor", "Coracobrachialis", "Subclavian Vein", "Axillary Vein", "Basilic Vein", "Teres Minor", "Teres Major", "Cephalic Vein", "Median Cubital Vein", "Basilic Vein", "Radial Artery", "Ulnar Artery", "Median Nerve", "Ulnar Nerve", "Triceps Brachii (Long Head)", "Triceps Brachii (Lateral Head)", "Triceps Brachii (Medial Head)", "Anconeus", "Anconeus", "Trapezius", "Infraspinatus", "Teres Minor", "Teres Major"];
+const FOREARM_CADAVER_LABELS = ["Brachioradialis", "Pronator Teres", "Flexor Carpi Radialis", "Palmaris Longus", "Flexor Digitorum Superficialis", "Flexor Carpi Ulnaris", "Extensor Carpi Ulnaris", "Brachioradialis (Layer 2)", "Pronator Teres (Layer 2)", "Flexor Digitorum Superficialis", "Supinator", "Pronator Teres", "Flexor Pollicis Longus", "Flexor Digitorum Profundus", "Flexor Carpi Ulnaris", "Brachial Artery", "Radial Artery", "Ulnar Artery", "Median Nerve", "Brachialis", "Triceps Brachii (Lateral Head)", "Deltoid", "Brachioradialis", "Extensor Carpi Radialis Brevis", "Extensor Carpi Radialis Longus", "Extensor Digitorum", "Extensor Retinaculum", "Extensor Carpi Ulnaris", "Anconeus", "Abductor Pollicis Longus", "Extensor Pollicis Brevis"];
+const URINARY_LABELS = ["Right Adrenal (Suprarenal) Gland", "Inferior Vena Cava", "Descending (Abdominal) Aorta", "L. Kidney", "L. Adrenal (Suprarenal) Gland", "L. Ureter", "R. Ureter", "R. Renal Vein", "L. Renal Artery", "Celiac Trunk", "Superior Mesenteric Artery", "Inferior Mesenteric Artery", "Seminal Vesicles", "Bladder", "L. Ureter", "R. Ureter", "Trigone", "Detrusor Muscle", "Prostatic Urethra", "Prostate Gland", "Bladder Rugae"];
+const FEMALE_REPRO_LABELS = ["Myometrium; Uterus / Fornix", "Urethra / Clitoris", "Ovarian Vein / Labia Majora", "Fimbrae of Oviduct / Ovarian Ligament", "Bladder / Cervix (External Os)", "Uterus; Endometrium / Labia Minora", "Ovarian Artery / Labia Minora", "Ovary / Round Ligament of the Uterus", "Internal Os of the Cervix / Vagina", "Ampulla of the Oviduct / Mons Pubis"];
+const MALE_REPRO_LABELS = ["Seminal Vesicles / Epididymis", "Spermatic Cord / Glans Penis", "Testicular Vein / Scrotum", "Pampiniform Plexus / Prepuce", "Corpus Cavernosum / Ejaculatory Duct", "Corpus Spongiosum / Prostatic Urethra", "Spongy (Penile) Urethra / Cremaster Muscle", "Prostate / Spermatic Cord Contents (Vas Deferens, Testicular Artery, Pampiniform Plexus, Cremaster Muscle)"];
+const REPRODUCTIVE_CADAVER_LABELS = ["Ovary", "Uterus", "Fallopian Tube/Oviduct", "Rectum", "Ductus (Vas) Deferens", "Seminal Vesicles", "Uterus", "Bladder", "Vagina", "Urethra", "Rectum", "Prostate", "Membranous Urethra", "Corpus Cavernosum of the Penis", "Penile Urethra", "Ovarian Ligament", "Round Ligament of the Uterus", "Testis", "Penis", "Spermatic Cord", "Inguinal Canal", "Vas Deferens", "Testicular Artery", "Pampiniform Plexus"];
 const MUSCLES_LOWER_LABELS = ["Diaphragm; Abdominal Aorta (T12)", "External Intercostal Muscles; Phrenic Nerve", "Sartorius; Vastus Medialis", "Gastrocnemius; Soleus", "Tensor Fasciae latae; Adductor Longus", "Gluteus Maximus; Vastus Lateralis", "Linea Alba; Internal Abdominal Oblique", "Gluteus Medius; Semitendinosus", "Rectus Femoris; Tensor Fascia Lata", "Iliopsoas; Vastus Intermedius", "Iliotibial Tract/Band; Vastus medialis", "Tibialis Anterior; Extensor Digitorum Longus", "Extensor Digitorum Longus; Extensor Hallucis Longus", "Fibularis Longus; Fibularis brevis", "Soleus (Gastrocnemius is removed)", "Gluteus Maximus; Biceps Femoris", "Semimembranosus; Semitendinosus", "Gluteus medius; Piriformis"];
 const MUSCLES_HEAD_LABELS = ["Zygomatic Minor; Risorius", "Superior Oblique/Trochlear Nerve CN IV; Lateral Rectus/Abducens N. CN VI", "Medial Rectus/Oculomotor CN III; Inferior Oblique/Oculomotor III", "Sternocleidomastoid; Depressor anguli oris", "Orbicularis Oculi; Masseter", "Depressor Anguli oris; Sternocleidomastoid"];
 const APPENDICULAR_LABELS = ["Iliac Crest, Acetabulum", "Scapula, Infraspinous Fossa", "Ischial Spine, Obturator Foramen", "Clavicle Sternal End", "Femur, Intercondylar Notch", "Humerus Surgical Neck", "Patella, Apex", "Scapular Notch, Subscapular Fossa", "Ilium, Pubis", "Acromion, Glenoid Fossa", "Humerus, Olecranon Fossa", "Femur Intertrochanteric Crest", "Middle Phalanx #3, Metacarpal #1", "Intercondylar Eminence, Tibia", "Articular Fovea of Radius Trochlear Notch of Ulna", "Ischium, Ischial Tuberosity", "Fibula, Lateral Malleolus", "Coronoid process, Ulna, Radial Tuberosity, Radius", "3rd Metatarsal, 4th Distal Phalanx", "Olecranon Process Radial Notch", "Talus, Navicular", "Medial Cuneiform, Cuboid", "Ulna, Ulnar Tuberosity, Radius, Styloid Process", "Proximal Phalanx #1, Carpal", "Anterior Superior Iliac Spine, Greater Sciatic Notch", "Spine of the Scapula, Medial Border", "Sacroiliac Joint, Pubic Symphysis", "Conoid Tubercle, Clavicle, Acromial End", "Linea Aspera, Femur, Medial Condyle", "Deltoid tuberosity, Humerus, Ulnar groove", "Superior Angle, Scapula, Coracoid Process", "Coccyx, Ischium", "Scapula, Acromion, Coracoid Process", "Humerus, Anatomical Neck, Olecranon Fossa", "bone Femur, Medial Supracondylar Line Lesser Trochanter", "Capitate, Scaphoid", "Tibia, Tibial Tuberosity, Medial Malleolus", "Calcaneus, Lateral Cuneiform", "Humerus, Greater Tubercle, Capitulum", "Hamate, Lunate", "Pisiform, Trapezium"];
@@ -721,11 +732,17 @@ const LOOPS = [
   { id:"parotid", title:"Parotid Gland Loop", module:"Digestive System", icon:"skull", unit:"Parotid Gland & Duct", subtitle:"Parotid salivary gland & duct (head)", dir:"parotid", type:"slide", pairs:buildPairs(PAROTID_LABELS) },
   { id:"stomach", title:"Stomach Loop", module:"Digestive System", icon:"gi", unit:"Stomach", subtitle:"Curvatures, regions, rugae, sphincters & salivary glands", dir:"stomach", type:"slide", pairs:buildPairs(STOMACH_LABELS) },
   { id:"pharynx", title:"Pharynx Loop", module:"Digestive System", icon:"lungs", unit:"Pharynx & Oral Cavity", subtitle:"Naso/oro/laryngopharynx, tonsils, uvula & palate", dir:"pharynx", type:"slide", pairs:buildPairs(PHARYNX_LABELS) },
-  { id:"upper-leg-cadaver", title:"Upper Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Upper Leg (Cadaver)", subtitle:"Thigh, hip & gluteal muscles + femoral/iliac vessels & nerves", dir:"upper-leg-cadaver", type:"slide", portrait:true, pairs:buildPairs(UPPER_LEG_CADAVER_LABELS) },
-  { id:"lower-leg-cadaver", title:"Lower Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Lower Leg (Cadaver)", subtitle:"Leg & foot muscles, popliteal & distal vessels & nerves", dir:"lower-leg-cadaver", type:"slide", portrait:true, pairs:buildPairs(LOWER_LEG_CADAVER_LABELS) },
+  { id:"cadaver-ue", title:"Cadaver UE Loop", module:"Muscular System", icon:"muscle", unit:"Cadaver: Back, Thorax & Upper Arm", subtitle:"Cadaver muscles, nerves & vessels — chest, back, shoulder & arm", dir:"cadaver-ue", type:"slide", credit:CADAVER_CREDIT, pairs:buildPairs(CADAVER_UE_LABELS) },
+  { id:"forearm-cadaver", title:"Forearm Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Cadaver: Forearm & Arm", subtitle:"Cadaver forearm muscles, vessels & nerves — flexors, extensors & deep layers", dir:"forearm-cadaver", type:"slide", portrait:true, credit:CADAVER_CREDIT, pairs:buildPairs(FOREARM_CADAVER_LABELS) },
+  { id:"upper-leg-cadaver", title:"Upper Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Upper Leg (Cadaver)", subtitle:"Thigh, hip & gluteal muscles + femoral/iliac vessels & nerves", dir:"upper-leg-cadaver", type:"slide", portrait:true, credit:CADAVER_CREDIT, pairs:buildPairs(UPPER_LEG_CADAVER_LABELS) },
+  { id:"lower-leg-cadaver", title:"Lower Leg Cadaver Loop", module:"Muscular System", icon:"muscle", unit:"Lower Leg (Cadaver)", subtitle:"Leg & foot muscles, popliteal & distal vessels & nerves", dir:"lower-leg-cadaver", type:"slide", portrait:true, credit:CADAVER_CREDIT, pairs:buildPairs(LOWER_LEG_CADAVER_LABELS) },
   { id:"colon", title:"Colon Loop", module:"Digestive System", icon:"gi", unit:"Colon & Intestines", subtitle:"Cecum, appendix, ileocecal valve, colon regions & flexures", dir:"colon", type:"slide", pairs:buildPairs(COLON_LABELS) },
   { id:"pancreas", title:"Pancreas Loop", module:"Digestive System", icon:"gi", unit:"Pancreas & Ducts", subtitle:"Pancreatic & bile ducts, ampulla + peripancreatic vessels", dir:"pancreas", type:"slide", pairs:buildPairs(PANCREAS_LABELS) },
   { id:"liver", title:"Liver Loop", module:"Digestive System", icon:"gi", unit:"Liver: Models & Cadaver", subtitle:"Lobes, ligaments, porta hepatis, biliary tree, histology & cadaver", dir:"liver", type:"slide", pairs:buildPairs(LIVER_LABELS) },
+  { id:"urinary", title:"Urinary System Loop", module:"Urinary System", icon:"kidney", unit:"Urinary System", subtitle:"Kidneys, adrenals, ureters, renal vessels, bladder, trigone & prostate", dir:"urinary", type:"slide", pairs:buildPairs(URINARY_LABELS) },
+  { id:"reproductive-female", title:"Female Reproductive Loop", module:"Reproductive System", icon:"repro", unit:"Female Reproductive", subtitle:"Uterus, ovary, oviduct, cervix, ligaments & external genitalia (2 structures/station)", dir:"reproductive-female", type:"slide", pairs:buildPairs(FEMALE_REPRO_LABELS) },
+  { id:"reproductive-male", title:"Male Reproductive Loop", module:"Reproductive System", icon:"repro", unit:"Male Reproductive", subtitle:"Testis, epididymis, spermatic cord, penis, prostate & ducts (2 structures/station)", dir:"reproductive-male", type:"slide", pairs:buildPairs(MALE_REPRO_LABELS) },
+  { id:"reproductive-cadaver", title:"Reproductive Cadaver Loop", module:"Reproductive System", icon:"repro", unit:"Reproductive (Cadaver)", subtitle:"Female & male pelvic cadaver: organs, ducts, ligaments, penis & spermatic cord", dir:"reproductive-cadaver", type:"slide", credit:CADAVER_CREDIT, pairs:buildPairs(REPRODUCTIVE_CADAVER_LABELS) },
   { id:"respiratory", title:"Respiratory Loop", module:"Respiratory System", icon:"lungs", unit:"Respiratory System", subtitle:"Airways, lungs, larynx, pleura & bronchial tree", dir:"respiratory", type:"slide", pairs:buildPairs(RESPIRATORY_LABELS) },
   { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) }
 ];
@@ -759,6 +776,8 @@ const BADGE_ICONS={
   lungs:'<line x1="0" y1="-18" x2="0" y2="-5"/><line x1="-4" y1="-18" x2="4" y2="-18"/><path d="M0,-9 C-2,-9 -4,-8 -5,-4 M0,-9 C2,-9 4,-8 5,-4"/><path d="M-5,-4 C-11,-2 -15,4 -15,11 C-15,16 -12,18 -8,17 C-4,16 -4,10 -4,4 C-4,-1 -3,-4 -5,-4 Z"/><path d="M5,-4 C11,-2 15,4 15,11 C15,16 12,18 8,17 C4,16 4,10 4,4 C4,-1 3,-4 5,-4 Z"/>',
   heart:'<path d="M0,15 C-13,4 -18,-6 -10,-13 C-5,-17 0,-12 0,-8 C0,-12 5,-17 10,-13 C18,-6 13,4 0,15 Z"/><path d="M-4,-13 C-4,-18 -7,-20 -4,-22 M4,-13 C4,-18 7,-20 4,-22"/>',
   gi:'<path d="M-6,-19 L-6,-11 C-6,-6 -11,-5 -11,3 C-11,11 -3,16 6,12 C12,9 12,1 7,-1 C4,-2 3,1 5,3"/>',
+  kidney:'<path d="M5,-15 C-5,-15 -13,-8 -13,0 C-13,8 -5,15 5,15 C10,15 13,11 11,7 C9,4 6,4 6,0 C6,-4 9,-4 11,-7 C13,-11 10,-15 5,-15 Z"/><line x1="6" y1="0" x2="16" y2="0"/>',
+  repro:'<path d="M0,-1 L-6,-13 L6,-13 Z"/><circle cx="-12" cy="-13" r="4"/><circle cx="12" cy="-13" r="4"/><line x1="-6" y1="-13" x2="-8" y2="-13"/><line x1="6" y1="-13" x2="8" y2="-13"/><line x1="0" y1="-1" x2="0" y2="14"/>',
   review:'<rect x="-18" y="-13" width="22" height="16" rx="2"/><rect x="-9" y="-5" width="22" height="16" rx="2"/><path d="M-3,3 l3,3 l8,-9"/>',
   progress:'<line x1="-17" y1="13" x2="17" y2="13"/><rect x="-14" y="2" width="8" height="11"/><rect x="-3" y="-7" width="8" height="20"/><rect x="8" y="-2" width="8" height="15"/>'
 };
@@ -905,6 +924,7 @@ const timerNum=document.getElementById('timerNum');
 const tcTitle=document.getElementById('tcTitle');
 const tcSub=document.getElementById('tcSub');
 const tcMeta=document.getElementById('tcMeta');
+const tcCredit=document.getElementById('tcCredit');
 const captionEl=document.getElementById('caption');
 const capQ=document.getElementById('capQ');
 const capMain=document.getElementById('capMain');
@@ -994,7 +1014,18 @@ const PRON={
   ampulla:"am-PULL-a", papilla:"pa-PILL-a", mesenteric:"mez-en-TAIR-ik", celiac:"SEE-lee-ak",
   gastroduodenal:"gas-tro-doo-o-DEE-nal", splenic:"SPLEN-ik", parotid:"pa-ROT-id",
   submandibular:"sub-man-DIB-yoo-lar", uvula:"YOO-vyoo-la", tonsil:"TON-sil", plica:"PLY-ka", circulares:"sur-kyoo-LAIR-eez",
-  popliteus:"pop-LIT-ee-us", popliteal:"pop-LIT-ee-al", calcaneal:"kal-KAY-nee-al", sciatic:"sy-AT-ik", fibular:"FIB-yoo-lar"
+  popliteus:"pop-LIT-ee-us", popliteal:"pop-LIT-ee-al", calcaneal:"kal-KAY-nee-al", sciatic:"sy-AT-ik", fibular:"FIB-yoo-lar",
+  ureter:"YOOR-eh-ter", urethra:"yoo-REE-thra", detrusor:"deh-TROO-zer", trigone:"TRY-gohn",
+  adrenal:"a-DREE-nal", suprarenal:"soo-pra-REE-nal", renal:"REE-nal", prostatic:"pross-TAT-ik",
+  prostate:"PROSS-tate", seminal:"SEM-ih-nal", vesicles:"VESS-ih-kuls",
+  epididymis:"eh-pih-DID-ih-miss", ejaculatory:"ee-JAK-yoo-la-tor-ee", cremaster:"kreh-MAS-ter",
+  prepuce:"PREE-pyoos", pampiniform:"pam-PIN-ih-form", spermatic:"sper-MAT-ik", deferens:"DEF-er-enz",
+  scrotum:"SKRO-tum", corpus:"KOR-pus", cavernosum:"kav-er-NO-sum", spongiosum:"spun-jee-O-sum",
+  myometrium:"my-o-MEE-tree-um", endometrium:"en-do-MEE-tree-um", fornix:"FOR-niks", oviduct:"O-vih-dukt",
+  fimbrae:"FIM-bree", clitoris:"KLIT-or-iss", labia:"LAY-bee-a", majora:"ma-JOR-a", minora:"mih-NOR-a",
+  vagina:"va-JY-na", cervix:"SUR-viks", ovarian:"o-VAIR-ee-an", ovary:"O-var-ee", uterus:"YOO-ter-us",
+  ampulla:"am-PULL-a", mons:"monz", fallopian:"fa-LO-pee-an", inguinal:"ING-gwih-nal",
+  testicular:"tess-TIK-yoo-lar", ductus:"DUK-tus", testis:"TESS-tiss"
 };
 function respellTerm(term){
   return String(term).replace(/[()\/,;:_]/g,' ')
@@ -1121,6 +1152,7 @@ function showTitle(){
   tcTitle.innerHTML = cur.title.replace(/\s*Loop$/, ' <span>Loop</span>');
   tcSub.textContent = cur.subtitle;
   tcMeta.textContent = order.length + ' stations';
+  tcCredit.innerHTML = cur.credit || '';
   phaseLabel.className='phase question';
   phaseText.textContent='Title';
   progress.textContent='Ready';
