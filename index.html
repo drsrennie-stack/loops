@@ -713,6 +713,8 @@ function buildSlidePairs(items, swapSet){
   return pairs;
 }
 
+const NEURO_BRAIN_LABELS = ["Precentral Gyrus; Primary Motor Cortex", "Cerebellum", "Temporal Lobe", "Occipital Lobe", "Parietal Lobe", "Frontal Lobe", "Postcentral Gyrus; Primary Sensory Cortex", "Central Sulcus", "Lateral Sulcus", "Transverse Fissure", "Tentorium Cerebelli", "Supramarginal Gyrus", "Angular Gyrus", "Inferior Frontal Gyrus", "Longitudinal Fissure", "Falx Cerebri", "Central Sulcus", "Precentral Gyrus; Primary Motor Cortex", "Postcentral Gyrus; Primary Sensory Cortex", "Frontal Lobe", "Occipital Lobe", "Left Cerebral Cortex", "Right Cerebral Cortex"];
+
 const LOOPS = [
   { id:"intro", title:"Introduction Loop", module:"Fundamentals", icon:"book", unit:"Intro to Anatomy", subtitle:"Regions, planes, cavities & quadrants", dir:"intro", type:"slide", pairs:buildPairs(LABELS) },
   { id:"tissues", title:"Tissues Loop", module:"Cells & Tissues", icon:"micro", unit:"Tissues & Histology", subtitle:"Epithelial & connective tissues, cells, muscle & nervous", dir:"tissues", type:"slide", pairs:buildSlidePairs(TISSUE_ITEMS,[23]) },
@@ -746,7 +748,8 @@ const LOOPS = [
   { id:"reproductive-male", title:"Male Reproductive Loop", module:"Reproductive System", icon:"repro", unit:"Male Reproductive", subtitle:"Testis, epididymis, spermatic cord, penis, prostate & ducts (2 structures/station)", dir:"reproductive-male", type:"slide", pairs:buildPairs(MALE_REPRO_LABELS) },
   { id:"reproductive-cadaver", title:"Reproductive Cadaver Loop", module:"Reproductive System", icon:"repro", unit:"Reproductive (Cadaver)", subtitle:"Female & male pelvic cadaver: organs, ducts, ligaments, penis & spermatic cord", dir:"reproductive-cadaver", type:"slide", credit:CADAVER_CREDIT, pairs:buildPairs(REPRODUCTIVE_CADAVER_LABELS) },
   { id:"respiratory", title:"Respiratory Loop", module:"Respiratory System", icon:"lungs", unit:"Respiratory System", subtitle:"Airways, lungs, larynx, pleura & bronchial tree", dir:"respiratory", type:"slide", pairs:buildPairs(RESPIRATORY_LABELS) },
-  { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) }
+  { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) },
+  { id:"neuro-brain", title:"Brain: Lateral & Superior", module:"Nervous System", icon:"brain", unit:"Brain (Lateral & Superior)", subtitle:"Lobes, gyri, sulci, fissures & dural folds (lateral & superior views)", dir:"neuro-brain", type:"slide", pairs:buildPairs(NEURO_BRAIN_LABELS) }
 ];
 /* Loops made with the Loop Builder load from custom-loops.js and merge in here. */
 if(window.CUSTOM_LOOPS && window.CUSTOM_LOOPS.length){
@@ -781,7 +784,8 @@ const BADGE_ICONS={
   kidney:'<path d="M5,-15 C-5,-15 -13,-8 -13,0 C-13,8 -5,15 5,15 C10,15 13,11 11,7 C9,4 6,4 6,0 C6,-4 9,-4 11,-7 C13,-11 10,-15 5,-15 Z"/><line x1="6" y1="0" x2="16" y2="0"/>',
   repro:'<path d="M0,-1 L-6,-13 L6,-13 Z"/><circle cx="-12" cy="-13" r="4"/><circle cx="12" cy="-13" r="4"/><line x1="-6" y1="-13" x2="-8" y2="-13"/><line x1="6" y1="-13" x2="8" y2="-13"/><line x1="0" y1="-1" x2="0" y2="14"/>',
   review:'<rect x="-18" y="-13" width="22" height="16" rx="2"/><rect x="-9" y="-5" width="22" height="16" rx="2"/><path d="M-3,3 l3,3 l8,-9"/>',
-  progress:'<line x1="-17" y1="13" x2="17" y2="13"/><rect x="-14" y="2" width="8" height="11"/><rect x="-3" y="-7" width="8" height="20"/><rect x="8" y="-2" width="8" height="15"/>'
+  progress:'<line x1="-17" y1="13" x2="17" y2="13"/><rect x="-14" y="2" width="8" height="11"/><rect x="-3" y="-7" width="8" height="20"/><rect x="8" y="-2" width="8" height="15"/>',
+  brain:'<path d="M-15,-3 C-15,-12 -8,-18 0,-18 C8,-18 15,-12 15,-3 C15,6 9,13 1,13 C0,16 -2,16 -3,13 C-10,12 -15,6 -15,-3 Z"/><line x1="0" y1="-18" x2="0" y2="13"/><path d="M-11,-7 q3,-3 6,0 M-11,1 q3,-3 6,0 M5,-7 q3,-3 6,0 M5,1 q3,-3 6,0"/>'
 };
 function badgeSVG(loop){
   const ic=BADGE_ICONS[loop.icon]||'';
