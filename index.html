@@ -713,6 +713,7 @@ function buildSlidePairs(items, swapSet){
   return pairs;
 }
 
+const NEURO_MIDSAGITTAL_LABELS = ["Cingulate Gyrus", "Cingulate Sulcus", "Corpus Callosum", "Septum Pellucidum", "Sulcus of the Corpus Callosum", "Lateral Ventricle", "Fornix", "Choroid Plexus", "Ependymal Cells; Produce CSF", "Thalamus", "Massa Intermedia (Interthalamic Adhesion)", "3rd Ventricle", "Hypothalamus", "Infundibulum", "Optic Chiasm", "Mammillary Body", "Pineal Gland", "Melatonin", "Corpora Quadrigemina", "Superior Colliculus", "Inferior Colliculus", "Cerebral Aqueduct", "Interventricular Foramen of Monro", "4th Ventricle", "Cerebellum", "Midbrain", "Basilar Pons", "Medulla Oblongata", "Folia", "Arbor Vitae"];
 const NEURO_BRAIN_LABELS = ["Precentral Gyrus; Primary Motor Cortex", "Cerebellum", "Temporal Lobe", "Occipital Lobe", "Parietal Lobe", "Frontal Lobe", "Postcentral Gyrus; Primary Sensory Cortex", "Central Sulcus", "Lateral Sulcus", "Transverse Fissure", "Tentorium Cerebelli", "Supramarginal Gyrus", "Angular Gyrus", "Inferior Frontal Gyrus", "Longitudinal Fissure", "Falx Cerebri", "Central Sulcus", "Precentral Gyrus; Primary Motor Cortex", "Postcentral Gyrus; Primary Sensory Cortex", "Frontal Lobe", "Occipital Lobe", "Left Cerebral Cortex", "Right Cerebral Cortex"];
 
 const LOOPS = [
@@ -749,7 +750,8 @@ const LOOPS = [
   { id:"reproductive-cadaver", title:"Reproductive Cadaver Loop", module:"Reproductive System", icon:"repro", unit:"Reproductive (Cadaver)", subtitle:"Female & male pelvic cadaver: organs, ducts, ligaments, penis & spermatic cord", dir:"reproductive-cadaver", type:"slide", credit:CADAVER_CREDIT, pairs:buildPairs(REPRODUCTIVE_CADAVER_LABELS) },
   { id:"respiratory", title:"Respiratory Loop", module:"Respiratory System", icon:"lungs", unit:"Respiratory System", subtitle:"Airways, lungs, larynx, pleura & bronchial tree", dir:"respiratory", type:"slide", pairs:buildPairs(RESPIRATORY_LABELS) },
   { id:"heart", title:"Heart Loop", module:"Cardiovascular System", icon:"heart", unit:"The Heart", subtitle:"Chambers, valves, great vessels, coronary & conduction", dir:"heart", type:"slide", pairs:buildPairs(HEART_LABELS) },
-  { id:"neuro-brain", title:"Brain: Lateral & Superior", module:"Nervous System", icon:"brain", unit:"Brain (Lateral & Superior)", subtitle:"Lobes, gyri, sulci, fissures & dural folds (lateral & superior views)", dir:"neuro-brain", type:"slide", pairs:buildPairs(NEURO_BRAIN_LABELS) }
+  { id:"neuro-brain", title:"Brain: Lateral & Superior", module:"Nervous System", icon:"brain", unit:"Brain (Lateral & Superior)", subtitle:"Lobes, gyri, sulci, fissures & dural folds (lateral & superior views)", dir:"neuro-brain", type:"slide", pairs:buildPairs(NEURO_BRAIN_LABELS) },
+  { id:"neuro-brain-midsagittal", title:"Brain: Midsagittal", module:"Nervous System", icon:"brain", unit:"Brain (Midsagittal)", subtitle:"Corpus callosum, ventricles, diencephalon, brainstem & cerebellum (midsagittal section)", dir:"neuro-brain-midsagittal", type:"slide", pairs:buildPairs(NEURO_MIDSAGITTAL_LABELS) }
 ];
 /* Loops made with the Loop Builder load from custom-loops.js and merge in here. */
 if(window.CUSTOM_LOOPS && window.CUSTOM_LOOPS.length){
