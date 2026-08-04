@@ -720,16 +720,14 @@ const NEURO_MIDSAGITTAL_LABELS = ["Cingulate Gyrus", "Cingulate Sulcus", "Corpus
 const NEURO_BRAIN_LABELS = ["Precentral Gyrus; Primary Motor Cortex", "Cerebellum", "Temporal Lobe", "Occipital Lobe", "Parietal Lobe", "Frontal Lobe", "Postcentral Gyrus; Primary Sensory Cortex", "Central Sulcus", "Lateral Sulcus", "Transverse Fissure", "Tentorium Cerebelli", "Supramarginal Gyrus", "Angular Gyrus", "Inferior Frontal Gyrus", "Longitudinal Fissure", "Falx Cerebri", "Central Sulcus", "Precentral Gyrus; Primary Motor Cortex", "Postcentral Gyrus; Primary Sensory Cortex", "Frontal Lobe", "Parietal Lobe", "Left Cerebral Cortex", "Right Cerebral Cortex"];
 
 /* Spinal cord deck: NO cover slide - page 1 is already a question.
-   Pairs are explicit [questionPage, answerPage, label] so page numbers match
-   the source PDF 1:1 (images/spine/sNN.jpg == PDF page NN).
-   Note: [31,30] is intentionally reversed - that pair is answer-first in the deck.
-   Two items are held out pending source fixes - see the commented block below. */
+   Explicit [questionPage, answerPage, label] so image numbers match the
+   source PDF 1:1 (images/spine/sNN.jpg == PDF page NN). */
 const SPINE_PAIRS = [
   [1,2,"Cervical Enlargement"],
   [3,4,"Lumbar Enlargement"],
-  /* [5,6,"Dura Mater"] - HELD OUT: slide 5 is a pixel-identical duplicate of the
-     answer slide 6, so the question would spoil itself. Re-enable once slide 5
-     is replaced with an unlabeled version. */
+  /* [5,6,"Dura Mater"] - HELD OUT: slide 5 is still a pixel-identical
+     duplicate of answer slide 6, so the question spoils itself.
+     Re-enable this line once slide 5 is replaced with an unlabeled version. */
   [7,8,"Filum Terminale"],
   [9,10,"Cauda Equina"],
   [11,12,"Dura Mater"],
@@ -738,43 +736,42 @@ const SPINE_PAIRS = [
   [17,18,"Dorsal Root Ganglion"],
   [19,20,"Conus Medullaris"],
   [21,22,"Spinal Cord"],
-  /* [??,23,"Cauda Equina"] - HELD OUT: slide 23 is an answer with no question
-     slide preceding it. Re-enable once an unlabeled question slide is added. */
-  [24,25,"Spinal Cord"],
-  [26,27,"Sympathetic Chain"],
-  [28,29,"Lumbar Enlargement"],
-  [31,30,"Cervical Enlargement"],
-  [32,33,"Lateral Horn"],
-  [34,35,"Dorsal Horn"],
-  [36,37,"Ventral Horn"],
-  [38,39,"Grey Commissure"],
-  [40,41,"Central Canal"],
-  [42,43,"Dorsal Root"],
-  [44,45,"Dorsal Root Ganglion"],
-  [46,47,"Mixed Spinal Nerve"],
-  [48,49,"Dorsal Horn"],
-  [50,51,"Ventral Ramus"],
-  [52,53,"Ventral Root"],
-  [54,55,"Gray Ramus Communicantes"],
-  [56,57,"White Ramus Communicantes"],
-  [58,59,"Dorsal Ramus"],
-  [60,61,"Lateral Horn"],
-  [62,63,"Ventral Horn"],
-  [64,65,"Grey Commissure"],
-  [66,67,"Central Canal"],
-  [68,69,"Lumbar Plexus"],
-  [70,71,"Sacral Plexus"],
-  [72,73,"Cervical Plexus"],
-  [74,75,"Brachial Plexus"],
-  [76,77,"Sympathetic Chain"],
-  [78,79,"Brachial Plexus"],
-  [80,81,"Spinal Cord"],
-  [82,83,"Conus Medullaris"],
-  [84,85,"Filum Terminale"],
-  [86,87,"Cauda Equina"],
-  [88,89,"Cervical Enlargement"],
-  [90,91,"Lumbar Enlargement"],
-  [92,93,"Sympathetic Chain"]
+  [23,24,"Cauda Equina"],
+  [25,26,"Spinal Cord"],
+  [27,28,"Sympathetic Chain"],
+  [29,30,"Lumbar Enlargement"],
+  [31,32,"Cervical Enlargement"],
+  [33,34,"Lateral Horn"],
+  [35,36,"Dorsal Horn"],
+  [37,38,"Ventral Horn"],
+  [39,40,"Grey Commissure"],
+  [41,42,"Central Canal"],
+  [43,44,"Dorsal Root"],
+  [45,46,"Dorsal Root Ganglion"],
+  [47,48,"Mixed Spinal Nerve"],
+  [49,50,"Dorsal Horn"],
+  [51,52,"Ventral Ramus"],
+  [53,54,"Ventral Root"],
+  [55,56,"Gray Rami Communicantes"],
+  [57,58,"White Rami Communicantes"],
+  [59,60,"Dorsal Ramus"],
+  [61,62,"Lateral Horn"],
+  [63,64,"Ventral Horn"],
+  [65,66,"Grey Commissure"],
+  [67,68,"Central Canal"],
+  [69,70,"Lumbar Plexus"],
+  [71,72,"Sacral Plexus"],
+  [73,74,"Cervical Plexus"],
+  [75,76,"Brachial Plexus"],
+  [77,78,"Sympathetic Chain"],
+  [79,80,"Brachial Plexus"],
+  [81,82,"Spinal Cord"],
+  [83,84,"Conus Medullaris"],
+  [85,86,"Filum Terminale"],
+  [87,88,"Cauda Equina"],
+  [89,90,"Cervical Enlargement"],
+  [91,92,"Lumbar Enlargement"],
+  [93,94,"Sympathetic Chain"]
 ];
 
 const LOOPS = [
