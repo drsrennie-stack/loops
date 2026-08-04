@@ -97,6 +97,29 @@
   .card.soon{cursor:not-allowed;opacity:.6;}
   .card.soon:hover{transform:none;box-shadow:var(--shadow-rest);border-color:var(--navy-tint);}
   .card.link-card{text-decoration:none;}
+  .exam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:4px 0 14px;}
+  .exam-field{display:flex;flex-direction:column;gap:6px;}
+  .exam-field>span{font-family:var(--font-eyebrow);font-weight:700;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--terra-dark);}
+  .exam-field select,.exam-field input{font:inherit;font-size:.95rem;padding:9px 10px;border:1px solid var(--navy-tint);border-radius:6px;background:#fff;color:var(--navy);width:100%;}
+  .exam-field input::placeholder{color:var(--navy);opacity:.4;}
+  .exam-actions{flex-wrap:wrap;gap:10px;}
+  .exam-hint{font-size:.82rem;color:var(--navy);opacity:.7;margin:12px 0 0;line-height:1.5;}
+  .exam-save{margin-top:22px;padding-top:18px;border-top:1px solid var(--navy-tint);}
+  .exam-save-h{font-family:var(--font-eyebrow);font-weight:700;font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--terra-dark);margin:0 0 10px;}
+  .exam-save-row{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+  .exam-save-row input{flex:1;min-width:190px;font:inherit;font-size:.92rem;padding:9px 10px;border:1px solid var(--navy-tint);border-radius:6px;background:#fff;color:var(--navy);}
+  .exam-save-row input::placeholder{color:var(--navy);opacity:.42;}
+  .exam-list{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+  .exam-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--navy-tint);border-radius:8px;background:#fff;flex-wrap:wrap;}
+  .exam-item .ei-name{font-weight:700;color:var(--navy);flex:1;min-width:150px;}
+  .exam-item .ei-meta{font-size:.75rem;color:var(--navy);opacity:.62;width:100%;}
+  .exam-item .ei-code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;color:var(--terra-dark);background:var(--navy-tint);padding:3px 7px;border-radius:4px;}
+  .exam-item button{font:inherit;font-size:.8rem;font-weight:700;padding:6px 11px;border:1px solid var(--navy-tint);border-radius:6px;background:#fff;color:var(--navy);cursor:pointer;}
+  .exam-item button:hover{border-color:var(--terra-dark);color:var(--terra-dark);}
+  .exam-item button.ei-del:hover{border-color:#B3453A;color:#B3453A;}
+  .exam-empty{font-size:.85rem;color:var(--navy);opacity:.6;}
+
+
   .badge{display:inline-block;align-self:flex-start;font-family:var(--font-eyebrow);font-weight:700;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);border:1px solid var(--terra-dark);padding:.28rem .7rem;border-radius:999px;}
 
   /* ---------- PLAYER ---------- */
@@ -588,6 +611,73 @@
       </div>
     </section>
 
+    <!-- ============ EXAM MODE ============ -->
+    <section class="builder" id="exam" hidden aria-label="Exam mode">
+      <div class="pbar">
+        <button class="back" id="examBack" type="button">&larr; All loops</button>
+        <span class="ploop-title">Exam mode</span>
+      </div>
+      <div class="builder-card">
+        <p class="builder-instr">Builds a timed, mixed set the way a lab practical is written: half neuro, half cumulative with every body system represented equally.</p>
+
+        <div class="exam-grid">
+          <label class="exam-field"><span>Questions</span>
+            <select id="exTotal">
+              <option value="20">20</option><option value="30">30</option>
+              <option value="40">40</option><option value="50">50</option>
+              <option value="60" selected>60</option>
+            </select>
+          </label>
+          <label class="exam-field"><span>Seconds each</span>
+            <select id="exSecs">
+              <option value="20">20 sec</option><option value="30">30 sec</option>
+              <option value="45" selected>45 sec</option><option value="60">1 min</option>
+              <option value="90">1 min 30</option><option value="120">2 min</option>
+            </select>
+          </label>
+          <label class="exam-field"><span>Neuro share</span>
+            <select id="exNeuro">
+              <option value="0">None</option><option value="25">25%</option>
+              <option value="50" selected>50%</option><option value="75">75%</option>
+              <option value="100">All neuro</option>
+            </select>
+          </label>
+          <label class="exam-field"><span>Per slide</span>
+            <select id="exPer">
+              <option value="1" selected>1 image</option>
+              <option value="2">2 images</option>
+            </select>
+          </label>
+          <label class="exam-field"><span>Seed</span>
+            <input id="exSeed" type="text" inputmode="numeric" placeholder="random" autocomplete="off">
+          </label>
+        </div>
+
+        <p class="builder-note" id="exNote"></p>
+
+        <div class="builder-actions exam-actions">
+          <button class="tbtn play" id="exStart" type="button">Practice this set &#9654;</button>
+          <button class="tbtn" id="exExport" type="button">Download exam file</button>
+          <button class="tbtn" id="exKey" type="button">Download answer key</button>
+        </div>
+        <p class="exam-hint">Practice runs here with answers and self-scoring. The downloaded file is a locked, answer-free slideshow for projecting &mdash; keep the key on your own machine.</p>
+
+        <div class="exam-save">
+          <p class="exam-save-h">Save this exam</p>
+          <div class="exam-save-row">
+            <input id="exName" type="text" placeholder="e.g. Lab Practical 3 &mdash; Section A" autocomplete="off">
+            <button class="tbtn" id="exSave" type="button">Save</button>
+          </div>
+          <p class="exam-hint">Saved on this browser. Each one also gets a code you can type on any other computer to rebuild the identical exam.</p>
+          <div class="exam-save-row">
+            <input id="exCode" type="text" placeholder="Open a code, e.g. 60-50-45-1-4821906" autocomplete="off">
+            <button class="tbtn" id="exLoad" type="button">Open code</button>
+          </div>
+          <div id="exList" class="exam-list"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ MY PROGRESS DASHBOARD ============ -->
     <section class="dash" id="dash" hidden aria-label="My progress">
       <div class="pbar">
@@ -713,13 +803,66 @@ function buildSlidePairs(items, swapSet){
   return pairs;
 }
 
-const FACIAL_LABELS = ["Temporalis", "Frontalis (Frontal Belly of Occipitofrontalis)", "Galea Aponeurotica (Epicranial Aponeurosis)", "Occipitalis (Occipital Belly of Occipitofrontalis)", "Sternocleidomastoid", "Masseter", "Buccinator", "Risorius", "Depressor Anguli Oris", "Zygomaticus Major", "Levator Labii Superioris", "Nasalis", "Zygomaticus Minor", "Orbicularis Oculi", "Orbicularis Oris", "Depressor Anguli Oris", "Depressor Labii Inferioris", "Mentalis", "Omohyoid (Superior Belly)", "Omohyoid (Inferior Belly)", "Sternohyoid"];
-const EYE_MUSCLES_LABELS = ["Medial Rectus", "Inferior Rectus", "Superior Rectus (Cut)", "Lateral Rectus", "Medial Rectus", "CN III Oculomotor", "Inferior Rectus", "CN III Oculomotor", "Inferior Oblique", "CN III Oculomotor", "Lateral Rectus", "CN VI Abducens", "Superior Oblique", "CN IV Trochlear Nerve"];
 const NEURO_CN_LABELS = ["CN I Olfactory Nerve", "CN II Optic Nerve", "CN III Oculomotor Nerve", "CN IV Trochlear Nerve", "CN V Trigeminal Nerve", "CN VI Abducens Nerve", "CN VII Facial Nerve", "CN VIII Vestibulocochlear Nerve", "CN IX Glossopharyngeal Nerve", "CN X Vagus Nerve", "CN XI Accessory Nerve", "CN XII Hypoglossal Nerve"];
 const NEURO_INFERIOR_LABELS = ["Olfactory Bulb", "Olfactory Tract", "Frontal Lobe", "Temporal Lobe", "Occipital Lobe", "Parahippocampal Gyrus", "Inferior Temporal Gyrus", "Optic Nerve", "Optic Chiasm", "Optic Tract", "Mammillary Body", "Crus Cerebri", "Superior Colliculus", "Central Canal"];
 const NEURO_COW_LABELS = ["Anterior Cerebral Artery", "Anterior Communicating Artery", "Anterior Cerebral Artery", "Internal Carotid Artery", "Middle Cerebral Artery", "Posterior Communicating Artery", "Posterior Cerebral Artery", "Superior Cerebellar Artery", "Basilar Artery", "Anterior Inferior Cerebellar Artery", "Vertebral Artery", "Posterior Inferior Cerebellar Artery", "Anterior Spinal Artery"];
 const NEURO_MIDSAGITTAL_LABELS = ["Cingulate Gyrus", "Cingulate Sulcus", "Corpus Callosum", "Septum Pellucidum", "Sulcus of the Corpus Callosum", "Lateral Ventricle", "Fornix", "Choroid Plexus", "Ependymal Cells; Produce CSF", "Thalamus", "Massa Intermedia (Interthalamic Adhesion)", "3rd Ventricle", "Hypothalamus", "Infundibulum", "Optic Chiasm", "Mammillary Body", "Pineal Gland", "Melatonin", "Corpora Quadrigemina", "Superior Colliculus", "Inferior Colliculus", "Cerebral Aqueduct", "Interventricular Foramen of Monro", "4th Ventricle", "Cerebellum", "Midbrain", "Basilar Pons", "Medulla Oblongata", "Folia", "Arbor Vitae"];
 const NEURO_BRAIN_LABELS = ["Precentral Gyrus; Primary Motor Cortex", "Cerebellum", "Temporal Lobe", "Occipital Lobe", "Parietal Lobe", "Frontal Lobe", "Postcentral Gyrus; Primary Sensory Cortex", "Central Sulcus", "Lateral Sulcus", "Transverse Fissure", "Tentorium Cerebelli", "Supramarginal Gyrus", "Angular Gyrus", "Inferior Frontal Gyrus", "Longitudinal Fissure", "Falx Cerebri", "Central Sulcus", "Precentral Gyrus; Primary Motor Cortex", "Postcentral Gyrus; Primary Sensory Cortex", "Frontal Lobe", "Parietal Lobe", "Left Cerebral Cortex", "Right Cerebral Cortex"];
+
+/* Spinal cord deck: NO cover slide - page 1 is already a question.
+   Explicit [questionPage, answerPage, label] so image numbers match the
+   source PDF 1:1 (images/spine/sNN.jpg == PDF page NN). */
+const SPINE_PAIRS = [
+  [1,2,"Cervical Enlargement"],
+  [3,4,"Lumbar Enlargement"],
+  /* [5,6,"Dura Mater"] - HELD OUT: slide 5 is still a pixel-identical
+     duplicate of answer slide 6, so the question spoils itself.
+     Re-enable this line once slide 5 is replaced with an unlabeled version. */
+  [7,8,"Filum Terminale"],
+  [9,10,"Cauda Equina"],
+  [11,12,"Dura Mater"],
+  [13,14,"Arachnoid Mater"],
+  [15,16,"Pia Mater"],
+  [17,18,"Dorsal Root Ganglion"],
+  [19,20,"Conus Medullaris"],
+  [21,22,"Spinal Cord"],
+  [23,24,"Cauda Equina"],
+  [25,26,"Spinal Cord"],
+  [27,28,"Sympathetic Chain"],
+  [29,30,"Lumbar Enlargement"],
+  [31,32,"Cervical Enlargement"],
+  [33,34,"Lateral Horn"],
+  [35,36,"Dorsal Horn"],
+  [37,38,"Ventral Horn"],
+  [39,40,"Grey Commissure"],
+  [41,42,"Central Canal"],
+  [43,44,"Dorsal Root"],
+  [45,46,"Dorsal Root Ganglion"],
+  [47,48,"Mixed Spinal Nerve"],
+  [49,50,"Dorsal Horn"],
+  [51,52,"Ventral Ramus"],
+  [53,54,"Ventral Root"],
+  [55,56,"Gray Rami Communicantes"],
+  [57,58,"White Rami Communicantes"],
+  [59,60,"Dorsal Ramus"],
+  [61,62,"Lateral Horn"],
+  [63,64,"Ventral Horn"],
+  [65,66,"Grey Commissure"],
+  [67,68,"Central Canal"],
+  [69,70,"Lumbar Plexus"],
+  [71,72,"Sacral Plexus"],
+  [73,74,"Cervical Plexus"],
+  [75,76,"Brachial Plexus"],
+  [77,78,"Sympathetic Chain"],
+  [79,80,"Brachial Plexus"],
+  [81,82,"Spinal Cord"],
+  [83,84,"Conus Medullaris"],
+  [85,86,"Filum Terminale"],
+  [87,88,"Cauda Equina"],
+  [89,90,"Cervical Enlargement"],
+  [91,92,"Lumbar Enlargement"],
+  [93,94,"Sympathetic Chain"]
+];
 
 const LOOPS = [
   { id:"intro", title:"Introduction Loop", module:"Fundamentals", icon:"book", unit:"Intro to Anatomy", subtitle:"Regions, planes, cavities & quadrants", dir:"intro", type:"slide", pairs:buildPairs(LABELS) },
@@ -760,8 +903,7 @@ const LOOPS = [
   { id:"neuro-brain-cow", title:"Circle of Willis", module:"Neuro", icon:"brain", unit:"Circle of Willis", subtitle:"Cerebral arterial circle: ACA, ACoA, ICA, MCA, PCA, basilar, vertebral & cerebellar arteries", dir:"neuro-brain-cow", type:"slide", pairs:buildPairs(NEURO_COW_LABELS) },
   { id:"neuro-brain-inferior", title:"Brain: Inferior View", module:"Neuro", icon:"brain", unit:"Brain (Inferior View)", subtitle:"Inferior surface: olfactory & optic pathway, lobes, mammillary bodies, cerebral peduncles & brainstem", dir:"neuro-brain-inferior", type:"slide", pairs:buildPairs(NEURO_INFERIOR_LABELS) },
   { id:"neuro-cranial-nerves", title:"Cranial Nerves", module:"Neuro", icon:"brain", unit:"Cranial Nerves (I-XII)", subtitle:"Identify each cranial nerve on the brain & brainstem: name and Roman numeral", dir:"neuro-cranial-nerves", type:"slide", pairs:buildPairs(NEURO_CN_LABELS) },
-  { id:"eye-muscles", title:"Muscles of the Eye", module:"Neuro", icon:"muscle", unit:"Extraocular Muscles & Innervation", subtitle:"Recti & oblique muscles of the eye and their cranial nerve motor innervation", dir:"eye-muscles", type:"slide", pairs:buildPairs(EYE_MUSCLES_LABELS) },
-  { id:"muscles-facial-expression", title:"Muscles of Facial Expression", module:"Muscular System", icon:"muscle", unit:"Muscles of Facial Expression", subtitle:"Facial expression, scalp, mastication & neck muscles (model & cadaver)", dir:"muscles-facial-expression", type:"slide", pairs:buildPairs(FACIAL_LABELS) }
+  { id:"spine", title:"Spinal Cord Loop", module:"Neuro", icon:"spine", unit:"Spinal Cord & Spinal Nerves", subtitle:"Cord regions, meninges, cross-sectional gray matter, roots, rami & plexuses", dir:"spine", type:"slide", pairs:SPINE_PAIRS }
 ];
 /* Loops made with the Loop Builder load from custom-loops.js and merge in here. */
 if(window.CUSTOM_LOOPS && window.CUSTOM_LOOPS.length){
@@ -883,6 +1025,17 @@ function capImg(loop,k){ return `images/${loop.dir}/c${pad2(k)}.jpg`; }    /* ca
     +`<span class="cdesc">Mix topics or drill your weak cards for exam prep.</span>`
     +`<span class="go">Choose topics <span class="arr" aria-hidden="true">&rarr;</span></span></span>`;
   c.addEventListener('click',showBuilder);
+  grid.appendChild(c);
+})();
+/* Exam mode: blueprinted timed set, practice in-app or export to project */
+(function(){
+  const c=document.createElement('button');
+  c.className='card exam-card'; c.type='button';
+  c.innerHTML=`<span class="card-top">${badgeSVG({icon:'review',unit:'Exam Mode'})}</span>`
+    +`<span class="card-body"><span class="ctitle">Exam mode</span>`
+    +`<span class="cdesc">A timed practical: half neuro, half cumulative across every system.</span>`
+    +`<span class="go">Set it up <span class="arr" aria-hidden="true">&rarr;</span></span></span>`;
+  c.addEventListener('click',showExam);
   grid.appendChild(c);
 })();
 (function(){
@@ -1123,7 +1276,7 @@ function loopForever(){ return lenSel.value==='all' && !practiceOn(); }
 function buildOrder(){
   const total=stationN(cur);
   let base=Array.from({length:total},(_,i)=>i);
-  if(shuffleChk.checked || (cur && cur.type==='review')) shuffleArr(base);
+  if((shuffleChk.checked || (cur && cur.type==='review')) && !(cur && cur.fixedOrder)) shuffleArr(base);
   if(lenSel.value==='all'){ order=base; return; }
   const N=parseInt(lenSel.value,10)||total;
   order=[]; let pool=[];
@@ -1471,6 +1624,373 @@ function startReview(){
 document.getElementById('builderBack').addEventListener('click',hideBuilder);
 document.getElementById('builderStart').addEventListener('click',startReview);
 weakChk.addEventListener('change',updateBuilderNote);
+
+
+/* ---------------- EXAM MODE ----------------
+   Samples a blueprinted set from the live LOOPS data, so any loop added later
+   is picked up automatically. Practice runs in the normal player; the export
+   writes a standalone, answer-free slideshow for projecting. */
+const EXAM_NEURO_BRAIN=['neuro-brain','neuro-brain-midsagittal','neuro-brain-cow','neuro-brain-inferior','neuro-cranial-nerves'];
+const EXAM_NEURO_CORD=['spine'];
+const EXAM_NEURO_FACE=['muscles-head'];
+const EXAM_SYSTEMS={
+  'Fundamentals':['intro'],
+  'Cells & Tissues':['tissues','muscletissue'],
+  'Integumentary':['skin'],
+  'Skeletal':['bone','skull','appendicular','boneaxial2'],
+  'Muscular':['muscles-upper','muscles-lower','sarcomere','microanatomy','abdominal-muscles','abdominal-fascia','cadaver-ue','forearm-cadaver','upper-leg-cadaver','lower-leg-cadaver'],
+  'Digestive':['esophagus','parotid','stomach','pharynx','colon','pancreas','liver'],
+  'Urinary':['urinary','renal-micro'],
+  'Reproductive':['reproductive-female','reproductive-male','reproductive-cadaver'],
+  'Respiratory':['respiratory'],
+  'Cardiovascular':['heart']
+};
+
+function examRng(seed){ let s=seed>>>0||1; return function(){ s^=s<<13; s>>>=0; s^=s>>>17; s^=s<<5; s>>>=0; return (s%1e9)/1e9; }; }
+function examShuffle(a,r){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function examPool(ids){
+  const out=[];
+  ids.forEach(id=>{ const L=LOOPS.find(x=>x.id===id); if(!L||!L.pairs) return;
+    L.pairs.forEach((p,k)=>out.push({loop:L,idx:k,answer:p[2]})); });
+  return out;
+}
+/* take n, spreading across the loops in the pool and never repeating an answer */
+function examPick(pool,n,used,r){
+  const g={}; pool.forEach(q=>{ (g[q.loop.id]=g[q.loop.id]||[]).push(q); });
+  const keys=examShuffle(Object.keys(g),r);
+  keys.forEach(k=>g[k]=examShuffle(g[k],r));
+  const out=[]; let guard=0;
+  while(out.length<n && guard++<20000){
+    let moved=false;
+    for(const k of keys){
+      if(out.length>=n) break;
+      const bucket=g[k];
+      while(bucket.length){
+        const c=bucket.shift();
+        const key=(c.answer||'').toLowerCase().trim();
+        if(key && used.has(key)) continue;
+        if(key) used.add(key);
+        out.push(c); moved=true; break;
+      }
+    }
+    if(!moved) break;
+  }
+  return out;
+}
+function buildExam(total,neuroPct,seed){
+  const r=examRng(seed), used=new Set();
+  const nNeuro=Math.round(total*neuroPct/100);
+  const nCum=total-nNeuro;
+  const picked=[];
+  if(nNeuro>0){
+    /* facial expression is capped by its own pool; the rest splits between brain and cord */
+    const face=Math.min(Math.round(nNeuro*0.2), examPool(EXAM_NEURO_FACE).length);
+    const rest=nNeuro-face, brain=Math.ceil(rest/2), cord=rest-brain;
+    examPick(examPool(EXAM_NEURO_BRAIN),brain,used,r).forEach(q=>picked.push({...q,topic:'Brain'}));
+    examPick(examPool(EXAM_NEURO_CORD),cord,used,r).forEach(q=>picked.push({...q,topic:'Spinal cord'}));
+    examPick(examPool(EXAM_NEURO_FACE),face,used,r).forEach(q=>picked.push({...q,topic:'Facial expression'}));
+  }
+  if(nCum>0){
+    const names=Object.keys(EXAM_SYSTEMS);
+    const per=Math.floor(nCum/names.length);
+    let extra=nCum-per*names.length;
+    examShuffle(names,r).forEach(sys=>{
+      let want=per; if(extra>0){ want++; extra--; }
+      if(want>0) examPick(examPool(EXAM_SYSTEMS[sys]),want,used,r).forEach(q=>picked.push({...q,topic:sys}));
+    });
+  }
+  /* A section can run dry: a loop may hold more slides than distinct structures,
+     and dedupe rejects the repeats. Top up from the same half so the count still lands. */
+  if(picked.length<total){
+    const seen=new Set(picked.map(q=>q.loop.id+':'+q.idx));
+    const half=[];
+    if(nNeuro>0) half.push(...EXAM_NEURO_BRAIN,...EXAM_NEURO_CORD,...EXAM_NEURO_FACE);
+    if(nCum>0) Object.keys(EXAM_SYSTEMS).forEach(s=>half.push(...EXAM_SYSTEMS[s]));
+    const topicOf=id=>{
+      if(EXAM_NEURO_BRAIN.indexOf(id)>=0) return 'Brain';
+      if(EXAM_NEURO_CORD.indexOf(id)>=0) return 'Spinal cord';
+      if(EXAM_NEURO_FACE.indexOf(id)>=0) return 'Facial expression';
+      let t='Cumulative';
+      Object.keys(EXAM_SYSTEMS).forEach(s=>{ if(EXAM_SYSTEMS[s].indexOf(id)>=0) t=s; });
+      return t;
+    };
+    const spare=examShuffle(examPool(half).filter(q=>!seen.has(q.loop.id+':'+q.idx)),r);
+    for(const q of spare){
+      if(picked.length>=total) break;
+      picked.push({...q,topic:topicOf(q.loop.id)});
+      seen.add(q.loop.id+':'+q.idx);
+    }
+  }
+  return examShuffle(picked,r);
+}
+
+const examPanel=document.getElementById('exam');
+const exTotal=document.getElementById('exTotal'), exSecs=document.getElementById('exSecs');
+const exNeuro=document.getElementById('exNeuro'), exSeed=document.getElementById('exSeed');
+const exPer=document.getElementById('exPer');
+const exNote=document.getElementById('exNote');
+let examLast=null;
+
+function examSeed(){
+  const raw=(exSeed.value||'').trim();
+  if(raw && /^\d+$/.test(raw)) return parseInt(raw,10);
+  const s=Math.floor(Math.random()*1e8)+1;
+  exSeed.value=s; return s;
+}
+function examCurrent(regen){
+  if(!regen && examLast) return examLast;
+  const total=parseInt(exTotal.value,10);
+  const seed=examSeed();
+  examLast={ set:buildExam(total,parseInt(exNeuro.value,10),seed), seed:seed,
+             secs:parseInt(exSecs.value,10), per:parseInt(exPer.value,10),
+             total:total, neuro:parseInt(exNeuro.value,10) };
+  return examLast;
+}
+function examUpdate(){
+  examLast=null;
+  const e=examCurrent(true);
+  const pages=Math.ceil(e.set.length/e.per);
+  const mins=Math.round(pages*e.secs/60);
+  const tally={}; e.set.forEach(q=>tally[q.topic]=(tally[q.topic]||0)+1);
+  const parts=Object.keys(tally).sort().map(k=>k+' '+tally[k]);
+  const unit=e.per===1?'slide':'slides of two';
+  exNote.innerHTML='<b>'+e.set.length+' questions</b> &middot; '+pages+' '+unit+' at '+e.secs+'s &middot; about '+mins+' min'
+    +' &middot; code <b>'+examCode(e)+'</b><br>'+escHtml(parts.join(' · '));
+}
+[exTotal,exSecs,exNeuro,exPer].forEach(el=>el.addEventListener('change',()=>{ exSeed.value=''; examUpdate(); }));
+exSeed.addEventListener('change',()=>{ examLast=null; examUpdate(); });
+
+function showExam(){ examUpdate(); examRenderList(); hub.hidden=true; player.hidden=true; builder.hidden=true; dash.hidden=true; examPanel.hidden=false; if(examPanel.scrollIntoView) examPanel.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'}); notifyHeight(); }
+function hideExam(){ examPanel.hidden=true; hub.hidden=false; notifyHeight(); }
+document.getElementById('examBack').addEventListener('click',hideExam);
+
+document.getElementById('exStart').addEventListener('click',function(){
+  const e=examCurrent(false);
+  if(!e.set.length) return;
+  qSel.value=String(e.secs); lenSel.value='all'; savePrefs();
+  examPanel.hidden=true;
+  openLoop({ id:'exam-'+e.seed, title:'Practice Exam', type:'review', fixedOrder:true,
+    stations:e.set.map(q=>({loop:q.loop,idx:q.idx})),
+    subtitle:e.set.length+' questions, '+e.secs+'s each (seed '+e.seed+')' });
+});
+
+
+/* ---- saved exams ----
+   Only the recipe is stored (total / neuro share / seconds / per-slide / seed),
+   which is all it takes to rebuild the identical set. That keeps saves tiny and
+   makes the printed code portable to any other computer. */
+function examCode(e){ return [e.total,e.neuro,e.secs,e.per,e.seed].join('-'); }
+function examParseCode(str){
+  const m=String(str||'').trim().match(/^(\d+)-(\d+)-(\d+)-(\d+)-(\d+)$/);
+  if(!m) return null;
+  return {total:+m[1],neuro:+m[2],secs:+m[3],per:+m[4],seed:+m[5]};
+}
+function examSaved(){ try{ return JSON.parse(localStorage.getItem('loopExams')||'[]'); }catch(e){ return []; } }
+function examStore(list){ try{ localStorage.setItem('loopExams',JSON.stringify(list.slice(0,40))); }catch(e){} }
+function examApply(cfg){
+  exTotal.value=String(cfg.total); exNeuro.value=String(cfg.neuro);
+  exSecs.value=String(cfg.secs); exPer.value=String(cfg.per); exSeed.value=String(cfg.seed);
+  examLast=null; examUpdate();
+}
+function examRenderList(){
+  const list=examSaved(), box=document.getElementById('exList');
+  if(!list.length){ box.innerHTML='<p class="exam-empty">Nothing saved yet.</p>'; return; }
+  box.innerHTML='';
+  list.forEach((it,i)=>{
+    const row=document.createElement('div'); row.className='exam-item';
+    const when=new Date(it.at||Date.now()).toLocaleDateString();
+    row.innerHTML='<span class="ei-name">'+escHtml(it.name)+'</span>'
+      +'<span class="ei-code">'+escHtml(it.code)+'</span>'
+      +'<button type="button" data-a="open">Open</button>'
+      +'<button type="button" data-a="exam">Exam file</button>'
+      +'<button type="button" data-a="key">Key</button>'
+      +'<button type="button" class="ei-del" data-a="del">Remove</button>'
+      +'<span class="ei-meta">'+it.total+' questions &middot; '+it.secs+'s &middot; '
+      +(it.per===2?'two per slide':'one per slide')+' &middot; saved '+when+'</span>';
+    row.querySelectorAll('button').forEach(b=>b.addEventListener('click',function(){
+      const act=this.getAttribute('data-a');
+      if(act==='del'){ const l=examSaved(); l.splice(i,1); examStore(l); examRenderList(); return; }
+      const cfg=examParseCode(it.code); if(!cfg) return;
+      examApply(cfg);
+      const e=examCurrent(false);
+      if(act==='exam') examDownload('lab-exam-'+e.seed+'.html', examSlideshowHTML(examRows(e),e.secs,e.seed,e.per));
+      else if(act==='key') examDownload('lab-exam-'+e.seed+'-key.html', examKeyHTML(examRows(e),e.secs,e.seed));
+    }));
+    box.appendChild(row);
+  });
+}
+document.getElementById('exSave').addEventListener('click',function(){
+  const e=examCurrent(false);
+  const nameBox=document.getElementById('exName');
+  const name=(nameBox.value||'').trim() || ('Exam '+new Date().toLocaleDateString());
+  const list=examSaved();
+  const code=examCode(e);
+  if(!list.some(x=>x.code===code && x.name===name)){
+    list.unshift({name:name,code:code,total:e.total,secs:e.secs,per:e.per,at:Date.now()});
+    examStore(list);
+  }
+  nameBox.value='';
+  examRenderList();
+});
+document.getElementById('exLoad').addEventListener('click',function(){
+  const box=document.getElementById('exCode');
+  const cfg=examParseCode(box.value);
+  if(!cfg){ exNote.innerHTML='<b>That code did not read.</b> Codes look like 60-50-45-1-4821906.'; return; }
+  examApply(cfg); box.value='';
+});
+
+/* ---- standalone export ---- */
+function examDownload(name,html){
+  const b=new Blob([html],{type:'text/html'});
+  const u=URL.createObjectURL(b), a=document.createElement('a');
+  a.href=u; a.download=name; document.body.appendChild(a); a.click();
+  document.body.removeChild(a); setTimeout(()=>URL.revokeObjectURL(u),1000);
+}
+function examRows(e){
+  return e.set.map(q=>({ i:imgPath(q.loop,q.loop.pairs[q.idx][0]), a:q.answer, t:q.topic, u:q.loop.unit||q.loop.title }));
+}
+document.getElementById('exExport').addEventListener('click',function(){
+  const e=examCurrent(false);
+  examDownload('lab-exam-'+e.seed+'.html', examSlideshowHTML(examRows(e),e.secs,e.seed,e.per));
+});
+document.getElementById('exKey').addEventListener('click',function(){
+  const e=examCurrent(false);
+  examDownload('lab-exam-'+e.seed+'-key.html', examKeyHTML(examRows(e),e.secs,e.seed));
+});
+
+function examEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function examStyles(){
+  return ':root{--ink:#0B0E11;--panel:#12171C;--line:#232C34;--fg:#E8EDF1;--dim:#7C8B98;--cue:#4BA8DF;--warn:#E0A23F;--late:#DF5B4B}'
+   +'*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%}'
+   +'body{background:var(--ink);color:var(--fg);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;overflow:hidden;-webkit-font-smoothing:antialiased}'
+   +'.screen{position:fixed;inset:0;display:none;flex-direction:column}.screen.on{display:flex}'
+   +'#start{align-items:center;justify-content:center;text-align:center;padding:6vh 5vw;overflow:auto}'
+   +'.eyebrow{font-size:clamp(11px,1.1vw,14px);letter-spacing:.34em;text-transform:uppercase;color:var(--cue);margin-bottom:1.6rem}'
+   +'h1{font-size:clamp(2.4rem,6.4vw,5.2rem);font-weight:700;letter-spacing:-.03em;line-height:.95}'
+   +'.sub{color:var(--dim);font-size:clamp(.95rem,1.7vw,1.3rem);margin-top:1.1rem}'
+   +'.facts{display:flex;margin:3rem 0 2.4rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);flex-wrap:wrap;justify-content:center}'
+   +'.fact{padding:1.3rem 2.2rem;border-right:1px solid var(--line)}.fact:last-child{border-right:0}'
+   +'.fact b{display:block;font-size:clamp(1.5rem,3.4vw,2.4rem);font-weight:700;letter-spacing:-.02em}'
+   +'.fact span{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.45rem}'
+   +'button{font:inherit;font-size:clamp(1rem,1.7vw,1.25rem);font-weight:600;background:var(--cue);color:#04121D;border:0;border-radius:2px;padding:1.05rem 3.4rem;cursor:pointer}'
+   +'button:hover{filter:brightness(1.1)}button:focus-visible{outline:3px solid var(--fg);outline-offset:3px}'
+   +'.keys{margin-top:2.6rem;color:var(--dim);font-size:clamp(.72rem,1.05vw,.85rem);line-height:2}'
+   +'kbd{background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:.15rem .5rem;font-family:inherit;color:var(--fg)}'
+   +'#bar{display:flex;align-items:center;gap:1.6rem;padding:.85rem 1.6rem;border-bottom:1px solid var(--line);background:var(--panel);flex:0 0 auto}'
+   +'#qno{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:700;line-height:1;white-space:nowrap}'
+   +'#qno small{color:var(--dim);font-weight:400;font-size:.5em}'
+   +'#track{flex:1;height:5px;background:var(--line);border-radius:99px;overflow:hidden}'
+   +'#fill{height:100%;width:100%;background:var(--cue);transform-origin:left center}'
+   +'#clock{font-size:clamp(1.5rem,3vw,2.3rem);font-weight:700;line-height:1;min-width:2.6ch;text-align:right;font-variant-numeric:tabular-nums}'
+   +'#stage{flex:1;position:relative;min-height:0}'
+   +'#stage img{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;opacity:0;transition:opacity .18s ease}'
+   +'#stage img.on{opacity:1}'
+   +'.page{position:absolute;inset:0;display:none;gap:14px;padding:14px}'
+   +'.page.on{display:flex}'
+   +'.pane{flex:1;display:flex;flex-direction:column;min-width:0;gap:8px}'
+   +'.pane .tag{flex:0 0 auto;font-size:clamp(1.1rem,2.2vw,1.7rem);font-weight:700;color:var(--cue);letter-spacing:-.01em;line-height:1}'
+   +'.pane .holder{flex:1;position:relative;min-height:0;border:1px solid var(--line);border-radius:2px}'
+   +'.pane img{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;opacity:1}'
+   +'@media (max-width:820px){.page{flex-direction:column}}'
+   +'#paused{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(11,14,17,.93);z-index:5}'
+   +'#paused.on{display:flex}#paused b{display:block;font-size:clamp(1.6rem,4vw,2.8rem)}'
+   +'#paused span{display:block;color:var(--dim);margin-top:.7rem}'
+   +'body.running{cursor:none}body.running.showcursor{cursor:default}'
+   +'#done{align-items:center;justify-content:center;text-align:center;padding:5vw}'
+   +'#done h2{font-size:clamp(2rem,6vw,4.4rem);font-weight:700;letter-spacing:-.03em}'
+   +'#done p{color:var(--dim);margin-top:1.2rem;font-size:clamp(1rem,1.8vw,1.35rem)}'
+   +'@media (prefers-reduced-motion:reduce){*{transition:none!important}}';
+}
+function examRunner(){
+  return 'var Q=window.__Q,SEC=window.__SEC,PER=window.__PER||1;'
+   +'var el=function(i){return document.getElementById(i)},stage=el("stage"),fill=el("fill"),clock=el("clock"),qno=el("qno");'
+   +'var idx=0,left=SEC,timer=null,paused=false,pages=[],pel=[];'
+   +'for(var k=0;k<Q.length;k+=PER)pages.push(Q.slice(k,k+PER));'
+   +'pages.forEach(function(pg,pi){var d=document.createElement("div");d.className="page";'
+   +'pg.forEach(function(q,j){var n=pi*PER+j+1;'
+   +'var pane=document.createElement("div");pane.className="pane";'
+   +'var tag=document.createElement("div");tag.className="tag";tag.textContent=String(n);'
+   +'var hold=document.createElement("div");hold.className="holder";'
+   +'var im=document.createElement("img");im.alt="Question "+n;im.decoding="async";if(pi>1)im.loading="lazy";im.src=q.i;'
+   +'hold.appendChild(im);pane.appendChild(tag);pane.appendChild(hold);d.appendChild(pane);});'
+   +'stage.appendChild(d);pel.push(d);});'
+   +'function paint(){pel.forEach(function(d,n){d.classList.toggle("on",n===idx)});'
+   +'var lo=idx*PER+1,hi=Math.min((idx+1)*PER,Q.length);'
+   +'qno.innerHTML=(PER>1&&hi>lo?lo+"&ndash;"+hi:lo)+" <small>/ "+Q.length+"</small>";'
+   +'for(var n=idx+1;n<=idx+2&&n<pel.length;n++)pel[n].querySelectorAll("img").forEach(function(im){im.loading="eager"});}'
+   +'function reset(){left=SEC;clock.textContent=SEC;fill.style.transform="scaleX(1)";fill.style.background="var(--cue)";clock.style.color="var(--fg)";}'
+   +'function tick(){left--;clock.textContent=left<0?0:left;fill.style.transform="scaleX("+Math.max(0,left)/SEC+")";'
+   +'var c=left<=5?"var(--late)":left<=12?"var(--warn)":"var(--cue)";fill.style.background=c;clock.style.color=left<=5?"var(--late)":left<=12?"var(--warn)":"var(--fg)";if(left<=0)next();}'
+   +'function next(){if(idx>=pel.length-1){finish();return}idx++;paint();reset();}'
+   +'function prev(){if(idx>0){idx--;paint();reset();}}'
+   +'function show(id){["start","exam","done"].forEach(function(s){el(s).classList.toggle("on",s===id)});}'
+   +'function finish(){clearInterval(timer);document.body.classList.remove("running");show("done");}'
+   +'function begin(){idx=0;paused=false;el("paused").classList.remove("on");show("exam");document.body.classList.add("running");paint();reset();clearInterval(timer);timer=setInterval(function(){if(!paused)tick()},1000);}'
+   +'el("go").addEventListener("click",begin);'
+   +'document.addEventListener("keydown",function(e){var on=el("exam").classList.contains("on");'
+   +'if(e.key==="f"||e.key==="F"){e.preventDefault();document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();return}'
+   +'if(e.key==="r"||e.key==="R"){e.preventDefault();clearInterval(timer);document.body.classList.remove("running");show("start");return}'
+   +'if(!on){if(e.key==="Enter"||e.code==="Space"){e.preventDefault();if(el("start").classList.contains("on"))begin()}return}'
+   +'if(e.code==="Space"){e.preventDefault();paused=!paused;el("paused").classList.toggle("on",paused)}'
+   +'else if(e.key==="ArrowRight"){e.preventDefault();next()}'
+   +'else if(e.key==="ArrowLeft"){e.preventDefault();prev()}});'
+   +'var ct;document.addEventListener("mousemove",function(){document.body.classList.add("showcursor");clearTimeout(ct);ct=setTimeout(function(){document.body.classList.remove("showcursor")},1500)});';
+}
+function examSlideshowHTML(rows,secs,seed,per){
+  per=per||1;
+  var pages=Math.ceil(rows.length/per);
+  var mins=Math.round(pages*secs/60);
+  var data=JSON.stringify(rows.map(function(r){return {i:r.i};}));
+  var perLabel=per>1?'Per two slides':'Per slide';
+  var secLabel=secs>=60?(Math.floor(secs/60)+'m'+(secs%60?' '+(secs%60)+'s':'')):(secs+'s');
+  return '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
+   +'<meta name="viewport" content="width=device-width,initial-scale=1">'
+   +'<title>Lab Practical &mdash; '+rows.length+' Questions</title><style>'+examStyles()+'</style></head><body>'
+   +'<section id="start" class="screen on"><div>'
+   +'<p class="eyebrow">Anatomy &amp; Physiology</p><h1>Lab Practical</h1>'
+   +'<p class="sub">Write the name of the structure marked on each slide.</p>'
+   +'<div class="facts"><div class="fact"><b>'+rows.length+'</b><span>Questions</span></div>'
+   +'<div class="fact"><b>'+secLabel+'</b><span>'+perLabel+'</span></div>'
+   +'<div class="fact"><b>'+mins+'</b><span>Minutes total</span></div></div>'
+   +'<button id="go">Start the exam</button>'
+   +'<p class="keys"><kbd>Space</kbd> pause &amp; resume &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> step between slides &middot; '
+   +'<kbd>F</kbd> full screen &middot; <kbd>R</kbd> restart<br>'
+   +(per>1?'Two questions per slide. Answer both before it advances.':'Slides advance on their own.')+'</p></div></section>'
+   +'<section id="exam" class="screen"><header id="bar"><div id="qno">1 <small>/ '+rows.length+'</small></div>'
+   +'<div id="track"><div id="fill"></div></div><div id="clock">'+secs+'</div></header>'
+   +'<div id="stage"><div id="paused"><div><b>Paused</b><span>Press Space to resume</span></div></div></div></section>'
+   +'<section id="done" class="screen"><div><h2>Time</h2><p>Put your pencils down and hand in your answer sheet.</p></div></section>'
+   +'<!-- seed '+seed+' -->'
+   +'<script>window.__Q='+data+';window.__SEC='+secs+';window.__PER='+per+';<\/script>'
+   +'<script>'+examRunner()+'<\/script></body></html>';
+}
+function examKeyHTML(rows,secs,seed){
+  var body=rows.map(function(r,n){
+    return '<tr><td class="n">'+(n+1)+'</td><td class="th"><img src="'+examEsc(r.i)+'" alt=""></td>'
+     +'<td class="ans">'+examEsc(r.a)+'</td><td class="src">'+examEsc(r.t)+'<span>'+examEsc(r.u)+'</span></td></tr>';
+  }).join('');
+  return '<!DOCTYPE html>\n<html lang="en"><head><meta charset="utf-8">'
+   +'<meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab Practical &mdash; Answer Key</title><style>'
+   +':root{--ink:#15191D;--dim:#6C7A86;--line:#DDE3E8;--cue:#1E7FBF}'
+   +'*{box-sizing:border-box;margin:0;padding:0}'
+   +'body{background:#fff;color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;padding:2.5rem 2rem 4rem;line-height:1.45}'
+   +'header{max-width:1080px;margin:0 auto 2rem;border-bottom:2px solid var(--ink);padding-bottom:1.1rem}'
+   +'.eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--cue);margin-bottom:.5rem}'
+   +'h1{font-size:2rem;letter-spacing:-.02em}.meta{color:var(--dim);font-size:.85rem;margin-top:.5rem}'
+   +'.warn{max-width:1080px;margin:0 auto 1.6rem;background:#FDF3E3;border-left:3px solid #C98A22;padding:.8rem 1rem;font-size:.85rem}'
+   +'table{max-width:1080px;margin:0 auto;border-collapse:collapse;width:100%}'
+   +'td{border-bottom:1px solid var(--line);padding:.6rem .7rem;vertical-align:middle}'
+   +'.n{width:3.2rem;font-weight:700;font-size:1.05rem;color:var(--cue);text-align:right;font-variant-numeric:tabular-nums}'
+   +'.th{width:150px}.th img{width:140px;height:79px;object-fit:cover;border:1px solid var(--line);display:block}'
+   +'.ans{font-weight:600;font-size:1rem}'
+   +'.src{width:230px;font-size:.75rem;color:var(--dim);text-align:right}'
+   +'.src span{display:block;font-size:.7rem;opacity:.8;margin-top:.15rem}'
+   +'@media print{body{padding:.5in}.th img{width:96px;height:54px}tr{break-inside:avoid}.warn{display:none}}'
+   +'</style></head><body><header><p class="eyebrow">Instructor copy</p><h1>Lab Practical &mdash; Answer Key</h1>'
+   +'<p class="meta">'+rows.length+' questions &middot; '+secs+'s per slide &middot; seed '+seed+'</p></header>'
+   +'<div class="warn">Keep this off the projector. It is a separate file for that reason.</div>'
+   +'<table>'+body+'</table></body></html>';
+}
 
 /* ---------------- MY PROGRESS DASHBOARD ---------------- */
 const dash=document.getElementById('dash');
