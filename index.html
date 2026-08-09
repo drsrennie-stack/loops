@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anatomy Loops</title>
+<title>Anatomy Loops, new engine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -277,8 +277,2025 @@
   </div>
 </div>
 
-<script src="loops-engine-content.js"></script>
-<script src="loops-engine.js"></script>
+<script>
+/* ==== content, inlined ==== */
+/* ===========================================================================
+   Anatomy Loops, content file
+
+   You do not open this file to use the app. index.html loads it.
+   It is here so you CAN open it when you want to change an answer.
+
+   Each station is one slide:
+     q    the question image number, images/<dir>/sNN.jpg
+     a    the answer image number
+     ans  one entry per blank. Accepted in any order.
+     alt  other spellings that also count as correct.
+
+   To change an answer, edit the text in ans and save. Nothing else to do.
+   =========================================================================== */
+window.LOOPS_ENGINE_CONTENT = {
+  "schemaVersion": 1,
+  "course": "BIO 004",
+  "term": "Fall 2026",
+  "modules": [
+    {"n": 1, "short": "Foundations", "full": "Foundations, Histology and Integumentary", "weeks": "Weeks 1 to 4", "exam": "Lab Practical Exam 1, Thursday of Week 4"},
+    {"n": 2, "short": "Skeletal", "full": "Skeletal System and Joints", "weeks": "Weeks 5 to 7", "exam": "Lab Practical Exam 2, Tuesday of Week 8"},
+    {"n": 3, "short": "Heart and Upper", "full": "Heart, Head, Neck and Upper Limb", "weeks": "Weeks 8 to 11", "exam": "Lab Practical Exam 3, Thursday of Week 11"},
+    {"n": 4, "short": "Trunk and Lower", "full": "Respiratory, Digestive and Lower Limb", "weeks": "Weeks 12 to 14", "exam": "Lab Practical Exam 4, Thursday of Week 14"},
+    {"n": 5, "short": "Pelvis and Neuro", "full": "Urinary, Reproductive and Nervous System", "weeks": "Weeks 15 to 17", "exam": "Lab Practical Exam 5, Thursday of Week 17"}
+  ],
+  "systems": {"1": "Orientation and the Body Plan", "2": "Tissues (Histology)", "3": "Integumentary System", "4": "Skeletal System", "5": "Muscular System", "6": "Nervous System", "7": "Endocrine System", "8": "Cardiovascular System", "9": "Lymphatic System", "10": "Respiratory System", "11": "Digestive System", "12": "Urinary System", "13": "Reproductive System"},
+  "loops": [
+
+    /* ---------------------------------------------------------------
+       Module 1  |  Intro to Anatomy  |  44 stations
+       images/intro/
+       ---------------------------------------------------------------- */
+    {
+      "id": "intro",
+      "title": "Introduction Loop",
+      "unit": "Intro to Anatomy",
+      "subtitle": "Regions, planes, cavities & quadrants",
+      "dir": "intro",
+      "module": 1,
+      "systems": [1],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Patellar"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Lumbar"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Midsagittal plane"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Calcaneal"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Mammary"], "alt": {"Mammary": ["Pectoral"]}},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Scapular"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Brachial"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Sternal"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Axillary"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Popliteal"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Antebrachial"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Auricular (Otic)"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Pubic"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Transverse plane"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Crural"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Olecranal"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Acromial"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Cervical"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Dorsal cavity"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Abdominal cavity"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Parietal pleura"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Parasagittal plane"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["RUQ (gallbladder)"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Antecubital"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Oblique plane"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Vertebral"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Occipital"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["LUQ (spleen)"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Umbilical"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Sural"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Pollex"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Plantar"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["RLQ (appendix)"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Buccal"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Clavicular"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["Femoral"]},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Optic (orbital)"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Sacral"]},   /* card 38 */
+        {"q": 78, "a": 79, "ans": ["Gluteal"]},   /* card 39 */
+        {"q": 80, "a": 81, "ans": ["Hallux"]},   /* card 40 */
+        {"q": 82, "a": 83, "ans": ["Plantar"]},   /* card 41 */
+        {"q": 84, "a": 85, "ans": ["Mediastinum"]},   /* card 42 */
+        {"q": 86, "a": 87, "ans": ["Mediastinum contents"]},   /* card 43 */
+        {"q": 88, "a": 89, "ans": ["Mediastinum borders"]}   /* card 44 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 1  |  Tissues & Histology  |  31 stations
+       images/tissues/
+       ---------------------------------------------------------------- */
+    {
+      "id": "tissues",
+      "title": "Tissues Loop",
+      "unit": "Tissues & Histology",
+      "subtitle": "Epithelial & connective tissues, cells, muscle & nervous",
+      "dir": "tissues",
+      "module": 1,
+      "systems": [2],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Keratinized Stratified Squamous Epithelium. Location: skin"], "prose": true},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Stratified Cuboidal Epithelium. Free surface: lumen / apical surface"], "prose": true},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Transitional Epithelium. Accommodates stretch"], "prose": true},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Simple Squamous Epithelium. Filtration"], "prose": true},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Microvilli. Increase surface area for absorption"], "prose": true},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Simple Cuboidal Epithelium. Renal tubules or glands"], "prose": true},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Pseudostratified Ciliated Columnar Epithelium. Upper respiratory tract"], "prose": true},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Simple Squamous Epithelium. Alveoli of the lungs"], "prose": true},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Goblet Cell. Produces and secretes mucus"], "prose": true},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Non-Keratinized Stratified Squamous Epithelium. Protection from abrasion"], "prose": true},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Simple Columnar Epithelium. Stomach or intestines"], "prose": true},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Cilia. Move substances along the surface"], "prose": true},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["A: Fibroblast. B: Mast cell"], "prose": true},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Reticular Connective Tissue. Spleen, lymph nodes, tonsils"], "prose": true},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Compact Bone Tissue. Structural support; serum calcium regulation"], "prose": true},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Dense Irregular Connective Tissue. Dermis of the skin"], "prose": true},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Eosinophil. Allergy or parasitic worm infection"], "prose": true},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Elastic Connective Tissue. Muscular arteries; aorta"], "prose": true},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Dense Regular Connective Tissue. Tendon"], "prose": true},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Adipose Tissue. Around organs; behind the eyeball"], "prose": true},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Loose Areolar Connective Tissue. Arrow: elastic fiber"], "prose": true},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Basophil and Thrombocyte (platelet)"], "prose": true},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Monocyte. In tissue: macrophage"], "prose": true},   /* card 23 */
+        {"q": 49, "a": 48, "ans": ["Nervous Tissue; spinal cord. Region: dorsal horn"], "prose": true},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Neutrophil. Bacterial infection"], "prose": true},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Lymphocyte. Viral infection; possibly cancer"], "prose": true},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Motor End Plate (neuromuscular junction)"], "prose": true},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Skeletal Muscle Tissue. Striations: actin (light) and myosin (dark)"], "prose": true},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Smooth Muscle Tissue. Involuntary"], "prose": true},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Cardiac Muscle Tissue. Structure: intercalated disc"], "prose": true},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Nervous Tissue; spinal cord. A: gray matter"], "prose": true}   /* card 31 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 1  |  Skin  |  12 stations
+       images/skin/
+       ---------------------------------------------------------------- */
+    {
+      "id": "skin",
+      "title": "Integumentary Loop",
+      "unit": "Skin",
+      "subtitle": "Skin layers, glands & structures",
+      "dir": "skin",
+      "module": 1,
+      "systems": [3],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Layer: epidermis. Structure: Lamellated (Pacinian) corpuscle"], "prose": true},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Sebaceous gland and Hair bulb"], "prose": true},   /* card 2 */
+        {"q": 7, "a": 6, "ans": ["Layer: stratum granulosum. Structure: Meissner's corpuscle"], "prose": true},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Protein: keratin. Thin skin"], "prose": true},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Apocrine gland and Hair bulb"], "prose": true},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Hair root and Arrector pili muscle"], "prose": true},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Layer: stratum corneum. Structure: dermal papilla"], "prose": true},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Dense Irregular Connective Tissue. Papillary dermis"], "prose": true},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Tissue: Keratinized Stratified Squamous Epithelium. Layer: stratum lucidum"], "prose": true},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Hair shaft and Eccrine sweat gland"], "prose": true},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Layer: dermis. Papillary dermis and reticular dermis"], "prose": true},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Dips down: epidermal ridges. In the papilla: Meissner's corpuscles, free nerve endings, capillary loops"], "prose": true}   /* card 12 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 2  |  Bone Tissue  |  32 stations
+       images/bone/
+       ---------------------------------------------------------------- */
+    {
+      "id": "bone",
+      "title": "Bone Tissue Loop",
+      "unit": "Bone Tissue",
+      "subtitle": "Cartilage, bone tissue, osteon & bony landmarks",
+      "dir": "bone",
+      "module": 2,
+      "systems": [4],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Chondrocyte"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Articular Cartilage (surface)"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Lacuna"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Diaphysis"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Articular surface (epiphysis), nose, growth plate, ends of ribs, fetal skeleton"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Lacuna"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Elastic Cartilage"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Periosteum"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Canaliculi"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Osteon"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Chondrocytes"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Perichondrium"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Elastic Cartilage"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Interstitial Lamella"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Haversian Canal"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Metaphysis"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Hyaline Cartilage"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Volkmann's Canal"], "alt": {"Volkmann's Canal": ["Volkmanns Canal", "Volkmann s Canal"]}},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Circumferential Lamellae"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Perichondrium"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Concentric Lamellae"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Haversian (Central) Canal"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Epiphysis"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Canaliculi"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Fibrocartilage"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Lacuna"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Medullary Cavity"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Sharpey's Fibers"], "alt": {"Sharpey's Fibers": ["Sharpeys Fibers", "Sharpey s Fibers"]}},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Intervertebral disc, menisci, or pubic symphysis"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Compact Bone Tissue"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Lacuna with osteocyte"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Concentric Lamellae"]}   /* card 32 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 2  |  Axial Skull  |  31 stations
+       images/skull/
+       ---------------------------------------------------------------- */
+    {
+      "id": "skull",
+      "title": "Axial Skull Loop",
+      "unit": "Axial Skull",
+      "subtitle": "Cranial & facial bones, sutures, foramina & landmarks",
+      "dir": "skull",
+      "module": 2,
+      "systems": [4],
+      "credit": "specimen",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Occipital Bone"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Sphenoid Bone"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Sagittal Suture"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Nasal Bone"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Maxilla"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Supraorbital Foramen"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Perpendicular Plate of Ethmoid Bone"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Zygomatic Bone"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Temporal Bone"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Lambdoid Suture"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Frontal Bone"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Coronal (Frontal) Suture"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Middle Cranial Fossa"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Cribriform Plate"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Mandible"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Foramen Ovale"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Jugular Foramen"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Vomer"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Palatine Bone"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Choana"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Infraorbital Foramen"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Inferior Nuchal Line"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Anterior Nasal Spine"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Mental Protuberance"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Optic Foramen"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Mental Foramen"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["External Acoustic (Auditory) Meatus"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Lacrimal Canal"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Superior Orbital Fissure"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Coronoid Process"], "alt": {"Coronoid Process": ["Coranoid Process"]}},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Greater Cornu of the Hyoid Bone"]}   /* card 31 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 2  |  Appendicular Skeleton  |  41 stations
+       images/appendicular/
+       ---------------------------------------------------------------- */
+    {
+      "id": "appendicular",
+      "title": "Appendicular Loop",
+      "unit": "Appendicular Skeleton",
+      "subtitle": "Upper & lower limb bones, girdles & landmarks",
+      "dir": "appendicular",
+      "module": 2,
+      "systems": [4],
+      "credit": "specimen",
+      "verified": true,
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Iliac Crest", "Acetabulum"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Scapula", "Infraspinous Fossa"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Ischial Spine", "Obturator Foramen"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Clavicle", "Sternal End"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Femur", "Intercondylar Notch"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Humerus", "Surgical Neck"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Patella", "Apex"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Scapular Notch", "Subscapular Fossa"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Ilium", "Pubis"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Acromion", "Glenoid Fossa"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Humerus", "Olecranon Fossa"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Femur", "Intertrochanteric Crest"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Middle Phalanx #3", "Metacarpal #1"], "alt": {"Middle Phalanx #3": ["Middle Phalanx 3", "3rd Middle Phalanx"], "Metacarpal #1": ["Metacarpal 1", "1st Metacarpal"]}},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Intercondylar Eminence", "Tibia"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Articular Fovea of Radius", "Trochlear Notch of Ulna"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Ischium", "Ischial Tuberosity"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Fibula", "Lateral Malleolus"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Coronoid Process", "Ulna", "Radial Tuberosity", "Radius"], "alt": {"Coronoid Process": ["Coranoid Process"]}},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["3rd Metatarsal", "4th Distal Phalanx"], "alt": {"3rd Metatarsal": ["Third Metatarsal", "Metatarsal 3"], "4th Distal Phalanx": ["Distal Phalanx 4", "Fourth Distal Phalanx"]}},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Olecranon Process", "Radial Notch"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Talus", "Navicular"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Medial Cuneiform", "Cuboid"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Ulna", "Ulnar Tuberosity", "Radius", "Styloid Process"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Proximal Phalanx #1", "Carpal"], "alt": {"Proximal Phalanx #1": ["Proximal Phalanx 1", "1st Proximal Phalanx"]}},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Anterior Superior Iliac Spine", "Greater Sciatic Notch"], "alt": {"Anterior Superior Iliac Spine": ["ASIS"]}},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Spine of the Scapula", "Medial Border"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Sacroiliac Joint", "Pubic Symphysis"], "alt": {"Sacroiliac Joint": ["SI Joint"]}},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Conoid Tubercle", "Clavicle", "Acromial End"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Linea Aspera", "Femur", "Medial Condyle"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Deltoid Tuberosity", "Humerus", "Ulnar Groove"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Superior Angle", "Scapula", "Coracoid Process"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Coccyx", "Ischium"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Scapula", "Acromion", "Coracoid Process"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Humerus", "Anatomical Neck", "Olecranon Fossa"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Lesser Trochanter", "Femur", "Medial Supracondylar Line"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["Capitate", "Scaphoid"]},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Tibia", "Tibial Tuberosity", "Medial Malleolus"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Calcaneus", "Lateral Cuneiform"]},   /* card 38 */
+        {"q": 78, "a": 79, "ans": ["Humerus", "Greater Tubercle", "Capitulum"]},   /* card 39 */
+        {"q": 80, "a": 81, "ans": ["Hamate", "Lunate"]},   /* card 40 */
+        {"q": 82, "a": 83, "ans": ["Trapezium", "Pisiform"]}   /* card 41 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 2  |  Bone & Axial II  |  42 stations
+       images/boneaxial2/
+       ---------------------------------------------------------------- */
+    {
+      "id": "boneaxial2",
+      "title": "Bone & Axial Loop II",
+      "unit": "Bone & Axial II",
+      "subtitle": "Bone tissue, skull, vertebrae, sacrum & spinal curves",
+      "dir": "boneaxial2",
+      "module": 2,
+      "systems": [4],
+      "credit": "specimen",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Sharpey's Fibers", "Fibrous Periosteum"], "alt": {"Sharpey's Fibers": ["Sharpeys Fibers", "Sharpey s Fibers"], "Fibrous Periosteum": ["Fibrous Periosteium"]}},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Epiphysis Endosteum"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Left Parietal External Auditory meatus"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Superior Orbital Perpendicular Fissure Plate Ethmoid"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Concentric Lamellae Osteon"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Hypophyseal Fossa Sella Turcica Jugular Foramen"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Elastic Cartilage Ear, Epiglottis"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Crista Galli Olfactory foramina"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Median palatine suture Choana"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Sagittal Suture Lambdoidal Suture"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Frontal Coronal Suture"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Hyaline Cartilage Ends long , epiphyseal plate, ribs, trachea"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Compact Spongy"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["osteocyte Central Canal"], "alt": {"osteocyte Central Canal": ["Lacuna w Central Canal", "Lacuna w"]}},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Lesser Wing Sphenoid Foramen Ovale"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Fibrocartilage Pubic Symphysis, intervertebral disc"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Coronoid Process, Mandible", "Mental Foramen"], "alt": {"Coronoid Process, Mandible": ["Coranoid Process; Mandible", "Coranoid Process, Mandible", "Coranoid Process", "Coronoid Process", "Coronoid Process of the Mandible"]}},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Supraorbital Notch", "Maxilla"], "alt": {"Supraorbital Notch": ["Supraprbital notch"]}},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Osteon Interstitial Lamellae"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Internal Acoustic Meatus Foramen Magnum"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Articular Cartilage Epiphyseal Line"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Incisive Fossa Vomer"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Jugular Notch Xiphoid Process"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Greater Cornu Hyoid"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Clavicle"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Circumferential Lamellae", "Volkmann's Canal"], "alt": {"Volkmann's Canal": ["Volkmanns Canal", "Volkmann s Canal"]}},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Occipital Condyle Occipital"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Squamous suture Styloid process"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Glabella Zygomatic"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Optic Foramen Optic N. CN II Middle Nasal concha"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Superior Nuchal Line", "Occipital Protuberance"], "alt": {"Superior Nuchal Line": ["Supoerior Nuchal Line"]}},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Anterior Fontanel Anterolateral Fontanel"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Superior articular facet Transverse foramen"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Superior articular Facet & Process Body thoracic vertebrae"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Pedicle Vertebral Foramen"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["process Lumbar"], "alt": {"process Lumbar": ["Inferior articular facet Lumbar", "Inferior articular facet"]}},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Transverse Foramen Anterior tubercle C"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Dens C"]},   /* card 38 */
+        {"q": 78, "a": 79, "ans": ["Sacral Promontory Anterior Sacral Foramina"]},   /* card 39 */
+        {"q": 80, "a": 81, "ans": ["Median Sacral crest Sacral Hiatus"]},   /* card 40 */
+        {"q": 82, "a": 83, "ans": ["Thoracic"]},   /* card 41 */
+        {"q": 84, "a": 85, "ans": ["Cervical"]}   /* card 42 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 3  |  Upper Extremity, Chest & Back  |  62 stations
+       images/muscles-upper/
+       ---------------------------------------------------------------- */
+    {
+      "id": "muscles-upper",
+      "title": "Muscles : Upper",
+      "unit": "Upper Extremity, Chest & Back",
+      "subtitle": "UE muscles, nerves & vessels + chest & back (model)",
+      "dir": "muscles-upper",
+      "module": 3,
+      "systems": [5],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Serratus Anterior"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Deltoid"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Pectoralis Major"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Pectoralis Minor"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Sternocleidomastoid"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Supraspinatus"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Infraspinatus"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Teres Minor"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Teres Major"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Deltoid"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Triceps Brachii (Lateral Head)"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Brachialis"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Triceps Brachii (Long Head)"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Coracobrachialis"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Median Nerve"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Musculocutaneous Nerve"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Ulnar Nerve"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Brachial Artery"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Axillary Artery"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Subscapularis"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Teres Major"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Flexor Carpi Ulnaris"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Flexor Digitorum Superficialis"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Palmaris Longus"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Flexor Carpi Radialis"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Pronator Teres"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Brachioradialis"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Extensor Digitorum"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Extensor Digiti Minimi"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Extensor Carpi Ulnaris"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Extensor Carpi Radialis Brevis"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Extensor Carpi Radialis Longus"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Anconeus"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Extensor Pollicis Longus"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Abductor Pollicis Longus"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["Extensor Carpi Radialis Brevis"]},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Extensor Carpi Radialis Longus"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Brachioradialis"]},   /* card 38 */
+        {"q": 78, "a": 79, "ans": ["Cephalic Vein"]},   /* card 39 */
+        {"q": 80, "a": 81, "ans": ["Axillary Vein"]},   /* card 40 */
+        {"q": 82, "a": 83, "ans": ["Basilic Vein"]},   /* card 41 */
+        {"q": 84, "a": 85, "ans": ["Median Cubital Vein"]},   /* card 42 */
+        {"q": 86, "a": 87, "ans": ["Cephalic Vein"]},   /* card 43 */
+        {"q": 88, "a": 89, "ans": ["Basilic Vein"]},   /* card 44 */
+        {"q": 90, "a": 91, "ans": ["Axillary Artery"]},   /* card 45 */
+        {"q": 92, "a": 93, "ans": ["Brachial Artery"]},   /* card 46 */
+        {"q": 94, "a": 95, "ans": ["Radial Artery"]},   /* card 47 */
+        {"q": 96, "a": 97, "ans": ["Ulnar Artery"]},   /* card 48 */
+        {"q": 98, "a": 99, "ans": ["Levator Scapulae"]},   /* card 49 */
+        {"q": 100, "a": 101, "ans": ["Supraspinatus"]},   /* card 50 */
+        {"q": 102, "a": 103, "ans": ["Infraspinatus"]},   /* card 51 */
+        {"q": 104, "a": 105, "ans": ["Teres Minor"]},   /* card 52 */
+        {"q": 106, "a": 107, "ans": ["Teres Major"]},   /* card 53 */
+        {"q": 108, "a": 109, "ans": ["Deltoid"]},   /* card 54 */
+        {"q": 110, "a": 111, "ans": ["Rhomboid Minor"]},   /* card 55 */
+        {"q": 112, "a": 113, "ans": ["Rhomboid Major"]},   /* card 56 */
+        {"q": 114, "a": 115, "ans": ["Trapezius"]},   /* card 57 */
+        {"q": 116, "a": 117, "ans": ["Latissimus Dorsi"]},   /* card 58 */
+        {"q": 118, "a": 119, "ans": ["Serratus Anterior"]},   /* card 59 */
+        {"q": 120, "a": 121, "ans": ["Triceps Brachii (Medial Head)"]},   /* card 60 */
+        {"q": 122, "a": 123, "ans": ["Biceps Brachii (Long Head)"]},   /* card 61 */
+        {"q": 124, "a": 125, "ans": ["Biceps Brachii (Lateral Head)"]}   /* card 62 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Muscles: Abdomen, Pelvis & Leg  |  18 stations
+       images/muscles-lower/
+       ---------------------------------------------------------------- */
+    {
+      "id": "muscles-lower",
+      "title": "Muscles : Trunk & Lower",
+      "unit": "Muscles: Abdomen, Pelvis & Leg",
+      "subtitle": "Abdomen, pelvis & lower limb muscles",
+      "dir": "muscles-lower",
+      "module": 4,
+      "systems": [5],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Diaphragm", "Abdominal Aorta (T12)"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["External Intercostal Muscles", "Phrenic Nerve"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Sartorius", "Vastus Medialis"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Gastrocnemius", "Soleus"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Tensor Fasciae Latae", "Adductor Longus"], "alt": {"Tensor Fasciae Latae": ["Tensor Fascia Lata", "TFL", "Tensor Fascia Latae"]}},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Gluteus Maximus", "Vastus Lateralis"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Linea Alba", "Internal Abdominal Oblique"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Gluteus Medius", "Semitendinosus"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Rectus Femoris", "Tensor Fasciae Latae"], "alt": {"Tensor Fasciae Latae": ["Tensor Fascia Lata", "TFL", "Tensor Fascia Latae"]}},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Iliopsoas", "Vastus Intermedius"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Iliotibial Tract", "Vastus Medialis"], "alt": {"Iliotibial Tract": ["Band"]}},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Tibialis Anterior", "Extensor Digitorum Longus"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Extensor Digitorum Longus", "Extensor Hallucis Longus"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Fibularis Longus", "Fibularis Brevis"], "alt": {"Fibularis Longus": ["Peroneus Longus"], "Fibularis Brevis": ["Peroneus Brevis"]}},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Soleus (Gastrocnemius is removed)"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Gluteus Maximus", "Biceps Femoris"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Semimembranosus", "Semitendinosus"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Gluteus Medius", "Piriformis"]}   /* card 18 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 3  |  Muscles: Head, Neck & Eye  |  6 stations
+       images/muscles-head/
+       ---------------------------------------------------------------- */
+    {
+      "id": "muscles-head",
+      "title": "Muscles : Head & Neck",
+      "unit": "Muscles: Head, Neck & Eye",
+      "subtitle": "Facial, neck & extraocular muscles + cranial nerves",
+      "dir": "muscles-head",
+      "module": 3,
+      "systems": [5],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Zygomaticus Minor", "Risorius"], "alt": {"Zygomaticus Minor": ["Zygomatic Minor"]}},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Trochlear Nerve CN IV", "Abducens N. CN VI"], "alt": {"Trochlear Nerve CN IV": ["Superior Oblique Nerve CN IV", "Superior Oblique"], "Abducens N. CN VI": ["Lateral Rectus N. CN VI", "Lateral Rectus"]}},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Oculomotor CN III", "Oculomotor III"], "alt": {"Oculomotor CN III": ["Medial Rectus CN III", "Medial Rectus"], "Oculomotor III": ["Inferior Oblique III", "Inferior Oblique"]}},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Sternocleidomastoid", "Depressor Anguli Oris"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Orbicularis Oculi", "Masseter"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Depressor Anguli Oris", "Sternocleidomastoid"]}   /* card 6 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 3  |  Sarcomere  |  6 stations
+       images/sarcomere/
+       ---------------------------------------------------------------- */
+    {
+      "id": "sarcomere",
+      "title": "Sarcomere Loop",
+      "unit": "Sarcomere",
+      "subtitle": "Striations & banding: I band, A band, Z, H, M",
+      "dir": "sarcomere",
+      "module": 3,
+      "systems": [5],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["One Sarcomere"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["I Band"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["A Band"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Z Line (Disc)"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["H Zone"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["M Line"]}   /* card 6 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 3  |  Muscle Microanatomy  |  13 stations
+       images/microanatomy/
+       ---------------------------------------------------------------- */
+    {
+      "id": "microanatomy",
+      "title": "Muscle Microanatomy Loop",
+      "unit": "Muscle Microanatomy",
+      "subtitle": "Fiber ultrastructure: SR, T-tubules, motor end plate",
+      "dir": "microanatomy",
+      "module": 3,
+      "systems": [5],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Sarcoplasmic Reticulum"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Transverse (T) Tubule"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Terminal Cisterns"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Myofibril"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Sarcolemma"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Muscle Cell (Fiber)"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Endomysium"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Mitochondrion"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Z Disc (Line)"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["M Line (H Zone)"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Motor End Plate"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["A Band"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Sarcomere"]}   /* card 13 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 1  |  Muscle Tissue  |  7 stations
+       images/muscletissue/
+       ---------------------------------------------------------------- */
+    {
+      "id": "muscletissue",
+      "title": "Muscle Tissue Loop",
+      "unit": "Muscle Tissue",
+      "subtitle": "Skeletal, cardiac & smooth muscle histology",
+      "dir": "muscletissue",
+      "module": 1,
+      "systems": [2, 5],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Skeletal Muscle Tissue"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Attached to Bones (Skeleton)"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Cardiac Muscle Tissue"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Heart Wall"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Intercalated Disc"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Gap Junctions", "Desmosomes"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Smooth Muscle Tissue"]}   /* card 7 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Abdominal Muscles  |  10 stations
+       images/abdominal-muscles/
+       ---------------------------------------------------------------- */
+    {
+      "id": "abdominal-muscles",
+      "title": "Abdominal Muscles Loop",
+      "unit": "Abdominal Muscles",
+      "subtitle": "Anterior wall: rectus, obliques, linea alba (cadaver & model)",
+      "dir": "abdominal-muscles",
+      "module": 4,
+      "systems": [5],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Rectus Sheath"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Linea Alba"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["External Abdominal Oblique"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Rectus Abdominis"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Linea Alba"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Rectus Sheath (Reflected)"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["External Abdominal Oblique"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Linea Alba"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Rectus Abdominis"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Internal Abdominal Oblique"]}   /* card 10 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Abdominal Wall & Fascia  |  5 stations
+       images/abdominal-fascia/
+       ---------------------------------------------------------------- */
+    {
+      "id": "abdominal-fascia",
+      "title": "Abdominal Fascia Loop",
+      "unit": "Abdominal Wall & Fascia",
+      "subtitle": "Peritoneum & muscle layers of the abdominal wall",
+      "dir": "abdominal-fascia",
+      "module": 4,
+      "systems": [5],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Visceral Peritoneum"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Visceral Peritoneum"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Transverse Abdominis"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Internal Abdominal Oblique"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["External Abdominal Oblique"]}   /* card 5 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Esophagus  |  4 stations
+       images/esophagus/
+       ---------------------------------------------------------------- */
+    {
+      "id": "esophagus",
+      "title": "Esophagus Loop",
+      "unit": "Esophagus",
+      "subtitle": "Esophagus, diaphragm passage (T10) & epiglottis",
+      "dir": "esophagus",
+      "module": 4,
+      "systems": [11],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Esophagus"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["T10 (Esophagus Passes Through Diaphragm)"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Esophagus"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Epiglottis"]}   /* card 4 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Parotid Gland & Duct  |  4 stations
+       images/parotid/
+       ---------------------------------------------------------------- */
+    {
+      "id": "parotid",
+      "title": "Parotid Gland Loop",
+      "unit": "Parotid Gland & Duct",
+      "subtitle": "Parotid salivary gland & duct (head)",
+      "dir": "parotid",
+      "module": 4,
+      "systems": [11],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Parotid Gland"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Parotid Duct"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Parotid Gland"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Parotid Duct"]}   /* card 4 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Stomach  |  13 stations
+       images/stomach/
+       ---------------------------------------------------------------- */
+    {
+      "id": "stomach",
+      "title": "Stomach Loop",
+      "unit": "Stomach",
+      "subtitle": "Curvatures, regions, rugae, sphincters & salivary glands",
+      "dir": "stomach",
+      "module": 4,
+      "systems": [11],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Stomach"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Parotid Gland"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Submandibular Gland"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Stomach", "Lesser Curvature"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Stomach", "Greater Curvature"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Stomach", "Gastric Rugae"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Stomach", "Cardiac (Lower Esophageal Sphincter)"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Stomach", "Esophagus"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Stomach", "Cardia"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Stomach", "Fundus"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Stomach", "Body"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Stomach", "Pyloric Antrum"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Stomach", "Pyloric Sphincter"]}   /* card 13 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Pharynx & Oral Cavity  |  13 stations
+       images/pharynx/
+       ---------------------------------------------------------------- */
+    {
+      "id": "pharynx",
+      "title": "Pharynx Loop",
+      "unit": "Pharynx & Oral Cavity",
+      "subtitle": "Naso/oro/laryngopharynx, tonsils, uvula & palate",
+      "dir": "pharynx",
+      "module": 4,
+      "systems": [10, 11],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Nasopharynx"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Oropharynx"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Laryngopharynx"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Epiglottis"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Esophagus"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Uvula"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Lingual Tonsil"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Nasopharyngeal Tonsil"], "alt": {"Nasopharyngeal Tonsil": ["Pharyngeal Tonsil", "Adenoid"]}},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Palatine Tonsil"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Lingual Tonsil"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Uvula"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Soft Palate"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Hard Palate"]}   /* card 13 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 3  |  Cadaver: Back, Thorax & Upper Arm  |  38 stations
+       images/cadaver-ue/
+       ---------------------------------------------------------------- */
+    {
+      "id": "cadaver-ue",
+      "title": "Cadaver UE Loop",
+      "unit": "Cadaver: Back, Thorax & Upper Arm",
+      "subtitle": "Cadaver muscles, nerves & vessels â chest, back, shoulder & arm",
+      "dir": "cadaver-ue",
+      "module": 3,
+      "systems": [5],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Pectoralis Major"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Deltoid"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Pectoralis Minor"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Serratus Anterior"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Pectoralis Major"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Pectoralis Minor"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Trapezius"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Latissimus Dorsi"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Teres Major"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Levator Scapulae"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Rhomboid Minor"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Rhomboid Minor"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Cephalic Vein"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Biceps Brachii (Short Head)"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Biceps Brachii (Long Head)"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Pectoralis Minor"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Coracobrachialis"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Subclavian Vein"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Axillary Vein"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Basilic Vein"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Teres Minor"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Teres Major"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Cephalic Vein"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Median Cubital Vein"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Basilic Vein"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Radial Artery"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Ulnar Artery"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Median Nerve"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Ulnar Nerve"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Triceps Brachii (Long Head)"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Triceps Brachii (Lateral Head)"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Triceps Brachii (Medial Head)"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Anconeus"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Anconeus"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Trapezius"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["Infraspinatus"]},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Teres Minor"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Teres Major"]}   /* card 38 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 3  |  Cadaver: Forearm & Arm  |  31 stations
+       images/forearm-cadaver/
+       ---------------------------------------------------------------- */
+    {
+      "id": "forearm-cadaver",
+      "title": "Forearm Cadaver Loop",
+      "unit": "Cadaver: Forearm & Arm",
+      "subtitle": "Cadaver forearm muscles, vessels & nerves â flexors, extensors & deep layers",
+      "dir": "forearm-cadaver",
+      "module": 3,
+      "systems": [5],
+      "portrait": true,
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Brachioradialis"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Pronator Teres"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Flexor Carpi Radialis"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Palmaris Longus"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Flexor Digitorum Superficialis"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Flexor Carpi Ulnaris"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Extensor Carpi Ulnaris"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Brachioradialis (Layer 2)"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Pronator Teres (Layer 2)"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Flexor Digitorum Superficialis"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Supinator"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Pronator Teres"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Flexor Pollicis Longus"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Flexor Digitorum Profundus"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Flexor Carpi Ulnaris"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Brachial Artery"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Radial Artery"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Ulnar Artery"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Median Nerve"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Brachialis"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Triceps Brachii (Lateral Head)"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Deltoid"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Brachioradialis"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Extensor Carpi Radialis Brevis"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Extensor Carpi Radialis Longus"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Extensor Digitorum"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Extensor Retinaculum"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Extensor Carpi Ulnaris"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Anconeus"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Abductor Pollicis Longus"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Extensor Pollicis Brevis"]}   /* card 31 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Upper Leg (Cadaver)  |  34 stations
+       images/upper-leg-cadaver/
+       ---------------------------------------------------------------- */
+    {
+      "id": "upper-leg-cadaver",
+      "title": "Upper Leg Cadaver Loop",
+      "unit": "Upper Leg (Cadaver)",
+      "subtitle": "Thigh, hip & gluteal muscles + femoral/iliac vessels & nerves",
+      "dir": "upper-leg-cadaver",
+      "module": 4,
+      "systems": [5],
+      "portrait": true,
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Rectus Femoris"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Vastus Lateralis"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Iliotibial Band"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Vastus Medialis"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Tensor Fasciae Latae"], "alt": {"Tensor Fasciae Latae": ["Tensor Fascia Lata", "TFL", "Tensor Fascia Latae"]}},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Sartorius"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Adductor Longus"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Gracilis"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Pectineus"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Psoas Major"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Iliopsoas"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Iliacus"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Vastus Intermedius"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Psoas Minor"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Psoas Major"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Quadratus Lumborum"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Iliacus"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Femoral Nerve"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Femoral Artery"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Femoral Vein"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Adductor Brevis"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Common Iliac Artery"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Internal Iliac Artery"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["External Iliac Artery"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Adductor Brevis (Longus Removed)"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Adductor Magnus"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Gluteus Maximus"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Gluteus Medius"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Iliotibial Band"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Biceps Femoris (Long Head)"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Semitendinosus"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Semimembranosus"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Adductor Magnus"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Sciatic Nerve"]}   /* card 34 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Lower Leg (Cadaver)  |  19 stations
+       images/lower-leg-cadaver/
+       ---------------------------------------------------------------- */
+    {
+      "id": "lower-leg-cadaver",
+      "title": "Lower Leg Cadaver Loop",
+      "unit": "Lower Leg (Cadaver)",
+      "subtitle": "Leg & foot muscles, popliteal & distal vessels & nerves",
+      "dir": "lower-leg-cadaver",
+      "module": 4,
+      "systems": [5],
+      "portrait": true,
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Tibialis Anterior"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Extensor Hallucis Longus"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Extensor Digitorum Longus"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Gastrocnemius"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Soleus"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Fibularis Longus"], "alt": {"Fibularis Longus": ["Peroneus Longus"]}},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Fibularis Brevis"], "alt": {"Fibularis Brevis": ["Peroneus Brevis"]}},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Extensor Digitorum Longus"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Tibialis Anterior"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Popliteus"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Common Fibular Nerve"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Tibial Nerve"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Popliteal Vein"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Popliteal Artery"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Gastrocnemius"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Tibial Nerve"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Posterior Tibial Vein"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Posterior Tibial Artery"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Calcaneal Tendon"]}   /* card 19 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Colon & Intestines  |  14 stations
+       images/colon/
+       ---------------------------------------------------------------- */
+    {
+      "id": "colon",
+      "title": "Colon Loop",
+      "unit": "Colon & Intestines",
+      "subtitle": "Cecum, appendix, ileocecal valve, colon regions & flexures",
+      "dir": "colon",
+      "module": 4,
+      "systems": [11],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Tenia Coli"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Haustra"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Vermiform Appendix"], "alt": {"Vermiform Appendix": ["Appendix"]}},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Cecum"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Ileocecal Valve"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Ileum"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Jejunum"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Anus"], "alt": {"Anus": ["Rectum"]}},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Ascending Colon"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Transverse Colon"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Descending Colon"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Sigmoid Colon"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Right Colic Flexure (Hepatic Flexure)"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Left Colic Flexure (Splenic Flexure)"]}   /* card 14 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Pancreas & Ducts  |  21 stations
+       images/pancreas/
+       ---------------------------------------------------------------- */
+    {
+      "id": "pancreas",
+      "title": "Pancreas Loop",
+      "unit": "Pancreas & Ducts",
+      "subtitle": "Pancreatic & bile ducts, ampulla + peripancreatic vessels",
+      "dir": "pancreas",
+      "module": 4,
+      "systems": [11],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Common Bile Duct"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Accessory Pancreatic Duct"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Hepatopancreatic Ampulla"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Main Pancreatic Duct"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Major Duodenal Papilla"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Duodenum"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Plica Circulares"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Duodenum"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Gall Bladder"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Common Bile Duct"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Hepatic Artery Proper"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Celiac Trunk"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Aorta"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Superior Mesenteric Artery"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Superior Mesenteric Vein"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Jejunal Arteries"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Splenic Artery"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Splenic Veins"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Spleen"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Gastroduodenal Artery"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Inferior Vena Cava"]}   /* card 21 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Liver: Models & Cadaver  |  36 stations
+       images/liver/
+       ---------------------------------------------------------------- */
+    {
+      "id": "liver",
+      "title": "Liver Loop",
+      "unit": "Liver: Models & Cadaver",
+      "subtitle": "Lobes, ligaments, porta hepatis, biliary tree, histology & cadaver",
+      "dir": "liver",
+      "module": 4,
+      "systems": [11],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Right Lobe", "Liver"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Falciform Ligament", "Liver"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Left Lobe", "Liver"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Gall Bladder"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Right Lobe", "Liver"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Inferior Vena Cava"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Right Hepatic Artery"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Left Hepatic Artery"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Hepatic Artery Proper"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Hepatic Portal Vein"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Left Hepatic Vein"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Right Hepatic Vein"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Gall Bladder"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Cystic Duct"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Common Bile Duct"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Left Hepatic Duct"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Right Hepatic Duct"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Portal Triad"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Hepatocyte"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Hepatic Sinusoids"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Bile Duct"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Hepatic Portal Vein"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Hepatic Artery"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Lesser Omentum"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Greater Omentum"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Falciform Ligament"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Right Lobe of the Liver"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Left Lobe of the Liver"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Falciform Ligament"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Round Ligament (Ligamentum Teres)"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Umbilical Vein"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Left Lobe", "Liver"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Caudate Lobe", "Liver"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Left Lobe", "Liver"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Quadrate Lobe", "Liver"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["Gall Bladder"]}   /* card 36 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Urinary System  |  21 stations
+       images/urinary/
+       ---------------------------------------------------------------- */
+    {
+      "id": "urinary",
+      "title": "Urinary System Loop",
+      "unit": "Urinary System",
+      "subtitle": "Kidneys, adrenals, ureters, renal vessels, bladder, trigone & prostate",
+      "dir": "urinary",
+      "module": 5,
+      "systems": [12],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Right Adrenal (Suprarenal) Gland"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Inferior Vena Cava"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Descending (Abdominal) Aorta"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["L. Kidney"], "alt": {"L. Kidney": ["Left Kidney"]}},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["L. Adrenal (Suprarenal) Gland"], "alt": {"L. Adrenal (Suprarenal) Gland": ["Left Adrenal (Suprarenal) Gland"]}},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["L. Ureter"], "alt": {"L. Ureter": ["Left Ureter"]}},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["R. Ureter"], "alt": {"R. Ureter": ["Right Ureter"]}},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["R. Renal Vein"], "alt": {"R. Renal Vein": ["Right Renal Vein"]}},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["L. Renal Artery"], "alt": {"L. Renal Artery": ["Left Renal Artery"]}},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Celiac Trunk"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Superior Mesenteric Artery"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Inferior Mesenteric Artery"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Seminal Vesicles"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Bladder"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["L. Ureter"], "alt": {"L. Ureter": ["Left Ureter"]}},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["R. Ureter"], "alt": {"R. Ureter": ["Right Ureter"]}},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Trigone"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Detrusor Muscle"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Prostatic Urethra"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Prostate Gland"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Bladder Rugae"]}   /* card 21 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Renal (Model & Microanatomy)  |  34 stations
+       images/renal-micro/
+       ---------------------------------------------------------------- */
+    {
+      "id": "renal-micro",
+      "title": "Renal Model Loop",
+      "unit": "Renal (Model & Microanatomy)",
+      "subtitle": "Nephron, glomerulus, tubules, renal vessels, cortex, medulla & calyces",
+      "dir": "renal-micro",
+      "module": 5,
+      "systems": [12],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Arcuate Artery"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Descending Loop of Henle"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Renal Pelvis"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Renal Capsule"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Ureter"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Cortical Radiate (Interlobular) Vein"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Afferent Arteriole"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Visceral Layer of Glomerular Capsule (Podocytes)"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Vasa Recta"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Collecting Duct"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Renal Vein"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Renal Column"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Juxtaglomerular Apparatus"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Proximal Convoluted Tubule"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Segmental Artery"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Interlobar Artery"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Renal Papilla (Papillary Duct)"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Distal Convoluted Tubule"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Renal Sinus"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Arcuate Vein"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Minor Calyx"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Cortical Radiate (Interlobular) Artery"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Peritubular Capillaries"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Glomerulus (and Bowman's Capsule)"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Renal Papilla"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Interlobar Vein"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Macula Densa"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Parietal Layer of Bowman's Capsule"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Renal Cortex"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Renal Medulla"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Juxtamedullary Nephron"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Cortical Nephron"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Renal Medulla"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Renal Capsule"]}   /* card 34 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Female Reproductive  |  10 stations
+       images/reproductive-female/
+       ---------------------------------------------------------------- */
+    {
+      "id": "reproductive-female",
+      "title": "Female Reproductive Loop",
+      "unit": "Female Reproductive",
+      "subtitle": "Uterus, ovary, oviduct, cervix, ligaments & external genitalia (2 structures/station)",
+      "dir": "reproductive-female",
+      "module": 5,
+      "systems": [13],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Myometrium of the Uterus", "Fornix"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Urethra", "Clitoris"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Ovarian Vein", "Labia Majora"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Fimbriae of Oviduct", "Ovarian Ligament"], "alt": {"Fimbriae of Oviduct": ["Fimbrae of Oviduct"]}},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Bladder", "Cervix (External Os)"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Uterus; Endometrium", "Labia Minora"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Ovarian Artery", "Labia Minora"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Ovary", "Round Ligament of the Uterus"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Internal Os of the Cervix", "Vagina"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Ampulla of the Oviduct", "Mons Pubis"]}   /* card 10 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Male Reproductive  |  8 stations
+       images/reproductive-male/
+       ---------------------------------------------------------------- */
+    {
+      "id": "reproductive-male",
+      "title": "Male Reproductive Loop",
+      "unit": "Male Reproductive",
+      "subtitle": "Testis, epididymis, spermatic cord, penis, prostate & ducts (2 structures/station)",
+      "dir": "reproductive-male",
+      "module": 5,
+      "systems": [13],
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Seminal Vesicles", "Epididymis"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Spermatic Cord", "Glans Penis"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Testicular Vein", "Scrotum"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Pampiniform Plexus", "Prepuce"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Corpus Cavernosum", "Ejaculatory Duct"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Corpus Spongiosum", "Prostatic Urethra"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Spongy (Penile) Urethra", "Cremaster Muscle"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Prostate", "Spermatic Cord Contents (Vas Deferens, Testicular Artery, Pampiniform Plexus, Cremaster Muscle)"]}   /* card 8 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Reproductive (Cadaver)  |  24 stations
+       images/reproductive-cadaver/
+       ---------------------------------------------------------------- */
+    {
+      "id": "reproductive-cadaver",
+      "title": "Reproductive Cadaver Loop",
+      "unit": "Reproductive (Cadaver)",
+      "subtitle": "Female & male pelvic cadaver: organs, ducts, ligaments, penis & spermatic cord",
+      "dir": "reproductive-cadaver",
+      "module": 5,
+      "systems": [13],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Ovary"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Uterus"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Fallopian Tube"], "alt": {"Fallopian Tube": ["Oviduct"]}},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Rectum"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Ductus (Vas) Deferens"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Seminal Vesicles"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Uterus"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Bladder"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Vagina"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Urethra"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Rectum"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Prostate"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Membranous Urethra"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Corpus Cavernosum of the Penis"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Penile Urethra"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Ovarian Ligament"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Round Ligament of the Uterus"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Testis"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Penis"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Spermatic Cord"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Inguinal Canal"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Vas Deferens"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Testicular Artery"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Pampiniform Plexus"]}   /* card 24 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 4  |  Respiratory System  |  72 stations
+       images/respiratory/
+       ---------------------------------------------------------------- */
+    {
+      "id": "respiratory",
+      "title": "Respiratory Loop",
+      "unit": "Respiratory System",
+      "subtitle": "Airways, lungs, larynx, pleura & bronchial tree",
+      "dir": "respiratory",
+      "module": 4,
+      "systems": [10],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Mediastinum"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Thoracic Cavity"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Phrenic Nerve (branch of C3- C5)"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Trachea"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Esophagus"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Diaphragm"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Apex of the Lung"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Base of the Lung"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Right Lung"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Left Lung"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Superior Lobe of Right Lung"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Inferior Lobe of Right Lung"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Middle Lobe of R. Lung"], "alt": {"Middle Lobe of R. Lung": ["Middle Lobe of Right Lung"]}},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Superior Lobe of Left Lung"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Inferior Lobe of L. Lung"], "alt": {"Inferior Lobe of L. Lung": ["Inferior Lobe of Left Lung"]}},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Oblique Fissure of the L. Lung"], "alt": {"Oblique Fissure of the L. Lung": ["Oblique Fissure of the Left Lung"]}},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Oblique Fissure of the R. Lung"], "alt": {"Oblique Fissure of the R. Lung": ["Oblique Fissure of the Right Lung"]}},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Horizontal Fissure of the R. Lung"], "alt": {"Horizontal Fissure of the R. Lung": ["Horizontal Fissure of the Right Lung"]}},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Hilum of the lung"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Diaphragmatic Surface of the Lung"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Pulmonary Arteries"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Pulmonary Veins (Oâ RICH)"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Bronchi"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Pulmonary Veins (Oâ-RICH)"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Bronchi"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Pulmonary Artery"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Laryngeal prominence"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Thyroid Cartilage"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Cricoid Cartilage"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Cricothyroid ligament"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Trachea"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Diaphragm"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Phrenic Nerve"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["At T8: Inferior Vena Cava (IVC)"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["At T10: Esophagus"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["At T12: Aorta (Thoracic)"]},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Region: Nasopharynx"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Region: Oropharynx"]},   /* card 38 */
+        {"q": 78, "a": 79, "ans": ["Region: Laryngopharynx"]},   /* card 39 */
+        {"q": 80, "a": 81, "ans": ["Epiglottis"]},   /* card 40 */
+        {"q": 82, "a": 83, "ans": ["Thyroid Cartilage"]},   /* card 41 */
+        {"q": 84, "a": 85, "ans": ["Cricothyroid Ligament"]},   /* card 42 */
+        {"q": 86, "a": 87, "ans": ["Cricoid Cartilage"]},   /* card 43 */
+        {"q": 88, "a": 89, "ans": ["Vestibular Folds (False Vocal Folds)"]},   /* card 44 */
+        {"q": 90, "a": 91, "ans": ["True Vocal Cords"]},   /* card 45 */
+        {"q": 92, "a": 93, "ans": ["Larynx"]},   /* card 46 */
+        {"q": 94, "a": 95, "ans": ["Superior Nasal Concha"]},   /* card 47 */
+        {"q": 96, "a": 97, "ans": ["Superior Nasal Meatus"]},   /* card 48 */
+        {"q": 98, "a": 99, "ans": ["Middle Nasal Concha"]},   /* card 49 */
+        {"q": 100, "a": 101, "ans": ["Middle Nasal Meatus"]},   /* card 50 */
+        {"q": 102, "a": 103, "ans": ["Inferior Nasal Concha"]},   /* card 51 */
+        {"q": 104, "a": 105, "ans": ["Inferior Nasal Meatus"]},   /* card 52 */
+        {"q": 106, "a": 107, "ans": ["Epiglottis"]},   /* card 53 */
+        {"q": 108, "a": 109, "ans": ["Thyroid Cartilage"]},   /* card 54 */
+        {"q": 110, "a": 111, "ans": ["Arytenoid Cartilage"]},   /* card 55 */
+        {"q": 112, "a": 113, "ans": ["Corniculate Cartilage"]},   /* card 56 */
+        {"q": 114, "a": 115, "ans": ["Trachealis Muscle"]},   /* card 57 */
+        {"q": 116, "a": 117, "ans": ["Cricoid Cartilage"]},   /* card 58 */
+        {"q": 118, "a": 119, "ans": ["Tracheal âCâ Rings"]},   /* card 59 */
+        {"q": 120, "a": 121, "ans": ["Alveolar Sac"]},   /* card 60 */
+        {"q": 122, "a": 123, "ans": ["Alveolus"]},   /* card 61 */
+        {"q": 124, "a": 125, "ans": ["Alveolar Duct"]},   /* card 62 */
+        {"q": 126, "a": 127, "ans": ["Visceral Pleura"]},   /* card 63 */
+        {"q": 128, "a": 129, "ans": ["Carina"]},   /* card 64 */
+        {"q": 130, "a": 131, "ans": ["Left Main (Primary) Bronchus"]},   /* card 65 */
+        {"q": 132, "a": 133, "ans": ["Right Main (Primary) Bronchus"]},   /* card 66 */
+        {"q": 134, "a": 135, "ans": ["Secondary (Lobar) bronchus"]},   /* card 67 */
+        {"q": 136, "a": 137, "ans": ["Tertiary (Segmental) Bronchus"]},   /* card 68 */
+        {"q": 138, "a": 139, "ans": ["Trachea"]},   /* card 69 */
+        {"q": 140, "a": 141, "ans": ["Esophagus"]},   /* card 70 */
+        {"q": 142, "a": 143, "ans": ["Tracheal C Ring"]},   /* card 71 */
+        {"q": 144, "a": 145, "ans": ["Trachealis Muscle"]}   /* card 72 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 3  |  The Heart  |  78 stations
+       images/heart/
+       ---------------------------------------------------------------- */
+    {
+      "id": "heart",
+      "title": "Heart Loop",
+      "unit": "The Heart",
+      "subtitle": "Chambers, valves, great vessels, coronary & conduction",
+      "dir": "heart",
+      "module": 3,
+      "systems": [8],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Ascending Aorta"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Pulmonary Trunk"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["R. Auricle"], "alt": {"R. Auricle": ["Right Auricle"]}},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Apex"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Base"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Fibrous Pericardium"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Diaphragm"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Right Ventricle"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["L. Ventricle"], "alt": {"L. Ventricle": ["Left Ventricle"]}},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Thoracic Cavity"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Mediastinum"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Superior Vena Cava"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["R. Brachiocephalic V"], "alt": {"R. Brachiocephalic V": ["Right Brachiocephalic V"]}},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["L. Brachiocephalic V."], "alt": {"L. Brachiocephalic V.": ["Left Brachiocephalic V."]}},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Aorta"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Coronary Sinus"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Inferior Vena Cava (opening)"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["R. Auricle"], "alt": {"R. Auricle": ["Right Auricle"]}},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Aorta"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Pulmonary Trunk"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["R. Coronary A."], "alt": {"R. Coronary A.": ["Right Coronary A."]}},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Left Anterior Descending A. (LAD) or anterior Interventricular A."]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Great Cardiac Vein"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["L. Auricle"], "alt": {"L. Auricle": ["Left Auricle"]}},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["L. Circumflex A."], "alt": {"L. Circumflex A.": ["Left Circumflex A."]}},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Left Coronary A."]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Left Anterior Descending (LAD) or Anterior Interventricular A."]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Right Coronary A."]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Endocardium"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Myocardium"]},   /* card 30 */
+        {"q": 62, "a": 63, "ans": ["Epicardium (Visceral Pericardium)"]},   /* card 31 */
+        {"q": 64, "a": 65, "ans": ["Anterior Papillary Muscle"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Chordae Tendineae"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Bicuspid Valve"], "alt": {"Bicuspid Valve": ["Mitral Valve", "Mitral"]}},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Aorta"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["Pulmonary Trunk"]},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Pulmonary Veins"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Superior Vena Cava"]},   /* card 38 */
+        {"q": 78, "a": 79, "ans": ["Pectinate Muscles"]},   /* card 39 */
+        {"q": 80, "a": 81, "ans": ["R. Atrium"], "alt": {"R. Atrium": ["Right Atrium"]}},   /* card 40 */
+        {"q": 82, "a": 83, "ans": ["Coronary Sinus"]},   /* card 41 */
+        {"q": 84, "a": 85, "ans": ["Posterior Descending A."]},   /* card 42 */
+        {"q": 86, "a": 87, "ans": ["Tricuspid Valve"]},   /* card 43 */
+        {"q": 88, "a": 89, "ans": ["Chordae Tendineae"]},   /* card 44 */
+        {"q": 90, "a": 91, "ans": ["Anterior Papillary Muscle"]},   /* card 45 */
+        {"q": 92, "a": 93, "ans": ["Fossa Ovalis"]},   /* card 46 */
+        {"q": 94, "a": 95, "ans": ["Opening for Coronary Sinus"]},   /* card 47 */
+        {"q": 96, "a": 97, "ans": ["Interatrial Septum"]},   /* card 48 */
+        {"q": 98, "a": 99, "ans": ["Interventricular Septum"]},   /* card 49 */
+        {"q": 100, "a": 101, "ans": ["Trabeculae Carneae"], "alt": {"Trabeculae Carneae": ["Trabeculae Carnae"]}},   /* card 50 */
+        {"q": 102, "a": 103, "ans": ["Superior Vena Cava"]},   /* card 51 */
+        {"q": 104, "a": 105, "ans": ["R. Brachiocephalic V."], "alt": {"R. Brachiocephalic V.": ["Right Brachiocephalic V."]}},   /* card 52 */
+        {"q": 106, "a": 107, "ans": ["L. Brachiocephalic V."], "alt": {"L. Brachiocephalic V.": ["Left Brachiocephalic V."]}},   /* card 53 */
+        {"q": 108, "a": 109, "ans": ["Brachiocephalic Trunk"]},   /* card 54 */
+        {"q": 110, "a": 111, "ans": ["L. Common Carotid"], "alt": {"L. Common Carotid": ["Left Common Carotid"]}},   /* card 55 */
+        {"q": 112, "a": 113, "ans": ["L. Subclavian A."], "alt": {"L. Subclavian A.": ["Left Subclavian A."]}},   /* card 56 */
+        {"q": 114, "a": 115, "ans": ["Ligamentum Arteriosum"]},   /* card 57 */
+        {"q": 116, "a": 117, "ans": ["Ascending Aorta"]},   /* card 58 */
+        {"q": 118, "a": 119, "ans": ["Aortic Arch"]},   /* card 59 */
+        {"q": 120, "a": 121, "ans": ["Interventricular Septum"]},   /* card 60 */
+        {"q": 122, "a": 123, "ans": ["Tricuspid Valve"]},   /* card 61 */
+        {"q": 124, "a": 125, "ans": ["Pulmonic (Pulmonary Semilunar) Valve"], "alt": {"Pulmonic (Pulmonary Semilunar) Valve": ["Pulmonary Valve", "Pulmonary Semilunar Valve"]}},   /* card 62 */
+        {"q": 126, "a": 127, "ans": ["Aortic Semilunar Valve"]},   /* card 63 */
+        {"q": 128, "a": 129, "ans": ["Bicuspid (Mitral) Valve"], "alt": {"Bicuspid (Mitral) Valve": ["Mitral Valve", "Bicuspid Valve"]}},   /* card 64 */
+        {"q": 130, "a": 131, "ans": ["Pulmonary Arteries"]},   /* card 65 */
+        {"q": 132, "a": 133, "ans": ["Pulmonary Veins"]},   /* card 66 */
+        {"q": 134, "a": 135, "ans": ["Visceral Pericardium (epicardium)"]},   /* card 67 */
+        {"q": 136, "a": 137, "ans": ["Myocardium"]},   /* card 68 */
+        {"q": 138, "a": 139, "ans": ["Endocardium"]},   /* card 69 */
+        {"q": 140, "a": 141, "ans": ["Sinoatrial (SA) Node"]},   /* card 70 */
+        {"q": 142, "a": 143, "ans": ["Atrioventricular (AV) Node"]},   /* card 71 */
+        {"q": 144, "a": 145, "ans": ["Bundle of His"]},   /* card 72 */
+        {"q": 146, "a": 147, "ans": ["Right Bundle Branch"]},   /* card 73 */
+        {"q": 148, "a": 149, "ans": ["Left Bundle Branch"]},   /* card 74 */
+        {"q": 150, "a": 151, "ans": ["Purkinje Fibers"]},   /* card 75 */
+        {"q": 152, "a": 153, "ans": ["Cardiac Muscle Tissue"]},   /* card 76 */
+        {"q": 154, "a": 155, "ans": ["Intercalated Disc"]},   /* card 77 */
+        {"q": 156, "a": 157, "ans": ["Desmosome Gap Junction"]}   /* card 78 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Brain (Lateral & Superior)  |  23 stations
+       images/neuro-brain/
+       ---------------------------------------------------------------- */
+    {
+      "id": "neuro-brain",
+      "title": "Brain: Lateral & Superior",
+      "unit": "Brain (Lateral & Superior)",
+      "subtitle": "Lobes, gyri, sulci, fissures & dural folds (lateral & superior views)",
+      "dir": "neuro-brain",
+      "module": 5,
+      "systems": [6],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Precentral Gyrus", "Primary Motor Cortex"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Cerebellum"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Temporal Lobe"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Occipital Lobe"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Parietal Lobe"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Frontal Lobe"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Postcentral Gyrus", "Primary Sensory Cortex"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Central Sulcus"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Lateral Sulcus"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Transverse Fissure"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Tentorium Cerebelli"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Supramarginal Gyrus"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Angular Gyrus"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Inferior Frontal Gyrus"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Longitudinal Fissure"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Falx Cerebri"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Central Sulcus"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Precentral Gyrus", "Primary Motor Cortex"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Postcentral Gyrus", "Primary Sensory Cortex"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Frontal Lobe"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Parietal Lobe"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Left Cerebral Cortex"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Right Cerebral Cortex"]}   /* card 23 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Brain (Midsagittal)  |  30 stations
+       images/neuro-brain-midsagittal/
+       ---------------------------------------------------------------- */
+    {
+      "id": "neuro-brain-midsagittal",
+      "title": "Brain: Midsagittal",
+      "unit": "Brain (Midsagittal)",
+      "subtitle": "Corpus callosum, ventricles, diencephalon, brainstem & cerebellum (midsagittal section)",
+      "dir": "neuro-brain-midsagittal",
+      "module": 5,
+      "systems": [6],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Cingulate Gyrus"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Cingulate Sulcus"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Corpus Callosum"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Septum Pellucidum"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Sulcus of the Corpus Callosum"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Lateral Ventricle"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Fornix"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Choroid Plexus"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Ependymal Cells", "Produce CSF"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Thalamus"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Massa Intermedia (Interthalamic Adhesion)"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["3rd Ventricle"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Hypothalamus"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Infundibulum"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Optic Chiasm"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Mammillary Body"]},   /* card 16 */
+        {"q": 34, "a": 35, "ans": ["Pineal Gland"]},   /* card 17 */
+        {"q": 36, "a": 37, "ans": ["Melatonin"]},   /* card 18 */
+        {"q": 38, "a": 39, "ans": ["Corpora Quadrigemina"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Superior Colliculus"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Inferior Colliculus"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Cerebral Aqueduct"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Interventricular Foramen of Monro"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["4th Ventricle"]},   /* card 24 */
+        {"q": 50, "a": 51, "ans": ["Cerebellum"]},   /* card 25 */
+        {"q": 52, "a": 53, "ans": ["Midbrain"]},   /* card 26 */
+        {"q": 54, "a": 55, "ans": ["Basilar Pons"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Medulla Oblongata"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Folia"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Arbor Vitae"]}   /* card 30 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Circle of Willis  |  13 stations
+       images/neuro-brain-cow/
+       ---------------------------------------------------------------- */
+    {
+      "id": "neuro-brain-cow",
+      "title": "Circle of Willis",
+      "unit": "Circle of Willis",
+      "subtitle": "Cerebral arterial circle: ACA, ACoA, ICA, MCA, PCA, basilar, vertebral & cerebellar arteries",
+      "dir": "neuro-brain-cow",
+      "module": 5,
+      "systems": [6, 8],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Anterior Cerebral Artery"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Anterior Communicating Artery"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Anterior Cerebral Artery"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Internal Carotid Artery"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Middle Cerebral Artery"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Posterior Communicating Artery"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Posterior Cerebral Artery"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Superior Cerebellar Artery"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Basilar Artery"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Anterior Inferior Cerebellar Artery"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Vertebral Artery"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Posterior Inferior Cerebellar Artery"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Anterior Spinal Artery"]}   /* card 13 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Brain (Inferior View)  |  14 stations
+       images/neuro-brain-inferior/
+       ---------------------------------------------------------------- */
+    {
+      "id": "neuro-brain-inferior",
+      "title": "Brain: Inferior View",
+      "unit": "Brain (Inferior View)",
+      "subtitle": "Inferior surface: olfactory & optic pathway, lobes, mammillary bodies, cerebral peduncles & brainstem",
+      "dir": "neuro-brain-inferior",
+      "module": 5,
+      "systems": [6],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["Olfactory Bulb"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Olfactory Tract"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Frontal Lobe"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Temporal Lobe"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Occipital Lobe"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Parahippocampal Gyrus"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Inferior Temporal Gyrus"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Optic Nerve"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Optic Chiasm"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Optic Tract"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Mammillary Body"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Crus Cerebri"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Superior Colliculus"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Central Canal"]}   /* card 14 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Cranial Nerves (I-XII)  |  12 stations
+       images/neuro-cranial-nerves/
+       ---------------------------------------------------------------- */
+    {
+      "id": "neuro-cranial-nerves",
+      "title": "Cranial Nerves",
+      "unit": "Cranial Nerves (I-XII)",
+      "subtitle": "Identify each cranial nerve on the brain & brainstem: name and Roman numeral",
+      "dir": "neuro-cranial-nerves",
+      "module": 5,
+      "systems": [6],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 2, "a": 3, "ans": ["CN I Olfactory Nerve"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["CN II Optic Nerve"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["CN III Oculomotor Nerve"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["CN IV Trochlear Nerve"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["CN V Trigeminal Nerve"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["CN VI Abducens Nerve"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["CN VII Facial Nerve"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["CN VIII Vestibulocochlear Nerve"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["CN IX Glossopharyngeal Nerve"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["CN X Vagus Nerve"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["CN XI Accessory Nerve"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["CN XII Hypoglossal Nerve"]}   /* card 12 */
+      ]
+    },
+
+    /* ---------------------------------------------------------------
+       Module 5  |  Spinal Cord & Spinal Nerves  |  47 stations
+       images/spine/
+       ---------------------------------------------------------------- */
+    {
+      "id": "spine",
+      "title": "Spinal Cord Loop",
+      "unit": "Spinal Cord & Spinal Nerves",
+      "subtitle": "Cord regions, meninges, cross-sectional gray matter, roots, rami & plexuses",
+      "dir": "spine",
+      "module": 5,
+      "systems": [6],
+      "credit": "cadaver",
+      "stations": [
+        {"q": 1, "a": 2, "ans": ["Cervical Enlargement"]},   /* card 1 */
+        {"q": 3, "a": 4, "ans": ["Lumbar Enlargement"]},   /* card 2 */
+        {"q": 5, "a": 6, "ans": ["Dura Mater"]},   /* card 3 */
+        {"q": 7, "a": 8, "ans": ["Filum Terminale"]},   /* card 4 */
+        {"q": 9, "a": 10, "ans": ["Cauda Equina"]},   /* card 5 */
+        {"q": 11, "a": 12, "ans": ["Dura Mater"]},   /* card 6 */
+        {"q": 13, "a": 14, "ans": ["Arachnoid Mater"]},   /* card 7 */
+        {"q": 15, "a": 16, "ans": ["Pia Mater"]},   /* card 8 */
+        {"q": 17, "a": 18, "ans": ["Dorsal Root Ganglion"]},   /* card 9 */
+        {"q": 19, "a": 20, "ans": ["Conus Medullaris"]},   /* card 10 */
+        {"q": 21, "a": 22, "ans": ["Spinal Cord"]},   /* card 11 */
+        {"q": 23, "a": 24, "ans": ["Cauda Equina"]},   /* card 12 */
+        {"q": 25, "a": 26, "ans": ["Spinal Cord"]},   /* card 13 */
+        {"q": 27, "a": 28, "ans": ["Sympathetic Chain"]},   /* card 14 */
+        {"q": 29, "a": 30, "ans": ["Lumbar Enlargement"]},   /* card 15 */
+        {"q": 31, "a": 32, "ans": ["Cervical Enlargement"]},   /* card 16 */
+        {"q": 33, "a": 34, "ans": ["Lateral Horn"]},   /* card 17 */
+        {"q": 35, "a": 36, "ans": ["Dorsal Horn"]},   /* card 18 */
+        {"q": 37, "a": 38, "ans": ["Ventral Horn"]},   /* card 19 */
+        {"q": 39, "a": 40, "ans": ["Grey Commissure"]},   /* card 20 */
+        {"q": 41, "a": 42, "ans": ["Central Canal"]},   /* card 21 */
+        {"q": 43, "a": 44, "ans": ["Dorsal Root"]},   /* card 22 */
+        {"q": 45, "a": 46, "ans": ["Dorsal Root Ganglion"]},   /* card 23 */
+        {"q": 47, "a": 48, "ans": ["Mixed Spinal Nerve"]},   /* card 24 */
+        {"q": 49, "a": 50, "ans": ["Dorsal Horn"]},   /* card 25 */
+        {"q": 51, "a": 52, "ans": ["Ventral Ramus"]},   /* card 26 */
+        {"q": 53, "a": 54, "ans": ["Ventral Root"]},   /* card 27 */
+        {"q": 55, "a": 56, "ans": ["Gray Rami Communicantes"]},   /* card 28 */
+        {"q": 57, "a": 58, "ans": ["White Rami Communicantes"]},   /* card 29 */
+        {"q": 59, "a": 60, "ans": ["Dorsal Ramus"]},   /* card 30 */
+        {"q": 61, "a": 62, "ans": ["Lateral Horn"]},   /* card 31 */
+        {"q": 63, "a": 64, "ans": ["Ventral Horn"]},   /* card 32 */
+        {"q": 65, "a": 66, "ans": ["Grey Commissure"]},   /* card 33 */
+        {"q": 67, "a": 68, "ans": ["Central Canal"]},   /* card 34 */
+        {"q": 69, "a": 70, "ans": ["Lumbar Plexus"]},   /* card 35 */
+        {"q": 71, "a": 72, "ans": ["Sacral Plexus"]},   /* card 36 */
+        {"q": 73, "a": 74, "ans": ["Cervical Plexus"]},   /* card 37 */
+        {"q": 75, "a": 76, "ans": ["Brachial Plexus"]},   /* card 38 */
+        {"q": 77, "a": 78, "ans": ["Sympathetic Chain"]},   /* card 39 */
+        {"q": 79, "a": 80, "ans": ["Brachial Plexus"]},   /* card 40 */
+        {"q": 81, "a": 82, "ans": ["Spinal Cord"]},   /* card 41 */
+        {"q": 83, "a": 84, "ans": ["Conus Medullaris"]},   /* card 42 */
+        {"q": 85, "a": 86, "ans": ["Filum Terminale"]},   /* card 43 */
+        {"q": 87, "a": 88, "ans": ["Cauda Equina"]},   /* card 44 */
+        {"q": 89, "a": 90, "ans": ["Cervical Enlargement"]},   /* card 45 */
+        {"q": 91, "a": 92, "ans": ["Lumbar Enlargement"]},   /* card 46 */
+        {"q": 93, "a": 94, "ans": ["Sympathetic Chain"]}   /* card 47 */
+      ]
+    }
+  ]
+};
+
+</script>
+<script>
+/* ==== engine, inlined ==== */
+/* ============================================================================
+   LOOPS ENGINE
+   The scoring and progress core, with no user interface of its own.
+
+   Mastery OS taps this. Nothing here touches the DOM, so it can run inside the
+   player page, inside an iframe, or headless in a test.
+
+   Everything is device local. No names, no identifiers, no network calls.
+   ========================================================================== */
+(function (root) {
+"use strict";
+
+var STORE = 'loopsEngine_v1';
+var PREFS = 'loopsEnginePrefs_v1';
+
+/* ---------------------------------------------------------------- storage */
+function readAll(){ try{ return JSON.parse(localStorage.getItem(STORE)||'{}'); }catch(e){ return {}; } }
+function writeAll(o){ try{ localStorage.setItem(STORE, JSON.stringify(o)); return true; }catch(e){ return false; } }
+function readPrefs(){ try{ return JSON.parse(localStorage.getItem(PREFS)||'{}'); }catch(e){ return {}; } }
+function writePrefs(o){ try{ localStorage.setItem(PREFS, JSON.stringify(o)); }catch(e){} }
+
+/* ---------------------------------------------------------------- answers */
+/* Normalise for comparison: case, accents, punctuation and spacing are ignored.
+   Spelling is NOT ignored. That is the whole point of the graded mode. */
+function normalise(s){
+  return String(s==null?'':s)
+    .normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .toLowerCase()
+    .replace(/&/g,' and ')
+    .replace(/[^a-z0-9 ]+/g,' ')
+    .replace(/\s+/g,' ')
+    .trim();
+}
+/* Leading articles and the word "the" carry no anatomical meaning */
+var FILLER = /^(the|a|an)\s+/;
+function core(s){ var v=normalise(s); while(FILLER.test(v)) v=v.replace(FILLER,''); return v; }
+
+function editDistance(a,b){
+  if(a===b) return 0;
+  if(!a.length) return b.length;
+  if(!b.length) return a.length;
+  var prev=[], cur=[], i, j;
+  for(j=0;j<=b.length;j++) prev[j]=j;
+  for(i=1;i<=a.length;i++){
+    cur[0]=i;
+    for(j=1;j<=b.length;j++){
+      cur[j]=Math.min(prev[j]+1, cur[j-1]+1, prev[j-1]+(a.charAt(i-1)===b.charAt(j-1)?0:1));
+    }
+    for(j=0;j<=b.length;j++) prev[j]=cur[j];
+  }
+  return prev[b.length];
+}
+/* how close is close enough to call it a spelling slip rather than a wrong answer */
+function slipAllowance(n){ return n<=4?0:(n<=8?1:(n<=14?2:3)); }
+
+/* Compare one typed value against one accepted answer and its alternates.
+   Returns 'exact', 'misspelled' or 'wrong'. */
+function judgeOne(typed, answer, alts){
+  var t=core(typed); if(!t) return 'wrong';
+  var candidates=[answer].concat(alts||[]);
+  var best='wrong';
+  for(var i=0;i<candidates.length;i++){
+    var c=core(candidates[i]);
+    if(!c) continue;
+    if(t===c) return 'exact';
+    var d=editDistance(t,c);
+    if(d<=slipAllowance(c.length)) best='misspelled';
+    /* a typed answer that contains the whole key, or vice versa, is a slip not a miss */
+    else if(best!=='misspelled' && (t.indexOf(c)>=0 || c.indexOf(t)>=0) &&
+            Math.abs(t.length-c.length)<=Math.max(4, Math.round(c.length*0.4))) best='misspelled';
+  }
+  return best;
+}
+
+/* Grade a whole station. Blanks are accepted in ANY order: each typed value is
+   matched to its best remaining answer. Returns per blank verdicts plus a roll up. */
+function gradeStation(station, typedValues, opts){
+  opts = opts||{};
+  var strict = opts.spelling!==false;      /* spelling counts unless told otherwise */
+  var answers = (station.ans||[]).slice();
+  var altMap = station.alt||{};
+  var typed = (typedValues||[]).slice();
+  while(typed.length < answers.length) typed.push('');
+
+  var used = new Array(answers.length);
+  var verdicts = new Array(answers.length);
+  var matched = new Array(typed.length);
+
+  /* pass 1: exact matches claim their answer first */
+  var i,j;
+  for(i=0;i<typed.length;i++){
+    for(j=0;j<answers.length;j++){
+      if(used[j]) continue;
+      if(judgeOne(typed[i], answers[j], altMap[answers[j]])==='exact'){
+        used[j]=true; verdicts[j]='exact'; matched[i]=j; break;
+      }
+    }
+  }
+  /* pass 2: misspellings claim what is left */
+  for(i=0;i<typed.length;i++){
+    if(matched[i]!==undefined) continue;
+    for(j=0;j<answers.length;j++){
+      if(used[j]) continue;
+      if(judgeOne(typed[i], answers[j], altMap[answers[j]])==='misspelled'){
+        used[j]=true; verdicts[j]='misspelled'; matched[i]=j; break;
+      }
+    }
+  }
+  for(j=0;j<answers.length;j++) if(!used[j]) verdicts[j]='wrong';
+
+  /* Feedback must land on the blank the student actually typed in, not on the
+     answer it matched. `inputs` is indexed by blank, `verdicts` by answer. */
+  var inputs=[];
+  for(i=0;i<answers.length;i++){
+    var mi=matched[i];
+    inputs.push({
+      typed: typed[i]||'',
+      verdict: (mi===undefined)?'wrong':verdicts[mi],
+      answer: (mi===undefined)?null:answers[mi]
+    });
+  }
+  /* any answer nobody claimed is reported against the first unlabelled blank */
+  var unclaimed=[];
+  for(j=0;j<answers.length;j++) if(!used[j]) unclaimed.push(answers[j]);
+  var u=0;
+  for(i=0;i<inputs.length;i++) if(inputs[i].answer===null && u<unclaimed.length) inputs[i].answer=unclaimed[u++];
+
+  var exact=0, misspelled=0;
+  verdicts.forEach(function(v){ if(v==='exact') exact++; else if(v==='misspelled') misspelled++; });
+  var counted = strict ? exact : (exact+misspelled);
+  var total = answers.length;
+  var outcome;
+  if(counted===total) outcome='good';
+  else if(counted>0) outcome='hard';
+  else if(!strict && misspelled>0) outcome='hard';
+  else if(strict && misspelled>0) outcome='hard';   /* right structure, wrong spelling */
+  else outcome='again';
+
+  return {
+    answers: answers,
+    verdicts: verdicts,
+    inputs: inputs,
+    exact: exact,
+    misspelled: misspelled,
+    wrong: total-exact-misspelled,
+    total: total,
+    correct: counted===total,
+    outcome: outcome,
+    spellingCounted: strict
+  };
+}
+
+/* ---------------------------------------------------------------- content */
+var content = null;
+function setContent(c){ content=c; return api; }
+function loops(){ return (content&&content.loops)||[]; }
+function modules(){ return (content&&content.modules)||[]; }
+function systems(){ return (content&&content.systems)||{}; }
+function loop(id){ var L=loops(); for(var i=0;i<L.length;i++) if(L[i].id===id) return L[i]; return null; }
+function loopsInModule(n){ return loops().filter(function(L){ return L.module===n; }); }
+
+/* scope: 'all' | {module:n} | {loop:id} | array of loop ids */
+function resolveScope(scope){
+  if(!scope||scope==='all') return loops();
+  if(typeof scope==='string'){
+    if(/^m\d+$/.test(scope)) return loopsInModule(parseInt(scope.slice(1),10));
+    var one=loop(scope); return one?[one]:[];
+  }
+  if(scope.module!=null) return loopsInModule(scope.module);
+  if(scope.loop!=null){ var l=loop(scope.loop); return l?[l]:[]; }
+  if(Object.prototype.toString.call(scope)==='[object Array]')
+    return loops().filter(function(L){ return scope.indexOf(L.id)>=0; });
+  return loops();
+}
+function scopeLabel(scope){
+  if(!scope||scope==='all') return 'the whole course';
+  if(typeof scope==='string'&&/^m\d+$/.test(scope)) scope={module:parseInt(scope.slice(1),10)};
+  if(typeof scope==='string'){ var l=loop(scope); return l?(l.unit||l.title):'the whole course'; }
+  if(scope.module!=null){
+    var M=modules().filter(function(x){ return x.n===scope.module; })[0];
+    return M?('Module '+M.n+', '+M.full):'the whole course';
+  }
+  if(scope.loop!=null){ var L=loop(scope.loop); return L?(L.unit||L.title):'the whole course'; }
+  return 'the whole course';
+}
+
+/* ---------------------------------------------------------------- records */
+function key(loopId,i){ return loopId+'#'+i; }
+function getRecord(loopId,i){ return readAll()[key(loopId,i)]||null; }
+function missValue(o){ return o==='e'||o==='g'?0:(o==='h'?0.5:1); }
+
+function recordAttempt(loopId, index, outcome, detail){
+  var all=readAll(), k=key(loopId,index);
+  var r=all[k]||{seen:0,again:0,hard:0,good:0,easy:0,recent:[],spell:0};
+  r.seen++;
+  r[outcome]=(r[outcome]||0)+1;
+  if(detail&&detail.misspelled) r.spell=(r.spell||0)+detail.misspelled;
+  r.recent.push(outcome.charAt(0));
+  if(r.recent.length>10) r.recent.shift();
+  all[k]=r; writeAll(all);
+  emit('station:answered',{loopId:loopId,index:index,outcome:outcome,detail:detail||null});
+  return r;
+}
+/* recency weighted miss rate. never NaN, and legacy shapes still score. */
+function weakness(loopId,i){
+  var r=getRecord(loopId,i);
+  if(!r||!r.seen) return null;
+  if(r.recent&&r.recent.length){
+    var w=0,m=0;
+    for(var j=0;j<r.recent.length;j++){ var g=j+1; w+=g; m+=g*missValue(r.recent[j]); }
+    return m/w;
+  }
+  return ((r.again||0)+0.5*(r.hard||0))/r.seen;
+}
+function isWeak(loopId,i){ var s=weakness(loopId,i); return s!==null&&s>=0.4; }
+function isNotStarted(loopId,i){ var r=getRecord(loopId,i); return !r||!r.seen; }
+function isStrong(loopId,i){ var s=weakness(loopId,i); return s!==null&&s<0.2; }
+
+/* ---------------------------------------------------------------- progress */
+function progress(scope){
+  var list=resolveScope(scope);
+  var total=0, started=0, notStarted=0, weak=0, strong=0, att=0, right=0, spell=0;
+  list.forEach(function(L){
+    for(var i=0;i<L.stations.length;i++){
+      total++;
+      var r=getRecord(L.id,i);
+      if(!r||!r.seen){ notStarted++; continue; }
+      started++; att+=r.seen; right+=(r.good||0)+(r.easy||0); spell+=(r.spell||0);
+      if(isWeak(L.id,i)) weak++;
+      else if(isStrong(L.id,i)) strong++;
+    }
+  });
+  return {
+    scope: scope||'all', label: scopeLabel(scope),
+    loops: list.length, total: total,
+    started: started, notStarted: notStarted,
+    weak: weak, strong: strong, developing: Math.max(0, started-weak-strong),
+    attempts: att, correct: right,
+    accuracy: att?Math.round(right/att*100):0,
+    coverage: total?Math.round(started/total*100):0,
+    spellingSlips: spell
+  };
+}
+function stationList(scope, filter){
+  var list=resolveScope(scope), out=[];
+  list.forEach(function(L){
+    for(var i=0;i<L.stations.length;i++){
+      var s=L.stations[i], w=weakness(L.id,i), r=getRecord(L.id,i);
+      var state = (!r||!r.seen)?'not-started':(isWeak(L.id,i)?'weak':(isStrong(L.id,i)?'strong':'developing'));
+      if(filter&&filter!=='all'&&state!==filter) continue;
+      out.push({loopId:L.id, unit:L.unit||L.title, module:L.module, index:i,
+                answers:s.ans, blanks:s.ans.length, state:state,
+                weakness:w, recent:(r&&r.recent)||[], seen:(r&&r.seen)||0});
+    }
+  });
+  if(filter==='weak') out.sort(function(a,b){ return b.weakness-a.weakness; });
+  return out;
+}
+function weakStations(scope){ return stationList(scope,'weak'); }
+function notStartedStations(scope){ return stationList(scope,'not-started'); }
+
+function buildQueue(opts){
+  opts=opts||{};
+  var picked=stationList(opts.scope, opts.filter||'all');
+  if(opts.shuffle!==false){
+    for(var i=picked.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=picked[i]; picked[i]=picked[j]; picked[j]=t; }
+  }
+  var n=parseInt(opts.limit,10);
+  if(n>0) picked=picked.slice(0,n);
+  return picked;
+}
+
+/* ---------------------------------------------------------------- export */
+/* Anonymous. Structure level accuracy only. No names, nothing identifying. */
+function exportProgress(){
+  var all=readAll(), rows=[];
+  loops().forEach(function(L){
+    for(var i=0;i<L.stations.length;i++){
+      var r=all[key(L.id,i)];
+      if(!r||!r.seen) continue;
+      rows.push({loop:L.id, module:L.module, index:i,
+                 answer:(L.stations[i].ans||[]).join(' + '),
+                 seen:r.seen, again:r.again||0, hard:r.hard||0,
+                 good:r.good||0, easy:r.easy||0, spell:r.spell||0,
+                 weakness:Math.round((weakness(L.id,i)||0)*100)/100});
+    }
+  });
+  return {schema:'loops-progress-1', course:(content&&content.course)||'', term:(content&&content.term)||'',
+          generated:null, summary:progress('all'), rows:rows};
+}
+function importProgress(data){
+  if(!data||data.schema!=='loops-progress-1'||!data.rows) return false;
+  var all=readAll();
+  data.rows.forEach(function(r){
+    all[key(r.loop,r.index)]={seen:r.seen,again:r.again,hard:r.hard,good:r.good,easy:r.easy,
+                              spell:r.spell,recent:[]};
+  });
+  return writeAll(all);
+}
+function reset(scope){
+  var all=readAll(), list=resolveScope(scope);
+  list.forEach(function(L){ for(var i=0;i<L.stations.length;i++) delete all[key(L.id,i)]; });
+  writeAll(all); emit('progress:reset',{scope:scope||'all'});
+}
+
+/* ---------------------------------------------------------------- events */
+var handlers={};
+function on(type,fn){ (handlers[type]=handlers[type]||[]).push(fn); return api; }
+function off(type,fn){ if(handlers[type]) handlers[type]=handlers[type].filter(function(f){ return f!==fn; }); return api; }
+function emit(type,payload){
+  (handlers[type]||[]).forEach(function(f){ try{ f(payload); }catch(e){} });
+  (handlers['*']||[]).forEach(function(f){ try{ f({type:type,payload:payload}); }catch(e){} });
+  /* Mastery OS listens for these on the parent window */
+  try{ parent.postMessage({source:'loops-engine', version:api.version, type:type, payload:payload}, '*'); }catch(e){}
+}
+
+/* ---------------------------------------------------------------- prefs */
+function getPrefs(){
+  var p=readPrefs();
+  return {
+    spelling: p.spelling!==false,     /* graded typing on by default */
+    limit: p.limit||'all',
+    shuffle: p.shuffle!==false,
+    timed: !!p.timed,
+    seconds: p.seconds||30,
+    module: p.module||1,
+    scope: p.scope||'all'
+  };
+}
+function setPref(k,v){ var p=readPrefs(); p[k]=v; writePrefs(p); emit('prefs:change',{key:k,value:v}); }
+
+/* ---------------------------------------------------------------- api */
+var api = {
+  version:'1.0.0',
+  setContent:setContent,
+  /* content */
+  getModules:modules, getSystems:systems, getLoops:loops, getLoop:loop,
+  getLoopsInModule:loopsInModule, resolveScope:resolveScope, scopeLabel:scopeLabel,
+  /* grading */
+  normalise:normalise, editDistance:editDistance, judgeOne:judgeOne, gradeStation:gradeStation,
+  /* records */
+  recordAttempt:recordAttempt, getRecord:getRecord, weakness:weakness,
+  isWeak:isWeak, isStrong:isStrong, isNotStarted:isNotStarted,
+  /* reporting */
+  getProgress:progress, getStations:stationList, getWeak:weakStations,
+  getNotStarted:notStartedStations, buildQueue:buildQueue,
+  exportProgress:exportProgress, importProgress:importProgress, resetProgress:reset,
+  /* prefs and events */
+  getPrefs:getPrefs, setPref:setPref, on:on, off:off, emit:emit
+};
+
+root.LoopsEngine = api;
+if(typeof module!=='undefined'&&module.exports) module.exports=api;
+
+})(typeof window!=='undefined'?window:this);
+
+</script>
 <script>
 (function(){
 "use strict";
