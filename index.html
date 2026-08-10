@@ -152,6 +152,16 @@
   .pc:hover{background:var(--navy-tint)}
   .pc[aria-pressed="true"]{background:var(--navy);color:#fff}
   .tag.flag{color:#8B3A2E;border-color:#8B3A2E}
+  .speak-btn{position:absolute;bottom:14px;right:14px;width:52px;height:52px;border-radius:50%;border:none;
+    background:var(--navy);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 2px 8px rgba(11,21,48,.28);transition:var(--t);z-index:5;padding:0}
+  .speak-btn[hidden]{display:none}
+  .speak-btn:hover{background:var(--terra-dark);transform:scale(1.07)}
+  .speak-btn:active{transform:scale(.95)}
+  .speak-btn svg{width:26px;height:26px;fill:currentColor;pointer-events:none}
+  .speak-btn.speaking{background:var(--terra-dark);animation:speakPulse 1.1s ease-in-out infinite}
+  @keyframes speakPulse{0%,100%{box-shadow:0 0 0 0 rgba(194,115,77,.55)}50%{box-shadow:0 0 0 9px rgba(194,115,77,0)}}
+  @media (prefers-reduced-motion: reduce){.speak-btn.speaking{animation:none}}
   .card.picked{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold)}
   .card.picked .ct::before{content:"\2713  ";color:var(--terra-dark);font-weight:800}
 
@@ -263,7 +273,10 @@
       <span class="pcount" id="pCount"></span>
     </div>
     <div class="stage">
-      <div class="imgwrap"><img id="slide" alt=""><span class="clock" id="clock" hidden></span></div>
+      <div class="imgwrap"><img id="slide" alt=""><span class="clock" id="clock" hidden></span>
+        <button class="speak-btn" id="speakBtn" type="button" hidden aria-label="Hear how this term is pronounced" title="Hear pronunciation">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+        </button></div>
       <div class="work">
         <div class="preconf" id="preconf" role="group" aria-label="Rate your confidence before answering">
           <p class="pcq" id="pcq">Before you answer: how sure are you?</p>
@@ -2569,6 +2582,140 @@ $('playShown').addEventListener('click',function(){
   runScope(list.map(function(L){ return L.id; }),'all',title);
 });
 
+/* ---------------- pronunciation, from the original build ---------------- */
+const PRON={
+  brachii:"bray-kee-eye", brachialis:"bray-kee-AL-iss", brachioradialis:"bray-kee-oh-ray-dee-AL-iss",
+  brachial:"BRAY-kee-al", brachiocephalic:"bray-kee-oh-seh-FAL-ik",
+  teres:"TARE-eez", carpi:"CAR-pie", longus:"LONG-gus", brevis:"BREV-iss",
+  radialis:"ray-dee-AL-iss", ulnaris:"ul-NAIR-iss", ulnar:"ULL-nar",
+  digitorum:"dij-ih-TOR-um", digiti:"DIJ-ih-tie", minimi:"MIN-ih-my", minimus:"MIN-ih-mus",
+  pollicis:"POL-ih-sis", indicis:"IN-dih-sis", superficialis:"soo-per-fish-ee-AL-iss", profundus:"pro-FUN-dus",
+  pectoralis:"pek-tor-AL-iss", serratus:"seh-RAY-tus", latissimus:"la-TISS-ih-mus", dorsi:"DOR-sigh",
+  trapezius:"tra-PEE-zee-us", rhomboid:"ROM-boyd", deltoid:"DELL-toyd", sternocleidomastoid:"STER-no-kly-do-MAS-toyd",
+  supraspinatus:"soo-pra-spy-NAY-tus", infraspinatus:"in-fra-spy-NAY-tus",
+  subscapularis:"sub-skap-yoo-LAIR-iss", coracobrachialis:"kor-a-ko-bray-kee-AL-iss",
+  anconeus:"ang-KOH-nee-us", pronator:"pro-NAY-tor", supinator:"SOO-pih-nay-tor",
+  palmaris:"pal-MAIR-iss", abductor:"ab-DUK-tor", adductor:"ad-DUK-tor",
+  levator:"leh-VAY-tor", scapulae:"SKAP-yoo-lee", scapula:"SKAP-yoo-la",
+  cephalic:"seh-FAL-ik", basilic:"ba-SIL-ik", axillary:"AK-sih-lair-ee", subclavian:"sub-KLAY-vee-an",
+  musculocutaneous:"mus-kyoo-lo-kyoo-TAY-nee-us", retinaculum:"reh-tih-NAK-yoo-lum",
+  vastus:"VAS-tus", medialis:"mee-dee-AL-iss", lateralis:"lat-er-AL-iss", intermedius:"in-ter-MEE-dee-us",
+  gluteus:"GLOO-tee-us", maximus:"MAX-ih-mus", medius:"MEE-dee-us",
+  femoris:"FEM-or-iss", sartorius:"sar-TOR-ee-us", gracilis:"GRASS-ih-liss",
+  soleus:"SO-lee-us", gastrocnemius:"gas-trok-NEE-mee-us", tibialis:"tib-ee-AL-iss",
+  fibularis:"fib-yoo-LAIR-iss", peroneus:"pair-oh-NEE-us",
+  semimembranosus:"sem-ee-mem-bra-NO-sus", semitendinosus:"sem-ee-ten-dih-NO-sus",
+  iliopsoas:"ill-ee-oh-SO-az", psoas:"SO-az", piriformis:"pih-rih-FOR-miss",
+  fasciae:"FASH-ee-ee", latae:"LAY-tee", lata:"LAY-ta", alba:"AL-ba", linea:"LIN-ee-a",
+  iliotibial:"ill-ee-oh-TIB-ee-al", tensor:"TEN-sor",
+  masseter:"ma-SEE-ter", temporalis:"tem-por-AL-iss", buccinator:"BUK-sih-nay-tor",
+  risorius:"rih-SOR-ee-us", orbicularis:"or-bik-yoo-LAIR-iss", oculi:"OCK-yoo-lie", oris:"OR-iss",
+  depressor:"deh-PRESS-or", anguli:"ang-GYOO-lie", zygomatic:"zy-go-MAT-ik", zygomaticus:"zy-go-MAT-ih-kus",
+  abducens:"ab-DOO-senz", trochlear:"TROK-lee-ar", oculomotor:"ock-yoo-lo-MO-tor",
+  pulmonary:"PULL-mo-nair-ee", aorta:"ay-OR-ta", aortic:"ay-OR-tik", vena:"VEE-na", cava:"KAY-va",
+  atrium:"AY-tree-um", atrioventricular:"ay-tree-o-ven-TRIK-yoo-lar", interventricular:"in-ter-ven-TRIK-yoo-lar",
+  ventricle:"VEN-trih-kul", myocardium:"my-o-KAR-dee-um", endocardium:"en-do-KAR-dee-um",
+  epicardium:"eh-pih-KAR-dee-um", pericardium:"pair-ih-KAR-dee-um",
+  chordae:"KOR-dee", tendineae:"ten-DIN-ee-ee", trabeculae:"tra-BEK-yoo-lee", carneae:"KAR-nee-ee",
+  mitral:"MY-tral", semilunar:"sem-ee-LOO-nar", sinoatrial:"sy-no-AY-tree-al",
+  purkinje:"pur-KIN-jee", arteriosum:"ar-teer-ee-O-sum", carotid:"ka-ROT-id", circumflex:"SUR-kum-fleks",
+  trachea:"TRAY-kee-a", tracheal:"TRAY-kee-al", trachealis:"tray-kee-AL-iss",
+  bronchus:"BRONK-us", bronchi:"BRONK-eye", bronchioles:"BRONK-ee-oles",
+  epiglottis:"eh-pih-GLOT-iss", larynx:"LAIR-inks", laryngeal:"la-RIN-jee-al", pharynx:"FAIR-inks",
+  nasopharynx:"nay-zo-FAIR-inks", oropharynx:"or-o-FAIR-inks", laryngopharynx:"la-ring-go-FAIR-inks",
+  alveoli:"al-VEE-o-lie", alveolus:"al-VEE-o-lus", alveolar:"al-VEE-o-lar",
+  cricoid:"KRY-koyd", cricothyroid:"kry-ko-THY-royd", thyroid:"THY-royd", arytenoid:"air-ih-TEE-noyd",
+  corniculate:"kor-NIK-yoo-late", carina:"ka-RY-na", pleura:"PLOOR-a", hilum:"HY-lum",
+  esophagus:"eh-SOF-a-gus", phrenic:"FREN-ik", diaphragm:"DY-a-fram",
+  foramen:"for-AY-men", foramina:"for-AM-ih-na", fossa:"FOSS-a", meatus:"mee-AY-tus",
+  lamellae:"la-MEL-ee", lamella:"la-MEL-a", lacuna:"la-KOO-na", canaliculi:"kan-a-LIK-yoo-lie",
+  haversian:"ha-VER-zhun", osteon:"OSS-tee-on", osteocyte:"OSS-tee-o-site",
+  diaphysis:"dy-AF-ih-sis", epiphysis:"eh-PIF-ih-sis", epiphyseal:"eh-pih-FIZZ-ee-al", metaphysis:"meh-TAF-ih-sis",
+  periosteum:"pair-ee-OSS-tee-um", endosteum:"en-DOSS-tee-um",
+  humerus:"HYOO-mer-us", tuberosity:"too-beh-ROSS-ih-tee", olecranon:"o-LEK-ra-non",
+  phalanx:"FAY-lanks", radius:"RAY-dee-us", ulna:"ULL-na", clavicle:"KLAV-ih-kul",
+  acromion:"a-KRO-mee-on", acromial:"a-KRO-mee-al", coracoid:"KOR-a-koyd", glenoid:"GLEE-noyd",
+  sphenoid:"SFEE-noyd", ethmoid:"ETH-moyd", vomer:"VO-mer", hyoid:"HY-oyd",
+  mandible:"MAN-dih-bul", maxilla:"mak-SIL-a", occipital:"ok-SIP-ih-tal", palatine:"PAL-a-tine",
+  styloid:"STY-loyd", condyle:"KON-dile", calcaneus:"kal-KAY-nee-us", talus:"TAY-lus",
+  navicular:"na-VIK-yoo-lar", cuboid:"KYOO-boyd", cuneiform:"kyoo-NEE-ih-form",
+  scaphoid:"SKAF-oyd", lunate:"LOO-nate", pisiform:"PY-sih-form", hamate:"HAY-mate",
+  capitate:"KAP-ih-tate", trapezium:"tra-PEE-zee-um", trochanter:"tro-KAN-ter",
+  ischium:"ISS-kee-um", ischial:"ISS-kee-al", ilium:"ILL-ee-um", iliac:"ILL-ee-ak", pubis:"PYOO-biss",
+  acetabulum:"ass-eh-TAB-yoo-lum", malleolus:"ma-LEE-o-lus", xiphoid:"ZIF-oyd",
+  glabella:"gla-BEL-a", sella:"SEL-a", turcica:"TUR-sih-ka", crista:"KRISS-ta", galli:"GAL-eye",
+  cribriform:"KRIB-rih-form", lambdoid:"LAM-doyd", lambdoidal:"lam-DOY-dal",
+  epithelium:"eh-pih-THEE-lee-um", squamous:"SKWAY-mus", cuboidal:"kyoo-BOY-dal", columnar:"ko-LUM-nar",
+  pseudostratified:"soo-do-STRAT-ih-fide", stratified:"STRAT-ih-fide", keratinized:"KER-a-tin-ized", keratin:"KER-a-tin",
+  fibroblast:"FY-bro-blast", chondrocyte:"KON-dro-site", chondrocytes:"KON-dro-sites",
+  perichondrium:"pair-ih-KON-dree-um", hyaline:"HY-a-line", fibrocartilage:"fy-bro-KAR-tih-lij",
+  adipose:"ADD-ih-pose", areolar:"a-REE-o-lar", reticular:"reh-TIK-yoo-lar",
+  eosinophil:"ee-o-SIN-o-fill", basophil:"BAY-so-fill", neutrophil:"NOO-tro-fill",
+  lymphocyte:"LIM-fo-site", monocyte:"MON-o-site", macrophage:"MAK-ro-fahj", thrombocyte:"THROM-bo-site",
+  desmosome:"DEZ-mo-some", microvilli:"my-kro-VILL-eye",
+  sarcomere:"SAR-ko-meer", sarcolemma:"sar-ko-LEM-a", sarcoplasmic:"sar-ko-PLAZ-mik",
+  myofibril:"my-o-FY-bril", endomysium:"en-do-MIZ-ee-um", myosin:"MY-o-sin", actin:"AK-tin",
+  pacinian:"pa-SIN-ee-an", meissner:"MICE-ner", corpuscle:"KOR-pus-ul",
+  sebaceous:"seh-BAY-shus", apocrine:"APP-o-krin", eccrine:"EK-rin", arrector:"a-REK-tor", pili:"PY-lie",
+  corneum:"KOR-nee-um", lucidum:"LOO-sih-dum", granulosum:"gran-yoo-LO-sum", lamellated:"LAM-eh-lay-ted",
+  cecum:"SEE-kum", jejunum:"jeh-JOO-num", ileum:"ILL-ee-um", ileocecal:"ill-ee-o-SEE-kal",
+  duodenum:"doo-o-DEE-num", duodenal:"doo-o-DEE-nal", colic:"KOL-ik", sigmoid:"SIG-moyd",
+  tenia:"TEE-nee-a", haustra:"HAW-stra", vermiform:"VER-mih-form", rugae:"ROO-gee",
+  pancreatic:"pan-kree-AT-ik", pancreas:"PAN-kree-as", hepatopancreatic:"heh-pat-o-pan-kree-AT-ik",
+  ampulla:"am-PULL-a", papilla:"pa-PILL-a", mesenteric:"mez-en-TAIR-ik", celiac:"SEE-lee-ak",
+  gastroduodenal:"gas-tro-doo-o-DEE-nal", splenic:"SPLEN-ik", parotid:"pa-ROT-id",
+  submandibular:"sub-man-DIB-yoo-lar", uvula:"YOO-vyoo-la", tonsil:"TON-sil", plica:"PLY-ka", circulares:"sur-kyoo-LAIR-eez",
+  popliteus:"pop-LIT-ee-us", popliteal:"pop-LIT-ee-al", calcaneal:"kal-KAY-nee-al", sciatic:"sy-AT-ik", fibular:"FIB-yoo-lar",
+  ureter:"YOOR-eh-ter", urethra:"yoo-REE-thra", detrusor:"deh-TROO-zer", trigone:"TRY-gohn",
+  adrenal:"a-DREE-nal", suprarenal:"soo-pra-REE-nal", renal:"REE-nal", prostatic:"pross-TAT-ik",
+  prostate:"PROSS-tate", seminal:"SEM-ih-nal", vesicles:"VESS-ih-kuls",
+  epididymis:"eh-pih-DID-ih-miss", ejaculatory:"ee-JAK-yoo-la-tor-ee", cremaster:"kreh-MAS-ter",
+  prepuce:"PREE-pyoos", pampiniform:"pam-PIN-ih-form", spermatic:"sper-MAT-ik", deferens:"DEF-er-enz",
+  scrotum:"SKRO-tum", corpus:"KOR-pus", cavernosum:"kav-er-NO-sum", spongiosum:"spun-jee-O-sum",
+  myometrium:"my-o-MEE-tree-um", endometrium:"en-do-MEE-tree-um", fornix:"FOR-niks", oviduct:"O-vih-dukt",
+  fimbrae:"FIM-bree", clitoris:"KLIT-or-iss", labia:"LAY-bee-a", majora:"ma-JOR-a", minora:"mih-NOR-a",
+  vagina:"va-JY-na", cervix:"SUR-viks", ovarian:"o-VAIR-ee-an", ovary:"O-var-ee", uterus:"YOO-ter-us",
+  ampulla:"am-PULL-a", mons:"monz", fallopian:"fa-LO-pee-an", inguinal:"ING-gwih-nal",
+  testicular:"tess-TIK-yoo-lar", ductus:"DUK-tus", testis:"TESS-tiss",
+  arcuate:"AR-kyoo-ate", henle:"HEN-lee", nephron:"NEF-ron", glomerulus:"glo-MER-yoo-lus",
+  glomerular:"glo-MER-yoo-lar", podocytes:"PO-do-sites", vasa:"VAY-za", recta:"REK-ta", calyx:"KAY-liks",
+  juxtaglomerular:"juks-ta-glo-MER-yoo-lar", juxtamedullary:"juks-ta-MED-yoo-lair-ee", macula:"MAK-yoo-la",
+  densa:"DEN-sa", peritubular:"pair-ee-TOOB-yoo-lar", medulla:"meh-DULL-a", cortex:"KOR-teks",
+  afferent:"AF-er-ent", efferent:"EF-er-ent", interlobar:"in-ter-LO-bar", papilla:"pa-PILL-a"
+};
+function respellTerm(term){
+  return String(term).replace(/[()\/,;:_]/g,' ')
+    .split(/\s+/).filter(Boolean).map(function(tok){
+      var key=tok.toLowerCase().replace(/[^a-z'-]/g,'');
+      return Object.prototype.hasOwnProperty.call(PRON,key) ? PRON[key] : tok;
+    }).join(' ');
+}
+var _speakVoice=null;
+function pickVoice(){
+  var vs=(window.speechSynthesis&&speechSynthesis.getVoices)?speechSynthesis.getVoices():[];
+  if(!vs.length) return null;
+  var good=/(google us english|natural|neural|enhanced|premium|samantha|ava|allison|siri|aria|jenny|nova|zira|serena|kate)/i;
+  var bad=/(fred|zarvox|whisper|bells|bad news|good news|junior|organ|cellos|bahh|boing|trinoids|deranged|hysterical|pipe|bubbles|wobble|superstar|albert|ralph|kathy|vicki|victoria|compact|eloquence)/i;
+  var en=vs.filter(function(v){return /^en/i.test(v.lang);});
+  var us=en.filter(function(v){return /en[-_]US/i.test(v.lang);});
+  var pool=us.length?us:(en.length?en:vs);
+  _speakVoice = pool.filter(function(v){return good.test(v.name);})[0]
+             || pool.filter(function(v){return !bad.test(v.name);})[0]
+             || pool[0];
+  return _speakVoice;
+}
+if(window.speechSynthesis){ try{ speechSynthesis.onvoiceschanged=function(){ pickVoice(); }; pickVoice(); }catch(e){} }
+function speakTerm(term){
+  if(!term || !('speechSynthesis' in window)) return;
+  try{ speechSynthesis.cancel(); }catch(e){}
+  var u=new SpeechSynthesisUtterance(respellTerm(term));
+  u.lang='en-US'; u.rate=0.82; u.pitch=1;
+  var v=_speakVoice||pickVoice(); if(v) u.voice=v;
+  var sb=document.getElementById('speakBtn');
+  if(sb){ u.onstart=function(){sb.classList.add('speaking');}; u.onend=u.onerror=function(){sb.classList.remove('speaking');}; }
+  try{ speechSynthesis.speak(u); }catch(e){}
+}
+
 /* ---------------- player ---------------- */
 var cur=null, queue=[], pos=0, tally=[], firstInput=null, timer=null, left=0, checked=false;
 /* pending holds the machine verdict until the student accepts or corrects it.
@@ -2630,6 +2777,8 @@ function station(){
   });
   setHint();
   $('verdict').hidden=true; $('selfcheck').hidden=true; $('override').hidden=true;
+  $('speakBtn').hidden=true;
+  if(window.speechSynthesis){ try{ speechSynthesis.cancel(); }catch(e){} }
   pending=null; recorded=false;
   /* confidence first: the blanks unlock once they have said how sure they are */
   conf=0;
@@ -2669,6 +2818,7 @@ function check(timedOut){
     $('vBody').innerHTML='<p class="key">'+esc(st.ans.join('  &middot;  '))+'</p>'
       +'<p>This one is a list or a description, so it is not auto marked. If what you wrote covers it, press Good. Your press is what gets recorded.</p>';
     pending=null;
+    $('speakBtn').hidden=false;
     $('selfcheck').hidden=false;
     $('pCheck').hidden=true; $('pSkip').hidden=true; $('pNext').hidden=false;
     $('scGood').focus();
@@ -2716,6 +2866,7 @@ function check(timedOut){
       + ' Your choice is what feeds your weakness dashboard.';
     $('override').hidden=false;
   }
+  $('speakBtn').hidden=false;
   $('pCheck').hidden=true; $('pSkip').hidden=true; $('pNext').hidden=false; $('pNext').focus();
   notifyHeight();
 }
@@ -2769,6 +2920,11 @@ $('resWeak').addEventListener('click',function(){
   $(id).addEventListener('click',function(){
     commit(k,null); nextStation();
   });
+});
+$('speakBtn').addEventListener('click',function(){
+  var s=queue[pos]; if(!s) return;
+  var st=E.getLoop(s.loopId).stations[s.index];
+  speakTerm(st.ans.join(', '));
 });
 $('ovRight').addEventListener('click',function(){ commit('good',{overridden:true}); nextStation(); });
 $('ovSpell').addEventListener('click',function(){ commit('hard',{misspelled:1,overridden:true}); nextStation(); });
