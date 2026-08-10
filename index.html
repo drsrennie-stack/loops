@@ -31,15 +31,16 @@
   header.site{background:var(--white);border-bottom:1px solid var(--line);padding:20px max(18px,4vw)}
   .inner,main{max-width:1060px;margin:0 auto}
   main{padding:22px max(18px,4vw) 60px}
-  .brand{display:flex;align-items:center;gap:13px}
-  .mark{display:flex;gap:4px;align-items:flex-end;flex:none}
-  .mark i{display:block;width:8px;border-radius:4px 4px 2px 2px}
-  .mark i:nth-child(1){height:26px;background:var(--navy)}
-  .mark i:nth-child(2){height:34px;background:var(--terra-dark)}
-  .mark i:nth-child(3){height:26px;background:var(--gold-line)}
-  .brand h1{font-size:1.4rem} .brand h1 span{color:var(--terra-dark)}
-  .brand .sub{font-family:var(--fe);font-size:.66rem;font-weight:700;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--navy);opacity:.72;display:block;margin-top:2px}
+  /* the course logo header, same as every other BIO 004 page */
+  .site-logo{display:inline-flex;align-items:center;gap:16px;text-decoration:none}
+  .site-logo svg{height:54px;width:auto;display:block}
+  .logo-text{display:flex;flex-direction:column;gap:3px}
+  .logo-title{font-family:var(--fd);font-size:1.68rem;font-weight:800;letter-spacing:-.02em;color:var(--navy);line-height:1}
+  .logo-title .logo-accent{color:var(--terra-dark)}
+  .logo-sub{font-family:var(--fe);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--navy);opacity:.72}
+  .pgtitle{font-size:2rem;font-weight:800;color:var(--navy);margin:0 0 6px;letter-spacing:-.02em}
+  .pgtitle span{color:var(--terra-dark)}
+  .pgtag{color:var(--muted);margin:0 0 20px;max-width:640px}
   .eyebrow{font-family:var(--fe);font-size:.68rem;font-weight:700;letter-spacing:.18em;
     text-transform:uppercase;color:var(--terra-dark);margin:0 0 8px}
 
@@ -140,6 +141,17 @@
   .sc-good{border-color:var(--navy);color:var(--navy)} .sc-good:hover{background:var(--navy);color:#fff}
   .sc-easy{border-color:var(--green);color:var(--green)} .sc-easy:hover{background:var(--green);color:#fff}
   .sc .k{display:block;font-family:var(--fe);font-size:.58rem;letter-spacing:.06em;font-weight:700;opacity:.85}
+  .override{margin-top:12px;border:1px dashed var(--line);border-radius:var(--radius);padding:12px 14px;background:#fff}
+  .override .ovq{font-size:.86rem;color:var(--muted);margin:0 0 10px}
+  .preconf{margin:0 0 12px;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:#fff}
+  .preconf .pcq{font-family:var(--fe);font-weight:700;font-size:.62rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--terra-dark);margin:0 0 9px}
+  .pcbtns{display:flex;gap:8px;flex-wrap:wrap}
+  .pc{font-family:var(--fd);font-weight:700;font-size:.86rem;border:1px solid var(--navy);color:var(--navy);
+    background:#fff;border-radius:var(--radius);padding:9px 14px;min-height:44px;cursor:pointer;transition:var(--t)}
+  .pc:hover{background:var(--navy-tint)}
+  .pc[aria-pressed="true"]{background:var(--navy);color:#fff}
+  .tag.flag{color:#8B3A2E;border-color:#8B3A2E}
 
   .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--rest);padding:18px 20px;margin-bottom:14px}
   .panel h3{font-size:1rem;margin:0 0 12px}
@@ -150,6 +162,7 @@
   .dstat .strong .num{color:var(--green)}
   .dstat .weak .num{color:var(--terra-dark)}
   .dstat .todo .num{color:var(--muted)}
+  .dstat .flagstat .num{color:#8B3A2E}
   .meter{display:flex;height:12px;border-radius:999px;overflow:hidden;margin-top:14px;background:var(--navy-tint)}
   .meter i{display:block;height:100%}
   .meter .s{background:var(--green)} .meter .d{background:var(--gold)} .meter .w{background:var(--terra-dark)}
@@ -182,13 +195,35 @@
 </head>
 <body>
 <a class="skip" href="#work">Skip to the loops</a>
-<header class="site"><div class="inner"><div class="brand">
-  <span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>
-  <span><h1>Anatomy <span>Loops</span></h1><span class="sub">BIO 004 &middot; Lab practical practice</span></span>
-</div></div></header>
+<header class="site"><div class="inner">
+  <a href="https://drsrennie-stack.github.io/new-build-bio4-solano/index.html" class="site-logo" target="_top" aria-label="BIO 004 Human Anatomy, course home">
+    <svg viewBox="40 10 125 148" role="img" aria-hidden="true" focusable="false">
+      <g transform="translate(0, 18)">
+        <g transform="translate(60, 0) rotate(8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#0B1530"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#0B1530"/>
+        </g>
+        <g transform="translate(100, 0)">
+          <circle cx="0" cy="10" r="11" fill="#8B3A2E"/>
+          <path d="M 0,22 C -11,22 -17,26 -17,34 C -17,52 -14,70 -12,86 C -11,108 -13,122 -15,132 L 15,132 C 13,122 11,108 12,86 C 14,70 17,52 17,34 C 17,26 11,22 0,22 Z" fill="#8B3A2E"/>
+        </g>
+        <g transform="translate(140, 0) rotate(-8 0 130)">
+          <circle cx="0" cy="20" r="10" fill="#C9A14A"/>
+          <path d="M 0,32 C -10,32 -16,36 -16,42 C -16,55 -13,68 -11,82 C -10,100 -12,118 -14,130 L 14,130 C 12,118 10,100 11,82 C 13,68 16,55 16,42 C 16,36 10,32 0,32 Z" fill="#C9A14A"/>
+        </g>
+      </g>
+    </svg>
+    <span class="logo-text">
+      <span class="logo-title">Human <span class="logo-accent">Anatomy</span></span>
+      <span class="logo-sub">BIO 004 &middot; Solano Community College</span>
+    </span>
+  </a>
+</div></header>
 
 <main id="work">
   <section id="hub" aria-label="Choose a loop">
+    <h1 class="pgtitle">Anatomy <span>Loops</span></h1>
+    <p class="pgtag">Practice the lab practical the way you are tested: a prompt, a countdown, then the key. Pick a loop and press play.</p>
     <p class="eyebrow">Choose a module</p>
     <div class="modtabs" role="tablist" aria-label="Course modules" id="modTabs"></div>
     <div class="bar" id="sysBar" hidden>
@@ -221,6 +256,15 @@
     <div class="stage">
       <div class="imgwrap"><img id="slide" alt=""><span class="clock" id="clock" hidden></span></div>
       <div class="work">
+        <div class="preconf" id="preconf" role="group" aria-label="Rate your confidence before answering">
+          <p class="pcq" id="pcq">Before you answer: how sure are you?</p>
+          <div class="pcbtns">
+            <button class="pc" id="pc4" type="button" aria-pressed="false">I know it 100%</button>
+            <button class="pc" id="pc3" type="button" aria-pressed="false">I probably know it</button>
+            <button class="pc" id="pc2" type="button" aria-pressed="false">I might know it</button>
+            <button class="pc" id="pc1" type="button" aria-pressed="false">I do not know it</button>
+          </div>
+        </div>
         <div class="blanks" id="blanks"></div>
         <p class="hint" id="hint"></p>
         <div class="pbar" style="margin:14px 0 0">
@@ -229,6 +273,13 @@
           <button class="btn" id="pNext" type="button" hidden>Next station &rarr;</button>
         </div>
         <div class="verdict" id="verdict" hidden><p class="vl" id="vLab"></p><div id="vBody"></div></div>
+        <div class="override" id="override" hidden role="group" aria-label="Correct the marking">
+          <p class="ovq" id="ovQ">If the marking got it wrong, you are the final judge.</p>
+          <div class="pbar">
+            <button class="btn ovbtn" id="ovRight" type="button">I got it right</button>
+            <button class="btn ghost ovbtn" id="ovSpell" type="button">Right structure, I misspelled it</button>
+          </div>
+        </div>
         <div class="selfcheck" id="selfcheck" hidden role="group" aria-label="Score yourself">
           <button class="sc sc-again" id="scAgain" type="button">Again<span class="k">missed it</span></button>
           <button class="sc sc-hard" id="scHard" type="button">Hard<span class="k">partly right</span></button>
@@ -343,17 +394,17 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 40, "a": 41, "ans": ["Abdominal cavity"]},   /* card 20 */
         {"q": 42, "a": 43, "ans": ["Parietal pleura"]},   /* card 21 */
         {"q": 44, "a": 45, "ans": ["Parasagittal plane"]},   /* card 22 */
-        {"q": 46, "a": 47, "ans": ["RUQ (gallbladder)"]},   /* card 23 */
+        {"q": 46, "a": 47, "ans": ["A", "Right Upper Quadrant"], "alt": {"A": ["A."], "Right Upper Quadrant": ["RUQ", "Right Upper"]}, "labels": ["Letter", "Quadrant name"]},   /* card 23 */
         {"q": 48, "a": 49, "ans": ["Antecubital"]},   /* card 24 */
         {"q": 50, "a": 51, "ans": ["Oblique plane"]},   /* card 25 */
         {"q": 52, "a": 53, "ans": ["Vertebral"]},   /* card 26 */
         {"q": 54, "a": 55, "ans": ["Occipital"]},   /* card 27 */
-        {"q": 56, "a": 57, "ans": ["LUQ (spleen)"]},   /* card 28 */
+        {"q": 56, "a": 57, "ans": ["C", "Left Upper Quadrant"], "alt": {"C": ["C."], "Left Upper Quadrant": ["LUQ", "Left Upper"]}, "labels": ["Letter", "Quadrant name"]},   /* card 28 */
         {"q": 58, "a": 59, "ans": ["Umbilical"]},   /* card 29 */
         {"q": 60, "a": 61, "ans": ["Sural"]},   /* card 30 */
         {"q": 62, "a": 63, "ans": ["Pollex"]},   /* card 31 */
         {"q": 64, "a": 65, "ans": ["Plantar"]},   /* card 32 */
-        {"q": 66, "a": 67, "ans": ["RLQ (appendix)"]},   /* card 33 */
+        {"q": 66, "a": 67, "ans": ["B", "Right Lower Quadrant"], "alt": {"B": ["B."], "Right Lower Quadrant": ["RLQ", "Right Lower"]}, "labels": ["Letter", "Quadrant name"]},   /* card 33 */
         {"q": 68, "a": 69, "ans": ["Buccal"]},   /* card 34 */
         {"q": 70, "a": 71, "ans": ["Clavicular"]},   /* card 35 */
         {"q": 72, "a": 73, "ans": ["Femoral"]},   /* card 36 */
@@ -2136,6 +2187,11 @@ function recordAttempt(loopId, index, outcome, detail){
   r.seen++;
   r[outcome]=(r[outcome]||0)+1;
   if(detail&&detail.misspelled) r.spell=(r.spell||0)+detail.misspelled;
+  if(detail&&detail.confidence){
+    r.lastConf=detail.confidence;
+    /* sure, and still missed: the red flag a practical punishes hardest */
+    if(detail.confidence>=3 && outcome==='again') r.over=(r.over||0)+1;
+  }
   r.recent.push(outcome.charAt(0));
   if(r.recent.length>10) r.recent.shift();
   all[k]=r; writeAll(all);
@@ -2160,13 +2216,14 @@ function isStrong(loopId,i){ var s=weakness(loopId,i); return s!==null&&s<0.2; }
 /* ---------------------------------------------------------------- progress */
 function progress(scope){
   var list=resolveScope(scope);
-  var total=0, started=0, notStarted=0, weak=0, strong=0, att=0, right=0, spell=0;
+  var total=0, started=0, notStarted=0, weak=0, strong=0, att=0, right=0, spell=0, flagged=0, confMiss=0;
   list.forEach(function(L){
     for(var i=0;i<L.stations.length;i++){
       total++;
       var r=getRecord(L.id,i);
       if(!r||!r.seen){ notStarted++; continue; }
       started++; att+=r.seen; right+=(r.good||0)+(r.easy||0); spell+=(r.spell||0);
+      if(r.over){ flagged++; confMiss+=r.over; }
       if(isWeak(L.id,i)) weak++;
       else if(isStrong(L.id,i)) strong++;
     }
@@ -2179,7 +2236,8 @@ function progress(scope){
     attempts: att, correct: right,
     accuracy: att?Math.round(right/att*100):0,
     coverage: total?Math.round(started/total*100):0,
-    spellingSlips: spell
+    spellingSlips: spell,
+    flagged: flagged, confidentMisses: confMiss
   };
 }
 function stationList(scope, filter){
@@ -2188,17 +2246,21 @@ function stationList(scope, filter){
     for(var i=0;i<L.stations.length;i++){
       var s=L.stations[i], w=weakness(L.id,i), r=getRecord(L.id,i);
       var state = (!r||!r.seen)?'not-started':(isWeak(L.id,i)?'weak':(isStrong(L.id,i)?'strong':'developing'));
-      if(filter&&filter!=='all'&&state!==filter) continue;
+      var over=(r&&r.over)||0;
+      if(filter==='flagged'){ if(!over) continue; }
+      else if(filter&&filter!=='all'&&state!==filter) continue;
       out.push({loopId:L.id, unit:L.unit||L.title, module:L.module, index:i,
-                answers:s.ans, blanks:s.ans.length, state:state,
+                answers:s.ans, blanks:s.ans.length, state:state, over:over,
                 weakness:w, recent:(r&&r.recent)||[], seen:(r&&r.seen)||0});
     }
   });
   if(filter==='weak') out.sort(function(a,b){ return b.weakness-a.weakness; });
+  if(filter==='flagged') out.sort(function(a,b){ return b.over-a.over || b.weakness-a.weakness; });
   return out;
 }
 function weakStations(scope){ return stationList(scope,'weak'); }
 function notStartedStations(scope){ return stationList(scope,'not-started'); }
+function flaggedStations(scope){ return stationList(scope,'flagged'); }
 
 function buildQueue(opts){
   opts=opts||{};
@@ -2223,6 +2285,7 @@ function exportProgress(){
                  answer:(L.stations[i].ans||[]).join(' + '),
                  seen:r.seen, again:r.again||0, hard:r.hard||0,
                  good:r.good||0, easy:r.easy||0, spell:r.spell||0,
+                 confidentMisses:r.over||0,
                  weakness:Math.round((weakness(L.id,i)||0)*100)/100});
     }
   });
@@ -2284,7 +2347,7 @@ var api = {
   isWeak:isWeak, isStrong:isStrong, isNotStarted:isNotStarted,
   /* reporting */
   getProgress:progress, getStations:stationList, getWeak:weakStations,
-  getNotStarted:notStartedStations, buildQueue:buildQueue,
+  getNotStarted:notStartedStations, getFlagged:flaggedStations, buildQueue:buildQueue,
   exportProgress:exportProgress, importProgress:importProgress, resetProgress:reset,
   /* prefs and events */
   getPrefs:getPrefs, setPref:setPref, on:on, off:off, emit:emit
@@ -2448,6 +2511,9 @@ function selectModule(n){ curModule=n; curSystem=0; E.setPref('module',n); rende
 
 /* ---------------- player ---------------- */
 var cur=null, queue=[], pos=0, tally=[], firstInput=null, timer=null, left=0, checked=false;
+/* pending holds the machine verdict until the student accepts or corrects it.
+   conf is the pre answer confidence: 4 sure, 3 probably, 2 might, 1 no, 0 unrated. */
+var pending=null, recorded=false, conf=0;
 function imgSrc(loopId,n){ var L=E.getLoop(loopId); return 'images/'+L.dir+'/s'+(n<10?'0'+n:n)+'.jpg'; }
 
 function startLoop(L){
@@ -2489,8 +2555,8 @@ function station(){
   var b=$('blanks'); b.innerHTML='';
   st.ans.forEach(function(_,i){
     var id='bl'+i, w=document.createElement('div'); w.className='blank';
-    w.innerHTML='<label for="'+id+'">'+(st.ans.length>1?('Structure '+(i+1)+' of '+st.ans.length):'Your answer')+'</label>'
-      +'<input type="text" id="'+id+'" autocomplete="off" autocapitalize="off" spellcheck="false">'
+    w.innerHTML='<label for="'+id+'">'+esc((st.labels&&st.labels[i])?st.labels[i]:(st.ans.length>1?('Structure '+(i+1)+' of '+st.ans.length):'Your answer'))+'</label>'
+      +'<input type="text" id="'+id+'" autocomplete="off" autocapitalize="off" spellcheck="false" disabled>'
       +'<p class="fb" hidden></p>';
     b.appendChild(w);
   });
@@ -2503,10 +2569,15 @@ function station(){
     });
   });
   setHint();
-  $('verdict').hidden=true; $('selfcheck').hidden=true;
-  $('pCheck').hidden=false; $('pCheck').disabled=false; $('pSkip').hidden=false; $('pNext').hidden=true;
+  $('verdict').hidden=true; $('selfcheck').hidden=true; $('override').hidden=true;
+  pending=null; recorded=false;
+  /* confidence first: the blanks unlock once they have said how sure they are */
+  conf=0;
+  ['pc1','pc2','pc3','pc4'].forEach(function(id){ $(id).setAttribute('aria-pressed','false'); });
+  $('preconf').hidden=false;
+  $('pCheck').hidden=false; $('pCheck').disabled=true; $('pSkip').hidden=false; $('pNext').hidden=true;
   $('pCount').textContent='Station '+(pos+1)+' of '+queue.length;
-  if(scrim.hidden && firstInput) firstInput.focus();
+  if(scrim.hidden) $('pc4').focus();
   startTimer();
   notifyHeight();
 }
@@ -2527,6 +2598,24 @@ function check(timedOut){
   checked=true; stopTimer();
   var s=queue[pos], L=E.getLoop(s.loopId), st=L.stations[s.index];
   var strict=$('cSpelling').checked;
+
+  if(st.prose){
+    /* a list or a description. No machine can mark this fairly, so show the key
+       and let the student be the judge. */
+    $('slide').src=imgSrc(s.loopId,st.a);
+    Array.prototype.forEach.call($('blanks').querySelectorAll('input'),function(i){ i.readOnly=true; });
+    var vp=$('verdict'); vp.hidden=false; vp.className='verdict';
+    $('vLab').textContent='Compare yours to the key';
+    $('vBody').innerHTML='<p class="key">'+esc(st.ans.join('  &middot;  '))+'</p>'
+      +'<p>This one is a list or a description, so it is not auto marked. If what you wrote covers it, press Good. Your press is what gets recorded.</p>';
+    pending=null;
+    $('selfcheck').hidden=false;
+    $('pCheck').hidden=true; $('pSkip').hidden=true; $('pNext').hidden=false;
+    $('scGood').focus();
+    notifyHeight();
+    return;
+  }
+
   var g=E.gradeStation(st, values(), {spelling:strict});
   $('slide').src=imgSrc(s.loopId,st.a);
   var wraps=$('blanks').querySelectorAll('.blank');
@@ -2553,9 +2642,20 @@ function check(timedOut){
   if(strict&&g.misspelled) body+='<p>Spelling counts on a practical. Write it out once more before you move on.</p>';
   if(st.alt){ var extra=[]; for(var kk in st.alt) extra=extra.concat(st.alt[kk]);
     if(extra.length) body+='<p>Also accepted: '+extra.map(esc).join(', ')+'.</p>'; }
+  if(conf>=3 && g.outcome==='again' && !timedOut)
+    body+='<p><b>You were sure about this one.</b> If the marking stands it gets a red flag in your dashboard, because confident misses cost the most on a practical.</p>';
   $('vBody').innerHTML=body;
-  E.recordAttempt(s.loopId, s.index, g.outcome, {misspelled:g.misspelled, exact:g.exact, total:g.total});
-  tally.push(g.outcome);
+  /* Nothing is recorded yet. The machine verdict is a suggestion: Next station
+     accepts it, the buttons below correct it. The student is the final judge,
+     so the weakness dashboard reflects what they actually knew. */
+  pending={outcome:g.outcome, detail:{misspelled:g.misspelled, exact:g.exact, total:g.total}};
+  if(g.outcome!=='good' && !timedOut){
+    $('ovQ').textContent = (g.outcome==='again'
+      ? 'Marked wrong. If that is unfair, say so.'
+      : 'Marked partly right. If that is unfair, say so.')
+      + ' Your choice is what feeds your weakness dashboard.';
+    $('override').hidden=false;
+  }
   $('pCheck').hidden=true; $('pSkip').hidden=true; $('pNext').hidden=false; $('pNext').focus();
   notifyHeight();
 }
@@ -2565,8 +2665,22 @@ function skip(){
   var ins=$('blanks').querySelectorAll('input');
   Array.prototype.forEach.call(ins,function(i){ i.value=''; });
   check(false);
+  /* a deliberate skip is not a marking dispute, so no override offer */
+  $('override').hidden=true;
+}
+function commit(outcome, detail){
+  if(recorded) return;
+  recorded=true;
+  var s=queue[pos];
+  var d=detail||{};
+  if(conf && !d.confidence) d.confidence=conf;
+  E.recordAttempt(s.loopId, s.index, outcome, d);
+  tally.push(outcome);
 }
 function nextStation(){
+  /* accept the machine verdict if the student did not correct it. A self judged
+     station left unrated records as hard, so it still counts as seen. */
+  if(checked && !recorded) commit(pending?pending.outcome:'hard', pending?pending.detail:null);
   if(pos>=queue.length-1){ finish(); return; }
   pos++; station();
 }
@@ -2593,7 +2707,20 @@ $('resWeak').addEventListener('click',function(){
 ['scAgain','scHard','scGood','scEasy'].forEach(function(id){
   var k=id.slice(2).toLowerCase();
   $(id).addEventListener('click',function(){
-    var s=queue[pos]; E.recordAttempt(s.loopId,s.index,k,null); tally.push(k); nextStation();
+    commit(k,null); nextStation();
+  });
+});
+$('ovRight').addEventListener('click',function(){ commit('good',{overridden:true}); nextStation(); });
+$('ovSpell').addEventListener('click',function(){ commit('hard',{misspelled:1,overridden:true}); nextStation(); });
+[['pc4',4],['pc3',3],['pc2',2],['pc1',1]].forEach(function(pair){
+  $(pair[0]).addEventListener('click',function(){
+    if(checked) return;
+    conf=pair[1];
+    ['pc1','pc2','pc3','pc4'].forEach(function(id){ $(id).setAttribute('aria-pressed', id===pair[0]?'true':'false'); });
+    var ins=$('blanks').querySelectorAll('input');
+    Array.prototype.forEach.call(ins,function(i){ i.disabled=false; });
+    $('pCheck').disabled=false;
+    if(ins.length && !ins[0].value) ins[0].focus();
   });
 });
 function toHub(){ stopTimer(); player.hidden=true; dash.hidden=true; hub.hidden=false; renderGrid(); notifyHeight(); }
@@ -2627,6 +2754,7 @@ function renderDash(){
     +'<div class="strong"><span class="num">'+pr.strong+'</span><span class="lab">Strong</span></div>'
     +'<div><span class="num">'+pr.developing+'</span><span class="lab">Developing</span></div>'
     +'<div class="weak"><span class="num">'+pr.weak+'</span><span class="lab">Weak</span></div>'
+    +'<div class="flagstat"><span class="num">'+(pr.flagged||0)+'</span><span class="lab">Red flags</span></div>'
     +'<div class="todo"><span class="num">'+pr.notStarted+'</span><span class="lab">Not started</span></div>'
     +'</div>';
   var t=pr.total||1;
@@ -2654,14 +2782,26 @@ function renderDash(){
     });
     h+='</div>';
   }
-  var weak=E.getWeak(sc), todo=E.getNotStarted(sc);
+  var weak=E.getWeak(sc), todo=E.getNotStarted(sc), flagged=E.getFlagged(sc);
+  if(flagged.length){
+    h+='<div class="panel"><h3>Red flags: sure but wrong</h3>'
+      +'<p class="hint">You rated your confidence high on these and still missed them. These cost the most on a practical, so drill them first.</p>';
+    flagged.slice(0,12).forEach(function(w){
+      h+='<div class="row"><span class="rn">'+esc(w.answers.join(' + '))+'</span>'
+        +'<span class="tag flag">sure but wrong'+(w.over>1?' &times;'+w.over:'')+'</span><span class="rv">'+esc(w.unit)+'</span></div>';
+    });
+    h+='<div class="pbar" style="margin-top:14px"><button class="btn" id="goFlag" type="button">'
+      +(flagged.length===1?'Drill this red flag':'Drill these '+flagged.length+' red flags')+'</button></div></div>';
+  }
   if(weak.length){
     h+='<div class="panel"><h3>Keeps catching you out</h3>';
     weak.slice(0,12).forEach(function(w){
       h+='<div class="row"><span class="rn">'+esc(w.answers.join(' + '))+'</span>'
-        +'<span class="tag weak">weak</span><span class="rv">'+esc(w.unit)+'</span></div>';
+        +'<span class="tag weak">weak</span>'+(w.over?'<span class="tag flag">sure but wrong</span>':'')
+        +'<span class="rv">'+esc(w.unit)+'</span></div>';
     });
-    h+='<div class="pbar" style="margin-top:14px"><button class="btn" id="goWeak" type="button">Drill these '+weak.length+' weak stations</button></div></div>';
+    h+='<div class="pbar" style="margin-top:14px"><button class="btn" id="goWeak" type="button">'
+      +(weak.length===1?'Drill this weak station':'Drill these '+weak.length+' weak stations')+'</button></div></div>';
   }
   if(todo.length){
     h+='<div class="panel"><h3>Not started yet</h3>';
@@ -2679,7 +2819,8 @@ function renderDash(){
   if(!pr.started && !todo.length) h+='<div class="panel">Nothing here yet.</div>';
   $('dBody').innerHTML=h;
   $('dStatus').textContent=pr.label+'. '+pr.accuracy+'% accuracy. '+pr.strong+' strong, '+pr.developing
-    +' developing, '+pr.weak+' weak, '+pr.notStarted+' not started.';
+    +' developing, '+pr.weak+' weak, '+(pr.flagged||0)+' red flagged, '+pr.notStarted+' not started.';
+  var gf=$('goFlag'); if(gf) gf.addEventListener('click',function(){ runScope(sc,'flagged','Red flags, '+pr.label); });
   var gw=$('goWeak'); if(gw) gw.addEventListener('click',function(){ runScope(sc,'weak','Weak stations, '+pr.label); });
   var gn=$('goNew'); if(gn) gn.addEventListener('click',function(){ runScope(sc,'not-started','New stations, '+pr.label); });
   notifyHeight();
@@ -2730,7 +2871,8 @@ renderTabs(); renderChips(); renderGrid(); setHint();
 
 window.LoopsUI={ selectModule:selectModule, startLoop:startLoop, runScope:runScope, showDash:showDash,
                  closeCredit:closeCredit, check:check, next:nextStation, scrim:scrim,
-                 get cur(){ return cur; }, get queue(){ return queue; }, get pos(){ return pos; } };
+                 station:station, get cur(){ return cur; }, get queue(){ return queue; },
+                 get pos(){ return pos; }, set pos(v){ pos=v; } };
 })();
 </script>
 </body>
