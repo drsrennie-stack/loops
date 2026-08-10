@@ -193,6 +193,27 @@
   footer{border-top:1px solid var(--line);margin-top:36px;padding-top:16px;color:var(--muted);font-size:.85rem}
   @media (max-width:560px){.modtab{flex:1 1 calc(50% - 8px)}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  /* ---------- app mockup overrides: structure only, same palette ---------- */
+  .modtab{flex-direction:row;align-items:center;gap:11px;padding:8px 16px 8px 10px}
+  .mtx{display:flex;flex-direction:column;gap:2px}
+  .ringwrap{position:relative;width:42px;height:42px;flex:none;color:var(--navy)}
+  .ringwrap svg{width:42px;height:42px;display:block}
+  .ringwrap .rv2{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.74rem}
+  .modtab[aria-selected="true"] .ringwrap{color:#fff}
+  .card .thumb{position:relative;display:block;aspect-ratio:16/10;background:#0B1530;overflow:hidden}
+  .card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .card .thumb .pill{position:absolute;top:9px;right:9px;background:rgba(20,42,54,.92);color:#fff;padding:4px 10px;border-radius:999px;border:0}
+  .card .body{padding:12px 14px 14px;gap:4px}
+  .card .prog{margin-top:9px}
+  #player .work>.pbar{position:sticky;bottom:0;z-index:5;background:rgba(255,255,255,.97);
+    border-top:1px solid var(--line);margin:16px -16px -16px;padding:12px 16px;
+    border-radius:0 0 var(--radius) var(--radius)}
+  #player .work>.pbar .btn{flex:1 1 auto;text-align:center;justify-content:center;padding:13px 18px;font-size:.98rem}
+  .dstat{display:grid;grid-template-columns:repeat(auto-fit,minmax(106px,1fr));gap:10px}
+  .dstat>div{background:var(--offwhite);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
+  .row{min-height:44px}
 </style>
 </head>
 <body>
@@ -2445,6 +2466,14 @@ function readHash(){ var m=(location.hash||'').replace('#','').match(/^m(\d+)(?:
   return m?{m:parseInt(m[1],10),s:m[2]?parseInt(m[2],10):0}:null; }
 function writeHash(){ var w='#m'+curModule+(curSystem?'/s'+curSystem:'');
   if(location.hash!==w){ try{ history.replaceState(null,'',w); }catch(e){} } }
+function ringSvg(pct){
+  var r=15, c=2*Math.PI*r, f=Math.max(0,Math.min(100,pct))/100*c;
+  return '<svg viewBox="0 0 36 36" aria-hidden="true" focusable="false">'
+    +'<circle cx="18" cy="18" r="'+r+'" fill="none" stroke="currentColor" opacity=".18" stroke-width="3.4"/>'
+    +'<circle cx="18" cy="18" r="'+r+'" fill="none" stroke="#B8924A" stroke-width="3.4" stroke-linecap="round"'
+    +' stroke-dasharray="'+f.toFixed(1)+' '+c.toFixed(1)+'" transform="rotate(-90 18 18)"/>'
+    +'</svg>';
+}
 function renderTabs(){
   var t=$('modTabs'); t.innerHTML='';
   E.getModules().forEach(function(M){
@@ -2454,8 +2483,10 @@ function renderTabs(){
     b.setAttribute('aria-selected',M.n===curModule?'true':'false');
     b.setAttribute('aria-controls','loopGrid'); b.tabIndex=M.n===curModule?0:-1;
     b.setAttribute('aria-label','Module '+M.n+', '+M.full+', '+M.weeks+', '+n+' loop'+(n===1?'':'s'));
-    b.innerHTML='<span class="n">Module '+M.n+'</span><span class="t">'+esc(M.short)+'</span>'
-      +'<span class="c">'+esc(M.weeks)+' &middot; '+n+' loop'+(n===1?'':'s')+'</span>';
+    var pc=E.getProgress({module:M.n}).coverage;
+    b.innerHTML='<span class="ringwrap">'+ringSvg(pc)+'<span class="rv2">'+M.n+'</span></span>'
+      +'<span class="mtx"><span class="t">'+esc(M.short)+'</span>'
+      +'<span class="c">'+esc(M.weeks)+' &middot; '+n+' loop'+(n===1?'':'s')+(pc?' &middot; '+pc+'% seen':'')+'</span></span>';
     b.addEventListener('click',function(){ selectModule(M.n); });
     t.appendChild(b);
   });
@@ -2502,13 +2533,13 @@ function renderGrid(){
     var pr=E.getProgress({loop:L.id});
     var b=document.createElement('button'); b.className='card'; b.type='button';
     var sys=(L.systems||[]).map(function(s){ return SY[s]; }).join(', ');
-    b.innerHTML='<span class="top"><span class="wm">Anatomy Loops</span>'
-      +(pr.coverage===100?'<span class="pill">All seen</span>':(pr.weak?'<span class="pill">'+pr.weak+' weak</span>':''))+'</span>'
+    b.setAttribute('aria-label',(L.unit||L.title)+', '+L.stations.length+' stations, '
+      +pr.coverage+'% practiced'+(pr.weak?', '+pr.weak+' weak':'')+(sys?', '+sys:''));
+    b.innerHTML='<span class="thumb"><img src="'+imgSrc(L.id,L.stations[0].q)+'" alt="" loading="lazy">'
+      +(pr.weak?'<span class="pill">'+pr.weak+' weak</span>':(pr.coverage===100?'<span class="pill">All seen</span>':''))+'</span>'
       +'<span class="body"><span class="ct">'+esc(L.unit||L.title)+'</span>'
-      +'<span class="cm">'+L.stations.length+' stations'+(sys?' &middot; '+esc(sys):'')+'</span>'
-      +'<span class="cd">'+esc(L.subtitle)+'</span>'
-      +'<span class="prog"><i style="width:'+pr.coverage+'%"></i></span>'
-      +'<span class="go">'+(pr.started?'Continue':'Start loop')+' &rarr;</span></span>';
+      +'<span class="cm">'+L.stations.length+' stations</span>'
+      +'<span class="prog" aria-hidden="true"><i style="width:'+pr.coverage+'%"></i></span></span>';
     b.addEventListener('click',function(){
       if(!combineMode){ startLoop(L); return; }
       if(picked[L.id]) delete picked[L.id]; else picked[L.id]=true;
@@ -2810,7 +2841,7 @@ function renderDash(){
     : (/^m\d+$/.test(v) ? 'One whole module. This is the view for that module’s lab practical.'
                         : 'One unit only.');
   var h='<div class="panel"><div class="dstat">'
-    +'<div><span class="num">'+pr.accuracy+'%</span><span class="lab">Accuracy</span></div>'
+    +'<div><span class="ringwrap">'+ringSvg(pr.accuracy)+'<span class="rv2">'+pr.accuracy+'</span></span><span class="lab">Accuracy %</span></div>'
     +'<div class="strong"><span class="num">'+pr.strong+'</span><span class="lab">Strong</span></div>'
     +'<div><span class="num">'+pr.developing+'</span><span class="lab">Developing</span></div>'
     +'<div class="weak"><span class="num">'+pr.weak+'</span><span class="lab">Weak</span></div>'
