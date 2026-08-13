@@ -396,7 +396,7 @@ window.LOOPS_ENGINE_CONTENT = {
       "stations": [
         {"q": 2, "a": 3, "ans": ["Patellar"]},   /* card 1 */
         {"q": 4, "a": 5, "ans": ["Lumbar"]},   /* card 2 */
-        {"q": 6, "a": 7, "ans": ["Midsagittal plane"]},   /* card 3 */
+        {"q": 6, "a": 7, "ans": ["Midsagittal plane"], "alt": {"Midsagittal plane": ["Median plane", "Median"]}},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Calcaneal"]},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Mammary"], "alt": {"Mammary": ["Pectoral"]}},   /* card 5 */
         {"q": 12, "a": 13, "ans": ["Scapular"]},   /* card 6 */
@@ -407,7 +407,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 22, "a": 23, "ans": ["Antebrachial"]},   /* card 11 */
         {"q": 24, "a": 25, "ans": ["Auricular (Otic)"]},   /* card 12 */
         {"q": 26, "a": 27, "ans": ["Pubic"]},   /* card 13 */
-        {"q": 28, "a": 29, "ans": ["Transverse plane"]},   /* card 14 */
+        {"q": 28, "a": 29, "ans": ["Transverse plane"], "alt": {"Transverse plane": ["Cross-sectional plane", "Horizontal plane", "Cross-sectional", "Horizontal"]}},   /* card 14 */
         {"q": 30, "a": 31, "ans": ["Crural"]},   /* card 15 */
         {"q": 32, "a": 33, "ans": ["Olecranal"]},   /* card 16 */
         {"q": 34, "a": 35, "ans": ["Acromial"]},   /* card 17 */
@@ -436,8 +436,8 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 80, "a": 81, "ans": ["Hallux"]},   /* card 40 */
         {"q": 82, "a": 83, "ans": ["Plantar"]},   /* card 41 */
         {"q": 84, "a": 85, "ans": ["Mediastinum"]},   /* card 42 */
-        {"q": 86, "a": 87, "ans": ["Mediastinum contents"]},   /* card 43 */
-        {"q": 88, "a": 89, "ans": ["Mediastinum borders"]}   /* card 44 */
+        {"q": 86, "a": 87, "ans": ["Heart", "Thymus", "Esophagus", "Trachea", "Major Blood Vessels"], "alt": {"Major Blood Vessels": ["Great Vessels", "Blood Vessels"]}, "labels": ["Content 1", "Content 2", "Content 3", "Content 4", "Content 5"]},   /* card 43 */
+        {"q": 88, "a": 89, "ans": ["1st Rib", "Diaphragm", "Lungs", "Sternum", "Vertebrae"], "alt": {"1st Rib": ["First Rib"], "Vertebrae": ["Vertebral Column", "Spine"]}, "labels": ["Superior", "Inferior", "Lateral", "Anterior (ventral)", "Posterior (dorsal)"]}   /* card 44 */
       ]
     },
 
@@ -686,47 +686,47 @@ window.LOOPS_ENGINE_CONTENT = {
       "credit": "specimen",
       "stations": [
         {"q": 2, "a": 3, "ans": ["Sharpey's Fibers", "Fibrous Periosteum"], "alt": {"Sharpey's Fibers": ["Sharpeys Fibers", "Sharpey s Fibers"], "Fibrous Periosteum": ["Fibrous Periosteium"]}},   /* card 1 */
-        {"q": 4, "a": 5, "ans": ["Epiphysis Endosteum"]},   /* card 2 */
-        {"q": 6, "a": 7, "ans": ["Left Parietal External Auditory meatus"]},   /* card 3 */
-        {"q": 8, "a": 9, "ans": ["Superior Orbital Perpendicular Fissure Plate Ethmoid"]},   /* card 4 */
-        {"q": 10, "a": 11, "ans": ["Concentric Lamellae Osteon"]},   /* card 5 */
-        {"q": 12, "a": 13, "ans": ["Hypophyseal Fossa Sella Turcica Jugular Foramen"]},   /* card 6 */
-        {"q": 14, "a": 15, "ans": ["Elastic Cartilage Ear, Epiglottis"]},   /* card 7 */
-        {"q": 16, "a": 17, "ans": ["Crista Galli Olfactory foramina"]},   /* card 8 */
-        {"q": 18, "a": 19, "ans": ["Median palatine suture Choana"]},   /* card 9 */
-        {"q": 20, "a": 21, "ans": ["Sagittal Suture Lambdoidal Suture"]},   /* card 10 */
-        {"q": 22, "a": 23, "ans": ["Frontal Coronal Suture"]},   /* card 11 */
-        {"q": 24, "a": 25, "ans": ["Hyaline Cartilage Ends long , epiphyseal plate, ribs, trachea"]},   /* card 12 */
-        {"q": 26, "a": 27, "ans": ["Compact Spongy"]},   /* card 13 */
-        {"q": 28, "a": 29, "ans": ["osteocyte Central Canal"], "alt": {"osteocyte Central Canal": ["Lacuna w Central Canal", "Lacuna w"]}},   /* card 14 */
-        {"q": 30, "a": 31, "ans": ["Lesser Wing Sphenoid Foramen Ovale"]},   /* card 15 */
-        {"q": 32, "a": 33, "ans": ["Fibrocartilage Pubic Symphysis, intervertebral disc"]},   /* card 16 */
+        {"q": 4, "a": 5, "ans": ["Epiphysis", "Endosteum"], "labels": ["Region", "Structure that lines this region"]},   /* card 2 */
+        {"q": 6, "a": 7, "ans": ["Left Parietal Bone", "External Auditory (acoustic) meatus"], "alt": {"External Auditory (acoustic) meatus": ["External Acoustic Meatus", "External Auditory Meatus"], "Left Parietal Bone": ["Parietal Bone", "Left Parietal"]}, "labels": ["Bone", "Structure"]},   /* card 3 */
+        {"q": 8, "a": 9, "ans": ["Superior Orbital Fissure", "Perpendicular Plate of Ethmoid Bone"], "alt": {"Perpendicular Plate of Ethmoid Bone": ["Perpendicular Plate of Ethmoid", "Perpendicular Plate"]}, "labels": ["Hole", "Structure"]},   /* card 4 */
+        {"q": 10, "a": 11, "ans": ["Concentric Lamellae", "Osteon"], "labels": ["Structure 1", "Structure 2"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Hypophyseal Fossa (Sella Turcica)", "Jugular Foramen"], "alt": {"Hypophyseal Fossa (Sella Turcica)": ["Sella Turcica", "Hypophyseal Fossa"]}, "labels": ["Structure", "Hole"]},   /* card 6 */
+        {"q": 14, "a": 15, "ans": ["Elastic Cartilage", "Ear, Epiglottis"], "alt": {"Ear, Epiglottis": ["Ear", "Epiglottis"]}, "labels": ["Tissue", "Locations"]},   /* card 7 */
+        {"q": 16, "a": 17, "ans": ["Crista Galli", "Olfactory foramina"], "labels": ["Bone Detail", "Bone Detail (Holes)"]},   /* card 8 */
+        {"q": 18, "a": 19, "ans": ["Median palatine suture", "Choana"], "labels": ["Bone Detail", "Bone Detail (hole)"]},   /* card 9 */
+        {"q": 20, "a": 21, "ans": ["Sagittal Suture", "Lambdoidal Suture"], "alt": {"Lambdoidal Suture": ["Lambdoid Suture"]}, "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 10 */
+        {"q": 22, "a": 23, "ans": ["Coronal Suture", "Frontal Bone"], "alt": {"Frontal Bone": ["Frontal"]}, "labels": ["Bone Detail", "Bone"]},   /* card 11 */
+        {"q": 24, "a": 25, "ans": ["Hyaline Cartilage", "Ends of long bones, epiphyseal plate, ribs, trachea"], "alt": {"Ends of long bones, epiphyseal plate, ribs, trachea": ["Ends of long bones", "Epiphyseal plate", "Ribs", "Trachea"]}, "labels": ["Tissue", "Locations"]},   /* card 12 */
+        {"q": 26, "a": 27, "ans": ["Compact Bone", "Spongy Bone"], "labels": ["Bone Type 1", "Bone Type 2"]},   /* card 13 */
+        {"q": 28, "a": 29, "ans": ["Lacuna w/osteocyte", "Central Canal"], "alt": {"Lacuna w/osteocyte": ["Lacuna with osteocyte", "Lacuna"]}, "labels": ["Detail 1", "Detail 2"]},   /* card 14 */
+        {"q": 30, "a": 31, "ans": ["Lesser Wing of Sphenoid", "Foramen Ovale"], "alt": {"Lesser Wing of Sphenoid": ["Lesser Wing"]}, "labels": ["Bone Detail", "Bone Detail (hole)"]},   /* card 15 */
+        {"q": 32, "a": 33, "ans": ["Fibrocartilage", "Pubic Symphysis, intervertebral disc"], "alt": {"Pubic Symphysis, intervertebral disc": ["Pubic Symphysis", "Intervertebral disc"]}, "labels": ["Tissue", "Locations"]},   /* card 16 */
         {"q": 34, "a": 35, "ans": ["Coronoid Process, Mandible", "Mental Foramen"], "alt": {"Coronoid Process, Mandible": ["Coranoid Process; Mandible", "Coranoid Process, Mandible", "Coranoid Process", "Coronoid Process", "Coronoid Process of the Mandible"]}},   /* card 17 */
         {"q": 36, "a": 37, "ans": ["Supraorbital Notch", "Maxilla"], "alt": {"Supraorbital Notch": ["Supraprbital notch"]}},   /* card 18 */
-        {"q": 38, "a": 39, "ans": ["Osteon Interstitial Lamellae"]},   /* card 19 */
-        {"q": 40, "a": 41, "ans": ["Internal Acoustic Meatus Foramen Magnum"]},   /* card 20 */
-        {"q": 42, "a": 43, "ans": ["Articular Cartilage Epiphyseal Line"]},   /* card 21 */
-        {"q": 44, "a": 45, "ans": ["Incisive Fossa Vomer"]},   /* card 22 */
-        {"q": 46, "a": 47, "ans": ["Jugular Notch Xiphoid Process"]},   /* card 23 */
-        {"q": 48, "a": 49, "ans": ["Greater Cornu Hyoid"]},   /* card 24 */
+        {"q": 38, "a": 39, "ans": ["Osteon", "Interstitial Lamellae"], "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 19 */
+        {"q": 40, "a": 41, "ans": ["Internal Acoustic Meatus", "Foramen Magnum"], "labels": ["Hole 1", "Hole 2"]},   /* card 20 */
+        {"q": 42, "a": 43, "ans": ["Articular Cartilage", "Epiphyseal Line"], "labels": ["Structure", "Structure in an adult"]},   /* card 21 */
+        {"q": 44, "a": 45, "ans": ["Incisive Fossa", "Vomer"], "labels": ["Bone Detail (hole)", "Bone Detail"]},   /* card 22 */
+        {"q": 46, "a": 47, "ans": ["Jugular Notch", "Xiphoid Process"], "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 23 */
+        {"q": 48, "a": 49, "ans": ["Greater Cornu", "Hyoid"], "alt": {"Hyoid": ["Hyoid Bone"]}, "labels": ["Bone Detail", "Bone"]},   /* card 24 */
         {"q": 50, "a": 51, "ans": ["Clavicle"]},   /* card 25 */
         {"q": 52, "a": 53, "ans": ["Circumferential Lamellae", "Volkmann's Canal"], "alt": {"Volkmann's Canal": ["Volkmanns Canal", "Volkmann s Canal"]}},   /* card 26 */
-        {"q": 54, "a": 55, "ans": ["Occipital Condyle Occipital"]},   /* card 27 */
-        {"q": 56, "a": 57, "ans": ["Squamous suture Styloid process"]},   /* card 28 */
-        {"q": 58, "a": 59, "ans": ["Glabella Zygomatic"]},   /* card 29 */
-        {"q": 60, "a": 61, "ans": ["Optic Foramen Optic N. CN II Middle Nasal concha"]},   /* card 30 */
+        {"q": 54, "a": 55, "ans": ["Occipital Condyle", "Occipital"], "alt": {"Occipital": ["Occipital Bone"]}, "labels": ["Bone Detail", "Bone"]},   /* card 27 */
+        {"q": 56, "a": 57, "ans": ["Squamous suture", "Styloid process"], "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 28 */
+        {"q": 58, "a": 59, "ans": ["Glabella", "Zygomatic"], "alt": {"Zygomatic": ["Zygomatic Bone"]}, "labels": ["Bone Detail", "Bone"]},   /* card 29 */
+        {"q": 60, "a": 61, "ans": ["Optic Foramen", "Optic N. CN II", "Middle Nasal concha"], "alt": {"Optic N. CN II": ["Optic Nerve", "CN II"]}, "labels": ["Hole", "Structure that courses through here", "Bone Detail"]},   /* card 30 */
         {"q": 62, "a": 63, "ans": ["Superior Nuchal Line", "Occipital Protuberance"], "alt": {"Superior Nuchal Line": ["Supoerior Nuchal Line"]}},   /* card 31 */
-        {"q": 64, "a": 65, "ans": ["Anterior Fontanel Anterolateral Fontanel"]},   /* card 32 */
-        {"q": 66, "a": 67, "ans": ["Superior articular facet Transverse foramen"]},   /* card 33 */
-        {"q": 68, "a": 69, "ans": ["Superior articular Facet & Process Body thoracic vertebrae"]},   /* card 34 */
-        {"q": 70, "a": 71, "ans": ["Pedicle Vertebral Foramen"]},   /* card 35 */
-        {"q": 72, "a": 73, "ans": ["process Lumbar"], "alt": {"process Lumbar": ["Inferior articular facet Lumbar", "Inferior articular facet"]}},   /* card 36 */
-        {"q": 74, "a": 75, "ans": ["Transverse Foramen Anterior tubercle C"]},   /* card 37 */
-        {"q": 76, "a": 77, "ans": ["Dens C"]},   /* card 38 */
-        {"q": 78, "a": 79, "ans": ["Sacral Promontory Anterior Sacral Foramina"]},   /* card 39 */
-        {"q": 80, "a": 81, "ans": ["Median Sacral crest Sacral Hiatus"]},   /* card 40 */
-        {"q": 82, "a": 83, "ans": ["Thoracic"]},   /* card 41 */
-        {"q": 84, "a": 85, "ans": ["Cervical"]}   /* card 42 */
+        {"q": 64, "a": 65, "ans": ["Anterior Fontanel", "Anterolateral Fontanel"], "alt": {"Anterior Fontanel": ["Anterior Fontanelle"], "Anterolateral Fontanel": ["Anterolateral Fontanelle"]}, "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 32 */
+        {"q": 66, "a": 67, "ans": ["Superior articular facet", "Transverse foramen"], "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 33 */
+        {"q": 68, "a": 69, "ans": ["Superior articular Facet & Process", "Body of a thoracic vertebrae"], "alt": {"Body of a thoracic vertebrae": ["Body of a thoracic vertebra"]}, "labels": ["Bone Detail", "Bone Detail and region of the spine"]},   /* card 34 */
+        {"q": 70, "a": 71, "ans": ["Pedicle", "Vertebral Foramen"], "labels": ["Bone Detail", "Bone Detail (hole)"]},   /* card 35 */
+        {"q": 72, "a": 73, "ans": ["Inferior articular facet/process", "Lumbar"], "alt": {"Inferior articular facet/process": ["Inferior articular facet", "Inferior articular process"]}, "labels": ["Bone Detail", "Region of the spine"]},   /* card 36 */
+        {"q": 74, "a": 75, "ans": ["Transverse Foramen", "Anterior tubercle of C1 (Atlas)"], "alt": {"Anterior tubercle of C1 (Atlas)": ["Anterior tubercle of C1", "Anterior tubercle of Atlas", "Anterior tubercle"]}, "labels": ["Bone Detail", "Bone Detail and specific bone"]},   /* card 37 */
+        {"q": 76, "a": 77, "ans": ["Dens (Odontoid Process)", "C2 (Axis)"], "alt": {"Dens (Odontoid Process)": ["Dens", "Odontoid Process"], "C2 (Axis)": ["Axis", "C2"]}, "labels": ["Bone Detail", "Bone"]},   /* card 38 */
+        {"q": 78, "a": 79, "ans": ["Sacral Promontory", "Anterior Sacral Foramina"], "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 39 */
+        {"q": 80, "a": 81, "ans": ["Median Sacral crest", "Sacral Hiatus"], "labels": ["Bone Detail 1", "Bone Detail 2"]},   /* card 40 */
+        {"q": 82, "a": 83, "ans": ["Thoracic curve", "Primary"], "alt": {"Thoracic curve": ["Thoracic"]}, "labels": ["Curve", "Primary or secondary?"]},   /* card 41 */
+        {"q": 84, "a": 85, "ans": ["Cervical", "7"], "alt": {"7": ["Seven"]}, "labels": ["Region", "How many segments?"]}   /* card 42 */
       ]
     },
 
@@ -767,7 +767,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 42, "a": 43, "ans": ["Teres Major"]},   /* card 21 */
         {"q": 44, "a": 45, "ans": ["Flexor Carpi Ulnaris"]},   /* card 22 */
         {"q": 46, "a": 47, "ans": ["Flexor Digitorum Superficialis"]},   /* card 23 */
-        {"q": 48, "a": 49, "ans": ["Palmaris Longus"]},   /* card 24 */
+        {"q": 48, "a": 49, "ans": ["Palmaris Longus"], "alt": {"Palmaris Longus": ["Palmeris Longus"]}},   /* card 24 */
         {"q": 50, "a": 51, "ans": ["Flexor Carpi Radialis"]},   /* card 25 */
         {"q": 52, "a": 53, "ans": ["Pronator Teres"]},   /* card 26 */
         {"q": 54, "a": 55, "ans": ["Brachioradialis"]},   /* card 27 */
@@ -827,8 +827,8 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 4, "a": 5, "ans": ["External Intercostal Muscles", "Phrenic Nerve"]},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["Sartorius", "Vastus Medialis"]},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Gastrocnemius", "Soleus"]},   /* card 4 */
-        {"q": 10, "a": 11, "ans": ["Tensor Fasciae Latae", "Adductor Longus"], "alt": {"Tensor Fasciae Latae": ["Tensor Fascia Lata", "TFL", "Tensor Fascia Latae"]}},   /* card 5 */
-        {"q": 12, "a": 13, "ans": ["Gluteus Maximus", "Vastus Lateralis"]},   /* card 6 */
+        {"q": 10, "a": 11, "ans": ["Adductor Longus", "Tensor Fasciae Latae"], "alt": {"Tensor Fasciae Latae": ["Tensor Fascia Lata", "Tensor Fascia Latae", "TFL"]}, "labels": ["A", "B"]},   /* card 5 */
+        {"q": 12, "a": 13, "ans": ["Gluteus Maximus", "Vastus Lateralis"], "alt": {"Gluteus Maximus": ["Gluteal Maximus"]}},   /* card 6 */
         {"q": 14, "a": 15, "ans": ["Linea Alba", "Internal Abdominal Oblique"]},   /* card 7 */
         {"q": 16, "a": 17, "ans": ["Gluteus Medius", "Semitendinosus"]},   /* card 8 */
         {"q": 18, "a": 19, "ans": ["Rectus Femoris", "Tensor Fasciae Latae"], "alt": {"Tensor Fasciae Latae": ["Tensor Fascia Lata", "TFL", "Tensor Fascia Latae"]}},   /* card 9 */
@@ -858,8 +858,8 @@ window.LOOPS_ENGINE_CONTENT = {
       "systems": [5],
       "credit": "cadaver",
       "stations": [
-        {"q": 2, "a": 3, "ans": ["Zygomaticus Minor", "Risorius"], "alt": {"Zygomaticus Minor": ["Zygomatic Minor"]}},   /* card 1 */
-        {"q": 4, "a": 5, "ans": ["Trochlear Nerve CN IV", "Abducens N. CN VI"], "alt": {"Trochlear Nerve CN IV": ["Superior Oblique Nerve CN IV", "Superior Oblique"], "Abducens N. CN VI": ["Lateral Rectus N. CN VI", "Lateral Rectus"]}},   /* card 2 */
+        {"q": 2, "a": 3, "ans": ["Risorius", "Zygomaticus Minor"], "alt": {"Zygomaticus Minor": ["Zygomatic Minor"]}, "labels": ["A", "B"]},   /* card 1 */
+        {"q": 4, "a": 5, "ans": ["Abducens N. CN VI", "Trochlear Nerve CN IV"], "alt": {"Abducens N. CN VI": ["Lateral Rectus N. CN VI", "Abducens Nerve", "CN VI"], "Trochlear Nerve CN IV": ["Superior Oblique Nerve CN IV", "Trochlear", "CN IV"]}, "labels": ["A", "B"]},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["Oculomotor CN III", "Oculomotor III"], "alt": {"Oculomotor CN III": ["Medial Rectus CN III", "Medial Rectus"], "Oculomotor III": ["Inferior Oblique III", "Inferior Oblique"]}},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Sternocleidomastoid", "Depressor Anguli Oris"]},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Orbicularis Oculi", "Masseter"]},   /* card 5 */
@@ -958,7 +958,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 2, "a": 3, "ans": ["Rectus Sheath"]},   /* card 1 */
         {"q": 4, "a": 5, "ans": ["Linea Alba"]},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["External Abdominal Oblique"]},   /* card 3 */
-        {"q": 8, "a": 9, "ans": ["Rectus Abdominis"]},   /* card 4 */
+        {"q": 8, "a": 9, "ans": ["Rectus Abdominis"], "alt": {"Rectus Abdominis": ["Rectus Abdominus"]}},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Linea Alba"]},   /* card 5 */
         {"q": 12, "a": 13, "ans": ["Rectus Sheath (Reflected)"]},   /* card 6 */
         {"q": 14, "a": 15, "ans": ["External Abdominal Oblique"]},   /* card 7 */
@@ -1163,18 +1163,18 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 2, "a": 3, "ans": ["Brachioradialis"]},   /* card 1 */
         {"q": 4, "a": 5, "ans": ["Pronator Teres"]},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["Flexor Carpi Radialis"]},   /* card 3 */
-        {"q": 8, "a": 9, "ans": ["Palmaris Longus"]},   /* card 4 */
+        {"q": 8, "a": 9, "ans": ["Palmaris Longus"], "alt": {"Palmaris Longus": ["Palmeris Longus"]}},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Flexor Digitorum Superficialis"]},   /* card 5 */
         {"q": 12, "a": 13, "ans": ["Flexor Carpi Ulnaris"]},   /* card 6 */
         {"q": 14, "a": 15, "ans": ["Extensor Carpi Ulnaris"]},   /* card 7 */
         {"q": 16, "a": 17, "ans": ["Brachioradialis (Layer 2)"]},   /* card 8 */
         {"q": 18, "a": 19, "ans": ["Pronator Teres (Layer 2)"]},   /* card 9 */
-        {"q": 20, "a": 21, "ans": ["Flexor Digitorum Superficialis"]},   /* card 10 */
+        {"q": 20, "a": 21, "ans": ["Flexor Digitorum Superficialis"], "alt": {"Flexor Digitorum Superficialis": ["Flexor Digitorum Superficial"]}},   /* card 10 */
         {"q": 22, "a": 23, "ans": ["Supinator"]},   /* card 11 */
         {"q": 24, "a": 25, "ans": ["Pronator Teres"]},   /* card 12 */
         {"q": 26, "a": 27, "ans": ["Flexor Pollicis Longus"]},   /* card 13 */
         {"q": 28, "a": 29, "ans": ["Flexor Digitorum Profundus"]},   /* card 14 */
-        {"q": 30, "a": 31, "ans": ["Flexor Carpi Ulnaris"]},   /* card 15 */
+        {"q": 30, "a": 31, "ans": ["Flexor Carpi Ulnaris"], "alt": {"Flexor Carpi Ulnaris": ["Flexor Carpi Ulnas"]}},   /* card 15 */
         {"q": 32, "a": 33, "ans": ["Brachial Artery"]},   /* card 16 */
         {"q": 34, "a": 35, "ans": ["Radial Artery"]},   /* card 17 */
         {"q": 36, "a": 37, "ans": ["Ulnar Artery"]},   /* card 18 */
@@ -1212,7 +1212,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 2, "a": 3, "ans": ["Rectus Femoris"]},   /* card 1 */
         {"q": 4, "a": 5, "ans": ["Vastus Lateralis"]},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["Iliotibial Band"]},   /* card 3 */
-        {"q": 8, "a": 9, "ans": ["Vastus Medialis"]},   /* card 4 */
+        {"q": 8, "a": 9, "ans": ["Vastus Medialis"], "alt": {"Vastus Medialis": ["Vasus Medialis"]}},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Tensor Fasciae Latae"], "alt": {"Tensor Fasciae Latae": ["Tensor Fascia Lata", "TFL", "Tensor Fascia Latae"]}},   /* card 5 */
         {"q": 12, "a": 13, "ans": ["Sartorius"]},   /* card 6 */
         {"q": 14, "a": 15, "ans": ["Adductor Longus"]},   /* card 7 */
@@ -1220,12 +1220,12 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 18, "a": 19, "ans": ["Pectineus"]},   /* card 9 */
         {"q": 20, "a": 21, "ans": ["Psoas Major"]},   /* card 10 */
         {"q": 22, "a": 23, "ans": ["Iliopsoas"]},   /* card 11 */
-        {"q": 24, "a": 25, "ans": ["Iliacus"]},   /* card 12 */
+        {"q": 24, "a": 25, "ans": ["Iliacus"], "alt": {"Iliacus": ["Illiacus"]}},   /* card 12 */
         {"q": 26, "a": 27, "ans": ["Vastus Intermedius"]},   /* card 13 */
         {"q": 28, "a": 29, "ans": ["Psoas Minor"]},   /* card 14 */
         {"q": 30, "a": 31, "ans": ["Psoas Major"]},   /* card 15 */
         {"q": 32, "a": 33, "ans": ["Quadratus Lumborum"]},   /* card 16 */
-        {"q": 34, "a": 35, "ans": ["Iliacus"]},   /* card 17 */
+        {"q": 34, "a": 35, "ans": ["Iliacus"], "alt": {"Iliacus": ["Illiacus"]}},   /* card 17 */
         {"q": 36, "a": 37, "ans": ["Femoral Nerve"]},   /* card 18 */
         {"q": 38, "a": 39, "ans": ["Femoral Artery"]},   /* card 19 */
         {"q": 40, "a": 41, "ans": ["Femoral Vein"]},   /* card 20 */
@@ -1262,7 +1262,7 @@ window.LOOPS_ENGINE_CONTENT = {
       "credit": "cadaver",
       "stations": [
         {"q": 2, "a": 3, "ans": ["Tibialis Anterior"]},   /* card 1 */
-        {"q": 4, "a": 5, "ans": ["Extensor Hallucis Longus"]},   /* card 2 */
+        {"q": 4, "a": 5, "ans": ["Extensor Hallucis Longus"], "alt": {"Extensor Hallucis Longus": ["Extensor Hallicus Longus", "Hallicus"]}},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["Extensor Digitorum Longus"]},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Gastrocnemius"]},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Soleus"]},   /* card 5 */
@@ -1333,7 +1333,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 8, "a": 9, "ans": ["Main Pancreatic Duct"]},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Major Duodenal Papilla"]},   /* card 5 */
         {"q": 12, "a": 13, "ans": ["Duodenum"]},   /* card 6 */
-        {"q": 14, "a": 15, "ans": ["Plica Circulares"]},   /* card 7 */
+        {"q": 14, "a": 15, "ans": ["Plicae Circulares"], "alt": {"Plicae Circulares": ["Plica Circulares"]}},   /* card 7 */
         {"q": 16, "a": 17, "ans": ["Duodenum"]},   /* card 8 */
         {"q": 18, "a": 19, "ans": ["Gall Bladder"]},   /* card 9 */
         {"q": 20, "a": 21, "ans": ["Common Bile Duct"]},   /* card 10 */
@@ -1394,7 +1394,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 54, "a": 55, "ans": ["Right Lobe of the Liver"]},   /* card 27 */
         {"q": 56, "a": 57, "ans": ["Left Lobe of the Liver"]},   /* card 28 */
         {"q": 58, "a": 59, "ans": ["Falciform Ligament"]},   /* card 29 */
-        {"q": 60, "a": 61, "ans": ["Round Ligament (Ligamentum Teres)"]},   /* card 30 */
+        {"q": 60, "a": 61, "ans": ["Round Ligament (Ligamentum Teres)"], "alt": {"Round Ligament (Ligamentum Teres)": ["Ligaments trees", "Round Ligament", "Ligamentum Teres"]}},   /* card 30 */
         {"q": 62, "a": 63, "ans": ["Umbilical Vein"]},   /* card 31 */
         {"q": 64, "a": 65, "ans": ["Left Lobe", "Liver"]},   /* card 32 */
         {"q": 66, "a": 67, "ans": ["Caudate Lobe", "Liver"]},   /* card 33 */
@@ -1484,7 +1484,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 56, "a": 57, "ans": ["Parietal Layer of Bowman's Capsule"]},   /* card 28 */
         {"q": 58, "a": 59, "ans": ["Renal Cortex"]},   /* card 29 */
         {"q": 60, "a": 61, "ans": ["Renal Medulla"]},   /* card 30 */
-        {"q": 62, "a": 63, "ans": ["Juxtamedullary Nephron"]},   /* card 31 */
+        {"q": 63, "a": 62, "ans": ["Juxtamedullary Nephron"]},   /* card 31 */
         {"q": 64, "a": 65, "ans": ["Cortical Nephron"]},   /* card 32 */
         {"q": 66, "a": 67, "ans": ["Renal Medulla"]},   /* card 33 */
         {"q": 68, "a": 69, "ans": ["Renal Capsule"]}   /* card 34 */
@@ -1504,7 +1504,7 @@ window.LOOPS_ENGINE_CONTENT = {
       "module": 5,
       "systems": [13],
       "stations": [
-        {"q": 2, "a": 3, "ans": ["Myometrium of the Uterus", "Fornix"]},   /* card 1 */
+        {"q": 2, "a": 3, "ans": ["Myometrium; Uterus", "Fornix"], "alt": {"Myometrium; Uterus": ["Myometrium of the Uterus", "Myometrium"]}},   /* card 1 */
         {"q": 4, "a": 5, "ans": ["Urethra", "Clitoris"]},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["Ovarian Vein", "Labia Majora"]},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Fimbriae of Oviduct", "Ovarian Ligament"], "alt": {"Fimbriae of Oviduct": ["Fimbrae of Oviduct"]}},   /* card 4 */
@@ -1537,7 +1537,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 10, "a": 11, "ans": ["Corpus Cavernosum", "Ejaculatory Duct"]},   /* card 5 */
         {"q": 12, "a": 13, "ans": ["Corpus Spongiosum", "Prostatic Urethra"]},   /* card 6 */
         {"q": 14, "a": 15, "ans": ["Spongy (Penile) Urethra", "Cremaster Muscle"]},   /* card 7 */
-        {"q": 16, "a": 17, "ans": ["Prostate", "Spermatic Cord Contents (Vas Deferens, Testicular Artery, Pampiniform Plexus, Cremaster Muscle)"]}   /* card 8 */
+        {"q": 16, "a": 17, "ans": ["Vas Deferens, Testicular Artery, Pampiniform Plexus, Cremaster Muscle", "Prostate"], "alt": {"Vas Deferens, Testicular Artery, Pampiniform Plexus, Cremaster Muscle": ["Vas Deferens", "Testicular Artery", "Pampiniform Plexus", "Cremaster Muscle", "Spermatic Cord Contents"]}, "labels": ["Structures within (any one counts)", "Structure"]}   /* card 8 */
       ]
     },
 
@@ -1596,7 +1596,7 @@ window.LOOPS_ENGINE_CONTENT = {
       "systems": [10],
       "credit": "cadaver",
       "stations": [
-        {"q": 2, "a": 3, "ans": ["Mediastinum"]},   /* card 1 */
+        {"q": 2, "a": 3, "ans": ["Mediastinum"], "alt": {"Mediastinum": ["Mediatinum"]}},   /* card 1 */
         {"q": 4, "a": 5, "ans": ["Thoracic Cavity"]},   /* card 2 */
         {"q": 6, "a": 7, "ans": ["Phrenic Nerve (branch of C3- C5)"]},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Trachea"]},   /* card 4 */
@@ -1614,7 +1614,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 32, "a": 33, "ans": ["Oblique Fissure of the L. Lung"], "alt": {"Oblique Fissure of the L. Lung": ["Oblique Fissure of the Left Lung"]}},   /* card 16 */
         {"q": 34, "a": 35, "ans": ["Oblique Fissure of the R. Lung"], "alt": {"Oblique Fissure of the R. Lung": ["Oblique Fissure of the Right Lung"]}},   /* card 17 */
         {"q": 36, "a": 37, "ans": ["Horizontal Fissure of the R. Lung"], "alt": {"Horizontal Fissure of the R. Lung": ["Horizontal Fissure of the Right Lung"]}},   /* card 18 */
-        {"q": 38, "a": 39, "ans": ["Hilum of the lung"]},   /* card 19 */
+        {"q": 38, "a": 39, "ans": ["Hilum of the lung"], "alt": {"Hilum of the lung": ["Hium of the lung", "Hium"]}},   /* card 19 */
         {"q": 40, "a": 41, "ans": ["Diaphragmatic Surface of the Lung"]},   /* card 20 */
         {"q": 42, "a": 43, "ans": ["Pulmonary Arteries"]},   /* card 21 */
         {"q": 44, "a": 45, "ans": ["Pulmonary Veins (Oâ RICH)"]},   /* card 22 */
@@ -1717,7 +1717,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 60, "a": 61, "ans": ["Myocardium"]},   /* card 30 */
         {"q": 62, "a": 63, "ans": ["Epicardium (Visceral Pericardium)"]},   /* card 31 */
         {"q": 64, "a": 65, "ans": ["Anterior Papillary Muscle"]},   /* card 32 */
-        {"q": 66, "a": 67, "ans": ["Chordae Tendineae"]},   /* card 33 */
+        {"q": 66, "a": 67, "ans": ["Chordae Tendineae"], "alt": {"Chordae Tendineae": ["Chordae Tendon"]}},   /* card 33 */
         {"q": 68, "a": 69, "ans": ["Bicuspid Valve"], "alt": {"Bicuspid Valve": ["Mitral Valve", "Mitral"]}},   /* card 34 */
         {"q": 70, "a": 71, "ans": ["Aorta"]},   /* card 35 */
         {"q": 72, "a": 73, "ans": ["Pulmonary Trunk"]},   /* card 36 */
@@ -1728,7 +1728,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 82, "a": 83, "ans": ["Coronary Sinus"]},   /* card 41 */
         {"q": 84, "a": 85, "ans": ["Posterior Descending A."]},   /* card 42 */
         {"q": 86, "a": 87, "ans": ["Tricuspid Valve"]},   /* card 43 */
-        {"q": 88, "a": 89, "ans": ["Chordae Tendineae"]},   /* card 44 */
+        {"q": 88, "a": 89, "ans": ["Chordae Tendineae"], "alt": {"Chordae Tendineae": ["Chordae Tendon"]}},   /* card 44 */
         {"q": 90, "a": 91, "ans": ["Anterior Papillary Muscle"]},   /* card 45 */
         {"q": 92, "a": 93, "ans": ["Fossa Ovalis"]},   /* card 46 */
         {"q": 94, "a": 95, "ans": ["Opening for Coronary Sinus"]},   /* card 47 */
@@ -1795,7 +1795,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 26, "a": 27, "ans": ["Angular Gyrus"]},   /* card 13 */
         {"q": 28, "a": 29, "ans": ["Inferior Frontal Gyrus"]},   /* card 14 */
         {"q": 30, "a": 31, "ans": ["Longitudinal Fissure"]},   /* card 15 */
-        {"q": 32, "a": 33, "ans": ["Falx Cerebri"]},   /* card 16 */
+        {"q": 32, "a": 33, "ans": ["Falx Cerebri"], "alt": {"Falx Cerebri": ["Falx Cerebrei"]}},   /* card 16 */
         {"q": 34, "a": 35, "ans": ["Central Sulcus"]},   /* card 17 */
         {"q": 36, "a": 37, "ans": ["Precentral Gyrus", "Primary Motor Cortex"]},   /* card 18 */
         {"q": 38, "a": 39, "ans": ["Postcentral Gyrus", "Primary Sensory Cortex"]},   /* card 19 */
@@ -1841,11 +1841,11 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 38, "a": 39, "ans": ["Corpora Quadrigemina"]},   /* card 19 */
         {"q": 40, "a": 41, "ans": ["Superior Colliculus"]},   /* card 20 */
         {"q": 42, "a": 43, "ans": ["Inferior Colliculus"]},   /* card 21 */
-        {"q": 44, "a": 45, "ans": ["Cerebral Aqueduct"]},   /* card 22 */
+        {"q": 44, "a": 45, "ans": ["Cerebral Aqueduct"], "alt": {"Cerebral Aqueduct": ["Cerebral Aquaduct"]}},   /* card 22 */
         {"q": 46, "a": 47, "ans": ["Interventricular Foramen of Monro"]},   /* card 23 */
         {"q": 48, "a": 49, "ans": ["4th Ventricle"]},   /* card 24 */
         {"q": 50, "a": 51, "ans": ["Cerebellum"]},   /* card 25 */
-        {"q": 52, "a": 53, "ans": ["Midbrain"]},   /* card 26 */
+        {"q": 53, "a": 52, "ans": ["Midbrain"]},   /* card 26 */
         {"q": 54, "a": 55, "ans": ["Basilar Pons"]},   /* card 27 */
         {"q": 56, "a": 57, "ans": ["Medulla Oblongata"]},   /* card 28 */
         {"q": 58, "a": 59, "ans": ["Folia"]},   /* card 29 */
@@ -1872,7 +1872,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 6, "a": 7, "ans": ["Anterior Cerebral Artery"]},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Internal Carotid Artery"]},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Middle Cerebral Artery"]},   /* card 5 */
-        {"q": 12, "a": 13, "ans": ["Posterior Communicating Artery"]},   /* card 6 */
+        {"q": 12, "a": 13, "ans": ["Posterior Communicating Artery"], "alt": {"Posterior Communicating Artery": ["Middle Cerebral Artery"]}},   /* card 6 */
         {"q": 14, "a": 15, "ans": ["Posterior Cerebral Artery"]},   /* card 7 */
         {"q": 16, "a": 17, "ans": ["Superior Cerebellar Artery"]},   /* card 8 */
         {"q": 18, "a": 19, "ans": ["Basilar Artery"]},   /* card 9 */
@@ -1902,9 +1902,9 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 6, "a": 7, "ans": ["Frontal Lobe"]},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Temporal Lobe"]},   /* card 4 */
         {"q": 10, "a": 11, "ans": ["Occipital Lobe"]},   /* card 5 */
-        {"q": 12, "a": 13, "ans": ["Parahippocampal Gyrus"]},   /* card 6 */
-        {"q": 14, "a": 15, "ans": ["Inferior Temporal Gyrus"]},   /* card 7 */
-        {"q": 16, "a": 17, "ans": ["Optic Nerve"]},   /* card 8 */
+        {"q": 90, "a": 12, "ans": ["Parahippocampal Gyrus"]},   /* card 6 */
+        {"q": 13, "a": 14, "ans": ["Inferior Temporal Gyrus"]},   /* card 7 */
+        {"q": 15, "a": 16, "ans": ["Optic Nerve"]},   /* card 8 */
         {"q": 18, "a": 19, "ans": ["Optic Chiasm"]},   /* card 9 */
         {"q": 20, "a": 21, "ans": ["Optic Tract"]},   /* card 10 */
         {"q": 22, "a": 23, "ans": ["Mammillary Body"]},   /* card 11 */
@@ -1989,7 +1989,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 59, "a": 60, "ans": ["Dorsal Ramus"]},   /* card 30 */
         {"q": 61, "a": 62, "ans": ["Lateral Horn"]},   /* card 31 */
         {"q": 63, "a": 64, "ans": ["Ventral Horn"]},   /* card 32 */
-        {"q": 65, "a": 66, "ans": ["Grey Commissure"]},   /* card 33 */
+        {"q": 65, "a": 66, "ans": ["Grey Commissure"], "alt": {"Grey Commissure": ["Grey Commisure"]}},   /* card 33 */
         {"q": 67, "a": 68, "ans": ["Central Canal"]},   /* card 34 */
         {"q": 69, "a": 70, "ans": ["Lumbar Plexus"]},   /* card 35 */
         {"q": 71, "a": 72, "ans": ["Sacral Plexus"]},   /* card 36 */
