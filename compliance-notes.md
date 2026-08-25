@@ -1,12 +1,13 @@
 # Accessibility compliance notes
 
 **Project:** Tissues II Loop, BIO 004 Human Anatomy, Solano Community College
-**Files covered:** `tissues-2-answer-key-review.html`, `images/tissues-2/s02.jpg` to `s61.jpg`
+**Files covered:** `tissues-2-answer-key-review.html`, `images/tissues-2/s02.jpg` to `s61.jpg`, and the Practice Lab Exam added to `index.html`
 **Date:** 25 August 2026
 **Reviewer:** Claude, for Dr. Sharilyn Rennie
 
-The patched `index.html` and `loops-index.js` are not audited here. They carry the existing
-Loops app's own compliance record; this build adds data to them and changes no markup.
+`loops-index.js` is data only and is not audited here. The parts of `index.html` that existed
+before this build carry the Loops app's own compliance record; section 8 covers the Practice
+Lab Exam, which is new markup added by this build.
 
 ## 1. WCAG version and level reached
 
@@ -82,6 +83,38 @@ is still worth doing.
 4. Fonts load from Google Fonts. If the page is opened offline the system sans stack takes
    over and the layout still holds.
 
-## 7. Reviewer
+## 7. Practice Lab Exam (new markup in index.html)
+
+Audited with axe-core against wcag2a, wcag2aa, wcag21a, wcag21aa and wcag22aa on all four
+screens: setup, running, results, and setup with attempt history. **Zero violations on all
+four.** Beyond the automated pass:
+
+- **Contrast.** Green `#1F5B3A` 8.03:1, terra `#8B3A2E` 7.66:1, muted `#4E5663` 7.41:1 and
+  navy `#0B1530` 18.04:1, all on white; white on the navy button 18.04:1 and on the terra
+  button 7.66:1. Every pair clears AAA.
+- **2.2.1 Timing Adjustable.** The per-question countdown is a time limit. Because the whole
+  point is to rehearse a timed practical, the timing is essential to the activity, and a
+  **No timer** option is offered on the setup screen so any student who needs the limit gone
+  can remove it. Lengths of 30, 45, 60 and 90 seconds are also selectable.
+- **Screen readers and the clock.** The ticking countdown carries `aria-hidden`, so it is not
+  announced once a second. A single polite status announces "10 seconds left on this question."
+- **Keyboard.** Verified tab order through the setup screen: settings, then each module's
+  Select all and Clear, then that module's loop checkboxes, in visual order. Enter and Space
+  operate every button. Inside the exam, Enter moves down the blanks and, from the last blank,
+  submits the question. Focus lands on the first blank of each new question and, after an
+  override, returns to the button that was pressed. No keyboard trap.
+- **Not colour alone.** Correct and missed questions carry a word ("Correct", "Missed",
+  "Missed, time ran out", "Not attempted") and a tick or cross beside each blank, not just a
+  border colour.
+- **Structure.** The review is an ordered list; the attempt history is a real table with a
+  caption and column scopes; every input has a bound label; the running summary and the
+  ten-second warning use `role="status"` with `aria-live="polite"`.
+- **Motion.** The one sticky element is released under `prefers-reduced-motion: reduce`, and
+  scroll-into-view falls back to an instant jump.
+
+Known limitation: as with the rest of this build, screen reader verification is against the
+Chromium accessibility tree rather than a live VoiceOver or NVDA session.
+
+## 8. Reviewer
 
 Prepared for Dr. Sharilyn Rennie, 25 August 2026.

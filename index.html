@@ -204,6 +204,62 @@
   footer{border-top:1px solid var(--line);margin-top:36px;padding-top:16px;color:var(--muted);font-size:.85rem}
   @media (max-width:560px){.modtab{flex:1 1 calc(50% - 8px)}}
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+  /* ---- Practice lab exam ---- */
+  .exgroup{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--rest);padding:14px 16px;margin-bottom:12px}
+  .exgroup-h{display:flex;gap:12px;flex-wrap:wrap;align-items:baseline;margin:0 0 10px}
+  .exgroup-h h3{font-size:1rem;font-weight:800;margin:0}
+  .exgroup-h .c{font-family:var(--fe);font-weight:700;font-size:.62rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted)}
+  .exgroup-h .sp{margin-left:auto;display:flex;gap:8px}
+  .exlink{font-family:var(--fd);font-weight:700;font-size:.82rem;color:var(--terra-dark);
+    background:none;border:0;padding:6px 2px;min-height:32px;cursor:pointer;text-decoration:underline}
+  .exlink:hover{color:var(--navy)}
+  .exloops{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:4px 18px}
+  .exloop{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;min-height:44px;
+    padding:4px 2px;cursor:pointer}
+  .exloop input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--navy);cursor:pointer;flex:none}
+  .exloop .n{font-weight:600}
+  .exloop .q{font-family:var(--fe);font-weight:700;font-size:.62rem;color:var(--muted);display:block}
+  .exsticky{position:sticky;bottom:10px;z-index:5}
+  .exscore{font-size:3rem;font-weight:800;margin:4px 0 0;letter-spacing:-.02em}
+  .expct{font-family:var(--fe);font-weight:700;font-size:.8rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--terra-dark);margin:0}
+  .exstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0 0}
+  .exstat{border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;background:#fff}
+  .exstat .v{font-size:1.5rem;font-weight:800;line-height:1.1}
+  .exstat .l{font-family:var(--fe);font-weight:700;font-size:.6rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin-top:3px}
+  .exrev{list-style:none;margin:0;padding:0}
+  .exq{display:grid;grid-template-columns:minmax(0,210px) minmax(0,1fr);gap:16px;background:#fff;
+    border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--rest);
+    padding:14px 16px;margin-bottom:10px}
+  .exq.miss{border-color:var(--terra-dark)}
+  .exq.hit{border-color:var(--green)}
+  .exq img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px;background:#0B1530}
+  .exq .qn{font-family:var(--fe);font-weight:700;font-size:.62rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 2px}
+  .exq .mk{font-weight:800;font-size:.92rem;margin:0 0 8px}
+  .exq.hit .mk{color:var(--green)} .exq.miss .mk{color:var(--terra-dark)}
+  .exrow{margin:0 0 8px;font-size:.92rem}
+  .exrow .lb{font-family:var(--fe);font-weight:700;font-size:.6rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--terra-dark);display:block}
+  .exrow .you,.exrow .ky{display:block;font-size:.9rem}
+  .exrow .you.ok{color:var(--green)}
+  .exrow .you.no{color:var(--terra-dark)}
+  .exrow .ky{color:var(--navy)}
+  .exrow .blank-answer{color:var(--muted);font-style:normal}
+  .exhist{width:100%;border-collapse:collapse;font-size:.9rem}
+  .exhist th,.exhist td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+  .exhist th{font-family:var(--fe);font-weight:700;font-size:.6rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted)}
+  .exhist td.num{font-weight:800;white-space:nowrap}
+  .exhist .scope{color:var(--muted);font-size:.84rem}
+  .exwrap{overflow-x:auto}
+  @media (max-width:640px){ .exq{grid-template-columns:1fr} .exscore{font-size:2.3rem} }
+  @media (prefers-reduced-motion: reduce){ .exsticky{position:static} }
+
 </style>
 </head>
 <body>
@@ -334,6 +390,67 @@
     </div>
     <p class="sr" id="dStatus" role="status" aria-live="polite"></p>
     <div id="dBody"></div>
+  </section>
+
+
+  <!-- ============ PRACTICE LAB EXAM ============ -->
+  <section id="exam" hidden aria-label="Practice lab exam">
+    <div class="pbar">
+      <button class="btn ghost" id="exBack" type="button">&larr; All loops</button>
+      <span class="ptitle" id="exTitle">Practice lab exam</span>
+      <span class="pcount" id="exCount"></span>
+    </div>
+
+    <div id="exSetup">
+      <p class="pgtag">Build a practice practical out of whichever loops you are studying. Every run draws a
+        fresh random set, puts you on the clock the way the real practical does, and marks it at the end.
+        Every attempt is saved on this device, so you can watch your average move.</p>
+
+      <div class="bar" role="group" aria-label="Exam settings">
+        <div class="field"><label for="exN">Questions</label>
+          <select id="exN">
+            <option value="20">20</option><option value="30">30</option>
+            <option value="40">40</option><option value="52" selected>52</option>
+          </select></div>
+        <div class="field"><label for="exSecs">Time per question</label>
+          <select id="exSecs">
+            <option value="0">No timer</option><option value="30">30 seconds</option>
+            <option value="45" selected>45 seconds</option><option value="60">60 seconds</option>
+            <option value="90">90 seconds</option>
+          </select></div>
+        <label class="toggle"><input type="checkbox" id="exSpelling"> Spelling counts</label>
+      </div>
+
+      <p class="eyebrow">Choose your loops</p>
+      <div id="exPick"></div>
+
+      <div class="panel exsticky">
+        <p class="summary" id="exSum" role="status" aria-live="polite" style="margin:0 0 10px"></p>
+        <div class="pbar" style="margin:0">
+          <button class="btn terra" id="exStart" type="button" disabled>Start my practice exam</button>
+          <button class="btn ghost" id="exClearSel" type="button">Clear selection</button>
+        </div>
+      </div>
+
+      <div id="exHistWrap"></div>
+    </div>
+
+    <div id="exRun" hidden>
+      <div class="stage">
+        <div class="imgwrap"><img id="exImg" alt=""><span class="clock" id="exClock" hidden aria-hidden="true"></span></div>
+        <div class="work">
+          <div class="blanks" id="exBlanks"></div>
+          <p class="hint" id="exHint"></p>
+          <p class="sr" id="exWarn" role="status" aria-live="polite"></p>
+          <div class="pbar" style="margin:14px 0 0">
+            <button class="btn terra" id="exNext" type="button">Next question &rarr;</button>
+            <button class="btn ghost" id="exQuit" type="button">Finish and mark it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="exResults" hidden></div>
   </section>
 
   <footer><p>Dr. Sharilyn Rennie &middot; BIO 004 Human Anatomy &middot; Solano College. Your practice is stored on this device only. No names, no accounts, nothing sent anywhere.</p></footer>
@@ -3145,10 +3262,369 @@ var fh=readHash();
 if(fh){ var ok=false; E.getModules().forEach(function(M){ if(M.n===fh.m) ok=true; }); if(ok){ curModule=fh.m; curSystem=fh.s; } }
 renderTabs(); renderChips(); renderGrid(); setHint();
 
-window.LoopsUI={ selectModule:selectModule, startLoop:startLoop, runScope:runScope, showDash:showDash,
+window.LoopsUI={ selectModule:selectModule, startLoop:startLoop, runScope:runScope, showDash:showDash, toHub:toHub, notifyHeight:notifyHeight,
                  closeCredit:closeCredit, check:check, next:nextStation, scrim:scrim,
                  station:station, get cur(){ return cur; }, get queue(){ return queue; },
                  get pos(){ return pos; }, set pos(v){ pos=v; } };
+})();
+</script>
+<!-- ============================================================
+     PRACTICE LAB EXAM
+     Self contained. Reads the loop content and the grader off
+     window.LoopsEngine and stores its own attempts under
+     loopsExam_v1, so nothing here touches loop practice records.
+     ============================================================ -->
+<script>
+(function(){
+"use strict";
+if(!window.LoopsEngine) return;
+var E=window.LoopsEngine, UI=window.LoopsUI||{};
+var $=function(i){ return document.getElementById(i); };
+function esc(s){ var d=document.createElement('div'); d.textContent=s==null?'':s; return d.innerHTML; }
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+var AKEY='loopsExam_v1', PKEY='loopsExamPrefs_v1', KEEP=40;
+function rd(k,f){ try{ var v=JSON.parse(localStorage.getItem(k)); return (v===null||v===undefined)?f:v; }catch(e){ return f; } }
+function wr(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }catch(e){ return false; } }
+function history(){ var a=rd(AKEY,[]); return Array.isArray(a)?a:[]; }
+function saveHistory(a){ wr(AKEY, a.slice(-KEEP)); }
+function prefs(){ var p=rd(PKEY,{}); return (p&&typeof p==='object')?p:{}; }
+function savePrefs(p){ wr(PKEY,p); }
+
+var exam=$('exam'), setup=$('exSetup'), runView=$('exRun'), resView=$('exResults');
+var sel={}, deck=[], pos=0, items=[], timer=null, left=0, secs=45, strict=false, startedAt=0, warned=0;
+
+function bump(){ if(UI.notifyHeight) UI.notifyHeight(); }
+function pad(n){ return n<10?('0'+n):(''+n); }
+function imgSrc(loopId,n){ var L=E.getLoop(loopId); return L?('images/'+L.dir+'/s'+pad(n)+'.jpg'):''; }
+/* only stations a machine can mark belong on a graded exam */
+function gradable(L){ return (L.stations||[]).map(function(st,i){ return {st:st,i:i}; })
+  .filter(function(o){ return !o.st.prose && o.st.ans && o.st.ans.length; }); }
+function countOf(L){ return gradable(L).length; }
+
+/* ------------------------------------------------------------ setup screen */
+function buildPicker(){
+  var host=$('exPick'); host.innerHTML='';
+  E.getModules().forEach(function(M){
+    var loops=E.getLoopsInModule(M.n); if(!loops.length) return;
+    var box=document.createElement('div'); box.className='exgroup';
+    var gid='exg'+M.n;
+    var total=0; loops.forEach(function(L){ total+=countOf(L); });
+    box.innerHTML='<div class="exgroup-h"><h3 id="'+gid+'">Module '+M.n+'. '+esc(M.full)+'</h3>'
+      +'<span class="c">'+loops.length+' loops &middot; '+total+' questions</span>'
+      +'<span class="sp"><button type="button" class="exlink" data-all="'+M.n+'">Select all</button>'
+      +'<button type="button" class="exlink" data-none="'+M.n+'">Clear</button></span></div>';
+    var grid=document.createElement('div'); grid.className='exloops';
+    grid.setAttribute('role','group'); grid.setAttribute('aria-labelledby',gid);
+    loops.forEach(function(L){
+      var n=countOf(L), id='exl_'+L.id;
+      var lab=document.createElement('label'); lab.className='exloop'; lab.setAttribute('for',id);
+      lab.innerHTML='<input type="checkbox" id="'+id+'" value="'+esc(L.id)+'"'+(n?'':' disabled')+'>'
+        +'<span><span class="n">'+esc(L.title)+'</span>'
+        +'<span class="q">'+(n?(n+' question'+(n===1?'':'s')):'no graded stations')+'</span></span>';
+      grid.appendChild(lab);
+    });
+    box.appendChild(grid); host.appendChild(box);
+  });
+  host.addEventListener('change', function(e){
+    if(e.target && e.target.type==='checkbox'){ sel[e.target.value]=e.target.checked; if(!e.target.checked) delete sel[e.target.value]; summarise(); }
+  });
+  host.addEventListener('click', function(e){
+    var t=e.target; if(!t || t.tagName!=='BUTTON') return;
+    var on=t.getAttribute('data-all'), off=t.getAttribute('data-none');
+    var n=on||off; if(!n) return;
+    E.getLoopsInModule(parseInt(n,10)).forEach(function(L){
+      var cb=$('exl_'+L.id); if(!cb||cb.disabled) return;
+      cb.checked=!!on; if(on) sel[L.id]=true; else delete sel[L.id];
+    });
+    summarise();
+  });
+}
+function selectedIds(){ return Object.keys(sel).filter(function(k){ return sel[k]; }); }
+function poolSize(){ var n=0; selectedIds().forEach(function(id){ var L=E.getLoop(id); if(L) n+=countOf(L); }); return n; }
+function summarise(){
+  var ids=selectedIds(), avail=poolSize(), want=parseInt($('exN').value,10)||52;
+  var p=prefs(); p.sel=ids; savePrefs(p);
+  var msg;
+  if(!ids.length) msg='Pick at least one loop to build an exam from.';
+  else if(avail<want) msg='<b>'+ids.length+'</b> loop'+(ids.length===1?'':'s')+' selected, <b>'+avail+'</b> questions available. '
+      +'That is fewer than '+want+', so this exam will be <b>'+avail+'</b> question'+(avail===1?'':'s')+' long.';
+  else msg='<b>'+ids.length+'</b> loop'+(ids.length===1?'':'s')+' selected, <b>'+avail+'</b> questions available. '
+      +'Drawing <b>'+want+'</b> of them at random.';
+  $('exSum').innerHTML=msg;
+  $('exStart').disabled = avail<1;
+  bump();
+}
+function restore(){
+  var p=prefs();
+  if(p.n) $('exN').value=String(p.n);
+  if(p.secs!==undefined) $('exSecs').value=String(p.secs);
+  $('exSpelling').checked=!!p.strict;
+  (p.sel||[]).forEach(function(id){ var cb=$('exl_'+id); if(cb&&!cb.disabled){ cb.checked=true; sel[id]=true; } });
+}
+
+/* ------------------------------------------------------------ the draw */
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function draw(want){
+  var pool=[];
+  selectedIds().forEach(function(id){
+    var L=E.getLoop(id); if(!L) return;
+    gradable(L).forEach(function(o){ pool.push({loopId:id, index:o.i}); });
+  });
+  pool=shuffle(pool);
+  return pool.slice(0, Math.min(want, pool.length));
+}
+
+/* ------------------------------------------------------------ running */
+function show(view){
+  setup.hidden = view!=='setup';
+  runView.hidden = view!=='run';
+  resView.hidden = view!=='results';
+}
+function open(){
+  $('hub').hidden=true; $('player').hidden=true; $('dash').hidden=true; exam.hidden=false;
+  show('setup'); $('exCount').textContent=''; renderHistory(); summarise();
+  if(exam.scrollIntoView) exam.scrollIntoView({behavior:reduce?'auto':'smooth', block:'start'});
+  bump();
+}
+function leave(){
+  stopTimer(); exam.hidden=true;
+  if(UI.toHub) UI.toHub(); else { $('hub').hidden=false; }
+  bump();
+}
+function start(){
+  var want=parseInt($('exN').value,10)||52;
+  secs=parseInt($('exSecs').value,10); if(isNaN(secs)) secs=45;
+  strict=$('exSpelling').checked;
+  var p=prefs(); p.n=want; p.secs=secs; p.strict=strict; p.sel=selectedIds(); savePrefs(p);
+  deck=draw(want);
+  if(!deck.length) return;
+  items=deck.map(function(d){ return {loopId:d.loopId, index:d.index, typed:[], over:false}; });
+  pos=0; startedAt=Date.now();
+  show('run'); question();
+}
+function question(){
+  var d=deck[pos], L=E.getLoop(d.loopId), st=L.stations[d.index];
+  warned=0;
+  $('exImg').src=imgSrc(d.loopId, st.q);
+  $('exImg').alt='Question '+(pos+1)+' of '+deck.length+'. Identify the structure'+(st.ans.length>1?'s':'')+' shown.';
+  var b=$('exBlanks'); b.innerHTML='';
+  st.ans.forEach(function(_,i){
+    var id='exb'+i, w=document.createElement('div'); w.className='blank';
+    var lab=(st.labels&&st.labels[i])?st.labels[i]:(st.ans.length>1?('Answer '+(i+1)+' of '+st.ans.length):'Your answer');
+    w.innerHTML='<label for="'+id+'">'+esc(lab)+'</label>'
+      +'<input type="text" id="'+id+'" autocomplete="off" autocapitalize="off" spellcheck="false">';
+    b.appendChild(w);
+  });
+  var ins=b.querySelectorAll('input');
+  Array.prototype.forEach.call(ins,function(inp,i){
+    inp.addEventListener('keydown',function(e){
+      if(e.key!=='Enter') return; e.preventDefault();
+      if(i<ins.length-1) ins[i+1].focus(); else advance(false);
+    });
+  });
+  $('exHint').textContent = strict
+    ? 'Spelling counts on this run. Nothing is marked until the whole exam is finished.'
+    : 'Close spelling is fine. Nothing is marked until the whole exam is finished.';
+  $('exCount').textContent='Question '+(pos+1)+' of '+deck.length;
+  $('exNext').textContent = (pos===deck.length-1) ? 'Finish and mark it' : 'Next question →';
+  $('exWarn').textContent='';
+  if(ins[0]) ins[0].focus();
+  startTimer();
+  bump();
+}
+function startTimer(){
+  stopTimer();
+  if(!secs){ $('exClock').hidden=true; return; }
+  left=secs; $('exClock').hidden=false; $('exClock').textContent=left+'s';
+  timer=setInterval(function(){
+    left--; $('exClock').textContent=left+'s';
+    if(left===10 && !warned){ warned=1; $('exWarn').textContent='10 seconds left on this question.'; }
+    if(left<=0){ stopTimer(); advance(true); }
+  },1000);
+}
+function stopTimer(){ if(timer){ clearInterval(timer); timer=null; } $('exClock').hidden=true; }
+function capture(){
+  items[pos].typed = Array.prototype.map.call($('exBlanks').querySelectorAll('input'), function(i){ return i.value; });
+}
+function advance(timedOut){
+  stopTimer(); capture(); items[pos].timedOut=!!timedOut;
+  pos++;
+  if(pos>=deck.length) finish(); else question();
+}
+function finishEarly(){
+  stopTimer(); capture();
+  for(var i=pos+1;i<items.length;i++) items[i].skipped=true;
+  finish();
+}
+
+/* ------------------------------------------------------------ marking */
+function markOne(it){
+  var L=E.getLoop(it.loopId); if(!L) return null;
+  var st=L.stations[it.index];
+  return E.gradeStation(st, it.typed, {spelling:strict});
+}
+function scoreOf(list){
+  var n=0; list.forEach(function(it){ if(it.over || (it.result && it.result.correct)) n++; });
+  return n;
+}
+function finish(){
+  stopTimer();
+  items.forEach(function(it){ it.result=markOne(it); });
+  var rec={ t:Date.now(), secs:secs, strict:strict, total:items.length,
+            loops:selectedIds(),
+            mins: Math.max(1, Math.round((Date.now()-startedAt)/60000)),
+            items: items.map(function(it){ return {loopId:it.loopId, index:it.index, typed:it.typed, over:false}; }) };
+  rec.score=scoreOf(items);
+  var h=history(); h.push(rec); saveHistory(h);
+  window.__exCurrent = h.length-1;
+  show('results'); renderResults();
+  if(resView.scrollIntoView) resView.scrollIntoView({behavior:reduce?'auto':'smooth', block:'start'});
+  bump();
+}
+function persistOverride(qi, on){
+  var h=history(), idx=window.__exCurrent;
+  if(idx!==undefined && h[idx] && h[idx].items[qi]){
+    h[idx].items[qi].over=on;
+    h[idx].score=h[idx].items.reduce(function(n,it,i){ return n + ((it.over||items[i].result.correct)?1:0); },0);
+    saveHistory(h);
+  }
+}
+function scopeText(ids){
+  if(!ids || !ids.length) return '';
+  if(ids.length<=2) return ids.map(function(id){ var L=E.getLoop(id); return L?L.title:id; }).join(' + ');
+  return ids.length+' loops';
+}
+
+function renderResults(){
+  var total=items.length, score=scoreOf(items);
+  var pct=total?Math.round(score/total*100):0;
+  var h=history();
+  var pcts=h.map(function(r){ return r.total?Math.round(r.score/r.total*100):0; });
+  var avg=pcts.length?Math.round(pcts.reduce(function(a,b){ return a+b; },0)/pcts.length):0;
+  var best=pcts.length?Math.max.apply(null,pcts):0;
+
+  var out='<div class="panel" style="text-align:center">'
+    +'<p class="eyebrow">Practice exam marked</p>'
+    +'<p class="exscore" id="exScoreNum">'+score+' / '+total+'</p>'
+    +'<p class="expct" id="exScorePct">'+pct+' percent</p>'
+    +'<div class="exstats">'
+      +'<div class="exstat"><div class="v" id="exAvg">'+avg+'%</div><div class="l">Your average, '+pcts.length+' attempt'+(pcts.length===1?'':'s')+'</div></div>'
+      +'<div class="exstat"><div class="v" id="exBest">'+best+'%</div><div class="l">Your best</div></div>'
+      +'<div class="exstat"><div class="v">'+(secs?(secs+'s'):'None')+'</div><div class="l">Time per question</div></div>'
+      +'<div class="exstat"><div class="v">'+(strict?'Counted':'Forgiven')+'</div><div class="l">Spelling</div></div>'
+    +'</div>'
+    +'<div class="pbar" style="justify-content:center;margin:18px 0 0">'
+      +'<button class="btn" id="exAgain" type="button">Build another exam</button>'
+      +'<button class="btn ghost" id="exToHub" type="button">Back to loops</button>'
+    +'</div></div>'
+    +'<p class="pgtag" style="margin-top:18px">Read down every question, including the ones you got right. '
+    +'If your wording says the same thing as the key and the marking missed it, press <b>Count this one right</b> '
+    +'and your score updates. That is for wording, not for spelling.</p>'
+    +'<ol class="exrev" id="exRev">';
+
+  items.forEach(function(it,qi){
+    var L=E.getLoop(it.loopId), st=L.stations[it.index], r=it.result;
+    var hit = it.over || r.correct;
+    out+='<li class="exq '+(hit?'hit':'miss')+'" id="exq'+qi+'">'
+      +'<div><img loading="lazy" src="'+esc(imgSrc(it.loopId, st.q))+'" alt="Question '+(qi+1)+'"></div>'
+      +'<div><p class="qn">Question '+(qi+1)+' &middot; '+esc(L.title)+'</p>'
+      +'<p class="mk">'+(hit?(it.over?'Counted right by you':'Correct'):(it.timedOut?'Missed, time ran out':(it.skipped?'Not attempted':'Missed')))+'</p>';
+    r.inputs.forEach(function(inp,bi){
+      var lab=(st.labels&&st.labels[bi])?st.labels[bi]:('Answer '+(bi+1));
+      var v=inp.verdict, ok=(v==='exact')||(v==='misspelled'&&!strict);
+      var mark = ok ? '\u2713 ' : '\u2717 ';
+      var note = (v==='misspelled') ? (strict?' (spelling)':' (spelling forgiven)') : '';
+      out+='<div class="exrow"><span class="lb">'+esc(lab)+'</span>'
+        +'<span class="you '+(ok?'ok':'no')+'">'+mark+'You wrote: '
+        +(inp.typed?('<b>'+esc(inp.typed)+'</b>'):'<span class="blank-answer">nothing</span>')+esc(note)+'</span>'
+        +'<span class="ky">Answer: <b>'+esc(r.answers[bi])+'</b></span></div>';
+    });
+    if(!r.correct){
+      out+='<button class="btn ghost" type="button" data-ov="'+qi+'">'
+        +(it.over?'Undo, mark it wrong':'Count this one right')+'</button>';
+    }
+    out+='</div></li>';
+  });
+  out+='</ol>';
+  resView.innerHTML=out;
+
+  $('exAgain').addEventListener('click', function(){ show('setup'); $('exCount').textContent=''; renderHistory(); summarise(); bump(); });
+  $('exToHub').addEventListener('click', leave);
+  resView.addEventListener('click', function(e){
+    var t=e.target; if(!t || !t.getAttribute) return;
+    var qi=t.getAttribute('data-ov'); if(qi===null) return;
+    qi=parseInt(qi,10);
+    items[qi].over = !items[qi].over;
+    persistOverride(qi, items[qi].over);
+    renderResults();
+    var el=$('exq'+qi); if(el && el.querySelector('button')) el.querySelector('button').focus();
+  });
+}
+
+function renderHistory(){
+  var h=history(), host=$('exHistWrap');
+  if(!h.length){ host.innerHTML='<p class="eyebrow" style="margin-top:26px">Your attempts</p>'
+    +'<div class="panel"><p style="margin:0;color:var(--muted)">Nothing yet. Your first exam will show up here, '
+    +'and every one after it, so you can see your average.</p></div>'; return; }
+  var pcts=h.map(function(r){ return r.total?Math.round(r.score/r.total*100):0; });
+  var avg=Math.round(pcts.reduce(function(a,b){ return a+b; },0)/pcts.length);
+  var best=Math.max.apply(null,pcts);
+  var rows='';
+  for(var i=h.length-1;i>=0;i--){
+    var r=h[i], d=new Date(r.t);
+    rows+='<tr><td>'+esc(d.toLocaleDateString(undefined,{month:'short',day:'numeric'}))+'</td>'
+      +'<td class="scope">'+esc(scopeText(r.loops))+'</td>'
+      +'<td class="num">'+r.score+' / '+r.total+'</td>'
+      +'<td class="num">'+pcts[i]+'%</td></tr>';
+  }
+  host.innerHTML='<p class="eyebrow" style="margin-top:26px">Your attempts</p>'
+    +'<div class="panel">'
+    +'<div class="exstats" style="margin:0 0 14px">'
+      +'<div class="exstat"><div class="v">'+avg+'%</div><div class="l">Average across '+h.length+' attempt'+(h.length===1?'':'s')+'</div></div>'
+      +'<div class="exstat"><div class="v">'+best+'%</div><div class="l">Best</div></div>'
+      +'<div class="exstat"><div class="v">'+pcts[pcts.length-1]+'%</div><div class="l">Most recent</div></div>'
+    +'</div>'
+    +'<div class="exwrap"><table class="exhist"><caption class="sr">Every practice exam you have taken on this device</caption>'
+    +'<thead><tr><th scope="col">Date</th><th scope="col">Loops</th><th scope="col">Score</th><th scope="col">Percent</th></tr></thead>'
+    +'<tbody>'+rows+'</tbody></table></div>'
+    +'<div class="pbar" style="margin:14px 0 0"><button class="btn ghost" id="exWipe" type="button">Clear my exam history</button></div>'
+    +'</div>';
+  $('exWipe').addEventListener('click', function(){
+    var b=$('exWipe');
+    if(b.getAttribute('data-armed')==='1'){ saveHistory([]); renderHistory(); bump(); return; }
+    b.setAttribute('data-armed','1'); b.textContent='Sure? Tap again to erase every attempt';
+    setTimeout(function(){ if(b){ b.removeAttribute('data-armed'); b.textContent='Clear my exam history'; } },4000);
+  });
+}
+
+/* ------------------------------------------------------------ wiring */
+$('exBack').addEventListener('click', leave);
+$('exStart').addEventListener('click', start);
+$('exClearSel').addEventListener('click', function(){
+  Object.keys(sel).forEach(function(id){ var cb=$('exl_'+id); if(cb) cb.checked=false; });
+  sel={}; summarise();
+});
+$('exN').addEventListener('change', summarise);
+$('exNext').addEventListener('click', function(){ advance(false); });
+$('exQuit').addEventListener('click', finishEarly);
+
+buildPicker(); restore(); summarise();
+
+/* entry card, first in the study tools row */
+(function(){
+  var g=$('toolGrid'); if(!g) return;
+  var b=document.createElement('button'); b.className='card tool'; b.type='button';
+  b.innerHTML='<span class="top"><span class="wm">Practice lab exam</span></span>'
+    +'<span class="body"><span class="ct">Practice lab exam</span>'
+    +'<span class="cd">Pick your loops and sit a timed practical. Fresh questions every run, marked at the end, '
+    +'and every attempt saved so you can see your average.</span>'
+    +'<span class="go">Build an exam &rarr;</span></span>';
+  b.addEventListener('click', open);
+  g.insertBefore(b, g.firstChild);
+})();
+
+window.LoopsExam={ open:open };
 })();
 </script>
 <!-- ============================================================
