@@ -39,6 +39,8 @@ window.BIO004_LOOPS = [
     comps:["w1-levels-organization","w1-anatomical-position","w1-planes-sections","w1-directional-terms","w1-regional-terms","w1-body-cavities","w1-serous-membranes","w1-mediastinum","w1-peritoneum-relationships","w1-abdominopelvic-map"] },
   { id:"tissues", title:"Tissues Loop", unit:"Tissues & Histology", dir:"tissues", frames:63,
     comps:["w1-germ-layers","w1-epithelial-id","w1-cell-junctions","w1-connective-id","w1-muscle-tissue-id","w1-nervous-tissue-id","w1-body-membranes","w1-generalized-cell","w1-plasma-membrane","w1-nucleus","w1-organelles"] },
+  { id:"tissues-2", title:"Tissues II Loop", unit:"Tissues & Histology", dir:"tissues-2", frames:61,
+    comps:["w1-germ-layers","w1-epithelial-id","w1-cell-junctions","w1-connective-id","w1-muscle-tissue-id","w1-nervous-tissue-id","w1-body-membranes"] },
   { id:"skin", title:"Integumentary Loop", unit:"Skin", dir:"skin", frames:25,
     comps:["w1-skin-layers","w1-epidermal-strata","w1-dermis-layers","w1-skin-accessory"] },
   { id:"bone", title:"Bone Tissue Loop", unit:"Bone Tissue", dir:"bone", frames:65,
