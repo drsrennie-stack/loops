@@ -260,6 +260,19 @@
   @media (max-width:640px){ .exq{grid-template-columns:1fr} .exscore{font-size:2.3rem} }
   @media (prefers-reduced-motion: reduce){ .exsticky{position:static} }
 
+
+  /* ---- collapsible dashboard panels ---- */
+  .dhead{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:0;
+    margin:0 0 2px;cursor:pointer;font-family:var(--fd);text-align:left;color:var(--navy);min-height:44px}
+  .dhead:hover .dh-t{color:var(--terra-dark)}
+  .dh-t{font-size:1rem;font-weight:800}
+  .dh-n{font-family:var(--fe);font-weight:700;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--terra-dark);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+  .dh-c{margin-left:auto;font-size:.8rem;font-weight:700;color:var(--muted);transition:transform 200ms ease}
+  .dhead[aria-expanded="true"] .dh-c{transform:rotate(180deg)}
+  .dfold{padding-top:10px}
+  @media (prefers-reduced-motion: reduce){ .dh-c{transition:none} }
+
 </style>
 </head>
 <body>
@@ -3767,6 +3780,68 @@ if(typeof MutationObserver!=='undefined'){
     .observe(dash, {attributes:true, attributeFilter:['hidden']});
 }
 build();
+})();
+</script>
+<!-- ============================================================
+     DASHBOARD FOLD. The progress dashboard runs long: by unit,
+     red flags, weak, not started, twelve rows each. The headline
+     numbers stay put and every list below folds away, closed on
+     arrival, so the student sees the summary first and opens only
+     what they want. Open or closed is remembered per section.
+     ============================================================ -->
+<script>
+(function(){
+"use strict";
+var body=document.getElementById('dBody'); if(!body) return;
+var KEY='loopsDashOpen_v1', n=0;
+function rd(){ try{ var v=JSON.parse(localStorage.getItem(KEY)); return (v&&typeof v==='object')?v:{}; }catch(e){ return {}; } }
+function wr(v){ try{ localStorage.setItem(KEY, JSON.stringify(v)); }catch(e){} }
+
+function fold(){
+  var open=rd();
+  Array.prototype.forEach.call(body.querySelectorAll('.panel'), function(panel){
+    if(panel.getAttribute('data-folded')) return;
+    var h=panel.querySelector('h3');
+    if(!h) return;                                   /* the summary block stays open */
+    panel.setAttribute('data-folded','1');
+
+    var title=h.textContent.trim();
+    var rows=panel.querySelectorAll('.row').length;
+    var id='dfold'+(++n);
+
+    var wrap=document.createElement('div');
+    wrap.className='dfold'; wrap.id=id;
+    var node=h.nextSibling;
+    while(node){ var next=node.nextSibling; wrap.appendChild(node); node=next; }
+
+    var btn=document.createElement('button');
+    btn.type='button'; btn.className='dhead';
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-controls',id);
+    btn.innerHTML='<span class="dh-t"></span>'
+      + (rows ? '<span class="dh-n"></span>' : '')
+      + '<span class="dh-c" aria-hidden="true">&#9660;</span>';
+    btn.querySelector('.dh-t').textContent=title;
+    if(rows) btn.querySelector('.dh-n').textContent=rows+(rows===1?' item':' items');
+
+    panel.replaceChild(btn, h);
+    panel.appendChild(wrap);
+
+    var want=!!open[title];
+    wrap.hidden=!want; btn.setAttribute('aria-expanded', String(want));
+
+    btn.addEventListener('click', function(){
+      var now=btn.getAttribute('aria-expanded')!=='true';
+      wrap.hidden=!now; btn.setAttribute('aria-expanded', String(now));
+      var o=rd(); if(now) o[title]=1; else delete o[title]; wr(o);
+      if(window.LoopsUI && window.LoopsUI.notifyHeight) window.LoopsUI.notifyHeight();
+    });
+  });
+}
+if(typeof MutationObserver!=='undefined'){
+  new MutationObserver(fold).observe(body, {childList:true});
+}
+fold();
 })();
 </script>
 <!-- ============================================================
