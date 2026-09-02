@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 1 Practice Lab Exam | BIO 004</title>
+<meta name="description" content="Fifty two question timed practice lab exam for BIO 004 Human Anatomy. Ninety seconds per question, self graded, attempts saved.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3D4C; --navy-deep:#142a36; --navy-tint:#EDF1F3;
+  --gold:#B8924A; --terra:#8B3A2E; --terra-soft:#A0522D;
+  --white:#FFFFFF; --off:#FAFAF9;
+  --line:#D7DDE0; --muted:#465660;
+  --good:#1F5B3A; --good-tint:#E9F2ED;
+  --bad:#8B2020; --bad-tint:#F7ECEC;
+  --fd:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --fb:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --rest:0 1px 3px rgba(0,0,0,.08);
+  --lift:0 8px 16px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--off);color:var(--navy);font-family:var(--fb);
+  font-size:17px;line-height:1.55}
+img{max-width:100%;height:auto;display:block}
+
+a{color:var(--terra)}
+a:hover{color:var(--navy)}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;
+  padding:12px 18px;z-index:99;border-radius:0 0 8px 0;font-weight:700}
+.skip:focus{left:0}
+
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:4px;
+  box-shadow:0 0 0 6px rgba(184,146,74,.45)}
+/* The ring is navy, not brushed gold. Gold on the off white ground measures
+   2.8 to 1, under the 3 to 1 that WCAG 2.2 asks of a focus indicator, so the
+   gold became a halo around a navy ring that measures 11 to 1. */
+
+.wrap{max-width:1180px;margin:0 auto;padding:26px 20px 64px}
+.eyebrow{font-family:var(--fb);font-size:12px;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--terra);margin:0 0 8px}
+h1{font-family:var(--fd);font-weight:800;color:var(--navy);font-size:clamp(1.7rem,3.4vw,2.4rem);
+  line-height:1.15;margin:0 0 10px}
+h2{font-family:var(--fd);font-weight:600;color:var(--terra);font-size:1.22rem;margin:0 0 10px}
+h3{font-family:var(--fd);font-weight:600;color:var(--terra);font-size:1.02rem;margin:0 0 8px}
+p{margin:0 0 14px;max-width:66ch}
+
+.card{background:var(--white);border:1px solid var(--line);border-radius:12px;
+  padding:22px;box-shadow:var(--rest)}
+.grid{display:grid;gap:18px}
+
+.btn{font-family:var(--fd);font-weight:700;font-size:1rem;border-radius:9px;
+  padding:13px 22px;min-height:48px;cursor:pointer;border:1px solid var(--navy);
+  background:var(--navy);color:#fff;transition:background 200ms ease,transform 200ms ease}
+.btn:hover{background:var(--navy-deep);transform:translateY(-2px);box-shadow:var(--lift)}
+.btn.ghost{background:var(--white);color:var(--navy)}
+.btn.ghost:hover{background:var(--navy-tint);color:var(--navy-deep)}
+.btn.gold{background:var(--white);color:var(--terra);border-color:var(--gold)}
+.btn.gold:hover{background:#FBF6EC;color:var(--terra)}
+.btn.sm{font-size:.86rem;padding:9px 14px;min-height:44px}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+@media (prefers-reduced-motion: reduce){
+  .btn,.btn:hover{transition:none;transform:none}
+}
+
+label{display:block;font-family:var(--fd);font-weight:600;font-size:.95rem;
+  color:var(--navy);margin:0 0 6px}
+select,input[type=text]{font-family:var(--fb);font-size:1.05rem;color:var(--navy);
+  background:var(--white);border:1px solid var(--navy);border-radius:9px;
+  padding:12px 14px;min-height:48px;width:100%;max-width:520px}
+
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hint{color:var(--muted);font-size:.92rem}
+
+/* ---------- the run ---------- */
+#runScreen .qhead{display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;
+  justify-content:space-between;margin-bottom:12px}
+.qnum{font-family:var(--fd);font-weight:800;font-size:1.05rem;color:var(--terra)}
+.qtag{font-family:var(--fd);font-weight:700;color:var(--navy);
+  font-size:clamp(1.25rem,2.6vw,1.7rem);line-height:1.25;margin:0 0 16px;max-width:34ch}
+.qbody{display:grid;gap:22px;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+@media (max-width:820px){.qbody{grid-template-columns:1fr}}
+.plate{background:var(--white);border:1px solid var(--line);border-radius:12px;
+  padding:10px;box-shadow:var(--rest)}
+.plate img{border-radius:6px;margin:0 auto}
+
+.clock{display:flex;align-items:center;gap:12px;font-family:var(--fd);font-weight:700}
+.clock .digits{font-size:1.3rem;font-variant-numeric:tabular-nums;min-width:4.2ch}
+.clock.low .digits{color:var(--terra)}
+.bar{height:10px;background:var(--navy-tint);border-radius:999px;overflow:hidden;
+  border:1px solid var(--line);margin:6px 0 18px}
+.bar span{display:block;height:100%;background:var(--gold);width:100%}
+@media (prefers-reduced-motion: no-preference){
+  .bar span{transition:width 300ms linear}
+}
+.paused .bar span{background:var(--muted)}
+
+/* ---------- results and key ---------- */
+.score{font-family:var(--fd);font-weight:800;font-size:2.4rem;color:var(--navy);
+  line-height:1;margin:0 0 4px}
+.tbl{width:100%;border-collapse:collapse;margin:8px 0 0}
+.tbl caption{text-align:left;font-family:var(--fd);font-weight:600;color:var(--terra);
+  padding:0 0 8px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:11px 10px;
+  border-bottom:1px solid var(--line);font-size:.95rem}
+.tbl th{font-family:var(--fd);font-weight:700;color:var(--navy);
+  border-bottom:1px solid var(--navy)}
+.tbl tr.right{background:var(--good-tint)}
+.tbl tr.wrong{background:var(--bad-tint)}
+.mark{font-family:var(--fd);font-weight:700;white-space:nowrap}
+.mark.r{color:var(--good)}
+.mark.w{color:var(--bad)}
+.thumb{width:104px;border:1px solid var(--line);border-radius:6px}
+
+.keyitem{display:grid;gap:16px;grid-template-columns:230px minmax(0,1fr);
+  align-items:start;padding:16px 0;border-bottom:1px solid var(--line)}
+@media (max-width:700px){.keyitem{grid-template-columns:1fr}}
+.keyitem img{border:1px solid var(--line);border-radius:6px}
+.ans{font-family:var(--fd);font-weight:700;color:var(--navy);font-size:1.05rem;margin:0 0 4px}
+.alts{color:var(--muted);font-size:.9rem;margin:0}
+
+.pending{border:1px dashed var(--gold);border-radius:10px;padding:14px 16px;
+  background:#FBF7EF;color:var(--navy)}
+
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- print the key ---------- */
+@media print{
+  body{background:#fff;font-size:11pt}
+  .noprint{display:none !important}
+  .wrap{max-width:none;padding:0}
+  .keyitem{grid-template-columns:1fr;border-bottom:1px solid #999;
+    padding:5pt 0;break-inside:avoid}
+  .keyitem img{display:none}
+  #keyScreen{columns:2;column-gap:22pt}
+  .ans{font-size:11pt}
+  h1{font-size:16pt}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the exam</a>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">BIO 004 &middot; Human Anatomy &middot; Module 1</p>
+  <h1>Practice Lab Exam</h1>
+</header>
+
+<main id="main">
+
+<!-- ============================== SETUP ============================== -->
+<section id="setupScreen" class="card" aria-labelledby="setupH">
+  <h2 id="setupH">Before you start</h2>
+  <p>This is the Module 1 lab practical, run the way the real one runs. You get one
+  question at a time with a clock on it. When the clock runs out the exam moves on by
+  itself, exactly like the timer on a practical, so answer and commit.</p>
+  <p id="countLine">Loading the question bank.</p>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin:18px 0">
+    <div>
+      <label for="secs">Seconds per question</label>
+      <select id="secs">
+        <option value="60">1 minute</option>
+        <option value="75">1 minute 15</option>
+        <option value="90" selected>1 minute 30 (exam pace)</option>
+        <option value="120">2 minutes</option>
+        <option value="0">No timer, practice at your own pace</option>
+      </select>
+    </div>
+    <div>
+      <label for="order">Question order</label>
+      <select id="order">
+        <option value="fixed" selected>Numbered order, 1 to 52</option>
+        <option value="shuffle">Shuffled</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <button class="btn" id="startBtn" type="button">Start the exam</button>
+    <button class="btn ghost" id="keyBtn" type="button">Open the answer key</button>
+  </div>
+  <p class="hint" style="margin-top:14px">While the exam is running: <strong>Enter</strong> moves
+  to the next question, <strong>Shift and P</strong> pauses the clock, <strong>Shift and F</strong>
+  goes full screen, <strong>Escape</strong> ends the exam and grades it. Those work while you are
+  typing. With the cursor out of the answer box, the <strong>arrow keys</strong> also step and
+  <strong>Space</strong> also pauses. You can add thirty seconds to any question at any time.</p>
+
+  <div id="history" hidden>
+    <h3 style="margin-top:22px">Your attempts</h3>
+    <div id="historyBody"></div>
+  </div>
+</section>
+
+<!-- ============================== RUN ============================== -->
+<section id="runScreen" class="card" aria-labelledby="runH" hidden>
+  <h2 id="runH" class="sr">Question</h2>
+  <div class="qhead">
+    <span class="qnum" id="qnum">Question</span>
+    <div class="clock" id="clock">
+      <span class="digits" id="digits">1:30</span>
+      <button class="btn ghost sm noprint" id="plus30" type="button">Add 30 seconds</button>
+      <button class="btn ghost sm noprint" id="pauseBtn" type="button">Pause</button>
+    </div>
+  </div>
+  <div class="bar" role="presentation"><span id="barFill"></span></div>
+
+  <div class="qbody">
+    <div>
+      <p class="qtag" id="qtag">&nbsp;</p>
+      <label for="answer">Your answer</label>
+      <input type="text" id="answer" autocomplete="off" autocapitalize="off"
+             spellcheck="false" enterkeyhint="next">
+      <div class="row" style="margin-top:16px">
+        <button class="btn ghost" id="prevBtn" type="button">Back</button>
+        <button class="btn" id="nextBtn" type="button">Next question</button>
+      </div>
+      <p class="hint" style="margin-top:12px">Press Enter to move on.</p>
+    </div>
+    <div class="plate"><img id="qimg" src="" alt=""></div>
+  </div>
+
+  <div class="row" style="margin-top:20px">
+    <button class="btn ghost sm" id="endBtn" type="button">End the exam and grade it</button>
+  </div>
+  <p class="sr" id="live" role="status" aria-live="polite"></p>
+</section>
+
+<!-- ============================== RESULTS ============================== -->
+<section id="resultScreen" aria-labelledby="resH" hidden>
+  <div class="card">
+    <h2 id="resH">How you did</h2>
+    <p class="score" id="scoreBig">0%</p>
+    <p id="scoreLine"></p>
+    <p>The grader accepts the answer in the key and the alternates listed beside it, and it
+    does not mind extra words. If it marked you wrong over wording rather than over
+    knowing the structure, press <strong>Count this right</strong> on that row and your score
+    updates. Do not do that for a misspelling. On the real practical a misspelled
+    structure does not earn the point, so it should not earn one here.</p>
+    <div class="row noprint">
+      <button class="btn" id="againBtn" type="button">Take it again</button>
+      <button class="btn ghost" id="toKeyBtn" type="button">Go over the answer key</button>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <table class="tbl">
+      <caption>Every question, your answer, and the key</caption>
+      <thead>
+        <tr><th scope="col">No.</th><th scope="col">Slide</th><th scope="col">Question</th>
+        <th scope="col">You wrote</th><th scope="col">The key</th><th scope="col">Mark</th></tr>
+      </thead>
+      <tbody id="resBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================== KEY ============================== -->
+<section id="keyScreen" aria-labelledby="keyH" hidden>
+  <div class="card noprint" style="margin-bottom:18px">
+    <h2 id="keyH">Answer key</h2>
+    <p>Every question in numbered order with the answer the grader accepts and the
+    alternates it also takes. Printing gives you two columns of single ink with the
+    pictures dropped.</p>
+    <div class="row">
+      <button class="btn" id="printBtn" type="button">Print the key</button>
+      <button class="btn ghost" id="backBtn" type="button">Back to the start</button>
+    </div>
+  </div>
+  <div id="keyBody"></div>
+</section>
+
+</main>
+
+<footer style="margin-top:34px;border-top:1px solid var(--line);padding-top:16px">
+  <p class="hint">BIO 004 Human Anatomy, Solano Community College. Dr. Sharilyn Rennie</p>
+</footer>
+</div>
+
+<script>
+"use strict";
+/* =====================================================================
+   MODULE 1 PRACTICE LAB EXAM
+
+   Self contained. It carries its own slides and its own answer key and
+   reads nothing from the Loops app, so nothing here can disturb the
+   Loops station bank.
+
+   Q holds the questions in Dr. Rennie's numbering. Each entry:
+     n     her question number, kept exactly
+     s     slide file, images/module1-practice/sNN.jpg
+     tag   the question as the student reads it
+     a     the answer printed in the key
+     alt   other wordings the key accepts, shown under the answer
+     core  what the grader insists on. A list of groups. The answer has
+           to satisfy every group, and a group is satisfied by any one of
+           its stems appearing at the start of a word. So ["cardiac",
+           "heart","myocard"] is satisfied by cardiac, heart, myocardium.
+           Word start matching is what keeps dermis out of epidermis.
+     no    stems that make an answer wrong even when core is satisfied,
+           unless one of the yes stems is also present. This is how
+           keratinized and non keratinized stratified squamous stay apart.
+   ===================================================================== */
+
+/* Questions 33 to 38 sit on three slides that have not been sent yet. They are
+   listed on the key so the numbering stays honest, and they are left out of the
+   run so nobody is stopped by a missing picture. Both lists below are generated
+   from src/data.py by src/emit.py. Edit data.py, never this block. */
+/* QSTART */
+var Q = [
+ {n:1, s:"s01", tag:"Name this tissue", a:"Cardiac muscle tissue", alt:["cardiac muscle", "heart muscle", "myocardium"], core:[["cardiac", "heart", "myocard"]]},
+ {n:2, s:"s01", tag:"Name the structure at the tip of the arrow", a:"Intercalated disc", alt:["intercalated disk"], core:[["intercalated"]]},
+ {n:3, s:"s02", tag:"Name this tissue", a:"Areolar connective tissue", alt:["loose connective tissue", "loose areolar connective tissue"], core:[["areolar", "loose"]]},
+ {n:4, s:"s02", tag:"Name the structure at the tip of the arrow", a:"Collagen fiber", alt:["collagen fibre", "collagenous fiber", "collagen"], core:[["collagen"]]},
+ {n:5, s:"s03", tag:"Name this tissue", a:"Stratified cuboidal epithelium", alt:["stratified cuboidal epithelial tissue"], core:[["stratified"], ["cuboidal"]]},
+ {n:6, s:"s03", tag:"Name the structure between the two arrowheads. Be specific.", a:"Lumen of the duct", alt:["duct lumen", "lumen"], core:[["lumen"]]},
+ {n:7, s:"s04", tag:"Name this tissue", a:"Smooth muscle tissue", alt:["smooth muscle", "visceral muscle", "non striated muscle"], core:[["smooth", "visceral"], ["muscle"]]},
+ {n:8, s:"s04", tag:"Name one location where this tissue is found", a:"The wall of a hollow organ: stomach, intestines, urinary bladder, uterus, blood vessels, or the airways", alt:["stomach", "intestine", "urinary bladder", "uterus", "blood vessel", "bronchus", "ureter", "esophagus"], core:[["stomach", "intestin", "bowel", "colon", "bladder", "uter", "blood vessel", "vessel", "arter", "vein", "venule", "arteriol", "airway", "bronch", "trachea", "gi", "digestive", "respiratory", "ureter", "urethra", "esophag", "oesophag", "gut", "viscera", "hollow", "iris"]]},
+ {n:9, s:"s05", tag:"Name this tissue", a:"Skeletal muscle tissue", alt:["skeletal muscle", "striated voluntary muscle"], core:[["skeletal", "voluntary"], ["muscle"]]},
+ {n:10, s:"s05", tag:"Name one function of this tissue", a:"Moves the skeleton under voluntary control. It also holds posture and produces heat.", alt:["voluntary movement", "moves bones", "body movement", "posture", "heat production"], core:[["move", "motion", "locomot", "contract", "posture", "heat", "thermo", "skelet", "bone", "voluntary", "stabil", "breath", "ventilat"]]},
+ {n:11, s:"s06", tag:"Name this tissue", a:"Compact bone", alt:["compact bone tissue", "osseous tissue", "dense bone"], core:[["compact", "osseous", "bone"]]},
+ {n:12, s:"s06", tag:"Name one function of this tissue", a:"Supports and protects the body. It also gives muscles levers to pull on, stores calcium and phosphate, and houses bone marrow.", alt:["support", "protection", "levers for movement", "calcium storage", "houses marrow"], core:[["support", "protect", "lever", "movement", "move", "calcium", "mineral", "phosph", "storage", "store", "marrow", "blood cell", "hematopo", "haematopo", "weight", "structur", "rigid", "frame"]]},
+ {n:13, s:"s07", tag:"Name this tissue", a:"Dense regular connective tissue", alt:["dense regular collagenous connective tissue"], core:[["dense"], ["regular"]]},
+ {n:14, s:"s07", tag:"Name one function of this tissue", a:"Attaches muscle to bone and bone to bone, and resists tension along one line of pull.", alt:["attaches muscle to bone", "attaches bone to bone", "resists tension in one direction"], core:[["attach", "connect", "anchor", "join", "bind", "tension", "pull", "force", "tendon", "ligament", "resist", "strength", "strong", "stabil", "withstand"]]},
+ {n:15, s:"s08", tag:"Name this tissue", a:"Pseudostratified ciliated columnar epithelium", alt:["pseudostratified columnar epithelium", "respiratory epithelium"], core:[["pseudostratified", "pseudo", "respiratory"]]},
+ {n:16, s:"s08", tag:"Name the function of the structure at the tips of the arrows", a:"The cilia sweep mucus and the debris caught in it along the surface, away from the lungs.", alt:["move mucus", "propel mucus", "mucociliary escalator", "sweep debris out of the airway"], core:[["move", "moves", "sweep", "propel", "push", "transport", "waft", "beat", "clear", "escalat", "mucus", "mucous", "muco", "debris", "particle", "trap"]]},
+ {n:17, s:"s09", tag:"Name this tissue", a:"Stratified squamous epithelium, non keratinized", alt:["non keratinized stratified squamous epithelium", "moist stratified squamous epithelium"], core:[["stratified"], ["squamous"]], no:["keratin"], yes:["non keratin", "nonkeratin", "not keratin"]},
+ {n:18, s:"s09", tag:"Name one location where this tissue is found", a:"Esophagus, oral cavity, pharynx, vagina, or the anal canal", alt:["esophagus", "mouth", "oral cavity", "pharynx", "vagina", "anal canal"], core:[["esophag", "oesophag", "oral", "mouth", "buccal", "cheek", "tongue", "pharyn", "vagina", "anal", "anus", "larynx", "epiglott", "lip"]]},
+ {n:19, s:"s10", tag:"Name the body cavity outlined in orange", a:"Mediastinum", alt:["mediastinal cavity", "the mediastinum"], core:[["mediastin"]]},
+ {n:20, s:"s10", tag:"Name the superior border of this cavity", a:"The superior thoracic aperture, also called the thoracic inlet, at the level of the first rib and T1", alt:["superior thoracic aperture", "thoracic inlet", "first rib", "level of T1", "root of the neck"], core:[["superior thoracic", "thoracic inlet", "thoracic aperture", "aperture", "inlet", "first rib", "1st rib", "rib 1", "t1", "root of the neck", "neck", "clavicle", "manubri"]]},
+ {n:21, s:"s11", tag:"Name this tissue", a:"Adipose tissue", alt:["adipose", "fat", "fat tissue", "adipose connective tissue"], core:[["adipose", "fat"]]},
+ {n:22, s:"s11", tag:"Name one location where this tissue is found", a:"The hypodermis, the subcutaneous layer. Also around the kidneys, behind the eyeball, in the breast and in the omentum.", alt:["hypodermis", "subcutaneous layer", "around the kidneys", "behind the eyeball", "breast", "omentum", "bone marrow"], core:[["hypodermis", "hypoderm", "subcutaneous", "subcutis", "kidney", "renal", "eye", "orbit", "breast", "omentum", "mesenter", "marrow", "abdomen", "abdominal", "buttock", "hip", "thigh", "around organs", "vital organ", "organ", "under the skin", "beneath the skin", "yellow marrow", "visceral"]]},
+ {n:23, s:"s12", tag:"Name this entire layer at the bracket", a:"Dermis", alt:["the dermis", "dermal layer"], core:[["dermis", "dermal"]]},
+ {n:24, s:"s12", tag:"Name the structure at the tip of the arrow", a:"Apocrine sweat gland", alt:["apocrine gland"], core:[["apocrine"]]},
+ {n:25, s:"s13", tag:"Name this tissue", a:"Transitional epithelium", alt:["urothelium", "transitional epithelial tissue"], core:[["transitional", "urotheli"]]},
+ {n:26, s:"s13", tag:"Name one function of this tissue", a:"Stretches so the organ can fill and empty, and keeps urine from leaking into the wall.", alt:["stretches", "allows distension", "protects the wall from urine", "allows the bladder to fill"], core:[["stretch", "distend", "distens", "expand", "accommodat", "fill", "empt", "volume", "recoil", "protect", "barrier", "imperme", "urine", "leak", "water"]]},
+ {n:27, s:"s14", tag:"Give the LETTER of the abdominal quadrant that contains the spleen", a:"C", alt:["letter C", "quadrant C"], core:[["c"]]},
+ {n:28, s:"s14", tag:"Give the NAME of the abdominal quadrant that contains the cecum", a:"Right lower quadrant (RLQ)", alt:["RLQ", "right lower quadrant"], core:[["right lower", "rlq"]]},
+ {n:29, s:"s15", tag:"Name this tissue", a:"Reticular connective tissue", alt:["reticular tissue", "reticular connective"], core:[["reticular"]]},
+ {n:30, s:"s15", tag:"Name one location where this tissue is found", a:"Spleen, lymph nodes, tonsils, or bone marrow", alt:["spleen", "lymph node", "tonsil", "bone marrow", "thymus"], core:[["spleen", "lymph", "tonsil", "marrow", "thymus", "liver", "lymphoid", "peyer"]]},
+ {n:31, s:"s16", tag:"Name this tissue", a:"Simple squamous epithelium", alt:["simple squamous epithelial tissue"], core:[["simple"], ["squamous"]]},
+ {n:32, s:"s16", tag:"Name the function this tissue is carrying out here", a:"Rapid diffusion. The barrier is one cell thin, so oxygen and carbon dioxide cross it quickly.", alt:["gas exchange", "diffusion", "rapid exchange across a thin barrier"], core:[["diffus", "exchange", "gas", "o2", "oxygen", "carbon dioxide", "co2", "respirat", "thin", "rapid", "filtrat", "transport", "permeab", "absorb"]]},
+ {n:33, s:"s17", tag:"Name the structure outlined in orange", a:"Dermal papilla", alt:["dermal papillae", "papilla of the dermis"], core:[["dermal papilla", "papilla"]]},
+ {n:34, s:"s17", tag:"Name the structure at the tip of the arrow", a:"Tactile corpuscle, also called a Meissner corpuscle", alt:["Meissner corpuscle", "Meissner's corpuscle", "tactile corpuscle"], core:[["tactile", "meissner", "meisner"]]},
+ {n:35, s:"s18", tag:"Name the body region at letter B", a:"Sural region, the calf", alt:["sural", "calf", "posterior leg"], core:[["sural", "calf"]]},
+ {n:36, s:"s18", tag:"Which body plane would separate A and B into superior and inferior compartments?", a:"Transverse plane", alt:["horizontal plane", "cross sectional plane", "axial plane"], core:[["transverse", "horizontal", "cross section", "axial"]]},
+ {n:37, s:"s19", tag:"Name this tissue", a:"Elastic cartilage", alt:["elastic cartilage tissue"], core:[["elastic"], ["cartilage", "chondr"]]},
+ {n:38, s:"s19", tag:"Name one location where this tissue is found", a:"The external ear, the epiglottis, or the auditory tube", alt:["external ear", "auricle", "pinna", "epiglottis", "auditory tube", "eustachian tube"], core:[["ear", "auricle", "pinna", "epiglott", "auditory tube", "eustachian", "larynx"]]},
+ {n:39, s:"s20", tag:"Name this tissue", a:"Elastic connective tissue", alt:["elastic tissue", "elastic connective"], core:[["elastic", "elastin"]]},
+ {n:40, s:"s20", tag:"Name one function of this tissue", a:"Stretches and springs back, so the structure recoils to its resting shape after every pulse or breath.", alt:["stretch and recoil", "allows recoil", "allows stretching", "springs back"], core:[["stretch", "recoil", "spring", "rebound", "elastic", "expand", "distend", "flexib", "return", "resil", "pressure", "pulse", "flow"]]},
+ {n:41, s:"s21", tag:"Name this tissue", a:"Keratinized stratified squamous epithelium", alt:["stratified squamous epithelium, keratinized", "epidermis"], core:[["stratified", "epiderm"], ["squamous", "epiderm"]], no:["non keratin", "nonkeratin"], yes:[]},
+ {n:42, s:"s21", tag:"Name the structure at the arrow and inside the bracket", a:"Dermal papilla", alt:["dermal papillae", "papilla of the dermis"], core:[["dermal papilla", "papilla"]]},
+ {n:43, s:"s22", tag:"Name the structure at the tip of the arrow", a:"Eccrine sweat gland", alt:["merocrine sweat gland", "eccrine gland", "sweat gland"], core:[["eccrine", "merocrine", "sweat", "sudorif"]]},
+ {n:44, s:"s22", tag:"Name this region at the bracket", a:"Hypodermis", alt:["subcutaneous layer", "subcutaneous tissue", "superficial fascia", "subcutis"], core:[["hypodermis", "hypoderm", "subcutaneous", "subcutis", "superficial fascia"]]},
+ {n:45, s:"s23", tag:"Name this tissue", a:"Simple cuboidal epithelium", alt:["simple cuboidal epithelial tissue"], core:[["simple"], ["cuboidal"]]},
+ {n:46, s:"s23", tag:"Name one location where this tissue is found. Be specific.", a:"The duct of a salivary gland. It is also in kidney tubules, thyroid follicles and pancreatic ducts.", alt:["salivary gland duct", "kidney tubule", "renal tubule", "thyroid follicle", "pancreatic duct", "gland duct"], core:[["salivary", "duct", "kidney", "renal", "tubule", "thyroid", "follicle", "pancrea", "ovary", "ovarian", "bronchiol", "gland", "liver", "choroid"]]},
+ {n:47, s:"s24", tag:"Name this protein", a:"Keratin", alt:["keratin protein"], core:[["keratin"]]},
+ {n:48, s:"s24", tag:"Name this specific layer", a:"Stratum granulosum", alt:["granular layer", "stratum granulosum of the epidermis"], core:[["granulosum", "granular"]]},
+ {n:49, s:"s25", tag:"Name the body region at letter B", a:"Brachial region, the arm", alt:["brachial", "brachium", "arm"], core:[["brachi", "arm"]], no:["forearm", "antebrachi"], yes:[]},
+ {n:50, s:"s25", tag:"Fill in the blank. Body region A is ______ (directional term) to body region B.", a:"Proximal", alt:["superior", "proximal to B"], core:[["proximal", "superior", "cephal", "cranial"]]},
+ {n:51, s:"s26", tag:"Name the structure at the tip of the arrow", a:"Goblet cell", alt:["goblet cells", "mucous cell"], core:[["goblet"]]},
+ {n:52, s:"s26", tag:"Name the function of this structure", a:"Secretes mucus, which traps debris and keeps the surface moist.", alt:["secretes mucus", "produces mucus", "makes mucin", "lubricates and protects the surface"], core:[["secret", "produc", "make", "makes", "release", "mucus", "mucous", "mucin", "lubric", "moist", "trap", "protect", "barrier"]]}
+];
+
+var PENDING = [];
+/* QEND */
+
+var IMG = "images/module1-practice/";
+var STORE = "bio004m1exam_v1";
+
+/* ---------------------------------------------------------------- grading */
+function norm(s){
+  return String(s||"").toLowerCase()
+    .replace(/[‘’“”]/g," ")
+    .replace(/[^a-z0-9]+/g," ")
+    .replace(/\s+/g," ").trim();
+}
+/* stem present at the start of a word */
+function hasStem(text, stem){
+  var t = " " + text + " ";
+  return t.indexOf(" " + stem) !== -1;
+}
+function anyStem(text, list){
+  for (var i=0;i<list.length;i++){ if (hasStem(text, list[i])) return true; }
+  return false;
+}
+function grade(q, typed){
+  var t = norm(typed);
+  if (!t) return false;
+  if (q.no && q.no.length && anyStem(t, q.no)){
+    if (!(q.yes && q.yes.length && anyStem(t, q.yes))) return false;
+  }
+  for (var i=0;i<q.core.length;i++){
+    if (!anyStem(t, q.core[i])) return false;
+  }
+  return true;
+}
+
+/* ---------------------------------------------------------------- state */
+var order=[], at=0, answers={}, overrides={}, secs=90, left=0, tick=null, paused=false;
+
+var el = function(id){ return document.getElementById(id); };
+var setup=el("setupScreen"), run=el("runScreen"), res=el("resultScreen"), key=el("keyScreen");
+
+function show(node){
+  [setup,run,res,key].forEach(function(s){ s.hidden = (s!==node); });
+  window.scrollTo(0,0);
+  notifyHeight();
+}
+
+/* ---------------------------------------------------------------- the run */
+function startRun(){
+  secs = parseInt(el("secs").value,10) || 0;
+  order = Q.slice();
+  if (el("order").value === "shuffle"){
+    for (var i=order.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1)), tmp=order[i]; order[i]=order[j]; order[j]=tmp;
+    }
+  }
+  answers={}; overrides={}; at=0; paused=false;
+  show(run); paint();
+}
+
+function paint(){
+  var q = order[at];
+  el("qnum").textContent = "Question " + q.n + ", number " + (at+1) + " of " + order.length;
+  el("qtag").textContent = q.tag;
+  var img = el("qimg");
+  img.src = IMG + q.s + ".jpg";
+  img.alt = "Specimen for question " + q.n + ". Identify it by eye from the slide.";
+  var input = el("answer");
+  input.value = answers[q.n] || "";
+  el("prevBtn").disabled = (at === 0);
+  el("nextBtn").textContent = (at === order.length-1) ? "Finish and grade it" : "Next question";
+  el("live").textContent = "Question " + q.n + ". " + q.tag;
+  input.focus();
+  startClock();
+  notifyHeight();
+}
+
+function startClock(){
+  stopClock();
+  var bar = el("barFill"), digits = el("digits"), clock = el("clock");
+  if (!secs){
+    left = 0;
+    digits.textContent = "No timer";
+    clock.classList.remove("low");
+    bar.style.width = "100%";
+    return;
+  }
+  left = secs;
+  drawClock();
+  tick = setInterval(function(){
+    if (paused) return;
+    left--;
+    drawClock();
+    if (left === 30 || left === 10){
+      el("live").textContent = left + " seconds left on this question.";
+    }
+    if (left <= 0){ stopClock(); step(1, true); }
+  }, 1000);
+}
+function drawClock(){
+  var m = Math.floor(left/60), s = left%60;
+  el("digits").textContent = m + ":" + (s<10?"0":"") + s;
+  el("barFill").style.width = Math.max(0, (left/secs)*100) + "%";
+  el("clock").classList.toggle("low", left <= 15);
+}
+function stopClock(){ if (tick){ clearInterval(tick); tick = null; } }
+
+function stash(){
+  var q = order[at];
+  if (q) answers[q.n] = el("answer").value;
+}
+function step(d, timedOut){
+  stash();
+  if (at + d < 0) return;
+  if (at + d >= order.length){ finish(); return; }
+  at += d;
+  if (timedOut) el("live").textContent = "Time is up on that one. Moving on.";
+  paint();
+}
+function finish(){
+  stopClock();
+  buildResults();
+  show(res);
+}
+
+/* ---------------------------------------------------------------- results */
+function isRight(q){
+  if (overrides[q.n]) return true;
+  return grade(q, answers[q.n]);
+}
+function tally(){
+  var r = 0;
+  Q.forEach(function(q){ if (isRight(q)) r++; });
+  return r;
+}
+function refreshScore(){
+  var r = tally(), n = Q.length;
+  var pct = n ? Math.round((r/n)*100) : 0;
+  el("scoreBig").textContent = pct + "%";
+  el("scoreLine").textContent = r + " of " + n + " questions right. "
+    + (PENDING.length ? "Questions " + PENDING[0] + " to " + PENDING[PENDING.length-1]
+        + " are not in this run yet, so they are not counted." : "");
+}
+function buildResults(){
+  var body = el("resBody");
+  body.innerHTML = "";
+  Q.forEach(function(q){
+    var right = isRight(q);
+    var tr = document.createElement("tr");
+    tr.className = right ? "right" : "wrong";
+
+    function cell(html){ var td = document.createElement("td"); td.innerHTML = html; tr.appendChild(td); return td; }
+    var th = document.createElement("th"); th.scope = "row"; th.textContent = q.n; tr.appendChild(th);
+
+    var tdImg = document.createElement("td");
+    var im = document.createElement("img");
+    im.className = "thumb"; im.src = IMG + q.s + ".jpg"; im.alt = "";
+    im.loading = "lazy"; tdImg.appendChild(im); tr.appendChild(tdImg);
+
+    cell(esc(q.tag));
+    cell(answers[q.n] ? esc(answers[q.n]) : '<span class="hint">left blank</span>');
+    cell("<strong>" + esc(q.a) + "</strong>");
+
+    var td = document.createElement("td");
+    var mark = document.createElement("span");
+    mark.className = "mark " + (right ? "r" : "w");
+    mark.textContent = right ? (overrides[q.n] ? "Counted right" : "Right") : "Wrong";
+    td.appendChild(mark);
+    if (!grade(q, answers[q.n])){
+      td.appendChild(document.createElement("br"));
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "btn ghost sm noprint";
+      b.style.marginTop = "8px";
+      b.textContent = overrides[q.n] ? "Undo, mark it wrong" : "Count this right";
+      b.setAttribute("aria-label",
+        (overrides[q.n] ? "Undo counting question " : "Count question ") + q.n + " right");
+      b.addEventListener("click", function(){
+        overrides[q.n] = !overrides[q.n];
+        buildResults(); refreshScore();
+        el("live").textContent = "Question " + q.n + " is now marked "
+          + (overrides[q.n] ? "right" : "wrong") + ".";
+      });
+      td.appendChild(b);
+    }
+    tr.appendChild(td);
+    body.appendChild(tr);
+  });
+  refreshScore();
+  saveAttempt();
+  notifyHeight();
+}
+function esc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ---------------------------------------------------------------- storage */
+function readStore(){
+  try { var v = JSON.parse(localStorage.getItem(STORE)); return Array.isArray(v) ? v : []; }
+  catch(e){ return []; }
+}
+var savedThisRun = false;
+function saveAttempt(){
+  if (savedThisRun) { updateStoredTop(); return; }
+  savedThisRun = true;
+  try {
+    var all = readStore();
+    all.push({ when: Date.now(), right: tally(), total: Q.length, secs: secs });
+    localStorage.setItem(STORE, JSON.stringify(all.slice(-40)));
+  } catch(e){}
+}
+function updateStoredTop(){
+  try {
+    var all = readStore();
+    if (!all.length) return;
+    all[all.length-1].right = tally();
+    localStorage.setItem(STORE, JSON.stringify(all));
+  } catch(e){}
+}
+function paintHistory(){
+  var all = readStore();
+  if (!all.length){ el("history").hidden = true; return; }
+  el("history").hidden = false;
+  var sum = 0;
+  all.forEach(function(a){ sum += (a.right/a.total); });
+  var avg = Math.round((sum/all.length)*100);
+  var rows = all.slice().reverse().slice(0,8).map(function(a){
+    var d = new Date(a.when);
+    return "<tr><td>" + d.toLocaleDateString() + "</td><td>"
+      + a.right + " of " + a.total + "</td><td>"
+      + Math.round((a.right/a.total)*100) + "%</td></tr>";
+  }).join("");
+  el("historyBody").innerHTML =
+    "<p>You have taken this " + all.length + (all.length===1?" time":" times")
+    + ". Your average is <strong>" + avg + "%</strong>.</p>"
+    + '<table class="tbl"><caption>Most recent attempts</caption><thead><tr>'
+    + '<th scope="col">Date</th><th scope="col">Score</th><th scope="col">Percent</th>'
+    + "</tr></thead><tbody>" + rows + "</tbody></table>";
+}
+
+/* ---------------------------------------------------------------- the key */
+function buildKey(){
+  var body = el("keyBody");
+  if (body.dataset.built) return;
+  body.dataset.built = "1";
+  var all = Q.slice().sort(function(a,b){ return a.n - b.n; });
+  var out = [];
+  var pendingShown = false;
+  all.forEach(function(q){
+    if (!pendingShown && q.n > PENDING[0]){
+      out.push('<div class="keyitem"><div></div><div><div class="pending">'
+        + "Questions " + PENDING[0] + " to " + PENDING[PENDING.length-1]
+        + " are waiting on three slides. They are not in the run and not in the score."
+        + "</div></div></div>");
+      pendingShown = true;
+    }
+    out.push('<div class="keyitem">'
+      + '<div><img src="' + IMG + q.s + '.jpg" alt="" loading="lazy"></div>'
+      + "<div><p class=\"eyebrow\">Question " + q.n + "</p>"
+      + "<h3>" + esc(q.tag) + "</h3>"
+      + '<p class="ans">' + esc(q.a) + "</p>"
+      + (q.alt && q.alt.length
+          ? '<p class="alts">Also accepted: ' + esc(q.alt.join(", ")) + "</p>" : "")
+      + "</div></div>");
+  });
+  body.innerHTML = out.join("");
+}
+
+/* ---------------------------------------------------------------- wiring */
+el("startBtn").addEventListener("click", startRun);
+el("keyBtn").addEventListener("click", function(){ buildKey(); show(key); });
+el("toKeyBtn").addEventListener("click", function(){ buildKey(); show(key); });
+el("backBtn").addEventListener("click", function(){ paintHistory(); show(setup); });
+el("againBtn").addEventListener("click", function(){ savedThisRun = false; startRun(); });
+el("printBtn").addEventListener("click", function(){ window.print(); });
+el("nextBtn").addEventListener("click", function(){ step(1); });
+el("prevBtn").addEventListener("click", function(){ step(-1); });
+el("endBtn").addEventListener("click", function(){ stash(); finish(); });
+el("plus30").addEventListener("click", function(){
+  if (!secs) return;
+  left += 30; secs = Math.max(secs, left); drawClock();
+  el("live").textContent = "Thirty seconds added. " + left + " seconds left.";
+});
+el("pauseBtn").addEventListener("click", togglePause);
+function togglePause(){
+  if (!secs) return;
+  paused = !paused;
+  el("pauseBtn").textContent = paused ? "Resume" : "Pause";
+  run.classList.toggle("paused", paused);
+  el("live").textContent = paused ? "Clock paused." : "Clock running.";
+}
+el("answer").addEventListener("keydown", function(e){
+  if (e.key === "Enter"){ e.preventDefault(); step(1); }
+});
+document.addEventListener("keydown", function(e){
+  if (run.hidden) return;
+  var a = document.activeElement;
+  var typing = /^(input|textarea|select)$/i.test(a ? a.tagName : "");
+
+  /* Shortcuts that have to work while a student is typing an answer get a
+     Shift, so they can never be produced by ordinary typing. Escape is safe
+     unshifted because no answer contains it. */
+  if (e.key === "Escape"){ stash(); finish(); return; }
+  if (e.shiftKey && (e.key === "P" || e.key === "p")){ e.preventDefault(); togglePause(); return; }
+  if (e.shiftKey && (e.key === "F" || e.key === "f")){ e.preventDefault(); fullscreen(); return; }
+
+  if (typing) return;
+
+  /* Unshifted shortcuts, for whoever is driving the room rather than
+     answering. Space is left alone on a button, because Space is how a
+     keyboard user presses the button they have tabbed to. */
+  if (e.key === " "){
+    if (a && a.tagName.toLowerCase() === "button") return;
+    e.preventDefault(); togglePause();
+  }
+  else if (e.key === "ArrowRight"){ e.preventDefault(); step(1); }
+  else if (e.key === "ArrowLeft"){ e.preventDefault(); step(-1); }
+  else if (e.key === "f" || e.key === "F"){ fullscreen(); }
+});
+function fullscreen(){
+  if (document.fullscreenElement){ document.exitFullscreen(); }
+  else if (document.documentElement.requestFullscreen){
+    document.documentElement.requestFullscreen();
+  }
+}
+
+el("countLine").textContent = Q.length + " questions in this run, numbered the way they are on "
+  + "the slide deck. Questions " + PENDING[0] + " to " + PENDING[PENDING.length-1]
+  + " are waiting on three slides and are left out until those arrive.";
+paintHistory();
+
+/* ------------------------------------------------- iframe height reporting */
+function notifyHeight(){
+  try {
+    if (window.parent === window) return;
+    window.parent.postMessage({
+      id: "bio004-module1-practice-exam",
+      type: "height",
+      height: document.documentElement.scrollHeight
+    }, "*");
+  } catch(e){}
+}
+if (typeof ResizeObserver !== "undefined"){
+  new ResizeObserver(notifyHeight).observe(document.documentElement);
+}
+window.addEventListener("load", notifyHeight);
+window.addEventListener("resize", notifyHeight);
+</script>
+</body>
+</html>
