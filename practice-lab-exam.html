@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 1 Practice Lab Practical | BIO 004 Human Anatomy</title>
+<meta name="description" content="Timed in-class practice lab practical for BIO 004 Module 1, built from the Anatomy Loops station bank.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1530;
+  --navy-72:#4F576A;
+  --navy-15:rgba(11,21,48,.15);
+  --navy-08:rgba(11,21,48,.08);
+  --terra:#8B3A2E;
+  --page:#FAFAF9;
+  --card:#FFFFFF;
+  --onnavy:#FFFFFF;
+  --onnavy-soft:#D9DDE6;
+  --display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --body:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+em,i,cite,dfn,var,address{font-style:normal}
+html,body{margin:0;padding:0}
+body{
+  background:var(--page);
+  color:var(--navy);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display);margin:0 0 .4em;line-height:1.2;font-weight:800}
+h1{font-size:clamp(26px,3.4vw,38px)}
+h2{font-size:clamp(19px,2.2vw,23px)}
+h3{font-size:17px;font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--terra)}
+.eyebrow{
+  font-family:var(--body);
+  font-size:11px;font-weight:700;letter-spacing:3.3px;
+  text-transform:uppercase;color:var(--terra);margin:0 0 8px;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 max(20px,4vw)}
+.skip{
+  position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;
+  padding:10px 16px;border-radius:4px;z-index:200;
+}
+.skip:focus{left:12px;top:12px}
+:focus-visible{outline:3px solid var(--terra);outline-offset:2px}
+
+/* ---------- page chrome ---------- */
+.site-header{background:#fff;padding:20px 0}
+.site-header .wrap{display:flex;align-items:center;gap:14px}
+.mark{width:38px;height:38px;flex:none}
+.site-header .course{font-family:var(--display);font-weight:800;font-size:16px;line-height:1.25}
+.site-header .sub{font-size:12.5px;color:var(--navy-72)}
+
+main{padding:14px 0 56px}
+.card{
+  background:var(--card);
+  border:.5px solid var(--navy-15);
+  border-radius:8px;
+  padding:24px 22px;
+}
+.grid{display:grid;gap:14px}
+@media(min-width:720px){.cols-2{grid-template-columns:1fr 1fr}}
+
+.lede{font-size:17px;color:var(--navy-72);max-width:64ch}
+
+fieldset{border:0;margin:0 0 20px;padding:0}
+legend{font-family:var(--display);font-weight:700;font-size:15px;padding:0;margin:0 0 10px}
+.hint{font-size:13.5px;color:var(--navy-72);margin:6px 0 0}
+.choices{display:flex;flex-wrap:wrap;gap:10px}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;width:100%;height:100%;left:0;top:0;margin:0;cursor:pointer}
+.choice span{
+  display:block;border:1px solid var(--navy-15);border-radius:4px;
+  padding:9px 15px;font-size:14.5px;font-weight:600;background:#fff;
+}
+.choice input:checked + span{background:var(--navy);color:#fff;border-color:var(--navy)}
+.choice input:focus-visible + span{outline:3px solid var(--terra);outline-offset:2px}
+
+.btn{
+  font-family:var(--body);font-size:15px;font-weight:700;
+  border-radius:4px;padding:12px 22px;border:1px solid var(--navy);
+  background:var(--navy);color:#fff;cursor:pointer;
+}
+.btn:hover{background:#060D1F}
+.btn.secondary{background:#fff;color:var(--navy)}
+.btn.secondary:hover{background:#F1F3F7}
+.btn.terra{background:var(--terra);border-color:var(--terra)}
+.btn.terra:hover{background:#6F2E24}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+.readout{
+  border:.5px solid var(--navy-15);border-radius:8px;background:#fff;
+  padding:16px 18px;margin:0 0 20px;
+}
+.readout dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0;font-size:14.5px}
+.readout dt{color:var(--navy-72)}
+.readout dd{margin:0;font-weight:600}
+.mix{margin:12px 0 0;font-size:14px;color:var(--navy-72)}
+.mix ul{margin:6px 0 0;padding-left:18px}
+.mix li{margin:2px 0}
+
+.setcode{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-weight:700;letter-spacing:1px;
+}
+.status{
+  border:.5px solid var(--navy-15);border-radius:8px;background:#fff;
+  padding:14px 16px;font-size:14.5px;color:var(--navy-72);margin:0 0 18px;
+}
+.status.bad{border-color:var(--terra);color:var(--terra);font-weight:600}
+
+/* ---------- present mode ---------- */
+.present{
+  position:fixed;inset:0;background:var(--navy);color:var(--onnavy);
+  display:none;flex-direction:column;z-index:120;
+}
+.present.on{display:flex}
+body.presenting{overflow:hidden}
+
+.p-top{
+  display:flex;align-items:center;gap:16px;
+  padding:8px max(12px,1.6vw);flex:none;
+}
+.p-count{font-family:var(--display);font-weight:800;font-size:clamp(16px,2vw,21px)}
+.p-count .of{font-weight:600;color:var(--onnavy-soft);font-size:.72em}
+.p-clock{
+  margin-left:auto;font-family:var(--display);font-weight:800;
+  font-size:clamp(20px,2.6vw,30px);font-variant-numeric:tabular-nums;
+}
+.p-clock.low{color:#FFD9A0}
+.p-controls{display:flex;gap:8px}
+.pbtn{
+  font-family:var(--body);font-size:14px;font-weight:700;
+  background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55);
+  border-radius:4px;padding:8px 14px;cursor:pointer;
+}
+.pbtn:hover{background:rgba(255,255,255,.14)}
+.pbtn.primary{background:#fff;color:var(--navy);border-color:#fff}
+.pbtn.primary:hover{background:#E9ECF3}
+.present :focus-visible{outline:3px solid #FFD9A0;outline-offset:2px}
+
+.p-bar{height:6px;background:rgba(255,255,255,.2);flex:none}
+.p-bar span{display:block;height:100%;background:#fff;width:100%;transition:width .25s linear}
+@media (prefers-reduced-motion:reduce){.p-bar span{transition:none}}
+
+.p-stage{
+  flex:1 1 auto;min-height:0;display:flex;gap:10px;
+  align-items:stretch;justify-content:center;
+  padding:6px max(10px,1.4vw);
+}
+.shot{
+  background:#fff;border-radius:8px;overflow:hidden;
+  flex:1 1 auto;width:100%;height:100%;
+  position:relative;
+}
+.shot img{width:100%;height:100%;object-fit:contain;display:block}
+.shot .badge{
+  position:absolute;top:10px;left:10px;
+  background:var(--navy);color:#fff;font-family:var(--display);font-weight:800;
+  font-size:20px;line-height:1;padding:8px 13px;border-radius:99px;
+}
+.p-stage.duo .shot{flex:1 1 0;min-width:0}
+
+.p-ask{
+  flex:none;background:#fff;color:var(--navy);
+  margin:0 max(10px,1.4vw) max(10px,1.4vw);
+  border-radius:8px;padding:10px 16px;
+}
+.p-ask ol{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+@media(min-width:860px){.p-ask ol{grid-template-columns:1fr 1fr;gap:6px 26px}}
+.p-ask li{display:flex;gap:10px;align-items:baseline;font-size:clamp(15px,1.6vw,19px);font-weight:600}
+.p-ask .ansval{color:var(--terra);font-weight:700}
+.p-ask .n{
+  font-family:var(--display);font-weight:800;color:var(--terra);
+  flex:none;min-width:1.2em;
+}
+.p-note{
+  margin:7px 0 0;font-size:clamp(13px,1.15vw,16px);color:var(--navy-72);font-weight:500;
+}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* ---------- key ---------- */
+.keylist{list-style:none;margin:0;padding:0}
+.keylist li{
+  border-top:.5px solid var(--navy-15);
+  padding:9px 0;display:grid;grid-template-columns:38px 1fr;gap:10px;
+  break-inside:avoid;
+}
+.keylist li:first-child{border-top:0}
+.knum{font-family:var(--display);font-weight:800;font-size:17px;color:var(--terra)}
+.kans{margin:0}
+.kans .line{font-size:14.5px;margin:0 0 2px}
+.kans .lab{color:var(--navy-72);font-weight:600}
+.kans .val{font-weight:700}
+.kans .alt{color:var(--navy-72);font-weight:400;font-size:13px}
+.knote{font-size:12.5px;color:var(--navy-72);margin:3px 0 0}
+.ktag{
+  display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:1.3px;
+  text-transform:uppercase;color:var(--terra);margin:0 0 2px;
+}
+.printhead{display:none}
+
+.reveal-shot{max-width:100%;border:.5px solid var(--navy-15);border-radius:8px}
+
+footer.credit{
+  background:var(--navy);color:#fff;padding:26px 0;margin-top:40px;
+}
+footer.credit .wrap{font-size:14px}
+footer.credit .name{font-family:var(--display);font-weight:700}
+footer.credit .line{color:var(--onnavy-soft);font-size:13px}
+
+@media print{
+  @page{margin:12mm}
+  body{background:#fff;color:#000;font-size:9.5pt;line-height:1.35}
+  .site-header,.present,footer.credit,.noprint,main > .eyebrow,main > h1,main > .lede,#status,#setup{display:none !important}
+  .card{border:none;padding:0}
+  .printhead{display:block;margin:0 0 8pt}
+  .printhead .t{font-family:var(--display);font-weight:800;font-size:13pt}
+  .printhead .s{font-size:9pt}
+  #keySection{margin-top:0 !important}
+  .keylist{column-count:2;column-gap:9mm}
+  .keylist li{
+    border-top:.4pt solid #000;padding:5pt 0;
+    grid-template-columns:26px 1fr;gap:6px;
+    break-inside:avoid;-webkit-column-break-inside:avoid;
+  }
+  .keylist li:first-child{border-top:.4pt solid #000}
+  .knum{font-size:11pt;color:#000}
+  .ktag{font-size:7pt;letter-spacing:1pt;color:#000}
+  .kans .line{font-size:9pt;margin:0 0 1pt}
+  .kans .lab,.kans .alt,.knote,a{color:#000}
+  .kans .alt{font-size:8pt}
+  .knote{font-size:8pt}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the main content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <svg class="mark" viewBox="0 0 60 60" role="img" aria-label="BIO 004 course mark">
+      <circle cx="14" cy="14" r="8" fill="#0B1530"></circle>
+      <circle cx="30" cy="14" r="8" fill="#8B3A2E"></circle>
+      <circle cx="46" cy="14" r="8" fill="#0B1530"></circle>
+      <rect x="8" y="28" width="44" height="6" rx="3" fill="#0B1530"></rect>
+      <rect x="8" y="40" width="28" height="6" rx="3" fill="#8B3A2E"></rect>
+    </svg>
+    <div>
+      <div class="course">Human Anatomy</div>
+      <div class="sub">BIO 004</div>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+  <p class="eyebrow">Module 1 &middot; In class practice</p>
+  <h1>Practice Lab Practical</h1>
+  <p class="lede">A timed station run built from the Anatomy Loops bank. Every station puts two labeled
+  questions on one image, the clock gives students a minute and a half, and the slideshow moves on by
+  itself. Pause any time.</p>
+
+  <div id="status" class="status" role="status">Loading the station bank from the Loops app.</div>
+
+  <section class="card" id="setup" hidden>
+    <h2>Set up the run</h2>
+
+    <fieldset>
+      <legend>How many stations</legend>
+      <div class="choices" id="lenChoices"></div>
+      <p class="hint" id="lenHint"></p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Time per station</legend>
+      <div class="choices" id="secChoices"></div>
+      <p class="hint">No timer turns the clock off completely and you advance by hand.</p>
+    </fieldset>
+
+    <div class="readout">
+      <dl>
+        <dt>Stations</dt><dd id="roStations">53</dd>
+        <dt>Questions</dt><dd id="roQuestions">106</dd>
+        <dt>Running time</dt><dd id="roTime">79 minutes</dd>
+        <dt>Set code</dt><dd class="setcode" id="roCode">M1-0000</dd>
+      </dl>
+      <div class="mix" id="roMix"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btnStart" type="button">Start the run</button>
+      <button class="btn secondary" id="btnReview" type="button">Go over the key on screen</button>
+      <button class="btn secondary" id="btnShuffle" type="button">Draw a new set</button>
+      <button class="btn secondary" id="btnKeyOnly" type="button">Show the answer key</button>
+    </div>
+    <p class="hint">Space pauses. Left and right arrows step between stations. F goes full screen.
+    Escape ends the run.</p>
+  </section>
+
+  <section class="card" id="keySection" hidden style="margin-top:14px">
+    <div class="printhead">
+      <div class="t">Module 1 Practice Lab Practical, answer key</div>
+      <div class="s">BIO 004 Human Anatomy &middot; Set <span id="printCode"></span></div>
+    </div>
+    <div class="btn-row noprint" style="justify-content:space-between;margin-bottom:14px">
+      <h2 style="margin:0">Answer key</h2>
+      <div class="btn-row">
+        <button class="btn terra" id="btnReview2" type="button">Go over the key on screen</button>
+        <button class="btn secondary" id="btnPrintKey" type="button">Print the key</button>
+        <button class="btn secondary" id="btnHideKey" type="button">Close the key</button>
+      </div>
+    </div>
+    <p class="hint noprint" style="margin-top:0">Set <span class="setcode" id="keyCode"></span>.
+    Same set code plus the same station count always rebuilds this exact exam.</p>
+    <ol class="keylist" id="keyList"></ol>
+  </section>
+
+</main>
+
+<footer class="credit">
+  <div class="wrap">
+    <div class="name">Dr. Sharilyn Rennie</div>
+    <div class="line">BIO 004 Human Anatomy &middot; Solano College</div>
+  </div>
+</footer>
+
+<!-- ============ PRESENT MODE ============ -->
+<section class="present" id="present" aria-hidden="true">
+  <div class="p-top">
+    <div class="p-count"><span id="pNum">1</span> <span class="of">of <span id="pTot">53</span></span></div>
+    <div class="p-clock" id="pClock" aria-hidden="true">1:30</div>
+    <div class="p-controls">
+      <button class="pbtn" id="pPrev" type="button">Back</button>
+      <button class="pbtn primary" id="pPause" type="button">Pause</button>
+      <button class="pbtn" id="pNext" type="button">Next</button>
+      <button class="pbtn" id="pFull" type="button">Full screen</button>
+      <button class="pbtn" id="pEnd" type="button">End</button>
+    </div>
+  </div>
+  <div class="p-bar" aria-hidden="true"><span id="pBar"></span></div>
+
+  <div class="p-stage" id="pStage"></div>
+
+  <div class="p-ask">
+    <ol id="pAsk"></ol>
+    <p class="p-note" id="pNote" hidden></p>
+  </div>
+
+  <p class="sr-only" id="pLive" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+(function(){
+"use strict";
+
+/* =========================================================================
+   1. READ THE STATION BANK OUT OF THE LOOPS APP
+
+   index.html holds window.LOOPS_ENGINE_CONTENT. This page reads that file
+   at run time and pulls the object out, so every answer correction you make
+   in the Loops app shows up here with no second copy to keep in step.
+   ========================================================================= */
+
+function extractContent(html){
+  var marker = "window.LOOPS_ENGINE_CONTENT";
+  var i = html.indexOf(marker);
+  if(i < 0) throw new Error("no marker");
+  var j = html.indexOf("{", i);
+  if(j < 0) throw new Error("no object");
+  var depth = 0, k = j, inStr = false, esc = false, out = [];
+  while(k < html.length){
+    var c = html.charAt(k);
+    if(inStr){
+      out.push(c);
+      if(esc){ esc = false; }
+      else if(c === "\\"){ esc = true; }
+      else if(c === '"'){ inStr = false; }
+      k++; continue;
+    }
+    if(c === "/" && html.charAt(k+1) === "*"){
+      var e = html.indexOf("*/", k);
+      if(e < 0) break;
+      k = e + 2; continue;
+    }
+    if(c === '"'){ inStr = true; out.push(c); k++; continue; }
+    if(c === "{"){ depth++; }
+    else if(c === "}"){
+      depth--; out.push(c); k++;
+      if(depth === 0) break;
+      continue;
+    }
+    out.push(c); k++;
+  }
+  return JSON.parse(out.join(""));
+}
+
+/* =========================================================================
+   2. WHAT THE EXAM IS MADE OF
+
+   Fixed stations, always in, in the mix you asked for:
+     2  body region stations, each carrying a direction question
+     1  abdominal quadrant station, letter and name, organ named in the prompt
+     1  body plane station built from two body regions
+     1  serous membrane station
+     1  mediastinum station
+     1  integumentary model station
+     1  skin histology station
+   Everything else is a tissue station, one identification plus one
+   function or location question, drawn from the Tissues and Tissues II loops.
+   ========================================================================= */
+
+var FIXED_COUNT = 8;
+var LENGTHS = [53, 40, 30, 20];
+var SECONDS = [
+  {v:60,  label:"1 minute"},
+  {v:75,  label:"1 min 15 s"},
+  {v:90,  label:"1 min 30 s"},
+  {v:120, label:"2 minutes"},
+  {v:0,   label:"No timer"}
+];
+
+/* Region pairs for the direction stations.
+   Read as: region B is (answer) to region A. */
+var DIRECTION_PAIRS = [
+  {a:"Brachial",    b:"Antebrachial", ans:"Distal",   alt:["Inferior"]},
+  {a:"Antebrachial",b:"Pollex",       ans:"Distal",   alt:[]},
+  {a:"Femoral",     b:"Crural",       ans:"Distal",   alt:["Inferior"]},
+  {a:"Acromial",    b:"Olecranal",    ans:"Distal",   alt:["Inferior"]},
+  {a:"Popliteal",   b:"Calcaneal",    ans:"Distal",   alt:["Inferior"]},
+  {a:"Patellar",    b:"Hallux",       ans:"Distal",   alt:["Inferior"]},
+  {a:"Gluteal",     b:"Sural",        ans:"Distal",   alt:["Inferior"]},
+  {a:"Olecranal",   b:"Acromial",     ans:"Proximal", alt:["Superior"]},
+  {a:"Crural",      b:"Femoral",      ans:"Proximal", alt:["Superior"]},
+  {a:"Calcaneal",   b:"Popliteal",    ans:"Proximal", alt:["Superior"]},
+  {a:"Cervical",    b:"Umbilical",    ans:"Inferior", alt:["Caudal"]},
+  {a:"Sternal",     b:"Pubic",        ans:"Inferior", alt:["Caudal"]},
+  {a:"Occipital",   b:"Sacral",       ans:"Inferior", alt:["Caudal"]},
+  {a:"Buccal",      b:"Cervical",     ans:"Inferior", alt:["Caudal"]},
+  {a:"Umbilical",   b:"Mammary",      ans:"Superior", alt:["Cranial"]},
+  {a:"Sternal",     b:"Vertebral",    ans:"Posterior",alt:["Dorsal"]},
+  {a:"Patellar",    b:"Popliteal",    ans:"Posterior",alt:["Dorsal"]},
+  {a:"Antecubital", b:"Olecranal",    ans:"Posterior",alt:["Dorsal"]},
+  {a:"Umbilical",   b:"Lumbar",       ans:"Posterior",alt:["Dorsal"]},
+  {a:"Mammary",     b:"Scapular",     ans:"Posterior",alt:["Dorsal"]},
+  {a:"Vertebral",   b:"Sternal",      ans:"Anterior", alt:["Ventral"]},
+  {a:"Popliteal",   b:"Patellar",     ans:"Anterior", alt:["Ventral"]},
+  {a:"Sternal",     b:"Axillary",     ans:"Lateral",  alt:[]},
+  {a:"Vertebral",   b:"Scapular",     ans:"Lateral",  alt:[]},
+  {a:"Axillary",    b:"Sternal",      ans:"Medial",   alt:[]},
+  {a:"Scapular",    b:"Vertebral",    ans:"Medial",   alt:[]}
+];
+
+/* Region pairs for the plane station.
+   Read as: the plane that separates A from B. */
+var PLANE_PAIRS = [
+  {a:"Sternal",     b:"Vertebral",    ans:"Frontal (coronal) plane", alt:["Coronal plane"]},
+  {a:"Patellar",    b:"Popliteal",    ans:"Frontal (coronal) plane", alt:["Coronal plane"]},
+  {a:"Antecubital", b:"Olecranal",    ans:"Frontal (coronal) plane", alt:["Coronal plane"]},
+  {a:"Umbilical",   b:"Lumbar",       ans:"Frontal (coronal) plane", alt:["Coronal plane"]},
+  {a:"Mammary",     b:"Scapular",     ans:"Frontal (coronal) plane", alt:["Coronal plane"]},
+  {a:"Cervical",    b:"Umbilical",    ans:"Transverse plane", alt:["Horizontal plane","Cross sectional plane"]},
+  {a:"Sternal",     b:"Pubic",        ans:"Transverse plane", alt:["Horizontal plane","Cross sectional plane"]},
+  {a:"Brachial",    b:"Antebrachial", ans:"Transverse plane", alt:["Horizontal plane","Cross sectional plane"]},
+  {a:"Femoral",     b:"Crural",       ans:"Transverse plane", alt:["Horizontal plane","Cross sectional plane"]},
+  {a:"Patellar",    b:"Calcaneal",    ans:"Transverse plane", alt:["Horizontal plane","Cross sectional plane"]},
+  {a:"Sternal",     b:"Axillary",     ans:"Sagittal (parasagittal) plane", alt:["Parasagittal plane","Sagittal plane"]},
+  {a:"Vertebral",   b:"Scapular",     ans:"Sagittal (parasagittal) plane", alt:["Parasagittal plane","Sagittal plane"]}
+];
+
+/* Which skin images are the model and which are real slides.
+   Keyed by the question image number in the skin loop. */
+var SKIN_MODEL_Q   = [2, 4, 7, 10, 12, 20];
+var SKIN_HISTO_Q   = [14, 18];
+
+/* =========================================================================
+   3. SMALL HELPERS
+   ========================================================================= */
+
+var $ = function(id){ return document.getElementById(id); };
+
+function mulberry32(seed){
+  var t = seed >>> 0;
+  return function(){
+    t += 0x6D2B79F5;
+    var r = t;
+    r = Math.imul(r ^ (r >>> 15), r | 1);
+    r ^= r + Math.imul(r ^ (r >>> 7), r | 61);
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function shuffled(arr, rnd){
+  var a = arr.slice();
+  for(var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(rnd() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+function pad(n){ return n < 10 ? "0" + n : String(n); }
+function imgPath(dir, n){ return "images/" + dir + "/s" + pad(n) + ".jpg"; }
+function clock(s){
+  var m = Math.floor(s / 60);
+  return m + ":" + pad(s % 60);
+}
+
+/* =========================================================================
+   4. STATE
+   ========================================================================= */
+
+var CONTENT = null;
+var LOOP = {};          /* id -> loop */
+var POOLS = null;
+var EXAM = null;
+var seed = 0;
+var length = 53;
+var seconds = 90;
+
+/* =========================================================================
+   5. BUILD THE POOLS
+   ========================================================================= */
+
+function byId(list){
+  var o = {};
+  list.forEach(function(L){ o[L.id] = L; });
+  return o;
+}
+
+function findRegion(name){
+  var L = LOOP["intro"];
+  for(var i = 0; i < L.stations.length; i++){
+    var st = L.stations[i];
+    if(st.ans.length === 1 && st.ans[0] === name) return st;
+  }
+  return null;
+}
+
+function buildPools(){
+  var p = {tissue:[], quadrant:[], serous:null, mediastinum:null, model:[], histo:[]};
+
+  /* tissue stations: two blanks, one identification plus one function or location */
+  ["tissues","tissues-2"].forEach(function(id){
+    var L = LOOP[id];
+    if(!L) return;
+    L.stations.forEach(function(st, i){
+      if(st.ans.length !== 2) return;
+      p.tissue.push({
+        kind:"tissue",
+        tag:"Tissue",
+        sig:(st.ans[0] + "|" + st.ans[1]).toLowerCase().replace(/\s+/g, " ").trim(),
+        dir:L.dir,
+        q:st.q, a:st.a,
+        source:L.title + ", station " + (i + 1),
+        asks:[
+          {label: st.labels ? st.labels[0] : "Identify the tissue", ans: st.ans[0], alt: altsFor(st, st.ans[0])},
+          {label: st.labels ? st.labels[1] : "Function or location", ans: st.ans[1], alt: altsFor(st, st.ans[1])}
+        ]
+      });
+    });
+  });
+
+  /* abdominal quadrants: the letter and the name, the organ is already in the prompt */
+  LOOP["intro"].stations.forEach(function(st){
+    if(st.labels && st.labels[0] === "Letter"){
+      p.quadrant.push({
+        kind:"quadrant",
+        tag:"Abdominal quadrants",
+        dir:"intro", q:st.q, a:st.a,
+        source:"Introduction Loop",
+        asks:[
+          {label:"Letter of the quadrant", ans:st.ans[0], alt:[]},
+          {label:"Name of that quadrant", ans:st.ans[1], alt:altsFor(st, st.ans[1])}
+        ]
+      });
+    }
+  });
+
+  /* serous membrane */
+  var pleura = findRegion("Parietal pleura");
+  if(pleura){
+    p.serous = {
+      kind:"serous",
+      tag:"Serous membrane",
+      dir:"intro", q:pleura.q, a:pleura.a,
+      source:"Introduction Loop",
+      asks:[
+        {label:"Membrane at the blue arrow", ans:"Parietal pleura", alt:[]},
+        {label:"Membrane on the lung surface itself", ans:"Visceral pleura", alt:["Pulmonary pleura"]}
+      ],
+      note:"The blue arrow is answered on the slide. The grey pointer is not, so the second answer comes from memory."
+    };
+  }
+
+  /* mediastinum */
+  var med = findRegion("Mediastinum");
+  if(med){
+    p.mediastinum = {
+      kind:"mediastinum",
+      tag:"Mediastinum",
+      dir:"intro", q:med.q, a:med.a,
+      source:"Introduction Loop",
+      asks:[
+        {label:"Name this region", ans:"Mediastinum", alt:[]},
+        {label:"Name any two structures held in this space", ans:"Any two of: heart, thymus, esophagus, trachea, great vessels", alt:[]}
+      ]
+    };
+  }
+
+  /* skin */
+  var skin = LOOP["skin"];
+  if(skin){
+    skin.stations.forEach(function(st, i){
+      if(st.ans.length !== 2) return;
+      var entry = {
+        dir:"skin", q:st.q, a:st.a,
+        source:"Integumentary Loop, station " + (i + 1),
+        asks:[
+          {label: st.labels ? st.labels[0] : "Structure 1", ans: st.ans[0], alt: altsFor(st, st.ans[0])},
+          {label: st.labels ? st.labels[1] : "Structure 2", ans: st.ans[1], alt: altsFor(st, st.ans[1])}
+        ]
+      };
+      if(SKIN_MODEL_Q.indexOf(st.q) >= 0){
+        entry.kind = "model"; entry.tag = "Integumentary model";
+        p.model.push(entry);
+      } else if(SKIN_HISTO_Q.indexOf(st.q) >= 0){
+        entry.kind = "histo"; entry.tag = "Skin histology";
+        p.histo.push(entry);
+      }
+    });
+  }
+  return p;
+}
+
+function altsFor(st, answer){
+  if(!st.alt) return [];
+  return st.alt[answer] || [];
+}
+
+/* two region images side by side */
+function duoStation(pair, kind){
+  var A = findRegion(pair.a), B = findRegion(pair.b);
+  if(!A || !B) return null;
+  if(kind === "direction"){
+    return {
+      kind:"direction",
+      tag:"Body regions and direction",
+      duo:[{dir:"intro", q:A.q, badge:"A"}, {dir:"intro", q:B.q, badge:"B"}],
+      answerShots:[{dir:"intro", q:A.a}, {dir:"intro", q:B.a}],
+      source:"Introduction Loop",
+      asks:[
+        {label:"Name region A", ans:pair.a, alt:[]},
+        {label:"Region B is ______ to region A", ans:pair.ans, alt:pair.alt}
+      ],
+      note:"One directional term. Region B is named on the key as well, it is " + pair.b + "."
+    };
+  }
+  return {
+    kind:"plane",
+    tag:"Body planes",
+    duo:[{dir:"intro", q:A.q, badge:"A"}, {dir:"intro", q:B.q, badge:"B"}],
+    answerShots:[{dir:"intro", q:A.a}, {dir:"intro", q:B.a}],
+    source:"Introduction Loop",
+    asks:[
+      {label:"Name region B", ans:pair.b, alt:[]},
+      {label:"The plane that separates region A from region B", ans:pair.ans, alt:pair.alt}
+    ],
+    note:"No plane is drawn on the images. Students picture it. Region A is " + pair.a + "."
+  };
+}
+
+/* =========================================================================
+   6. COMPOSE ONE EXAM
+   ========================================================================= */
+
+function buildExam(n, s){
+  var rnd = mulberry32(s);
+  var out = [];
+
+  var dirPairs = shuffled(DIRECTION_PAIRS, rnd);
+  var d1 = duoStation(dirPairs[0], "direction");
+  var d2 = duoStation(dirPairs[1], "direction");
+  if(d1) out.push(d1);
+  if(d2) out.push(d2);
+
+  var planePair = shuffled(PLANE_PAIRS, rnd)[0];
+  var pl = duoStation(planePair, "plane");
+  if(pl) out.push(pl);
+
+  if(POOLS.quadrant.length) out.push(shuffled(POOLS.quadrant, rnd)[0]);
+  if(POOLS.serous) out.push(POOLS.serous);
+  if(POOLS.mediastinum) out.push(POOLS.mediastinum);
+  if(POOLS.model.length) out.push(shuffled(POOLS.model, rnd)[0]);
+  if(POOLS.histo.length) out.push(shuffled(POOLS.histo, rnd)[0]);
+
+  /* Tissues II repeats some of the Tissues slides. Draw at most one station
+     per answer pair so the same question does not turn up twice in one run,
+     while the slide that represents it still changes from set to set. */
+  var want = Math.max(0, n - out.length);
+  var groups = {};
+  POOLS.tissue.forEach(function(t){
+    (groups[t.sig] = groups[t.sig] || []).push(t);
+  });
+  var keys = shuffled(Object.keys(groups), rnd);
+  var tis = [];
+  keys.forEach(function(k){
+    if(tis.length < want) tis.push(shuffled(groups[k], rnd)[0]);
+  });
+  if(tis.length < want){
+    var taken = {};
+    tis.forEach(function(t){ taken[t.dir + t.q] = true; });
+    shuffled(POOLS.tissue, rnd).forEach(function(t){
+      if(tis.length < want && !taken[t.dir + t.q]) tis.push(t);
+    });
+  }
+  out = out.concat(tis);
+
+  return shuffled(out, rnd);
+}
+
+/* =========================================================================
+   7. SET UP SCREEN
+   ========================================================================= */
+
+function radios(host, items, name, current, onPick){
+  host.innerHTML = "";
+  items.forEach(function(it){
+    var lab = document.createElement("label");
+    lab.className = "choice";
+    var input = document.createElement("input");
+    input.type = "radio"; input.name = name; input.value = String(it.v);
+    if(it.v === current) input.checked = true;
+    var span = document.createElement("span");
+    span.textContent = it.label;
+    lab.appendChild(input); lab.appendChild(span);
+    input.addEventListener("change", function(){ onPick(it.v); });
+    host.appendChild(lab);
+  });
+}
+
+function codeFor(s){
+  return "M1-" + ("0000" + (s % 10000)).slice(-4);
+}
+
+function refreshReadout(){
+  var tissues = Math.max(0, length - FIXED_COUNT);
+  var pct = Math.round((tissues / length) * 100);
+  $("roStations").textContent = String(length);
+  $("roQuestions").textContent = String(length * 2);
+  $("roTime").textContent = seconds
+    ? Math.round((length * seconds) / 60) + " minutes"
+    : "you set the pace";
+  $("roCode").textContent = codeFor(seed);
+  $("roMix").innerHTML =
+    "<strong>" + tissues + " tissue stations, " + pct + " percent of the run.</strong>" +
+    "<ul>" +
+      "<li>2 body region stations, each with a direction question</li>" +
+      "<li>1 abdominal quadrant station, letter and name</li>" +
+      "<li>1 body plane station built from two regions</li>" +
+      "<li>1 serous membrane station</li>" +
+      "<li>1 mediastinum station</li>" +
+      "<li>1 integumentary model station</li>" +
+      "<li>1 skin histology station</li>" +
+    "</ul>";
+  $("lenHint").textContent = length === 53
+    ? "53 stations is the full mix, 85 percent tissues, and it uses most of the Module 1 tissue bank. Shorter runs vary more between sets."
+    : "The same " + FIXED_COUNT + " non tissue stations stay in at every length, so at "
+      + length + " stations the tissue share is " + pct + " percent.";
+}
+
+/* =========================================================================
+   8. PRESENT MODE
+   ========================================================================= */
+
+var idx = 0, left = 0, paused = false, tick = null, warned = false, reviewing = false;
+
+/* Pull the next few slides down early so a station never opens on a blank frame. */
+var warmed = {};
+function warm(src){
+  if(warmed[src]) return;
+  warmed[src] = true;
+  var i = new Image();
+  i.src = src;
+}
+function preload(n){
+  if(!EXAM || n < 0 || n >= EXAM.length) return;
+  var st = EXAM[n];
+  if(st.duo){
+    st.duo.forEach(function(s){ warm(imgPath(s.dir, s.q)); });
+    if(st.answerShots) st.answerShots.forEach(function(s){ warm(imgPath(s.dir, s.q)); });
+  } else {
+    warm(imgPath(st.dir, st.q));
+    warm(imgPath(st.dir, st.a));
+  }
+}
+
+function stageFor(st, showAnswer){
+  var stage = $("pStage");
+  stage.innerHTML = "";
+  stage.className = "p-stage" + (st.duo ? " duo" : "");
+  var shots = [];
+  if(st.duo){
+    shots = showAnswer && st.answerShots
+      ? st.answerShots.map(function(s, i){ return {dir:s.dir, q:s.q, badge:st.duo[i].badge}; })
+      : st.duo;
+  } else {
+    shots = [{dir:st.dir, q: showAnswer ? st.a : st.q, badge:null}];
+  }
+  shots.forEach(function(s){
+    var box = document.createElement("div");
+    box.className = "shot";
+    var im = document.createElement("img");
+    im.src = imgPath(s.dir, s.q);
+    im.alt = showAnswer
+      ? "Answer slide for this station"
+      : "Practical station image. The questions are listed below the image.";
+    box.appendChild(im);
+    if(s.badge){
+      var b = document.createElement("span");
+      b.className = "badge"; b.textContent = s.badge;
+      box.appendChild(b);
+    }
+    stage.appendChild(box);
+  });
+}
+
+function renderStation(){
+  var st = EXAM[idx];
+  $("pNum").textContent = String(idx + 1);
+  $("pTot").textContent = String(EXAM.length);
+  stageFor(st, reviewing);
+
+  var ol = $("pAsk");
+  ol.innerHTML = "";
+  st.asks.forEach(function(q, i){
+    var li = document.createElement("li");
+    var n = document.createElement("span");
+    n.className = "n"; n.textContent = (i + 1) + ".";
+    var t = document.createElement("span");
+    if(reviewing){
+      t.appendChild(document.createTextNode(q.label + ": "));
+      var v = document.createElement("span");
+      v.className = "ansval"; v.textContent = q.ans;
+      t.appendChild(v);
+      if(q.alt && q.alt.length){
+        var a = document.createElement("span");
+        a.style.fontWeight = "500";
+        a.textContent = "  (also accept " + q.alt.join(", ") + ")";
+        t.appendChild(a);
+      }
+    } else {
+      t.textContent = q.label;
+    }
+    li.appendChild(n); li.appendChild(t);
+    ol.appendChild(li);
+  });
+
+  var note = $("pNote");
+  if(reviewing && st.note){
+    note.hidden = false; note.textContent = st.note;
+  } else if(!reviewing && (st.kind === "direction" || st.kind === "plane")){
+    note.hidden = false;
+    note.textContent = st.kind === "direction"
+      ? "Answer 2 with one directional term. You do not need to name region B."
+      : "No plane is drawn on the images. Picture where it would fall.";
+  } else {
+    note.hidden = true; note.textContent = "";
+  }
+
+  $("pLive").textContent = "Station " + (idx + 1) + " of " + EXAM.length + ". "
+    + st.asks.map(function(q, i){
+        return "Question " + (i + 1) + ", " + q.label + (reviewing ? ", " + q.ans : "") + ".";
+      }).join(" ");
+
+  left = seconds;
+  warned = false;
+  paintClock();
+  preload(idx + 1);
+  preload(idx + 2);
+  preload(idx + 3);
+}
+
+function paintClock(){
+  var c = $("pClock");
+  if(reviewing){
+    c.textContent = "Answer key";
+    c.classList.remove("low");
+    $("pBar").style.width = (((idx + 1) / EXAM.length) * 100) + "%";
+    return;
+  }
+  if(!seconds){
+    c.textContent = "No timer";
+    c.classList.remove("low");
+    $("pBar").style.width = "100%";
+    return;
+  }
+  c.textContent = clock(Math.max(0, left));
+  c.classList.toggle("low", left <= 10);
+  $("pBar").style.width = ((left / seconds) * 100) + "%";
+}
+
+function startTick(){
+  stopTick();
+  if(!seconds || reviewing) return;
+  tick = setInterval(function(){
+    if(paused) return;
+    left--;
+    if(left === 10 && !warned){
+      warned = true;
+      $("pLive").textContent = "Ten seconds left on this station.";
+    }
+    if(left <= 0){ paintClock(); next(); return; }
+    paintClock();
+  }, 1000);
+}
+function stopTick(){ if(tick){ clearInterval(tick); tick = null; } }
+
+function next(){
+  if(idx >= EXAM.length - 1){ finish(); return; }
+  idx++; renderStation();
+}
+function prev(){
+  if(idx === 0) return;
+  idx--; renderStation();
+}
+function togglePause(){
+  paused = !paused;
+  $("pPause").textContent = paused ? "Resume" : "Pause";
+  $("pLive").textContent = paused ? "Paused." : "Running.";
+}
+
+/* While the slideshow is up, nothing behind it takes focus or reaches a screen reader. */
+function setBackgroundInert(on){
+  var kids = document.body.children;
+  for(var i = 0; i < kids.length; i++){
+    var el = kids[i];
+    if(el.id === "present" || el.tagName === "SCRIPT") continue;
+    if("inert" in el) el.inert = on;
+    if(on) el.setAttribute("aria-hidden", "true");
+    else el.removeAttribute("aria-hidden");
+  }
+}
+
+/* Fallback for browsers without inert: keep Tab inside the slideshow. */
+function trapTab(e){
+  if(e.key !== "Tab" || !$("present").classList.contains("on")) return;
+  var f = $("present").querySelectorAll("button:not([hidden])");
+  if(!f.length) return;
+  var first = f[0], last = f[f.length - 1];
+  if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  else if(!$("present").contains(document.activeElement)){ e.preventDefault(); first.focus(); }
+}
+
+function openPresent(mode){
+  reviewing = (mode === "review");
+  if(!EXAM || !reviewing) EXAM = buildExam(length, seed);
+  idx = 0; paused = false;
+  $("pPause").textContent = "Pause";
+  $("pPause").hidden = reviewing;
+  var p = $("present");
+  p.classList.add("on");
+  p.setAttribute("aria-hidden", "false");
+  document.body.classList.add("presenting");
+  setBackgroundInert(true);
+  renderStation();
+  startTick();
+  (reviewing ? $("pNext") : $("pPause")).focus();
+}
+
+function closePresent(){
+  stopTick();
+  var p = $("present");
+  p.classList.remove("on");
+  p.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("presenting");
+  setBackgroundInert(false);
+  if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen();
+  $("btnStart").focus();
+}
+
+function finish(){
+  var wasReviewing = reviewing;
+  closePresent();
+  if(wasReviewing) return;
+  showKey();
+  $("keySection").scrollIntoView({block:"start"});
+}
+
+/* =========================================================================
+   9. ANSWER KEY
+   ========================================================================= */
+
+function showKey(){
+  if(!EXAM) EXAM = buildExam(length, seed);
+  var stamp = codeFor(seed) + ", " + EXAM.length + " stations";
+  $("keyCode").textContent = stamp;
+  $("printCode").textContent = stamp;
+  var list = $("keyList");
+  list.innerHTML = "";
+  EXAM.forEach(function(st, i){
+    var li = document.createElement("li");
+    var num = document.createElement("div");
+    num.className = "knum"; num.textContent = String(i + 1);
+    var body = document.createElement("div");
+
+    var tag = document.createElement("div");
+    tag.className = "ktag"; tag.textContent = st.tag;
+    body.appendChild(tag);
+
+    var dl = document.createElement("div");
+    dl.className = "kans";
+    st.asks.forEach(function(q, n){
+      var line = document.createElement("div");
+      line.className = "line";
+      var lab = document.createElement("span");
+      lab.className = "lab"; lab.textContent = (n + 1) + ". " + q.label + ": ";
+      var val = document.createElement("span");
+      val.className = "val"; val.textContent = q.ans;
+      line.appendChild(lab); line.appendChild(val);
+      if(q.alt && q.alt.length){
+        var alt = document.createElement("span");
+        alt.className = "alt"; alt.textContent = "  (also accept " + q.alt.join(", ") + ")";
+        line.appendChild(alt);
+      }
+      dl.appendChild(line);
+    });
+    body.appendChild(dl);
+
+    if(st.note){
+      var nt = document.createElement("div");
+      nt.className = "knote";
+      nt.textContent = st.note;
+      body.appendChild(nt);
+    }
+
+    li.appendChild(num); li.appendChild(body);
+    list.appendChild(li);
+  });
+  $("keySection").hidden = false;
+}
+
+/* =========================================================================
+   10. WIRING
+   ========================================================================= */
+
+function newSeed(){
+  seed = Math.floor(Math.random() * 9000) + 1000;
+  EXAM = null;
+  $("keySection").hidden = true;
+  refreshReadout();
+}
+
+function boot(content){
+  CONTENT = content;
+  LOOP = byId(CONTENT.loops);
+  POOLS = buildPools();
+
+  if(POOLS.tissue.length < 20){
+    fail("The tissue loops came back with only " + POOLS.tissue.length + " usable stations.");
+    return;
+  }
+
+  radios($("lenChoices"), LENGTHS.map(function(v){
+    return {v:v, label: v === 53 ? "53, the full mix" : String(v)};
+  }), "len", length, function(v){ length = v; EXAM = null; $("keySection").hidden = true; refreshReadout(); });
+
+  radios($("secChoices"), SECONDS, "sec", seconds, function(v){
+    seconds = v; refreshReadout();
+  });
+
+  newSeed();
+
+  $("status").textContent = POOLS.tissue.length + " tissue stations available in the bank, "
+    + "plus the Introduction and Integumentary loops. Everything loaded.";
+  $("setup").hidden = false;
+
+  $("btnStart").addEventListener("click", function(){ openPresent("run"); });
+  $("btnReview").addEventListener("click", function(){
+    if(!EXAM) EXAM = buildExam(length, seed);
+    openPresent("review");
+  });
+  $("btnShuffle").addEventListener("click", newSeed);
+  $("btnKeyOnly").addEventListener("click", showKey);
+  $("btnHideKey").addEventListener("click", function(){
+    $("keySection").hidden = true; $("btnKeyOnly").focus();
+  });
+  $("btnReview2").addEventListener("click", function(){
+    if(!EXAM) EXAM = buildExam(length, seed);
+    openPresent("review");
+  });
+  $("btnPrintKey").addEventListener("click", function(){ window.print(); });
+
+  $("pNext").addEventListener("click", next);
+  $("pPrev").addEventListener("click", prev);
+  $("pPause").addEventListener("click", togglePause);
+  $("pEnd").addEventListener("click", finish);
+  $("pFull").addEventListener("click", function(){
+    if(document.fullscreenElement){
+      if(document.exitFullscreen) document.exitFullscreen();
+    } else if(document.documentElement.requestFullscreen){
+      document.documentElement.requestFullscreen();
+    }
+  });
+
+  document.addEventListener("keydown", trapTab);
+
+  document.addEventListener("keydown", function(e){
+    if(!$("present").classList.contains("on")) return;
+    var k = e.key;
+    if(k === " " || k === "k" || k === "K"){ e.preventDefault(); togglePause(); }
+    else if(k === "ArrowRight" || k === "n" || k === "N"){ e.preventDefault(); next(); }
+    else if(k === "ArrowLeft" || k === "p" || k === "P"){ e.preventDefault(); prev(); }
+    else if(k === "Escape"){ e.preventDefault(); finish(); }
+    else if(k === "f" || k === "F"){ e.preventDefault(); $("pFull").click(); }
+  });
+}
+
+function fail(msg){
+  var s = $("status");
+  s.className = "status bad";
+  s.textContent = msg;
+}
+
+if(window.LOOPS_ENGINE_CONTENT){
+  boot(window.LOOPS_ENGINE_CONTENT);
+} else {
+  fetch("index.html", {cache:"no-store"})
+    .then(function(r){
+      if(!r.ok) throw new Error("index.html came back " + r.status);
+      return r.text();
+    })
+    .then(function(t){ boot(extractContent(t)); })
+    .catch(function(err){
+      fail("Could not read the station bank out of index.html. This page has to sit in the same folder "
+        + "as the Loops app and be opened over http, not from the desktop. (" + err.message + ")");
+    });
+}
+})();
+</script>
+
+<script>
+/* Iframe height sender for Kajabi */
+(function(){
+  var id = "practice-lab-exam";
+  function send(){
+    var h = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight
+    );
+    if(window.parent !== window){
+      window.parent.postMessage({id:id, frameId:id, height:h}, "*");
+    }
+  }
+  window.addEventListener("load", send);
+  window.addEventListener("resize", send);
+  if(window.ResizeObserver){
+    new ResizeObserver(send).observe(document.body);
+  }
+  send();
+})();
+</script>
+</body>
+</html>
