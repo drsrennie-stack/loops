@@ -384,6 +384,10 @@
       <button class="btn ghost" id="dBack" type="button">&larr; All loops</button>
       <span class="ptitle">My progress</span>
     </div>
+    <div class="bar" role="group" aria-labelledby="dModLab">
+      <span class="lab" id="dModLab">Weakness by module</span>
+      <div class="chips" id="dModChips"></div>
+    </div>
     <div class="bar">
       <div class="field"><label for="dScope">Show me</label><select id="dScope"></select></div>
       <p class="hint" id="dHint" style="flex:1;min-width:220px;margin:0"></p>
@@ -423,6 +427,15 @@
 
       <p class="eyebrow">Choose your loops</p>
       <div id="exPick"></div>
+
+      <div class="panel" id="exWeakPanel">
+        <p class="eyebrow" style="margin:0 0 10px">Or build it from what you keep missing</p>
+        <div class="pbar" style="margin:0 0 10px;align-items:flex-end">
+          <div class="field"><label for="exWeakMod">Which module</label><select id="exWeakMod"></select></div>
+          <button class="btn" id="exWeakGo" type="button">Build an exam from these</button>
+        </div>
+        <p class="summary" id="exWeakSum" role="status" aria-live="polite" style="margin:0"></p>
+      </div>
 
       <div class="panel exsticky">
         <p class="summary" id="exSum" role="status" aria-live="polite" style="margin:0 0 10px"></p>
@@ -589,7 +602,7 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 30, "a": 31, "ans": ["Compact Bone Tissue", "Structural Support; Serum Calcium regulation"], "alt": {"Compact Bone Tissue": ["Compact Bone"], "Structural Support; Serum Calcium regulation": ["Structural Support", "Serum Calcium regulation", "Support", "Calcium regulation"]}, "labels": ["Tissue", "Function"]},   /* card 15 */
         {"q": 32, "a": 33, "ans": ["Dense Irregular Connective Tissue", "Dermis of the skin"], "alt": {"Dense Irregular Connective Tissue": ["Dense Irregular CT"], "Dermis of the skin": ["Dermis"]}, "labels": ["Tissue", "One location"]},   /* card 16 */
         {"q": 34, "a": 35, "ans": ["Eosinophil", "Allergic reaction/parasitic worm infection"], "alt": {"Allergic reaction/parasitic worm infection": ["Allergic reaction", "Allergy", "Parasitic worm infection", "Parasitic infection", "Parasites"]}, "labels": ["Cell", "When would it be increased?"]},   /* card 17 */
-        {"q": 36, "a": 37, "ans": ["Elastic Connective Tissue", "Elastic arteries; aorta"], "alt": {"Elastic Connective Tissue": ["Elastic CT", "Elastic Tissue"], "Elastic arteries; aorta": ["Elastic arteries", "Elastic artery", "Aorta", "Conducting arteries", "Pulmonary trunk", "Aorta and other elastic arteries"]}, "labels": ["Tissue", "Location"]},   /* card 18, location corrected from Muscular arteries, 2 Sep 2026 */
+        {"q": 36, "a": 37, "ans": ["Elastic Connective Tissue", "Elastic arteries; aorta"], "alt": {"Elastic Connective Tissue": ["Elastic CT", "Elastic Tissue"], "Elastic arteries; aorta": ["Elastic arteries", "Elastic artery", "Aorta", "Conducting arteries", "Pulmonary trunk"]}, "labels": ["Tissue", "Location"]},   /* card 18, location corrected from Muscular arteries, 2 Sep 2026 */
         {"q": 38, "a": 39, "ans": ["Dense Regular Connective Tissue", "Tendon"], "alt": {"Dense Regular Connective Tissue": ["Dense Regular CT"], "Tendon": ["Tendons"]}, "labels": ["Tissue", "Location"]},   /* card 19 */
         {"q": 40, "a": 41, "ans": ["Adipose Tissue", "Around vital organs, behind the eyeball"], "alt": {"Adipose Tissue": ["Adipose"], "Around vital organs, behind the eyeball": ["Around vital organs", "Behind the eyeball", "Around organs"]}, "labels": ["Tissue", "One location"]},   /* card 20 */
         {"q": 42, "a": 43, "ans": ["Loose Areolar Connective Tissue", "Elastic Fiber"], "alt": {"Loose Areolar Connective Tissue": ["Loose Areolar CT", "Areolar Connective Tissue"], "Elastic Fiber": ["Elastic Fibers"]}, "labels": ["Tissue", "Fiber type at the white arrow"]},   /* card 21 */
@@ -612,7 +625,7 @@ window.LOOPS_ENGINE_CONTENT = {
     {
       "id": "tissues-2",
       "title": "Tissues II Loop",
-      "unit": "Tissues & Histology",
+      "unit": "Tissues & Histology II",
       "subtitle": "Second ID set: epithelia, connective, muscle & nervous",
       "dir": "tissues-2",
       "module": 1,
@@ -670,10 +683,10 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 4, "a": 5, "ans": ["Hair Bulb", "Sebaceous Gland"]},   /* card 2 */
         {"q": 7, "a": 6, "ans": ["Stratum Granulosum", "Meissner's Corpuscle"], "labels": ["Layer", "Structure"]},   /* card 3 */
         {"q": 8, "a": 9, "ans": ["Keratin", "Thin"], "alt": {"Thin": ["Thin Skin"]}, "labels": ["Protein", "Thick or thin skin"]},   /* card 4 */
-        {"q": 10, "a": 11, "ans": ["Apocrine Gland", "Hypodermis"], "alt": {"Apocrine Gland": ["Apocrine Sweat Gland"], "Hypodermis": ["Subcutaneous Layer", "Subcutaneous Tissue", "Superficial Fascia", "Subcutis", "Hypodermis (subcutaneous layer)"]}, "labels": ["Structure", "Layer"]},   /* card 5, layer corrected from Hair Bulb, 2 Sep 2026 */
+        {"q": 10, "a": 11, "ans": ["Apocrine Gland", "Hypodermis"], "alt": {"Apocrine Gland": ["Apocrine Sweat Gland"], "Hypodermis": ["Subcutaneous Layer", "Subcutaneous Tissue", "Superficial Fascia", "Subcutis"]}, "labels": ["Structure", "Layer"]},   /* card 5, layer corrected from Hair Bulb, 2 Sep 2026 */
         {"q": 12, "a": 13, "ans": ["Hair Root", "Arrector Pili Muscle"], "alt": {"Arrector Pili Muscle": ["Arrector Pili"]}},   /* card 6 */
         {"q": 14, "a": 15, "ans": ["Stratum Corneum", "Dermal Papilla"], "labels": ["Layer of the epidermis", "Structure (region)"]},   /* card 7 */
-        {"q": 16, "a": 17, "ans": ["Papillary Dermis", "Reticular Dermis"], "alt": {"Papillary Dermis": ["Papillary layer", "Papillary region"], "Reticular Dermis": ["Reticular layer", "Reticular region"]}, "labels": ["Region at the bracket", "Region at the arrow"]},   /* card 8, second half changed from a tissue-type question to the reticular dermis, 2 Sep 2026 */
+        {"q": 16, "a": 17, "ans": ["Papillary Dermis", "Reticular Dermis"], "alt": {"Papillary Dermis": ["Papillary layer", "Papillary region"], "Reticular Dermis": ["Reticular layer", "Reticular region"]}, "labels": ["Region at the bracket", "Region at the arrow"]},   /* card 8, second half changed to the reticular dermis, 2 Sep 2026 */
         {"q": 18, "a": 19, "ans": ["Keratinized Stratified Squamous Epithelium", "Stratum Lucidum"], "labels": ["Tissue", "Layer in the white circle"]},   /* card 9 */
         {"q": 20, "a": 21, "ans": ["Hair Shaft", "Eccrine Sweat Gland"], "alt": {"Eccrine Sweat Gland": ["Eccrine Gland"]}},   /* card 10 */
         {"q": 22, "a": 23, "ans": ["Dermis", "Papillary Dermis", "Reticular Dermis"], "labels": ["Layer", "Sub-component 1", "Sub-component 2"]},   /* card 11 */
@@ -3172,7 +3185,8 @@ function renderDash(){
         +'<span class="tag flag">sure but wrong'+(w.over>1?' &times;'+w.over:'')+'</span><span class="rv">'+esc(w.unit)+'</span></div>';
     });
     h+='<div class="pbar" style="margin-top:14px"><button class="btn" id="goFlag" type="button">'
-      +(flagged.length===1?'Drill this red flag':'Drill these '+flagged.length+' red flags')+'</button></div></div>';
+      +(flagged.length===1?'Drill this red flag':'Drill these '+flagged.length+' red flags')+'</button>'
+      +'<button class="btn ghost" id="examFlag" type="button">Make an exam from these</button></div></div>';
   }
   if(weak.length){
     h+='<div class="panel"><h3>Keeps catching you out</h3>';
@@ -3182,7 +3196,8 @@ function renderDash(){
         +'<span class="rv">'+esc(w.unit)+'</span></div>';
     });
     h+='<div class="pbar" style="margin-top:14px"><button class="btn" id="goWeak" type="button">'
-      +(weak.length===1?'Drill this weak station':'Drill these '+weak.length+' weak stations')+'</button></div></div>';
+      +(weak.length===1?'Drill this weak station':'Drill these '+weak.length+' weak stations')+'</button>'
+      +'<button class="btn ghost" id="examWeak" type="button">Make an exam from these</button></div></div>';
   }
   if(todo.length){
     h+='<div class="panel"><h3>Not started yet</h3>';
@@ -3204,6 +3219,8 @@ function renderDash(){
   var gf=$('goFlag'); if(gf) gf.addEventListener('click',function(){ runScope(sc,'flagged','Red flags, '+pr.label); });
   var gw=$('goWeak'); if(gw) gw.addEventListener('click',function(){ runScope(sc,'weak','Weak stations, '+pr.label); });
   var gn=$('goNew'); if(gn) gn.addEventListener('click',function(){ runScope(sc,'not-started','New stations, '+pr.label); });
+  var xf=$('examFlag'); if(xf) xf.addEventListener('click',function(){ if(window.LoopsExam) window.LoopsExam.fromWeakness(sc,'flagged'); });
+  var xw=$('examWeak'); if(xw) xw.addEventListener('click',function(){ if(window.LoopsExam) window.LoopsExam.fromWeakness(sc,'weak'); });
   notifyHeight();
 }
 $('dScope').addEventListener('change',function(){ E.setPref('scope',this.value); renderDash(); });
@@ -3292,7 +3309,7 @@ function prefs(){ var p=rd(PKEY,{}); return (p&&typeof p==='object')?p:{}; }
 function savePrefs(p){ wr(PKEY,p); }
 
 var exam=$('exam'), setup=$('exSetup'), runView=$('exRun'), resView=$('exResults');
-var sel={}, deck=[], pos=0, items=[], timer=null, left=0, secs=45, strict=false, startedAt=0, warned=0;
+var sel={}, deck=[], pos=0, items=[], timer=null, left=0, secs=45, strict=false, startedAt=0, warned=0, weakLabel='';
 
 function bump(){ if(UI.notifyHeight) UI.notifyHeight(); }
 function pad(n){ return n<10?('0'+n):(''+n); }
@@ -3383,7 +3400,7 @@ function show(view){
 }
 function open(){
   $('hub').hidden=true; $('player').hidden=true; $('dash').hidden=true; exam.hidden=false;
-  show('setup'); $('exCount').textContent=''; renderHistory(); summarise();
+  show('setup'); $('exCount').textContent=''; renderHistory(); summarise(); weakSummary();
   if(exam.scrollIntoView) exam.scrollIntoView({behavior:reduce?'auto':'smooth', block:'start'});
   bump();
 }
@@ -3471,8 +3488,9 @@ function scoreOf(list){
 function finish(){
   stopTimer();
   items.forEach(function(it){ it.result=markOne(it); });
+  var loopsUsed={}; items.forEach(function(it){ loopsUsed[it.loopId]=1; });
   var rec={ t:Date.now(), secs:secs, strict:strict, total:items.length,
-            loops:selectedIds(),
+            weak: weakLabel||'', loops: weakLabel? Object.keys(loopsUsed) : selectedIds(),
             mins: Math.max(1, Math.round((Date.now()-startedAt)/60000)),
             items: items.map(function(it){ return {loopId:it.loopId, index:it.index, typed:it.typed, over:false}; }) };
   rec.score=scoreOf(items);
@@ -3549,7 +3567,7 @@ function renderResults(){
   out+='</ol>';
   resView.innerHTML=out;
 
-  $('exAgain').addEventListener('click', function(){ show('setup'); $('exCount').textContent=''; renderHistory(); summarise(); bump(); });
+  $('exAgain').addEventListener('click', function(){ show('setup'); $('exCount').textContent=''; renderHistory(); summarise(); weakSummary(); bump(); });
   $('exToHub').addEventListener('click', leave);
   resView.addEventListener('click', function(e){
     var t=e.target; if(!t || !t.getAttribute) return;
@@ -3574,7 +3592,7 @@ function renderHistory(){
   for(var i=h.length-1;i>=0;i--){
     var r=h[i], d=new Date(r.t);
     rows+='<tr><td>'+esc(d.toLocaleDateString(undefined,{month:'short',day:'numeric'}))+'</td>'
-      +'<td class="scope">'+esc(scopeText(r.loops))+'</td>'
+      +'<td class="scope">'+esc(r.weak? ('What I keep missing, '+r.weak) : scopeText(r.loops))+'</td>'
       +'<td class="num">'+r.score+' / '+r.total+'</td>'
       +'<td class="num">'+pcts[i]+'%</td></tr>';
   }
@@ -3598,6 +3616,74 @@ function renderHistory(){
   });
 }
 
+/* ------------------------------------------------------------ WEAKNESS TO EXAM
+   Everything below builds an exam out of the stations a student keeps missing.
+   It is module scoped on purpose: the picker defaults to the module they have
+   open and only reaches across the whole course if they choose Everything. */
+function scopeOf(v){ return v==='all' ? 'all' : {module: parseInt(v,10)}; }
+function weakPool(sc, mode){
+  /* red flags first, they cost the most, then weak by how weak. No duplicates. */
+  var seen={}, out=[];
+  function add(list){
+    list.forEach(function(st){
+      var k=st.loopId+'#'+st.index;
+      if(seen[k]) return; seen[k]=1;
+      out.push({loopId:st.loopId, index:st.index});
+    });
+  }
+  add(E.getFlagged(sc));
+  if(mode!=='flagged') add(E.getWeak(sc));
+  return out;
+}
+function fillWeakMod(){
+  var sel=$('exWeakMod'); if(!sel || sel.dataset.built) return;
+  sel.dataset.built='1';
+  var h='';
+  E.getModules().forEach(function(M){
+    h+='<option value="'+M.n+'">Module '+M.n+', '+esc(M.short||M.full)+'</option>';
+  });
+  h+='<option value="all">Everything, cumulative</option>';
+  sel.innerHTML=h;
+  var p=prefs(), pref=(p.weakMod!==undefined)?String(p.weakMod):String((E.getPrefs()||{}).module||1);
+  for(var i=0;i<sel.options.length;i++) if(sel.options[i].value===pref) sel.value=pref;
+  sel.addEventListener('change', function(){ var pp=prefs(); pp.weakMod=this.value; savePrefs(pp); weakSummary(); });
+}
+function weakSummary(){
+  var sel=$('exWeakMod'); if(!sel) return;
+  var sc=scopeOf(sel.value);
+  var flagged=E.getFlagged(sc).length, pool=weakPool(sc,'weak').length;
+  var want=parseInt($('exN').value,10)||52;
+  var label = sel.value==='all' ? 'the whole course' : ('Module '+sel.value);
+  var msg;
+  if(!pool){
+    msg='Nothing is sitting weak in '+label+' yet. Practise a loop first, or build an exam from the checkboxes above.';
+  } else {
+    msg='<b>'+pool+'</b> station'+(pool===1?'':'s')+' in '+label+' '+(pool===1?'is':'are')+' weak'
+      + (flagged? ', <b>'+flagged+'</b> of them red flagged' : '')
+      + '. Your exam will be <b>'+Math.min(pool,want)+'</b> question'+(Math.min(pool,want)===1?'':'s')+' long.';
+  }
+  $('exWeakSum').innerHTML=msg;
+  $('exWeakGo').disabled = !pool;
+  bump();
+}
+function startFrom(list, label){
+  if(!list || !list.length) return;
+  secs=parseInt($('exSecs').value,10); if(isNaN(secs)) secs=45;
+  strict=$('exSpelling').checked;
+  var want=parseInt($('exN').value,10)||52;
+  deck=shuffle(list).slice(0, Math.min(want, list.length));
+  items=deck.map(function(d){ return {loopId:d.loopId, index:d.index, typed:[], over:false}; });
+  pos=0; startedAt=Date.now(); weakLabel=label||'';
+  show('run'); question();
+}
+/* entry point the dashboard buttons call */
+function fromWeakness(sc, mode){
+  open();
+  var list=weakPool(sc, mode||'weak');
+  if(!list.length){ return; }
+  startFrom(list, E.scopeLabel? E.scopeLabel(sc) : '');
+}
+
 /* ------------------------------------------------------------ wiring */
 $('exBack').addEventListener('click', leave);
 $('exStart').addEventListener('click', start);
@@ -3605,11 +3691,15 @@ $('exClearSel').addEventListener('click', function(){
   Object.keys(sel).forEach(function(id){ var cb=$('exl_'+id); if(cb) cb.checked=false; });
   sel={}; summarise();
 });
-$('exN').addEventListener('change', summarise);
+$('exN').addEventListener('change', function(){ summarise(); weakSummary(); });
+$('exWeakGo').addEventListener('click', function(){
+  var sc=scopeOf($('exWeakMod').value);
+  startFrom(weakPool(sc,'weak'), $('exWeakMod').options[$('exWeakMod').selectedIndex].textContent);
+});
 $('exNext').addEventListener('click', function(){ advance(false); });
 $('exQuit').addEventListener('click', finishEarly);
 
-buildPicker(); restore(); summarise();
+buildPicker(); restore(); fillWeakMod(); summarise(); weakSummary();
 
 /* entry card, first in the study tools row */
 (function(){
@@ -3624,7 +3714,59 @@ buildPicker(); restore(); summarise();
   g.insertBefore(b, g.firstChild);
 })();
 
-window.LoopsExam={ open:open };
+window.LoopsExam={ open:open, fromWeakness:fromWeakness };
+})();
+</script>
+<!-- ============================================================
+     WEAKNESS BY MODULE, one tap on the dashboard. The grouped
+     dropdown already carried module scoping; these chips just put
+     it in front of the student with a live weak count on each.
+     ============================================================ -->
+<script>
+(function(){
+"use strict";
+var E=window.LoopsEngine; if(!E) return;
+var $=function(i){ return document.getElementById(i); };
+var host=$('dModChips'), sel=$('dScope'), dash=$('dash');
+if(!host||!sel||!dash) return;
+
+function scopeOf(v){ return v==='all' ? 'all' : {module: parseInt(v.slice(1),10)}; }
+function build(){
+  host.innerHTML='';
+  E.getModules().forEach(function(M){ host.appendChild(chip('m'+M.n, 'Module '+M.n)); });
+  host.appendChild(chip('all','Everything'));
+  paint();
+}
+function chip(val,label){
+  var b=document.createElement('button'); b.type='button'; b.className='chip';
+  b.setAttribute('data-scope',val); b.setAttribute('aria-pressed','false');
+  b.textContent=label;
+  b.addEventListener('click', function(){
+    sel.value=val;
+    sel.dispatchEvent(new Event('change', {bubbles:true}));
+    paint();
+  });
+  return b;
+}
+function paint(){
+  var cur=sel.value;
+  Array.prototype.forEach.call(host.children, function(b){
+    var v=b.getAttribute('data-scope');
+    b.setAttribute('aria-pressed', String(v===cur));
+    var sc=scopeOf(v), w=E.getWeak(sc).length, f=E.getFlagged(sc).length;
+    var base=b.textContent.split('·')[0].trim();
+    b.textContent = w ? (base+' · '+w+' weak'+(f?(', '+f+' flagged'):'')) : base;
+    b.title = w ? (w+' weak, '+f+' red flagged') : 'Nothing weak here yet';
+  });
+}
+sel.addEventListener('change', paint);
+/* the numbers go stale while the student practises, so recount every time
+   the dashboard is opened */
+if(typeof MutationObserver!=='undefined'){
+  new MutationObserver(function(){ if(!dash.hidden) paint(); })
+    .observe(dash, {attributes:true, attributeFilter:['hidden']});
+}
+build();
 })();
 </script>
 <!-- ============================================================
