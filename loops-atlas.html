@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anatomy Loops, Atlas Edition | BIO 004 Human Anatomy</title>
+<meta name="description" content="Loops built straight from the Digital Atlas. One tag or two per station, typed answers, and it feeds the same weak spot board.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1530;
+  --navy-72:#4F576A;
+  --navy-15:rgba(11,21,48,.15);
+  --rule:#6D7383;
+  --terra:#8B3A2E;
+  --page:#FFFFFF;
+  --soft:#FAFAF9;
+  --display:"Open Sans","Plus Jakarta Sans",system-ui,sans-serif;
+  --body:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+em,i,cite,dfn,var,address{font-style:normal}
+html,body{margin:0;padding:0}
+body{background:var(--page);color:var(--navy);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);margin:0 0 .4em;line-height:1.15;font-weight:800}
+h1{font-size:clamp(30px,4vw,44px)}
+h2{font-size:clamp(19px,2.1vw,24px)}
+h3{font-size:16px;font-weight:700}
+p{margin:0 0 1em}
+a{color:var(--terra)}
+.wrap{max-width:1320px;margin:0 auto;padding:0 max(18px,3vw)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:3.3px;text-transform:uppercase;color:var(--terra);margin:0 0 8px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:10px 16px;border-radius:4px;z-index:200}
+.skip:focus{left:12px;top:12px}
+:focus-visible{outline:3px solid var(--terra);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.topbar{padding:18px 0 0}
+.topbar .wrap{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.backlink{font-size:14px;font-weight:700;color:var(--navy);text-decoration:none;border:1px solid var(--rule);border-radius:99px;padding:7px 16px}
+.backlink:hover{background:var(--soft)}
+.topbar .spacer{margin-left:auto}
+
+main{padding:10px 0 60px}
+.lede{font-size:17px;color:var(--navy-72);max-width:62ch}
+
+.card{background:#fff;border:.5px solid var(--navy-15);border-radius:8px;padding:22px 20px}
+
+.pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.pill{position:relative}
+.pill input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.pill span{display:block;border:1px solid var(--rule);border-radius:99px;padding:8px 18px;font-size:14px;font-weight:700;background:#fff}
+.pill input:checked + span{background:var(--navy);color:#fff;border-color:var(--navy)}
+.pill input:focus-visible + span{outline:3px solid var(--terra);outline-offset:2px}
+
+.btn{font-family:var(--body);font-size:14px;font-weight:700;letter-spacing:.2px;border-radius:4px;padding:11px 20px;border:1px solid var(--navy);background:var(--navy);color:#fff;cursor:pointer}
+.btn:hover{background:#060D1F}
+.btn.ghost{background:#fff;color:var(--navy);border-color:var(--rule)}
+.btn.ghost:hover{background:var(--soft)}
+.btn.terra{background:var(--terra);border-color:var(--terra)}
+.btn.terra:hover{background:#6F2E24}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+.status{border:.5px solid var(--navy-15);border-radius:8px;background:#fff;padding:14px 16px;font-size:14.5px;color:var(--navy-72);margin:0 0 18px}
+.status.bad{border-color:var(--terra);color:var(--terra);font-weight:600}
+
+/* ---------- player ---------- */
+.play{display:grid;gap:18px;margin-top:16px}
+@media(min-width:980px){.play{grid-template-columns:minmax(0,1.35fr) minmax(360px,1fr);align-items:start}}
+
+.figwrap{background:#fff;border:.5px solid var(--navy-15);border-radius:8px;padding:12px}
+.fig{position:relative;width:100%;line-height:0}
+.fig img{width:100%;height:auto;display:block;border-radius:4px}
+.mk{
+  position:absolute;transform:translate(-50%,-50%);
+  width:34px;height:34px;border-radius:99px;
+  background:var(--navy);color:#fff;border:2px solid #fff;
+  font-family:var(--display);font-weight:800;font-size:15px;
+  display:grid;place-items:center;
+  box-shadow:0 0 0 1px rgba(11,21,48,.35);
+}
+.mk.ok{background:#1F5130}
+.mk.no{background:var(--terra)}
+.figcap{font-size:12.5px;color:var(--navy-72);margin:10px 2px 0;line-height:1.4}
+
+.panel{background:#fff;border:.5px solid var(--navy-15);border-radius:8px;padding:20px 18px}
+.stationline{font-size:11px;font-weight:700;letter-spacing:2.09px;text-transform:uppercase;color:var(--terra);margin:0 0 6px}
+.qtitle{font-family:var(--display);font-weight:800;font-size:20px;margin:0 0 14px}
+
+.blank{margin:0 0 14px}
+.blank label{display:block;font-size:14.5px;font-weight:600;margin:0 0 6px}
+.blank .num{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:99px;background:var(--navy);color:#fff;font-family:var(--display);font-weight:800;font-size:13px;margin-right:9px;vertical-align:middle}
+.blank input{width:100%;font-family:var(--body);font-size:16px;padding:11px 13px;border:1px solid var(--rule);border-radius:4px;background:#fff;color:var(--navy)}
+.blank input::placeholder{color:#8C93A1}
+.blank input:disabled{background:var(--soft)}
+.verdict{margin:6px 0 0;font-size:14.5px;font-weight:600}
+.verdict.ok{color:#1F5130}
+.verdict.no{color:var(--terra)}
+.keyline{font-size:14.5px;margin:4px 0 0}
+.keyline b{font-weight:700}
+.altline{font-size:13px;color:var(--navy-72);margin:2px 0 0}
+
+.extras{margin:16px 0 0;border-top:.5px solid var(--navy-15);padding-top:14px}
+.extras .xh{font-size:11px;font-weight:700;letter-spacing:2.09px;text-transform:uppercase;color:var(--terra);margin:0 0 8px}
+.extras dl{margin:0;display:grid;gap:8px}
+.extras dt{font-size:14px;font-weight:600}
+.extras dd{margin:2px 0 0;font-size:14px;color:var(--navy-72)}
+
+.progress{height:5px;background:#EDEFF3;border-radius:99px;overflow:hidden;margin:0 0 16px}
+.progress span{display:block;height:100%;background:var(--terra);width:0;transition:width .25s ease}
+@media (prefers-reduced-motion:reduce){.progress span{transition:none}}
+
+.scorebar{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--navy-72);margin:0 0 14px}
+.scorebar b{color:var(--navy);font-family:var(--display);font-weight:800;font-size:17px}
+
+.done{text-align:center;padding:26px 20px}
+.done .big{font-family:var(--display);font-weight:800;font-size:44px;margin:0}
+.done .pct{font-size:17px;color:var(--navy-72);margin:0 0 18px}
+
+.misslist{list-style:none;margin:16px 0 0;padding:0;text-align:left}
+.misslist li{border-top:.5px solid var(--navy-15);padding:10px 0;font-size:14.5px}
+.misslist li:first-child{border-top:0}
+.misslist .you{color:var(--terra)}
+
+footer.credit{background:var(--navy);color:#fff;padding:26px 0;margin-top:48px}
+footer.credit .name{font-family:var(--display);font-weight:700;font-size:15px}
+footer.credit .line{color:#D9DDE6;font-size:13px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the practice</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="backlink" href="index.html" target="_top">&larr; Anatomy Loops</a>
+    <a class="backlink" href="../new-digital-atlas/atlas.html" target="_top">Digital Atlas</a>
+  </div>
+</div>
+
+<main id="main" class="wrap">
+  <p class="eyebrow">BIO 004 &middot; Human Anatomy &middot; Atlas Edition</p>
+  <h1>Loops from the Atlas</h1>
+  <p class="lede">The same practice as Loops, drawing its stations straight from the Digital Atlas.
+  Choose one structure at a time, or two per station the way the lab practical tags them.</p>
+
+  <div id="status" class="status" role="status">Loading the chapter from the Digital Atlas.</div>
+
+  <section class="card" id="setup" hidden>
+    <h2>Set it up</h2>
+
+    <fieldset style="border:0;margin:0 0 16px;padding:0">
+      <legend class="eyebrow" style="padding:0">Chapter</legend>
+      <div class="pillrow" id="chapRow"></div>
+    </fieldset>
+
+    <fieldset style="border:0;margin:0 0 16px;padding:0">
+      <legend class="eyebrow" style="padding:0">Tags per station</legend>
+      <div class="pillrow" id="tagRow"></div>
+      <p style="font-size:13.5px;color:var(--navy-72);margin:0">Two per station matches how the practical
+      is usually tagged. One at a time is the slower way through.</p>
+    </fieldset>
+
+    <fieldset style="border:0;margin:0 0 18px;padding:0">
+      <legend class="eyebrow" style="padding:0">Order</legend>
+      <div class="pillrow" id="ordRow"></div>
+    </fieldset>
+
+    <p id="plan" style="font-size:14.5px;color:var(--navy-72)"></p>
+    <div class="btnrow">
+      <button class="btn" id="go" type="button">Start</button>
+    </div>
+  </section>
+
+  <section id="player" hidden>
+    <div class="progress" aria-hidden="true"><span id="bar"></span></div>
+    <div class="scorebar">
+      <span>Station <b id="sNow">1</b> of <b id="sAll">1</b></span>
+      <span>Right so far <b id="sRight">0</b></span>
+    </div>
+    <div class="play">
+      <div class="figwrap">
+        <div class="fig" id="fig"></div>
+        <p class="figcap" id="figcap"></p>
+      </div>
+      <div class="panel">
+        <p class="stationline" id="setname"></p>
+        <h2 class="qtitle" id="cardtitle"></h2>
+        <form id="blanks" autocomplete="off"></form>
+        <div class="btnrow" style="margin-top:4px">
+          <button class="btn terra" id="check" type="button">Check</button>
+          <button class="btn ghost" id="reveal" type="button">Show the key</button>
+          <button class="btn" id="next" type="button" hidden>Next station</button>
+          <button class="btn ghost" id="counted" type="button" hidden>Count this right</button>
+        </div>
+        <div class="extras" id="extras" hidden></div>
+      </div>
+    </div>
+    <div class="btnrow" style="margin-top:16px">
+      <button class="btn ghost" id="quit" type="button">Finish and score it</button>
+    </div>
+    <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="card done" id="done" hidden>
+    <p class="eyebrow">Round finished</p>
+    <p class="big" id="dScore">0 / 0</p>
+    <p class="pct" id="dPct">0 percent</p>
+    <div class="btnrow" style="justify-content:center">
+      <button class="btn" id="again" type="button">Run another</button>
+      <button class="btn ghost" id="drill" type="button">Drill just what I missed</button>
+    </div>
+    <ul class="misslist" id="dMiss"></ul>
+  </section>
+</main>
+
+<footer class="credit">
+  <div class="wrap">
+    <div class="name">Dr. Sharilyn Rennie</div>
+    <div class="line">BIO 004 Human Anatomy &middot; Solano College</div>
+  </div>
+</footer>
+
+<script src="../new-digital-atlas/atlas-competency-map.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* =========================================================================
+   LOOPS, ATLAS EDITION
+
+   This page does not touch index.html, its data, or its code. It is a
+   second door into the same practice. Old Loops keeps working exactly as
+   it does today whether or not this page is ever opened.
+
+   WHERE THE STATIONS COME FROM
+   Each chapter page in the Digital Atlas holds a DECK with its cards.
+   A card is one of two kinds:
+     label  a clean photo plus pins, each pin carrying x, y, an answer
+            and accepted alternates. This page draws the markers itself,
+            which is what lets you choose one tag or two per station.
+     qa     a photo with the arrow or ring already on it, plus a list of
+            questions. The auto-graded ones become the typed blanks, the
+            self-scored ones show up as teaching notes on the key.
+   Both repos are served from drsrennie-stack.github.io, so this page
+   reads the atlas directly. Edit a card in the atlas and this follows.
+
+   WHAT IT WRITES, both the same keys the rest of your tools already use
+     loopsEngine_v1       per station, so Drill my weak stations sees it
+     bio004-evidence-v1   per competency, so the weak spot board sees it
+   Nothing leaves the browser and no names are stored.
+
+   ADDING THE NEXT CHAPTER
+   Put its atlas page in CHAPTERS below. blood, bvessels and brain all
+   carry enough answers to go in as they are.
+   ========================================================================= */
+
+var ATLAS = "../new-digital-atlas/";
+var CHAPTERS = [
+  {id:"joints", page:"joints.html", label:"Joints"}
+];
+
+var TAGS = [{v:2,label:"Two per station"},{v:1,label:"One at a time"}];
+var ORDERS = [{v:"shuffle",label:"Shuffle"},{v:"inorder",label:"Atlas order"}];
+
+var $ = function(id){ return document.getElementById(id); };
+
+/* ---------------------------------------------------------------- storage */
+/* Exactly the shape index.html writes, so both pages read each other. */
+var STORE = "loopsEngine_v1";
+function readAll(){ try{ return JSON.parse(localStorage.getItem(STORE)||"{}"); }catch(e){ return {}; } }
+function writeAll(o){ try{ localStorage.setItem(STORE, JSON.stringify(o)); }catch(e){} }
+function recordAttempt(loopId, index, outcome){
+  var all=readAll(), k=loopId+"#"+index;
+  var r=all[k]||{seen:0,again:0,hard:0,good:0,easy:0,recent:[],spell:0};
+  r.seen++;
+  r[outcome]=(r[outcome]||0)+1;
+  r.recent.push(outcome.charAt(0));
+  if(r.recent.length>10) r.recent.shift();
+  all[k]=r; writeAll(all);
+}
+
+var EV="bio004-evidence-v1";
+function recordEvidence(comps, got, of){
+  if(!comps || !comps.length || !of) return;
+  try{
+    var list=JSON.parse(localStorage.getItem(EV)||"[]");
+    if(!Array.isArray(list)) list=[];
+    var at=new Date().toISOString();
+    comps.forEach(function(c){ list.push({comp:c,source:"loop",got:got,of:of,conf:null,at:at}); });
+    if(list.length>4000) list=list.slice(list.length-4000);
+    localStorage.setItem(EV, JSON.stringify(list));
+  }catch(e){}
+}
+
+/* ---------------------------------------------------------------- grading */
+/* Same normalising index.html uses, so a right answer there is right here. */
+function norm(s){
+  return String(s==null?"":s)
+    .normalize("NFD").replace(/[̀-ͯ]/g,"")
+    .toLowerCase()
+    .replace(/&/g," and ")
+    .replace(/[^a-z0-9 ]+/g," ")
+    .replace(/\s+/g," ")
+    .trim()
+    .replace(/^(the|a|an)\s+/,"");
+}
+function lev(a,b){
+  if(a===b) return 0;
+  var m=a.length,n=b.length;
+  if(!m) return n; if(!n) return m;
+  var prev=[],cur=[],i,j;
+  for(j=0;j<=n;j++) prev[j]=j;
+  for(i=1;i<=m;i++){
+    cur[0]=i;
+    for(j=1;j<=n;j++){
+      cur[j]=Math.min(prev[j]+1, cur[j-1]+1, prev[j-1]+(a.charAt(i-1)===b.charAt(j-1)?0:1));
+    }
+    for(j=0;j<=n;j++) prev[j]=cur[j];
+  }
+  return prev[n];
+}
+/* close spelling is forgiven, the way the Loops exam forgives it */
+function judge(typed, answer, accepted){
+  var t=norm(typed);
+  if(!t) return "no";
+  var pool=[answer].concat(accepted||[]).map(norm).filter(Boolean);
+  for(var i=0;i<pool.length;i++){ if(t===pool[i]) return "exact"; }
+  for(i=0;i<pool.length;i++){
+    var p=pool[i];
+    if(!p) continue;
+    if(p.length>5 && (t.indexOf(p)>=0 || p.indexOf(t)>=0) && Math.abs(t.length-p.length)<=4) return "exact";
+    var d=lev(t,p), allow=p.length<=6?1:(p.length<=12?2:3);
+    if(d<=allow) return "close";
+  }
+  return "no";
+}
+
+/* ---------------------------------------------------------------- deck read */
+function pullDeck(html){
+  var m=/const\s+DECK\s*=\s*\{/.exec(html);
+  if(!m) throw new Error("no DECK on that atlas page");
+  var j=html.indexOf("{", m.index);
+  var depth=0,k=j,inStr=false,esc=false,out=[];
+  while(k<html.length){
+    var c=html.charAt(k);
+    if(inStr){
+      out.push(c);
+      if(esc) esc=false;
+      else if(c==="\\") esc=true;
+      else if(c==='"') inStr=false;
+      k++; continue;
+    }
+    if(c==='"'){ inStr=true; out.push(c); k++; continue; }
+    if(c==="{") depth++;
+    else if(c==="}"){ depth--; out.push(c); k++; if(depth===0) break; continue; }
+    out.push(c); k++;
+  }
+  return JSON.parse(out.join(""));
+}
+
+/* ---------------------------------------------------------------- stations */
+/* A station is one figure plus one or two things to name. */
+function buildStations(deck, tagsPer){
+  var out=[];
+  (deck.cards||[]).forEach(function(card){
+    var img = ATLAS + (card.img || "");
+    var base = {deckId:deck.id, card:card, img:img, w:card.w||1920, h:card.h||1080,
+                setName:(deck.sets && deck.sets[card.set]) || deck.title || "", title:card.title||""};
+    if(card.pins && card.pins.length){
+      for(var i=0;i<card.pins.length;i+=tagsPer){
+        var grp=card.pins.slice(i, i+tagsPer);
+        out.push(Object.assign({}, base, {
+          kind:"pins",
+          pins:grp,
+          asks:grp.map(function(p,n){
+            return {q:p.q||"Name this structure.", a:p.a, acc:p.acc||[], mark:String(n+1)};
+          }),
+          extras:[]
+        }));
+      }
+    } else if(card.items && card.items.length){
+      var auto=card.items.filter(function(it){ return !it.self && it.a; });
+      var self=card.items.filter(function(it){ return it.self && it.a; });
+      if(!auto.length) return;
+      out.push(Object.assign({}, base, {
+        kind:"qa",
+        pins:[],
+        asks:auto.slice(0, Math.max(1,tagsPer)).map(function(it,n){
+          return {q:it.q||"Name this structure.", a:it.a, acc:it.acc||[], mark:String(n+1)};
+        }),
+        extras:self.concat(auto.slice(Math.max(1,tagsPer)))
+      }));
+    }
+  });
+  return out;
+}
+
+/* ---------------------------------------------------------------- state */
+var deck=null, stations=[], order=[], at=0, right=0, answered=false, misses=[];
+var chapter=CHAPTERS[0].id, tagsPer=2, ordering="shuffle";
+
+function shuffle(a){
+  a=a.slice();
+  for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; }
+  return a;
+}
+
+/* ---------------------------------------------------------------- setup ui */
+function pills(host, items, name, current, onPick){
+  host.innerHTML="";
+  items.forEach(function(it){
+    var l=document.createElement("label"); l.className="pill";
+    var r=document.createElement("input"); r.type="radio"; r.name=name; r.value=String(it.v);
+    if(String(it.v)===String(current)) r.checked=true;
+    var s=document.createElement("span"); s.textContent=it.label;
+    l.appendChild(r); l.appendChild(s); host.appendChild(l);
+    r.addEventListener("change", function(){ onPick(it.v); });
+  });
+}
+function refreshPlan(){
+  if(!deck){ $("plan").textContent=""; return; }
+  var st=buildStations(deck, tagsPer);
+  var pinned=st.filter(function(s){ return s.kind==="pins"; }).length;
+  var qa=st.filter(function(s){ return s.kind==="qa"; }).length;
+  $("plan").textContent = st.length + " stations from " + (deck.cards||[]).length + " atlas cards, "
+    + pinned + " marker stations and " + qa + " arrow cards. "
+    + "Everything you answer feeds your weak spot board.";
+}
+
+/* ---------------------------------------------------------------- render */
+function drawFigure(s, results){
+  var fig=$("fig");
+  fig.innerHTML="";
+  var img=document.createElement("img");
+  img.src=s.img;
+  img.alt = s.kind==="pins"
+    ? "Atlas figure with " + s.pins.length + " numbered marker" + (s.pins.length===1?"":"s") + ". The questions are beside the figure."
+    : "Atlas figure. The structure is already marked on the photo and the question is beside it.";
+  fig.appendChild(img);
+  /* The disc stays on the structure and the name stays in the panel beside the
+     same number. Printing names on the figure put two labels on top of each
+     other whenever the pins sat close, as the cruciates do. */
+  s.pins.forEach(function(p,n){
+    var d=document.createElement("span");
+    d.className="mk";
+    if(results) d.className += (results[n]==="no" ? " no" : " ok");
+    d.style.left=((p.x/s.w)*100)+"%";
+    d.style.top=((p.y/s.h)*100)+"%";
+    d.textContent=String(n+1);
+    d.setAttribute("aria-hidden","true");
+    fig.appendChild(d);
+  });
+  $("figcap").textContent = results
+    ? (s.kind==="pins" ? "Green marker means you had it, terra means you missed it. The names are beside each number." : "The key is beside the figure.")
+    : (s.kind==="pins" ? "Name the structure at each numbered marker." : "The structure is marked on the photo itself.");
+}
+
+function renderStation(){
+  var s=stations[order[at]];
+  answered=false;
+  $("sNow").textContent=String(at+1);
+  $("sAll").textContent=String(order.length);
+  $("sRight").textContent=String(right);
+  $("bar").style.width=((at/order.length)*100)+"%";
+  $("setname").textContent=s.setName;
+  $("cardtitle").textContent=s.title;
+  drawFigure(s,null);
+
+  var f=$("blanks"); f.innerHTML="";
+  s.asks.forEach(function(a,i){
+    var wrap=document.createElement("div"); wrap.className="blank";
+    var id="b"+i;
+    var lab=document.createElement("label"); lab.setAttribute("for",id);
+    var num=document.createElement("span"); num.className="num"; num.textContent=a.mark;
+    lab.appendChild(num); lab.appendChild(document.createTextNode(a.q));
+    var inp=document.createElement("input"); inp.type="text"; inp.id=id;
+    inp.setAttribute("placeholder","Examples: type the name you would write on the exam");
+    wrap.appendChild(lab); wrap.appendChild(inp);
+    var v=document.createElement("p"); v.className="verdict"; v.id="v"+i; v.hidden=true;
+    wrap.appendChild(v);
+    f.appendChild(wrap);
+  });
+  $("extras").hidden=true; $("extras").innerHTML="";
+  $("check").hidden=false; $("reveal").hidden=false;
+  $("next").hidden=true; $("counted").hidden=true;
+  $("live").textContent="Station "+(at+1)+" of "+order.length+". "+s.asks.map(function(a,i){return "Question "+(i+1)+", "+a.q;}).join(" ");
+  var first=f.querySelector("input"); if(first) first.focus();
+}
+
+function showKey(s, results){
+  drawFigure(s,results);
+  s.asks.forEach(function(a,i){
+    var v=$("v"+i);
+    var r=results?results[i]:"no";
+    v.hidden=false;
+    v.className="verdict "+(r==="no"?"no":"ok");
+    v.textContent = r==="exact" ? "Right." : (r==="close" ? "Right, spelling forgiven." : "Missed.");
+    var k=document.createElement("span");
+    var line=document.createElement("p"); line.className="keyline";
+    line.innerHTML="Answer: <b></b>"; line.querySelector("b").textContent=a.a;
+    v.parentNode.appendChild(line);
+    if(a.acc && a.acc.length){
+      var al=document.createElement("p"); al.className="altline";
+      al.textContent="Also accepted: "+a.acc.join(", ");
+      v.parentNode.appendChild(al);
+    }
+    var inp=document.getElementById("b"+i); if(inp) inp.disabled=true;
+  });
+  if(s.extras && s.extras.length){
+    var e=$("extras");
+    e.hidden=false;
+    var h=document.createElement("p"); h.className="xh"; h.textContent="Also worth knowing";
+    var dl=document.createElement("dl");
+    s.extras.forEach(function(it){
+      var dt=document.createElement("dt"); dt.textContent=it.q;
+      var dd=document.createElement("dd"); dd.textContent=it.a;
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    e.appendChild(h); e.appendChild(dl);
+  }
+  $("check").hidden=true; $("reveal").hidden=true; $("next").hidden=false;
+}
+
+function compsForStation(s, names){
+  if(!window.ATLAS_COMPETENCY_MAP) return [];
+  var out=[];
+  names.forEach(function(n){
+    var c=window.ATLAS_COMPETENCY_MAP.compsFor(s.deckId, s.card, n) || [];
+    c.forEach(function(x){ if(out.indexOf(x)<0) out.push(x); });
+  });
+  return out;
+}
+
+function settle(s, results, typed){
+  var got=results.filter(function(r){ return r!=="no"; }).length;
+  var of=results.length;
+  if(got===of) right++;
+  $("sRight").textContent=String(right);
+  var outcome = got===of ? "good" : (got>0 ? "hard" : "again");
+  recordAttempt("atlas-"+s.deckId, order[at], outcome);
+  recordEvidence(compsForStation(s, s.asks.map(function(a){return a.a;})), got, of);
+  s.asks.forEach(function(a,i){
+    if(results[i]==="no") misses.push({q:a.q, a:a.a, typed:typed[i]||"", title:s.title});
+  });
+}
+
+function check(){
+  if(answered) return;
+  var s=stations[order[at]];
+  var typed=s.asks.map(function(a,i){ var el=document.getElementById("b"+i); return el?el.value:""; });
+  var results=s.asks.map(function(a,i){ return judge(typed[i], a.a, a.acc); });
+  answered=true;
+  settle(s, results, typed);
+  showKey(s, results);
+  if(results.some(function(r){ return r==="no"; })) $("counted").hidden=false;
+  $("live").textContent = results.every(function(r){return r!=="no";}) ? "All right." : "Key shown.";
+}
+
+function reveal(){
+  if(answered) return;
+  var s=stations[order[at]];
+  var typed=s.asks.map(function(){ return ""; });
+  var results=s.asks.map(function(){ return "no"; });
+  answered=true;
+  settle(s, results, typed);
+  showKey(s, results);
+  $("live").textContent="Key shown.";
+}
+
+function countRight(){
+  var s=stations[order[at]];
+  right++;
+  $("sRight").textContent=String(right);
+  recordAttempt("atlas-"+s.deckId, order[at], "hard");
+  for(var i=misses.length-1;i>=0;i--){ if(misses[i].title===s.title){ misses.splice(i,1); } }
+  $("counted").hidden=true;
+  $("live").textContent="Counted right.";
+}
+
+function next(){
+  if(at>=order.length-1){ finish(); return; }
+  at++; renderStation();
+}
+
+function finish(){
+  $("player").hidden=true;
+  $("done").hidden=false;
+  var total=order.length;
+  $("dScore").textContent=right+" / "+total;
+  $("dPct").textContent=(total?Math.round(right/total*100):0)+" percent";
+  var ul=$("dMiss"); ul.innerHTML="";
+  misses.forEach(function(m){
+    var li=document.createElement("li");
+    li.innerHTML='<b></b> <span class="you"></span>';
+    li.querySelector("b").textContent=m.a;
+    li.querySelector(".you").textContent = m.typed ? ("you wrote "+m.typed) : "left blank";
+    ul.appendChild(li);
+  });
+  $("drill").hidden = misses.length===0;
+  $("bar").style.width="100%";
+}
+
+function start(list){
+  stations=list || buildStations(deck, tagsPer);
+  order=stations.map(function(_,i){ return i; });
+  if(ordering==="shuffle") order=shuffle(order);
+  at=0; right=0; misses=[];
+  $("setup").hidden=true; $("done").hidden=true; $("player").hidden=false;
+  renderStation();
+}
+
+/* ---------------------------------------------------------------- boot */
+function fail(msg){
+  var s=$("status"); s.className="status bad"; s.textContent=msg;
+}
+
+function loadChapter(id){
+  var ch=CHAPTERS.filter(function(c){ return c.id===id; })[0];
+  if(!ch) return;
+  $("status").className="status";
+  $("status").textContent="Loading "+ch.label+" from the Digital Atlas.";
+  fetch(ATLAS+ch.page,{cache:"no-store"})
+    .then(function(r){ if(!r.ok) throw new Error("the atlas page came back "+r.status); return r.text(); })
+    .then(function(t){
+      deck=pullDeck(t);
+      var cards=(deck.cards||[]).length;
+      $("status").textContent=deck.title+" loaded from the atlas, "+cards+" cards. "
+        + "Edit a card there and this page follows on the next refresh.";
+      $("setup").hidden=false;
+      refreshPlan();
+    })
+    .catch(function(e){
+      fail("Could not read "+ch.page+" from the Digital Atlas. This page has to sit in the loops repo "
+        + "beside index.html, with the atlas at ../new-digital-atlas/, and be opened over http. ("+e.message+")");
+    });
+}
+
+pills($("chapRow"), CHAPTERS.map(function(c){ return {v:c.id,label:c.label}; }), "chap", chapter, function(v){ chapter=v; loadChapter(v); });
+pills($("tagRow"), TAGS, "tags", tagsPer, function(v){ tagsPer=Number(v); refreshPlan(); });
+pills($("ordRow"), ORDERS, "ord", ordering, function(v){ ordering=v; });
+
+$("go").addEventListener("click", function(){ start(null); });
+$("check").addEventListener("click", check);
+$("reveal").addEventListener("click", reveal);
+$("next").addEventListener("click", next);
+$("counted").addEventListener("click", countRight);
+$("quit").addEventListener("click", finish);
+$("again").addEventListener("click", function(){
+  $("done").hidden=true; $("setup").hidden=false; refreshPlan();
+  window.scrollTo({top:0,behavior:"auto"});
+});
+$("drill").addEventListener("click", function(){
+  var names={}; misses.forEach(function(m){ names[m.a]=1; });
+  var sub=stations.filter(function(s){ return s.asks.some(function(a){ return names[a.a]; }); });
+  if(!sub.length) return;
+  $("done").hidden=true;
+  start(sub);
+});
+$("blanks").addEventListener("keydown", function(e){
+  if(e.key!=="Enter") return;
+  e.preventDefault();
+  var inputs=[].slice.call($("blanks").querySelectorAll("input"));
+  var i=inputs.indexOf(document.activeElement);
+  if(i>=0 && i<inputs.length-1){ inputs[i+1].focus(); return; }
+  if(answered) next(); else check();
+});
+
+loadChapter(chapter);
+})();
+</script>
+
+<script>
+/* Iframe height sender for Kajabi */
+(function(){
+  var id="loops-atlas";
+  function send(){
+    var h=Math.max(document.body.scrollHeight, document.documentElement.scrollHeight,
+                   document.body.offsetHeight, document.documentElement.offsetHeight);
+    if(window.parent!==window) window.parent.postMessage({id:id,frameId:id,height:h},"*");
+  }
+  window.addEventListener("load",send);
+  window.addEventListener("resize",send);
+  if(window.ResizeObserver) new ResizeObserver(send).observe(document.body);
+  send();
+})();
+</script>
+</body>
+</html>

@@ -995,8 +995,13 @@ window.LOOPS_ENGINE_CONTENT = {
         {"q": 116, "a": 117, "ans": ["Latissimus Dorsi"]},   /* card 58 */
         {"q": 118, "a": 119, "ans": ["Serratus Anterior"]},   /* card 59 */
         {"q": 120, "a": 121, "ans": ["Triceps Brachii (Medial Head)"]},   /* card 60 */
-        {"q": 122, "a": 123, "ans": ["Biceps Brachii (Long Head)"]},   /* card 61 */
-        {"q": 124, "a": 125, "ans": ["Biceps Brachii (Lateral Head)"]}   /* card 62 */
+        /* Cards 61 and 62 were keyed to Biceps. The figure is the posterior arm,
+           the distal aponeurosis under both arrows is the triceps tendon, and
+           biceps brachii has no lateral head. Corrected 20 Oct 2026. The printed
+           labels on answer slides s123 and s125 still read Biceps and need
+           re-exporting. */
+        {"q": 122, "a": 123, "ans": ["Triceps Brachii (Long Head)"], "alt": {"Triceps Brachii (Long Head)": ["Triceps Brachii, Long Head", "Triceps Long Head", "Long Head of Triceps Brachii", "Long Head of the Triceps"]}},   /* card 61 */
+        {"q": 124, "a": 125, "ans": ["Triceps Brachii (Lateral Head)"], "alt": {"Triceps Brachii (Lateral Head)": ["Triceps Brachii, Lateral Head", "Triceps Lateral Head", "Lateral Head of Triceps Brachii", "Lateral Head of the Triceps"]}}   /* card 62 */
       ]
     },
 
@@ -3582,15 +3587,28 @@ function renderResults(){
 
   $('exAgain').addEventListener('click', function(){ show('setup'); $('exCount').textContent=''; renderHistory(); summarise(); weakSummary(); bump(); });
   $('exToHub').addEventListener('click', leave);
-  resView.addEventListener('click', function(e){
-    var t=e.target; if(!t || !t.getAttribute) return;
-    var qi=t.getAttribute('data-ov'); if(qi===null) return;
-    qi=parseInt(qi,10);
-    items[qi].over = !items[qi].over;
-    persistOverride(qi, items[qi].over);
-    renderResults();
-    var el=$('exq'+qi); if(el && el.querySelector('button')) el.querySelector('button').focus();
-  });
+
+  /* Bind the override handler ONCE. renderResults runs again on every press,
+     and resView is the same element each time, so binding here unguarded used
+     to stack a second listener on the first press. Two listeners toggled
+     it.over twice per click, which cancelled out and left the button dead
+     from the second press onward. */
+  if(!resView.__ovBound){
+    resView.__ovBound = true;
+    resView.addEventListener('click', function(e){
+      var t = e.target;
+      if(!t) return;
+      var btn = t.closest ? t.closest('[data-ov]') : (t.getAttribute && t.getAttribute('data-ov')!==null ? t : null);
+      if(!btn) return;
+      var qi = parseInt(btn.getAttribute('data-ov'), 10);
+      if(isNaN(qi) || !items[qi]) return;
+      items[qi].over = !items[qi].over;
+      persistOverride(qi, items[qi].over);
+      renderResults();
+      var el = $('exq'+qi), again = el && el.querySelector('button[data-ov]');
+      if(again) again.focus();
+    });
+  }
 }
 
 function renderHistory(){
